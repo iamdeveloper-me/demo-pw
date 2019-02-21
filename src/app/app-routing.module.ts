@@ -153,7 +153,7 @@ import { AllReviewsComponent } from './all-reviews/all-reviews.component';
 
 
 const appRoutes: Routes = [
- 
+  
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register/step1', component: StepFirstComponent },
@@ -163,15 +163,15 @@ const appRoutes: Routes = [
   { path: 'home/weddingvendors', component: SearchresultComponent },
   { path: 'home/weddingvendors/:id', component: SearchresultComponent },
   { path: 'home/weddingvendors/:id/:id', component: SearchresultComponent },
-  { path: 'home/tips_list', component: TipslistComponent },
-  { path: 'home/event_list/:eventId', component: EventlistComponent },
+  { path: 'home/tips_list/:blogId/:title', component: TipslistComponent },
+  { path: 'home/event_list/:eventId/:eventTitle', component: EventlistComponent },
   { path: 'home/detailprofile/:id', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
   //{ path: 'home/vendor', component:  VendorComponent  },VendorDealDetailComponent
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
   { path: 'home/contact', component: ContactUsComponent },
-  { path: 'home/events/:data', component:  EventsComponent  },
+  { path: 'home/events/', component:  EventsComponent  },
   { path: 'home/allcategory', component:  AllcategoryComponent },
   { path: 'home/weddingcategories', component:  CategoryComponent },
   { path: 'home/register', component:  RegisterComponent  },
@@ -194,7 +194,6 @@ const appRoutes: Routes = [
 
   { path: 'home/Deals', component:  DealsComponent },
   { path: 'home/Deal_Details', component:  DealDetailsComponent },
-  { path: 'home/Deal_Details/:id', component:  DealDetailsComponent },
   { path: 'home/Honeymoondestinations', component:  HoneymoonComponent },
   { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
   { path: 'home/Honeymoon_Details/:id', component:  HoneymoonDetailsComponent },

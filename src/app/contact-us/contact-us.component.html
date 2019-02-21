@@ -54,33 +54,18 @@
             <div class="form-group col-md-6">
               <input 
                 type="text" 
-                [(ngModel)]="contactInfoObj.name" 
-                #name="ngModel" 
-                [ngClass]="{ 'is-invalid': list.submitted && name.invalid }"
+                [(ngModel)]="contactInfoObj.firstName" 
+                #firstName="ngModel" 
+                [ngClass]="{ 'is-invalid': list.submitted && firstName.invalid }"
                 class="form-control nameClass" 
-                name="name" 
+                name="firstName" 
                 required 
                 placeholder="First Name*"
               />
-              <div *ngIf="list.submitted && name.invalid" class="invalid-feedback">
-                  <div *ngIf="name.errors.required">First Name is required</div>
+              <div *ngIf="list.submitted && firstName.invalid" class="invalid-feedback">
+                  <div *ngIf="firstName.errors.required">First Name is required</div>
               </div>
             </div>
-            <!-- <div class="form-group col-md-6">
-                <input 
-                  type="text" 
-                  [(ngModel)]="firstName" 
-                  #name="ngModel" 
-                  [ngClass]="{ 'is-invalid': list.submitted && firstName.invalid }"
-                  class="form-control" 
-                  name="firstName" 
-                  required 
-                  placeholder="firstName*"
-                />
-                <div *ngIf="list.submitted && firstName.invalid" class="invalid-feedback">
-                    <div *ngIf="firstName.errors.required">firstName is required</div>
-                </div>
-              </div> -->
               <div class="form-group col-md-6">
                   <input 
                     type="text" 
@@ -164,21 +149,21 @@
             </div>
              <div class="form-group">
               <textarea 
-              class="form-control" 
-              name="message" 
-              [(ngModel)]="contactInfoObj.message" 
-              #message="ngModel" 
-              [ngClass]="{ 'is-invalid': list.submitted && message.invalid }"
-              placeholder="Message"
-              required 
-              rows="3">
+                class="form-control" 
+                name="message" 
+                [(ngModel)]="contactInfoObj.message" 
+                #message="ngModel" 
+                [ngClass]="{ 'is-invalid': list.submitted && message.invalid }"
+                placeholder="Message"
+                required 
+                rows="3">
             </textarea>
             <div *ngIf="list.submitted && message.invalid" class="invalid-feedback">
                 <div *ngIf="message.errors.required">message is required</div>
             </div>
             </div>
             <div>
-                <re-captcha [(ngModel)]="listCaptchaValue"  name="captcha" (resolved)="resolved($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
+                <re-captcha  name="captcha" (resolved)="resolved($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
             </div>
             <br>
             <div>

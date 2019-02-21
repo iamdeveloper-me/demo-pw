@@ -32,7 +32,7 @@ export class PP implements PipeTransform {
   providers: [CustompipePipe, CategoryPipePipe]
 })
 export class SearchresultComponent implements OnInit {
-  customOptions: any = { loop: false, margin: 20, mouseDrag: true, touchDrag: true, pullDrag: true, dots: true,
+  customOptions: any = { loop: true, margin: 20, mouseDrag: true, touchDrag: true, pullDrag: true, dots: true,
     nav: false, autoplay: true, navSpeed: 700, responsive: { 0: { items: 1 }, 400: { items: 2 }, 740: { items: 3 }, 
     940: { items: 4 } },
   }
@@ -121,10 +121,10 @@ export class SearchresultComponent implements OnInit {
   ngOnInit() {   
  
   $.getScript('./assets/js/searchresult.js'); 
-  $.getScript('./assets/register/js/jquery-2.2.4.min.js');
   $.getScript('./assets/register/js/bootstrap.min.js');
+  $.getScript('./assets/register/js/jquery-2.2.4.min.js');
   $.getScript('./assets/jss/core/popper.min.js');
-  $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
+  // $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
 //  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
   $.getScript('./assets/jss/plugins/chartist.min.js');
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
@@ -157,10 +157,13 @@ export class SearchresultComponent implements OnInit {
   
     this.categories = JSON.parse(localStorage.getItem('catlist'));
     console.log(this.categories);
+    // this.categories.upshift({'categoryId':0, 'categoryName':'All Categories'});
     if(this.objSearchFilter.catId>0){
       this.categories.filter(c=>c.categoryId==this.objSearchFilter.catId)[0].isSelect=true;
       this.SelectedCategory = this.categories.filter(c=>c.isSelect==true)[0];
       this.showALlCategories=false;
+    }else{
+      this.SelectedCategory={ 'categoryId': 0,'categoryName':'All Categories', 'isSelect': false};
     }
     this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(element => {
       element.isSelect = false;
@@ -170,6 +173,23 @@ export class SearchresultComponent implements OnInit {
     this.showALlCategories=false;
   }
   clearFilters(){
+    this.filters.services.forEach(service => {
+      service['isSelect'] = false;
+    });
+    this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(priceRange => {
+      priceRange['isSelect'] = false;
+    });
+    this.featuredListingArray.forEach(featuredListing => {
+      featuredListing['isSelect'] = false;
+    });
+    this.dealsAndOfferArray.forEach(dealsAndOffer => {
+      dealsAndOffer['isSelect'] = false;
+    });
+    this.userRatingArray.forEach(userRating => {
+      userRating['isSelect'] = false;
+    });
+  
+    
     
   }
   getFilters(){
@@ -258,8 +278,8 @@ export class SearchresultComponent implements OnInit {
     this.objSearchlistvm.page=0;
     switch(filterType){
       case 1: // Category
- 
       this.objSearchlistvm= new SearchListingVM();
+      if(FilterValue!=''){
       this.checkUncheckFilter(FilterValue);
      if(FilterValue.isSelect){
       this.SelectedCategory = FilterValue;
@@ -268,6 +288,10 @@ export class SearchresultComponent implements OnInit {
       this.showALlCategories = false;}else{
         this.showALlCategories = true;
         this.SelectedCategory=null;
+      }}else{
+        this.SelectedCategory={ 'categoryId': 0,'categoryName':'All Categories', 'isSelect': false};
+        this.getFilters();
+        this.showALlCategories = false;
       }
        break;
       case 2: // Service
@@ -417,6 +441,9 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   }
     
  }
+ navigateToDynamicUrl() {
+  this._route.navigate(['/home/weddingvendors/',this.SelectedCategory.categoryName])
+}
 deselectAllCategories(){
   if(this.categories){
   this.categories.forEach(element => {

@@ -10,6 +10,10 @@ import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import { utilities } from 'app/utilitymodel';
 import { Meta, Title } from '@angular/platform-browser';
 import { ContactUsVM } from '../advertise/advertise.component';
+import { filterParam } from '../vendorcard/vendorcard.component'
+import { SignupVendorService } from 'app/shared/service/signup-vendor.service';
+import { LoginServiceService } from 'app/shared/service/login-service.service';
+import '../../assets/js/icon';
 declare var google: any;
 
 interface Marker {lat: number;lng: number;label?: string;draggable: boolean;}
@@ -26,10 +30,16 @@ interface Location {
   providers: [apiService],
 })
 export class DetailpageComponent implements OnInit {
+  templateText:string = '“Hi, I would like to know more about your services and offers for my upcoming wedding event.Please let me know of a suitable time to discuss. Thank you. “'
+  usercouple = {username:'',password:''}
+  user = {username:'',password:''}
+  error = {} ;
   lat: number = 51.678418;
+  role:string;
   lng: number = 7.809007;
   MessagesVMObj  = new MessagesVM();
   contactInfoObj: ContactUsVM;
+  MemberSince:string;
   private url: string = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails/'
   responce_review = true;
   responce_thanks = false;
@@ -41,6 +51,7 @@ export class DetailpageComponent implements OnInit {
   vendorId: number;
   vendorDetails: any;
   data_arr = []
+  showD:boolean = false
   businessServices_length ;
   portfolioAndAlbumImagesTotal: number = 0;
   similarVendors:any;
@@ -53,9 +64,16 @@ export class DetailpageComponent implements OnInit {
   currentDate
   vendorVideo_details:any = [];
   CatName;
-  reviewButtonLabel= 'Show More';
-  dealButtonLabel= 'Show More';
-  vendorLocationsButtonLabel = 'Show More'
+  
+
+  public show: boolean = false;
+  public hide: boolean = true;
+  public buttonName: any = 'Show More';
+
+  reviewButtonLabel= 'View All';
+  dealButtonLabel= 'View All';
+  vendorLocationsButtonLabel = 'View All'
+  objFilterParam: filterParam;
   @ViewChild('albumgallarypopup') albumgallarypopup: ElementRef;
   @ViewChild(AgmMap) map: AgmMap;
   @ViewChild('gmapInput') gmapInput: ElementRef;
@@ -66,20 +84,30 @@ export class DetailpageComponent implements OnInit {
      public mapsApiLoader: MapsAPILoader,
      private router: Router,
      private meta : Meta,
-     private title : Title
+     private title : Title,
+     private uservice: SignupVendorService,
+     private cservice: LoginServiceService
    ) { 
       this.ratingmodel = new ratingStars();
       this.contactInfoObj = new ContactUsVM();
       var dateObj = new Date();
       this.currentDate  = dateObj.getDay()  //months from 1-12
       console.log(this.currentDate )
-      this.user_login_token = sessionStorage.getItem('userId')
-      console.log( this.user_login_token )
+      // this.user_login_token = sessionStorage.getItem('userId')
+      this.role = (sessionStorage.getItem('role'))
+      
+  if(sessionStorage.getItem('role') == 'Users'){
+    this.showD = true
+  }else{
+    this.showD = false
+
+  }
+      console.log(this.user_login_token);
+      this.objFilterParam = new filterParam();
   }
   ngOnInit() {
 
     $.getScript('./assets/js/prism.min.js');
-
     $.getScript('./assets/js/owljsor.js');
     $.getScript('./assets/js/curosselfun.js');
     $.getScript('./assets/js/detailpagescroll_active.js');
@@ -96,19 +124,19 @@ export class DetailpageComponent implements OnInit {
     // alert("dfdsff") 
     // this.showLoader = false;}, 2900);
     this.vendorDetails.reviews.forEach((element,index) => {
-      if(index<=2){ element.visible=true;this.reviewButtonLabel='Show More'; } 
+      if(index<=2){ element.visible=true;this.reviewButtonLabel='View All'; } 
             else { element.visible=false; }
             
     });
     this.vendorDetails.deals.forEach((element,index) => {
       if(index<=2){ element.visible=true; 
-        this.dealButtonLabel='Show More';
+        this.dealButtonLabel='View All';
       }else{  
         element.visible=false; }
     });
     this.vendorDetails.vendorLocations.forEach((element,index) => {
       if(index<=2){ element.visible=true; 
-        this.vendorLocationsButtonLabel='Show More';
+        this.vendorLocationsButtonLabel='View All';
       }else{ element.visible=false; }
     });
     for (let cat of this.vendorDetails.vendorCategories) {
@@ -173,7 +201,7 @@ export class DetailpageComponent implements OnInit {
         $('.fancybox-toolbar').append('<a class="fancybox-button" title="Share" href="whatsapp://send?text=Text to send withe message: http://13.59.229.254"><i class="material-icons">share</i></a><button data-fancybox-zoom="" class="fancybox-button fancybox-button--share" title="Like"><i class="material-icons">favorite_border</i></button>')  
     }, 50);
   }
-  review = { rating: '', comments: "", rateVendorID: 'a96129c3-8861-43aa-8bc9-1c155f1ffd79' }
+  review = { rating: '', comments: "", rateVendorID: '' }
   putReview(review) {
    
     
@@ -188,7 +216,7 @@ export class DetailpageComponent implements OnInit {
       comments: comments1,
       rateVendorID:  this.vendorDetails.vendorUniqueId
    }
-    console.log(this.user_login_token )
+    console.log(this.user_login_token);
     this.apiService.postData(this.apiService.serverPath+'Reviews/postreview', a).subscribe(data => {
       console.log(data)
       this.responce_review = false;
@@ -208,8 +236,12 @@ export class DetailpageComponent implements OnInit {
     });
   }
   goToPhotogallary(vendorDetails){
+    console.log(vendorDetails);
     sessionStorage.setItem('Vendorimages',JSON.stringify(this.vendorDetails.albums));
-    this.router.navigateByUrl('/home/Photogallary');
+    const a = vendorDetails.vendorCategories[0].categories.categoryName;
+    const b = vendorDetails.vendorId;
+    const c = vendorDetails.nameOfBusiness;
+    this.router.navigateByUrl('/home/weddingvendorss/'+a+'/'+b+'/'+c);
     // this.router.navigate(['home/Photogallary'])
     
   }
@@ -251,7 +283,7 @@ export class DetailpageComponent implements OnInit {
   }
   showHideReviews(){
     this.vendorDetails.reviews.forEach((element,index) => {
-        if(this.reviewButtonLabel=='Show More')
+        if(this.reviewButtonLabel=='View All')
         {
               element.visible=true;
         }else{
@@ -263,13 +295,20 @@ export class DetailpageComponent implements OnInit {
         }
     });
     if(this.vendorDetails.reviews.filter(r=>r.visible==true).length>3){
-      this.reviewButtonLabel = 'Show Less';
+      this.reviewButtonLabel = 'Veiw Less';
 
     }else{
-      this.reviewButtonLabel = 'Show More';
+      this.reviewButtonLabel = 'Veiw All';
     }
     
   }
+
+  //GoToAllReviews
+  goToAllReviews(vendorDetails){
+    sessionStorage.setItem('Vendorimages',JSON.stringify(this.vendorDetails.reviews));
+    this.router.navigateByUrl('/home/allReviews');
+  }
+
   showHideevents(){
  
      this.vendorDetails.deals.forEach((element,index) => {
@@ -293,32 +332,26 @@ export class DetailpageComponent implements OnInit {
     }
 
   }
-  showHidetrading_hours(){
- alert("vfdsg")
-    this.vendorDetails.vendorLocations.forEach((element,index) => {
-     if(this.vendorLocationsButtonLabel=='Show More')
-     {
-           element.visible=true;
-     }else{
-           if(index<=1){
-                element.visible=true;
-           } else {
-                element.visible=false;
-           }
-     }
-    });
+  showHidetrading_hours() {
+    this.show = !this.show;
+    this.hide = this.hide;
 
-    if(this.vendorDetails.vendorLocations.filter(r=>r.visible==true).length>3){
-     this.vendorLocationsButtonLabel = 'Show Less';
-
-   }else{
-     this.vendorLocationsButtonLabel = 'Show More';
-   }
+    // CHANGE THE NAME OF THE BUTTON.
+    if (this.show)
+      {this.buttonName = "Show Less";
+        $('.tabledesktop').hide();
+    } else
+     { 
+        this.buttonName = "Show More";
+        $('.tabledesktop').show();
+    }
   }
+
+
     message(msg){
       this.user_login_token = sessionStorage.getItem('userToken');
-      this.userId = localStorage.getItem('userId'); 
-      msg.value.sendToUserId =  localStorage.getItem('userId'); 
+      this.userId = sessionStorage.getItem('userId'); 
+      msg.value.sendToUserId =  sessionStorage.getItem('userId'); 
       console.log(msg.value)
       if (!sessionStorage.getItem('userToken')) {
         this.toastr.error('Login To Give Your Message');
@@ -348,6 +381,159 @@ export class DetailpageComponent implements OnInit {
       }
     )
   }
+
+  search(e){    
+    if(e){
+      this.objFilterParam.catId  = e.category?e.categoryId:0;
+      this.objFilterParam.categoryName= e.categoryName?e.categoryName: '' ;
+      this.objFilterParam.page = 0;
+      this.objFilterParam.pageSize = 25;
+      this.objFilterParam.sortDir = "";
+      this.objFilterParam.sortedBy ="";
+      this.objFilterParam.searchQuery ="";
+     }
+      sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+      this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+  }
+
+        //loginpage
+        loadScript(){ 
+          $("#panel9").removeClass( "in");
+          $("#panel9").removeClass( "active");
+          $("#panel9").removeClass( "show");
+          $("#panel7").removeClass( "active");
+          $("#panel7").removeClass( "show");
+          $("#panel7").removeClass( "in");
+          $("#panel8").addClass( "in");
+          $("#panel8").addClass( "active");
+          $("#panel8").addClass( "show");
+          $("#panel10").removeClass( "in");
+          $("#panel10").removeClass( "active");
+          $("#panel10").removeClass( "show");
+          $("#panel11").removeClass( "in");
+          $("#panel11").removeClass( "active");
+          $("#panel11").removeClass( "show");
+      }
+      userin(){
+          $("#panel9").removeClass( "in");
+          $("#panel9").removeClass( "active");
+          $("#panel9").removeClass( "show");
+          $("#panel7").addClass( "active");
+          $("#panel7").addClass( "show");
+          $("#panel7").addClass( "in");
+          $("#panel8").removeClass( "in");
+          $("#panel8").removeClass( "active");
+          $("#panel8").removeClass( "show");
+          $("#panel10").removeClass( "in");
+          $("#panel10").removeClass( "active");
+          $("#panel10").removeClass( "show");
+          $("#panel11").removeClass( "in");
+          $("#panel11").removeClass( "active");
+          $("#panel11").removeClass( "show");
+      }
+      forgotbox(){ 
+          $("#panel9").removeClass( "in");
+          $("#panel9").removeClass( "active");
+          $("#panel9").removeClass( "show");
+          $("#panel7").removeClass( "active");
+          $("#panel7").removeClass( "show");
+          $("#panel7").removeClass( "in");
+          $("#panel8").removeClass( "in");
+          $("#panel8").removeClass( "active");
+          $("#panel8").removeClass( "show");
+          $("#panel10").addClass( "in");
+          $("#panel10").addClass( "active");
+          $("#panel10").addClass( "show");
+          $("#panel11").removeClass( "in");
+          $("#panel11").removeClass( "active");
+          $("#panel11").removeClass( "show");
+      }
+      forgotvendor(){ 
+          $("#panel9").removeClass( "in");
+          $("#panel9").removeClass( "active");
+          $("#panel9").removeClass( "show");
+          $("#panel7").removeClass( "active");
+          $("#panel7").removeClass( "show");
+          $("#panel7").removeClass( "in");
+          $("#panel8").removeClass( "in");
+          $("#panel8").removeClass( "active");
+          $("#panel8").removeClass( "show");
+          $("#panel10").removeClass( "in");
+          $("#panel10").removeClass( "active");
+          $("#panel10").removeClass( "show");
+          $("#panel11").addClass( "in");
+          $("#panel11").addClass( "active");
+          $("#panel11").addClass( "show");
+      }
+      //end
+      remove(){
+          if(window.location.pathname == '/home' )
+          {     
+              $("body").removeClass( "modal-open");
+              $("body").css({ 'padding-right' : '' }); 
+          }
+      }
+
+  onSubmit(){ 
+    this.cservice.login(this.usercouple).subscribe((data)=> {
+                        if (data.statusText == "OK" && data.json().role =="Vendors" ) {
+                            this.typeSuccess();
+                            localStorage.setItem('userId',data.json().id);
+                            localStorage.setItem('role',data.json().role);
+                            localStorage.setItem('userToken',data.json().auth_token);
+                            sessionStorage.setItem('userToken',data.json().auth_token);
+                            this.router.navigate(['/home/detailprofile/0'])
+                            $("body").removeClass( "modal-open");
+                            $("div").removeClass( "modal-backdrop"); 
+                        }
+        },(ERROR)=>{
+                        if (ERROR.statusText == "Bad Request" ) {
+                            this.error  = ERROR.json().login_failure[0];
+                        this.typeWarning();
+                        }
+                    
+        });
+}
+typeSuccess() {
+    this.cservice.typeSuccess();
+}
+typeWarning() {
+    this.cservice.typeWarning();
+}
+typeLogout() {
+    this.cservice.typeLogout();
+}
+//--------------------------------user login 
+userlogin(){ 
+                this.cservice.login(this.user).subscribe((data)=> {
+                    
+                            if (data.statusText == "OK"  && data.json().role =="Users") {
+                                sessionStorage.setItem('userToken',data.json().auth_token);
+                                sessionStorage.setItem('userId',data.json().id);
+                                sessionStorage.setItem('role',data.json().role);
+
+                                // localStorage.setItem('userId',data.json().id);
+                                this.router.navigate(['/home/detailprofile/0'])
+                                this.typeSuccess();
+                                $("div").removeClass( "modal-backdrop fade show");
+                                $("body").removeClass( "modal-open");
+                                $("body").removeClass( "modal-open");
+                                $("div").removeClass( "modal-backdrop"); 
+                            }
+                },(ERROR)=>{     
+                            if (ERROR.statusText == "Bad Request" ) {
+                                this.error  = ERROR.json().login_failure[0];
+                                this.typeWarning();
+                            }
+                        });
+}
+userSingUp = {email:' ',password:' ',confirmpass:'', firstName:'',lastName:''} 
+userSubmit(){
+                this.uservice.usignup(this.userSingUp).subscribe(( data )  =>  {
+                },(error)=>{this.toastr.warning(error._body);
+                });
+}
+//----------------userpanellogout
 
 
   

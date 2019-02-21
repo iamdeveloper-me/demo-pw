@@ -149,6 +149,7 @@ import { StepThirdComponent } from './register/step-third/step-third.component';
 import { StepForthComponent } from './register/step-forth/step-forth.component';
 import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
 import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
+import { AllReviewsComponent } from './all-reviews/all-reviews.component';
 
 
 const appRoutes: Routes = [
@@ -163,14 +164,14 @@ const appRoutes: Routes = [
   { path: 'home/weddingvendors/:id', component: SearchresultComponent },
   { path: 'home/weddingvendors/:id/:id', component: SearchresultComponent },
   { path: 'home/tips_list', component: TipslistComponent },
-  { path: 'home/event_list', component: EventlistComponent },
+  { path: 'home/event_list/:eventId', component: EventlistComponent },
   { path: 'home/detailprofile/:id', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
   //{ path: 'home/vendor', component:  VendorComponent  },VendorDealDetailComponent
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
   { path: 'home/contact', component: ContactUsComponent },
-  { path: 'home/events', component:  EventsComponent  },
+  { path: 'home/events/:data', component:  EventsComponent  },
   { path: 'home/allcategory', component:  AllcategoryComponent },
   { path: 'home/weddingcategories', component:  CategoryComponent },
   { path: 'home/register', component:  RegisterComponent  },
@@ -181,10 +182,12 @@ const appRoutes: Routes = [
   { path: 'home/Careers', component:  CareersComponent  },
   { path: 'home/Advertise', component:  AdvertiseComponent },
   { path: 'home/cuplefoot', component:  FootCupleComponent },
-  { path: 'home/Photogallary', component:  PhotogallaryComponent },
+  { path: 'home/weddingvendorss/:id/:id/:id', component:  PhotogallaryComponent },
+  //All Reviews Page
+  { path: 'home/allReviews', component: AllReviewsComponent },
   { path: 'home/Vediogallary', component:  VediogallaryComponent },
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
-  { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
+  { path: 'home/weddingvendorsss/:id/:id/:id/:id/:id', component:  PhotogallerydetailComponent },
   { path: 'home/ResetPassword', component:  ResetPasswordComponent },
   { path: 'home/allDreamWedding', component:  DreamWeddingLocationsComponent },
   { path: 'home/FeaturedWeddingSuppliers', component:  FeaturedWeddingSuppliersComponent },

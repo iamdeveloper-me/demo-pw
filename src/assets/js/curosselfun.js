@@ -156,6 +156,7 @@ document.getElementsByTagName("rating_star span")[0].removeAttribute("title");
 
 
 
+
 $(".linkshow").click(function() {
   //alert("hhhh");
     $('.vp_about_txt_description').addClass('showtik');
@@ -322,6 +323,10 @@ $(".callbtnhide").click(function() {
 });
 
 $(document).ready(function() {
+
+ $("i.star-icon").removeAttr("title");
+
+
     var $lightbox = $('#lightbox');
     
     $('[data-target="#lightbox"]').on('click', function(event) {
@@ -435,3 +440,8 @@ window.onload = function(){
     }
 };
 
+
+
+
+
+ 

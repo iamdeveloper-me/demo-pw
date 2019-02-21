@@ -39,7 +39,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from "./shared/shared.module";
 // import { VendorModule } from "./vendor/vendor.module" 
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpClientJsonpModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
@@ -227,8 +227,9 @@ import { EventsearchlocationPipe } from './events/eventsearch.pipe';
 import { EventsearchentryPipe } from './events/eventsearch.pipe';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
+import { AllReviewsComponent } from './all-reviews/all-reviews.component';
 
-
+// import { ShareButtonsModule } from '@ngx-share/buttons';
 
 
 
@@ -457,7 +458,9 @@ export function getAuthServiceConfigs() {
         
         EventsearchentryPipe,
         
-        VendorDealDetailComponent
+        VendorDealDetailComponent,
+        
+        AllReviewsComponent
 
 
 
@@ -473,7 +476,8 @@ export function getAuthServiceConfigs() {
         FlatpickrModule.forRoot(),
         CalendarModule.forRoot(),
         // calender End
-
+        HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
+        // ShareButtonsModule,
         NgxPaginationModule,
 
         RecaptchaModule,

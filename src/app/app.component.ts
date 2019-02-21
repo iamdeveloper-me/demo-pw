@@ -21,11 +21,11 @@ ngOnInit() {
     $.getScript('./assets/js/owljsor.js');
     $.getScript('./assets/js/curosselfun.js');
  
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    if(!authToken) 
-   {  this.router.navigate(['../home']);
-    }
+ //   let headers = new Headers();
+//     var authToken = localStorage.getItem('userToken');
+//     if(!authToken) 
+//    {  this.router.navigate(['../home']);
+//     }
     
 }
 

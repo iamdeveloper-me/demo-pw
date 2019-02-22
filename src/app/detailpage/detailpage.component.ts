@@ -31,7 +31,7 @@ interface Location {
   providers: [apiService],
 })
 export class DetailpageComponent implements OnInit {
- 
+  mediumDate
   customOptions: any = {
     margin: 0,
     loop: true,

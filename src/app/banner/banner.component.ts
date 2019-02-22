@@ -39,8 +39,8 @@ export class BannerComponent implements OnInit {
  
   ngOnInit() {
     
-   $.getScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js');
-   $.getScript('./assets/js/homebannersearch.js');
+   // $.getScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js');
+   // $.getScript('./assets/js/homebannersearch.js');
     this.Categorie();
     this.location();
     this.banner();

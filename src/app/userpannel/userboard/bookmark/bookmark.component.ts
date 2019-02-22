@@ -1,5 +1,5 @@
 import { Component, OnInit ,Input} from '@angular/core';
-import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { taskService } from './taskService';
 
@@ -18,12 +18,12 @@ import { taskService } from './taskService';
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary btn-raised" (click)="activeModal.close('Close click')">Close</button>
     </div>
-  `
+  `,
 })
 
 export class NgbdbookmarkModalContent {
     @Input() name;
-    constructor(public activeModal: NgbActiveModal) { }
+    constructor(public activeModal: NgbActiveModal, public modalref: NgbModalRef) { }
 
 }
 
@@ -37,6 +37,7 @@ export class NgbdbookmarkModalContent {
 export class BookmarkComponent implements OnInit {
  acc: any;
  myChecklist: any;
+ modalref:any;
   // Prevent panel toggle code
   public beforeChange($event: NgbPanelChangeEvent) {
     if ($event.panelId === '2') {
@@ -52,22 +53,26 @@ export class BookmarkComponent implements OnInit {
     constructor(private modalService: NgbModal, public tskService: taskService){
         this.mychecklist();
     }
-     addNewTask(){ this.tskService.CreateUpdateTask().subscribe(res=>{ console.log(res); });
+     addNewTask(){ 
+         
+         this.tskService.CreateUpdateTask().subscribe(res=>{ console.log(res);
+        this.mychecklist();
+        });
      }
      mychecklist(){
          this.tskService.objMychecklistParam.timing ='0';
-         this.tskService.objMychecklistParam.categoryId = 2;
+         this.tskService.objMychecklistParam.categoryId = null;
          this.tskService.objMychecklistParam.filter = 0;
          this.tskService.myCheckList().subscribe(res=>{
             this.myChecklist = res;
             console.log(this.myChecklist);
+        
          });
-         
      }
 
     // Open default modal
     open(content) {
-        this.modalService.open(content).result.then((result) => {
+       this.modalref= this.modalService.open(content).result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -100,7 +105,7 @@ export class BookmarkComponent implements OnInit {
   ngOnInit() {
     $("li").removeClass("user");
     $("#login").hide();
-$.getScript('https://code.jquery.com/jquery-1.11.1.min.js');
+    $.getScript('https://code.jquery.com/jquery-1.11.1.min.js');
     $(document).on('click', '.panel-heading span.clickable', function(e){
     var $this = $(this);
     if(!$this.hasClass('panel-collapsed')) {
@@ -144,9 +149,6 @@ $('.allbtncheck').click(function(e){
     $(".todocheckbox").show();
     $(".donecheckbox").show();
 });
-
-
-
   }
 
 

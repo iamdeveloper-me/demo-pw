@@ -278,44 +278,18 @@
                <div class="panel-body nopadd card martop0px">
 
 
-                    <div class="CheckListdiv donecheckbox">
-                    	<i class="material-icons tikchecklist">check</i>
+                    <div class="CheckListdiv donecheckbox" *ngFor='let td of myChecklist'>
+                    	<i class="material-icons tikchecklist" *ngIf='td.status===1'>check</i>
                     	<span>
-                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<strong>{{td.name}}</strong>
                     		<br/>
                     		Events
                             <br/>
-                            From 10 to 12 months <span class="badge badge-success">Done</span>
+                            {{td.timing}} <span class="badge badge-success" *ngIf='td.status==1'>{{statusString}}</span>
                     	</span>
                     	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
                     </div>
-                    <div class="CheckListdiv donecheckbox">
-                        <i class="material-icons tikchecklist">check</i>
-                        <span>
-                            <strong>Check if your wedding date is on an auspicious day</strong>
-                            <br/>
-                            Events
-                            <br/>
-                            From 10 to 12 months <span class="badge badge-success">Done</span>
-                        </span>
-                        <button class="deletebtnhover"><i class="material-icons">delete</i></button>
-                    </div>
-                    <div class="CheckListdiv todocheckbox">
-                        <i class="material-icons tikchecklist">check</i>
-                        <span>
-                            <strong>Check if your wedding date is on an auspicious day</strong>
-                            <br/>
-                            Events
-                            <br/>
-                            From 10 to 12 months <span class="badge badge-warning">To Do List</span>
-                        </span>
-                        <button class="deletebtnhover"><i class="material-icons">delete</i></button>
-                    </div>
                 </div>
-
-          
-
-           
         </div>
     </div>
 </div>
@@ -337,7 +311,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                         <div class="input-effect form-group md-form ">
-                            <input class="effect-16 validate" type="text" placeholder="" required="required">
+                            <input class="effect-16 validate" type="text" name="taskName" [(ngModel)]='tskService.objTodoVm.name' placeholder="" required="required">
                             <label>Task Name</label>
                             <span class="focus-border"></span>
                         </div>
@@ -348,7 +322,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                         <div class="input-effect form-group md-form ">
-                          <select class="effect-16 validate">
+                          <select class="effect-16 validate" name="timing" [(ngModel)]='tskService.objTodoVm.timing'>
                             <option>Timing</option>
                             <option>From 10 to 12 months</option>
 							<option>From 07 to 09 months</option>
@@ -366,13 +340,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                         <div class="input-effect form-group md-form ">
-                          <select class="effect-16 validate">
-                            <option>Category</option>
-                            <option>Events</option>
-							<option>Photography & Vedio</option>
-							<option>Planing</option>
-							<option>Health & Beauty</option>
-							<option>Others</option>
+                          <select class="effect-16 validate" name="category" [(ngModel)]='tskService.objTodoVm.categoryId'>
+                            <option value="1">Category</option>
+                            <option value="2">Events</option>
+							<option value="3">Photography & Vedio</option>
+							<option value="4">Planing</option>
+							<option value="5">Health & Beauty</option>
+							<option value="6">Others</option>
                           </select>
                         </div>
                     </div>
@@ -382,7 +356,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                           <div class="input-effect form-group md-form ">
-                              <textarea class="effect-16 validate" type="email" placeholder="" required="required"></textarea>
+                              <textarea class="effect-16 validate" name="notes" [(ngModel)]='tskService.objTodoVm.notes' type="text" placeholder="" required="required"></textarea>
                               <label>Notes</label>
                               <span class="focus-border textareafocus"></span>
                           </div>
@@ -393,7 +367,7 @@
                    <div class="row">
                     <div class="col-md-12 mobCenter">
                       <div class="form-group">
-                         <button type="submit" class="btn pinkbtn">Add Task</button>
+                         <button type="button" (click)='addNewTask()' class="btn pinkbtn">Add Task</button>
                 </div></div>
             </div>
                    

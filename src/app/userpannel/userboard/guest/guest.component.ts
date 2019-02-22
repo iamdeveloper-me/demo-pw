@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GuestserviceService } from './guestservice.service';
 
 @Component({
   selector: 'app-guest',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuestComponent implements OnInit {
 
-  constructor() { }
+  guestList: any;
+  constructor(public _guestservice: GuestserviceService) {
+    
+    this._guestservice.getMyGuestList().subscribe(res=>{
+      this.guestList = res;  
+      console.log(this.guestList)
+    });
+   }
+   
 
   ngOnInit(){ 
   $.getScript('http://code.jquery.com/jquery-1.11.1.min.js'); 

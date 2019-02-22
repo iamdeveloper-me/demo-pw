@@ -39,7 +39,7 @@ function createDropDown(){
     var options = $("option", source);  // get all <option> elements
     // create <dl> and <dt> with selected value inside it
     $("#append").append('<dl id="target" class="searcboxhome"></dl>')
-    $("#target").append('<dt><a>' + selected.text() + 
+    $("#target").append('<dt><a (click)=categoryClick(list_Categories)>' + selected.text() + 
         '<span class="value">' + selected.val() + 
         '</span></a></dt>')
     $("#target").append('<dd><ul class="available-items"></ul></dd>')

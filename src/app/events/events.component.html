@@ -68,10 +68,10 @@
 										</button>
 
 										<!-- <button class="borradius50per purple-gradient"> -->
-										<button class="borradius50per" (click)="bookMark(item,'events','bookmarked')">
+										<button class="borradius50per" (click)="apiService.bookMark(item,'event','bookmarked','eventPage')">
 											<i class="material-icons">
 												bookmark_border
-											</i>
+											</i> 
 										</button>
 								</div>
 								<div (click)="goToNextPage(item)">

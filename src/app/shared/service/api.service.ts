@@ -1,10 +1,12 @@
 import { Injectable, } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable ,  Subscription } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthGuardService } from 'app/services/auth-guard.service';
 
 @Injectable()
 export class apiService {
-  constructor(private http: HttpClient) { }
+  constructor(public actRoute: ActivatedRoute ,public router : Router,private auth : AuthGuardService,private http: HttpClient) { }
   serverPath = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/"
   getData(url) : Observable<any> {
     var authToken = sessionStorage.getItem('userToken');
@@ -78,15 +80,33 @@ export class apiService {
       case "honeymoonpage": { 
         var id = data['vendorId'] 
          break; 
+      }
+      case "searchresult": { 
+        var id = data['vendorId'] 
+         break; 
       } 
+      case "eventPage": { 
+        var id = data['eventId'] 
+        break; 
+      } 
+      case "promoted_list": { 
+        var id = data['vendorId'] 
+         break; 
+      }
+       
+
       default: { 
          //statements; 
          break; 
       } 
-   } 
-   this.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-     console.log(data)
-   })
+   }
+   if(this.auth.userActive()){
+    this.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+      console.log(data)
+    })
+   }else{
+    this.router.navigateByUrl('/home?returnURl='+this.router.url);   } 
+   
   }
 
   fillBookmark(id, type, action_which_lacation){
@@ -96,7 +116,53 @@ export class apiService {
       "action": action_which_lacation,
       "promoted": true
     }
+    return this.postData(this.serverPath + 'couple/markasbookmark',data);     
+
+   }
+
+   public fillLikeUser(data, type , action_which_lacation,page){
+    switch(page) { 
+      case "albums": { 
+        var id = data['id'] 
+        break; 
+      } 
+      case "honeymoonpage": { 
+        var id = data['vendorId'] 
+         break; 
+      }
+      case "searchresult": { 
+        var id = data['vendorId'] 
+         break; 
+      } 
+      case "eventPage": { 
+        var id = data['eventId'] 
+        break; 
+      } 
+      case "promoted_list": { 
+        var id = data['vendorId'] 
+         break; 
+      }
+       
+
+      default: { 
+         //statements; 
+         break; 
+      } 
+   }
+ this.fillLike(id, type , action_which_lacation).subscribe(data=>{
+      console.log(data)
+    }) 
+   
+  }
+   fillLike(id, type, action_which_lacation){
+    const data = {
+      "id": id,
+      "type": type,
+      "action": action_which_lacation,
+      "promoted": true
+    }
     return this.postData(this.serverPath + 'PerfectWedding/loguseraction',data);     
 
    }
+   
 }

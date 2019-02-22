@@ -110,6 +110,8 @@ export class HoneymoonComponent implements OnInit{
      
       this.search(null,true,false,var_data)
   }
+
+  
   // honeymoondetail_page(a){
     
   //   sessionStorage.setItem('Honeymoon_detail',JSON.stringify(a));

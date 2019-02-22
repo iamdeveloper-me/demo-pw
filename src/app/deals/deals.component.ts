@@ -48,8 +48,9 @@ export class DealsComponent implements OnInit {
   }
 
   goToNextPage(a){
-    sessionStorage.setItem('deal,mydeal',JSON.stringify(a));
-    this.router.navigate(['home/Deal_Details']);
+    // sessionStorage.setItem('deal,mydeal',JSON.stringify(a));
+    // this.router.navigate(['home/Deal_Details']);
+    this.router.navigate(['home/Deal_Details',a.dealId,a.title.replace(/\s/g,'')]);
   }
 
 

@@ -150,6 +150,7 @@ import { StepForthComponent } from './register/step-forth/step-forth.component';
 import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
 import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
 import { AllReviewsComponent } from './all-reviews/all-reviews.component';
+import { HoneymoonDestinatationComponent } from './honeymoon-destinatation/honeymoon-destinatation.component';
 
 
 const appRoutes: Routes = [
@@ -193,10 +194,11 @@ const appRoutes: Routes = [
   { path: 'home/FeaturedWeddingSuppliers', component:  FeaturedWeddingSuppliersComponent },
 
   { path: 'home/Deals', component:  DealsComponent },
-  { path: 'home/Deal_Details', component:  DealDetailsComponent },
+  { path: 'home/Deal_Details/:dealId/:title', component:  DealDetailsComponent }, 
   { path: 'home/Honeymoondestinations', component:  HoneymoonComponent },
   { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
-  { path: 'home/Honeymoon_Details/:id', component:  HoneymoonDetailsComponent },
+  { path: 'home/allDestination', component:  HoneymoonDestinatationComponent },
+  // { path: 'home/Honeymoon_Details/:id', component:  HoneymoonDetailsComponent },
   { path: 'vendor/creatpromo', component:  CreatePromotionComponent, canActivate:[AuthGuardService]  },
   { path: 'vendor/messagess', component:  ChatComponent, canActivate:[AuthGuardService]  },
   { path: 'vendor/dashboard', component:  DashboardComponent,canActivate:[AuthGuardService]  },

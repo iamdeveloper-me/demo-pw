@@ -26,7 +26,7 @@
                       <a data-fancybox="gallery" class="thumbnail" href="{{data.files.path}}" >
               
 
-                        <img class="img-thumbnail img-responsive"  src="{{data.files.path}} " alt="Another alt text"> 
+                        <img  *ngIf = "data" class="img-thumbnail img-responsive"  src="{{data.files.path}} " alt="Another alt text"> 
           
                         
                     </a>

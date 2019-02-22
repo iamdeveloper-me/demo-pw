@@ -1,108 +1,83 @@
 <div id="wrappervendor" class="">
-  <app-menu></app-menu>
+    <app-menu></app-menu>
 	<div class="container mobnopadd ipad100">
 	  	<div class="col-sm-12 detail_page nopadd">
 		   <div class="card inspirationhead">
-	  			<a routerLink="../Photogallary" class="backlink"> 
+	  			<a routerLink="../detailprofile/0" class="backlink" (click) = "session_data()"> 
 		            <i class="material-icons">arrow_back_ios</i>
-		            Go Back
+		            <span>Go Back</span>
 		        </a>
-      			<h2 class="text-center">Album Name</h2>
+      			<h2 class="text-center">
+					  {{vendorDetails?.albumName}}
+				</h2>
+				<h2 class="text-center" *ngIf = "portfolios_length > 0">
+						Portfolio
+				  </h2>
    			</div>
 	    </div>
-	 <div class="boxLightStyles">
-	   		<div class="container row martop15px">
-		        <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
-		       <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
-		      <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
-		       <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
-		      <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
-		        <div class="col-6 col-sm-3">
-		             <a data-fancybox="gallery" href="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg">
-		              <div class="thumbnail text-center">
-		              	<img src="https://s3.amazonaws.com/ooomf-com-files/lqCNpAk3SCm0bdyd5aA0_IMG_4060_1%20copy.jpg" alt="...">
-		              </div>
-		          	</a>
-		        </div>
+	    <div class="boxLightStyles">
+	   		<div class="container row rowset martop15px">
+				<div class="col-4 col-sm-3 mobnopadd" *ngFor='let filepath of vendorDetails?.albumImages'>           
+					<a data-fancybox="gallery" class="thumbnail" [href]="filepath?.path">
+							<img  *ngIf="filepath" [src]='filepath?.path' alt="...">
+              <div class="col-sm-12 footericon">
+                <span><i class="material-icons">share</i> 0 </span>
+                <span><i class="material-icons">favorite_border</i> {{filepath?.likeCounts}} </span>
+              </div>
+          </a>
+
+        
+
+				</div>
+			
+				<div class="col-4 col-sm-3 mobnopadd"  *ngFor='let portpi of portpholio' >
+					<a data-fancybox="gallery" class="thumbnail" [href]="portpi?.path">
+						<img [src]="portpi?.path" alt="..." >
+
+             <div class="col-sm-12 footericon">
+               <span><i class="material-icons">share</i> 0 </span>
+               <span><i class="material-icons">favorite_border</i> {{filepath?.likeCounts}} </span>
+            </div>
+					</a>
+
+           
+
+				</div>
 			</div>
 		</div>
+  <div class="clearfix"></div>
+  <div class="bottomsticky row">
+    <div class="col-sm-12">
+      <div class="col-6 text-center">
+        $ 400 per day
+        <div class="clearfix"></div>
+        <button class="bottombtn">View All</button>
+      </div>
+      <div class="featurebtn col-6">
+        <div class="row">
+          <div class="col-12">
+            <div class="col-4">
+              <button class="btn purple-gradient borradius50per">
+                <i class="material-icons">call</i>
+              </button>
+            </div>
+            <div class="col-4">
+              <button class="btn purple-gradient borradius50per" data-target="#address" data-toggle="modal">
+                <i class="material-icons">mail_outline</i>
+              </button>
+            </div>
+            <div class="col-4">
+              <button class="btn purple-gradient borradius50per">
+                <i class="material-icons">bookmark_border</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-</div>
-
-<app-foot></app-foot>
-
+    </div>
+    <app-foot></app-foot>
 </div>
 <router-outlet></router-outlet>

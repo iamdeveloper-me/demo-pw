@@ -30,24 +30,6 @@ pageSize:number = 10000
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js');
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
-    // HighestRate=1,
-    // LowestRate=2,
-    // MostRecent=3,
-    // Earliest=4,
-    // NotReplied=5,
-    // Replied=6,
-    // Pinned=7
-    // get dummy data
-    // this.http.get('./dummy-data.json')
-    //   .map((response: Response) => response.json())
-    //   .subscribe(data => {
-    //     // set items to json response
-    //     this.allItems = data;
-
-    //     // initialize to page 1
-    //     this.setPage(1);
-    //   });
-
     this.mainData();
     
   }
@@ -67,22 +49,17 @@ pageSize:number = 10000
       .subscribe(data => {
         // set items to json response
         this.allItems = data['items'];
-        debugger
+      
         // initialize to page 1
         this.setPage(1);
       });
 
-  //   this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/myreviews", data, { headers: this.header() }).subscribe(
-  //     data => {
-  //       const dv = data.json().items
-  //       this.allItems = dv
-  //        debugger
-  // });
+
   }
   feed_baack(e) {
     this.http.post("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/sendfeedback", e.value, { headers: this.header() }).subscribe(
       data => {
-        console.log(data.json());
+      
         this.toastr.success(data.json().message);
         this,this.ngOnInit();
         this.setPage(1 ,);
@@ -186,132 +163,6 @@ pageSize:number = 10000
       data => {
         this.countryArray = data.json()
         this.page = data.json().page
-
-        // this.rows = JSON.parse(data.json().items)
-        debugger
-        //    this.rows = [
-        //     {
-        //         "name": "Ethel Price",
-        //         "gender": "female",
-        //         "company": "Johnson, Johnson and Partners, LLC CMP DDC",
-        //         "age": 22
-        //     },
-        //     {
-        //         "name": "Claudine Neal",
-        //         "gender": "female",
-        //         "company": "Sealoud",
-        //         "age": 55
-        //     },
-        //     {
-        //         "name": "Beryl Rice",
-        //         "gender": "female",
-        //         "company": "Velity",
-        //         "age": 67
-        //     },
-        //     {
-        //         "name": "Wilder Gonzales",
-        //         "gender": "male",
-        //         "company": "Geekko"
-        //     },
-        //     {
-        //         "name": "Georgina Schultz",
-        //         "gender": "female",
-        //         "company": "Suretech"
-        //     },
-        //     {
-        //         "name": "Carroll Buchanan",
-        //         "gender": "male",
-        //         "company": "Ecosys"
-        //     },
-        //     {
-        //         "name": "Valarie Atkinson",
-        //         "gender": "female",
-        //         "company": "Hopeli"
-        //     },
-        //     {
-        //         "name": "Schroeder Mathews",
-        //         "gender": "male",
-        //         "company": "Polarium"
-        //     },
-        //     {
-        //         "name": "Lynda Mendoza",
-        //         "gender": "female",
-        //         "company": "Dogspa"
-        //     },
-        //     {
-        //         "name": "Sarah Massey",
-        //         "gender": "female",
-        //         "company": "Bisba"
-        //     },
-        //     {
-        //         "name": "Robles Boyle",
-        //         "gender": "male",
-        //         "company": "Comtract"
-        //     },
-        //     {
-        //         "name": "Evans Hickman",
-        //         "gender": "male",
-        //         "company": "Parleynet"
-        //     },
-        //     {
-        //         "name": "Dawson Barber",
-        //         "gender": "male",
-        //         "company": "Dymi"
-        //     },
-        //     {
-        //         "name": "Bruce Strong",
-        //         "gender": "male",
-        //         "company": "Xyqag"
-        //     },
-        //     {
-        //         "name": "Nellie Whitfield",
-        //         "gender": "female",
-        //         "company": "Exospace"
-        //     },
-        //     {
-        //         "name": "Jackson Macias",
-        //         "gender": "male",
-        //         "company": "Aquamate"
-        //     },
-        //     {
-        //         "name": "Pena Pena",
-        //         "gender": "male",
-        //         "company": "Quarx"
-        //     },
-        //     {
-        //         "name": "Lelia Gates",
-        //         "gender": "female",
-        //         "company": "Proxsoft"
-        //     },
-        //     {
-        //         "name": "Letitia Vasquez",
-        //         "gender": "female",
-        //         "company": "Slumberia"
-        //     },
-        //     {
-        //         "name": "Trevino Moreno",
-        //         "gender": "male",
-        //         "company": "Conjurica"
-        //     },
-        //     {
-        //         "name": "Barr Page",
-        //         "gender": "male",
-        //         "company": "Apex"
-        //     },
-        //     {
-        //         "name": "Kirkland Merrill",
-        //         "gender": "male",
-        //         "company": "Utara"
-        //     },
-        //     {
-        //         "name": "Blanche Conley",
-        //         "gender": "female",
-        //         "company": "Imkan"
-        //     }    
-        // ]
-        //   console.log(this.row)
-        //   alert(this.row)
-        console.log(this.countryArray);
         this.c = data.json().count;
         this.collection = this.countryArray
 
@@ -328,7 +179,6 @@ pageSize:number = 10000
 
     this.http.post(this.base_url + "/ReviewReadStatus", data, { headers: this.header() }).subscribe(
       data => {
-        console.log(data.json());
         this.MyReviews(0)
         this.setPage(1)
       }, error => {
@@ -348,11 +198,11 @@ pageSize:number = 10000
   }
 
   GetMarkAsPinned(reviewId) {
-    console.log(reviewId)
+  
 
     this.http.get(this.base_url + "/markaspinned?ReviewId" + '=' + reviewId, { headers: this.header() }).subscribe(
       data => {
-        console.log(data.json());
+   
         this.MyReviews(0)
         this.setPage(1)
       }, error => {
@@ -367,11 +217,7 @@ pageSize:number = 10000
     }
   }
 
-  // ngAfterViewInit(){
-  //   setTimeout( ()=>{
-  //     this.ExecuteMyFunction(this.countryArray);
-  //   }, 25000)
-  // }
+
   public sort(sortValue) {
     if (this.filterCriteria.sortedBy == sortValue)
       this.filterCriteria.sortDir = this.filterCriteria.sortDir == 'ASC' ? 'DESC' : 'ASC';
@@ -403,17 +249,10 @@ pageSize:number = 10000
     this.SearchModel.sortedBy = this.filterCriteria.sortedBy;
     this.SearchModel.searchQuery = this.searchQuery;
     this.isSearching = true;
-    // this.eventsApi.eventsGetFutureEvents(this.SearchModel).then((response: angular.IHttpPromiseCallbackArg<API.Client.PagedCollectionEventsViewModel>) =>
-    // {
-    //     this.page = response.data["Page"];
-    //     this.pagesCount = response.data["TotalPages"];
-    //     this.eventsData = response.data["Items"];
-    //     this.isSearching = false;
-    // });
+
   }
   open(a) {
     this.edit_re = true;
-    console.log(a);
     this.modify_reply = a;
   }
 

@@ -25,7 +25,7 @@ export class ResultComponent implements OnInit {
 
     //Submit button event Starts
     submit() {
-        alert('Excellent Job!');
+      
         this.formData = this.formDataService.resetFormData ();
         this.isFormValid = false;
     }

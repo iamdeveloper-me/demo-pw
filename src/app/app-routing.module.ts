@@ -148,49 +148,55 @@ import { StepSecondComponent } from './register/step-second/step-second.componen
 import { StepThirdComponent } from './register/step-third/step-third.component';
 import { StepForthComponent } from './register/step-forth/step-forth.component';
 import { PaymentSummaryComponent } from './payment-summary/payment-summary.component';
+import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
+import { AllReviewsComponent } from './all-reviews/all-reviews.component';
+
 
 const appRoutes: Routes = [
-
+  
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register/step1', component: StepFirstComponent },
   { path: 'register/step2', component: StepSecondComponent },
   { path: 'register/step3', component: StepThirdComponent },
   { path: 'register/step4', component: StepForthComponent },
-  { path: 'home/searchresult', component: SearchresultComponent, },
-  { path: 'home/searchresult/:id', component: SearchresultComponent,runGuardsAndResolvers: 'always', },
-  { path: 'home/tips_list', component: TipslistComponent },
-  { path: 'home/event_list', component: EventlistComponent },
-  { path: 'home/detailprofile/:id', component:  DetailpageComponent  },
+  { path: 'home/weddingvendors', component: SearchresultComponent },
+  { path: 'home/weddingvendors/:id', component:   SearchresultComponent },
+  { path: 'home/weddingvendors/:id/:id', component: SearchresultComponent },
+  { path: 'home/tips_list/:blogId/:title', component: TipslistComponent },
+  { path: 'home/event_list/:eventId/:eventTitle', component: EventlistComponent },
+  { path: 'home/weddingvendorsdetailprofile/:categoryname/:id/:bussinesname', component:  DetailpageComponent  },
   { path: 'home/gallery', component:  GalleryComponent  },
-  //{ path: 'home/vendor', component:  VendorComponent  },
+  //{ path: 'home/vendor', component:  VendorComponent  },VendorDealDetailComponent
   { path: 'home/photo', component: PhotoComponent },
   { path: 'home/tips', component: TipsComponent },
   { path: 'home/contact', component: ContactUsComponent },
-  { path: 'home/events', component:  EventsComponent  },
+  { path: 'home/events/', component:  EventsComponent  },
   { path: 'home/allcategory', component:  AllcategoryComponent },
-  { path: 'home/category', component:  CategoryComponent },
+  { path: 'home/weddingcategories', component:  CategoryComponent },
   { path: 'home/register', component:  RegisterComponent  },
+
   { path: 'home/events', component: EventsComponent },
-  { path: 'home/contact', component: ContactUsComponent },
   { path: 'home/FAQ', component:FaquestionComponent },
   { path: 'home/TermsandConditions', component: TermsandconComponent  },
   { path: 'home/Careers', component:  CareersComponent  },
   { path: 'home/Advertise', component:  AdvertiseComponent },
   { path: 'home/cuplefoot', component:  FootCupleComponent },
-  { path: 'home/Photogallary', component:  PhotogallaryComponent },
+  { path: 'home/weddingvendorss/:id/:id/:id', component:  PhotogallaryComponent },
+  //All Reviews Page
+  { path: 'home/weddingsvendors/:id/:id/:id/:id', component: AllReviewsComponent },
   { path: 'home/Vediogallary', component:  VediogallaryComponent },
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
-  { path: 'home/Photogallerydetail', component:  PhotogallerydetailComponent },
+  { path: 'home/weddingvendorsss/:id/:id/:id/:id/:id', component:  PhotogallerydetailComponent },
   { path: 'home/ResetPassword', component:  ResetPasswordComponent },
   { path: 'home/allDreamWedding', component:  DreamWeddingLocationsComponent },
   { path: 'home/FeaturedWeddingSuppliers', component:  FeaturedWeddingSuppliersComponent },
 
   { path: 'home/Deals', component:  DealsComponent },
   { path: 'home/Deal_Details', component:  DealDetailsComponent },
-  { path: 'home/Honeymoon', component:  HoneymoonComponent },
-  { path: 'Honeymoon_Details', component:  HoneymoonDetailsComponent },
-
+  { path: 'home/Honeymoondestinations', component:  HoneymoonComponent },
+  { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
+  { path: 'home/Honeymoon_Details/:id', component:  HoneymoonDetailsComponent },
   { path: 'vendor/creatpromo', component:  CreatePromotionComponent, canActivate:[AuthGuardService]  },
   { path: 'vendor/messagess', component:  ChatComponent, canActivate:[AuthGuardService]  },
   { path: 'vendor/dashboard', component:  DashboardComponent,canActivate:[AuthGuardService]  },
@@ -293,7 +299,7 @@ const appRoutes: Routes = [
   { path: 'Admin/Network-stats', component:   NetworkstatsComponent,canActivate:[AuthGuardService]  },
   { path: 'Admin/Category-stats', component:   CategorystatsComponent,canActivate:[AuthGuardService]  },
   { path: 'Admin/Vendor-stats', component:   VendorstatsComponent,canActivate:[AuthGuardService]  },
- { path: 'Admin/adminaccount', component:   AdminuseraccountComponent,canActivate:[AuthGuardService]  },
+  { path: 'Admin/adminaccount', component:   AdminuseraccountComponent,canActivate:[AuthGuardService]  },
 
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },
@@ -302,7 +308,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { useHash: true})],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
 

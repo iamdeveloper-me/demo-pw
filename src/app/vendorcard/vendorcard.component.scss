@@ -102,6 +102,7 @@ transform: scale(1.2);
     .locationbox {
       margin:15px 0px;
       border-radius: 10px;
+      height:223px;
     }
     .locationbox img {
       border-radius: 10px;
@@ -246,14 +247,15 @@ text-transform:uppercase;
     border-radius: 1px;
     font-size: 14px;
     position: relative;
-    box-shadow: 0px 0px 20px #e5e5e5 !important;
+    box-shadow: 0px 0px 0px #e5e5e5 !important;
     margin-top: 20px !important;
     margin-bottom: 20px !important;
     overflow: hidden;
     max-width: 255px!important;
+    background:#fff;
 }
 .card-img-top{
-  height:175px;
+  height:170px;
   object-fit: cover;
 }
 .card-body a{
@@ -517,7 +519,7 @@ pure-u-1, .pure-u-1-10, .pure-u-1-11, .pure-u-1-12, .pure-u-1-13, .pure-u-1-14, 
   display: block;
 }
 .h4 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 0;
 }
@@ -528,10 +530,11 @@ pure-u-1, .pure-u-1-10, .pure-u-1-11, .pure-u-1-12, .pure-u-1-13, .pure-u-1-14, 
   margin-bottom: 0;
   font-size: 1.4rem;
   font-weight: 500;
+  line-height:32px;
 }
 .browse_cat .btn-primary{
     background-color: #fff!important;
-    border: 1px solid #e72e77;
+    border: 2px solid #e72e77;
     color: #e72e77!important;
     line-height: 19px;
     transition: all 1s;
@@ -582,6 +585,7 @@ li{line-height:1.5rem !important;}
   float:right;
   max-width:70px;
   padding-top:7px;
+  font-size:12px;
 }
 
 .span_positin span{
@@ -589,7 +593,7 @@ li{line-height:1.5rem !important;}
   color: #b215ff;
   margin-left: 10px;
   float:right;
-  width:34px;
+  width:55px;
   line-height:14px;
   text-align:center;
 }
@@ -653,17 +657,25 @@ li{line-height:1.5rem !important;}
 .locationbox img{
   height:223px;
   object-fit: cover;
+  width:100%;
   }
-
+.pribox{
+  font-size:12px;
+  float: left;
+}
 @media(max-width: 767px) {
 .mob300pxwidth{
   width:300px!important;
 }
+
+.browse_cat .btn-primary{
+max-width:150px;
+}
+.caroosel_headin{
+margin-bottom:0px;
+}
 .text-faded{
   display:none;
-}
-.boxtikslide{
-  max-width: inherit!important;
 }
 .mobnopadd{
   padding:0px!important;
@@ -737,11 +749,11 @@ li{line-height:1.5rem !important;}
   }
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name{
     width: 100%;
-    font-size: 14px !important;
+    font-size: 12px !important;
     padding: 0px;
     position: absolute;
     line-height: 30px;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: -.5px;
     color:#000;
 }
@@ -751,13 +763,15 @@ li{line-height:1.5rem !important;}
 .vendors_tools{
   margin-top:30px;
 }
-  .locationbox{
+.locationbox{
+  height: 120px!important;
   margin:0px!important;
   }
   .locationbox h2{
 font-size: 12px;
 color: #fff;
 left:10px;
+bottom:0px!important;
   }
   .locationbox h2 span{
     font-size: 12px;
@@ -766,9 +780,10 @@ left:10px;
   .locationbox img{
   max-height:110px;
   }
-  .pribox{
+  .priboxbox{
   max-width:45%;
   float:left;
+  font-size:12px;
   }
   .span_positin {
     padding-right: 7px !important;
@@ -788,7 +803,7 @@ p.homeTools__itemIconText {
   margin-top:-35px;
   }
   .imgnum span{
-  background: #f5f5f5;
+  background: #f5f5f5c7;
   overflow: hidden;
   display: inline-block;
   padding: 2px 5px;
@@ -824,4 +839,17 @@ p.homeTools__itemIconText {
     .locationbox h2 {
     font-size: 12px !important;
 }
+}
+@media(max-width: 500px) {
+  .boxtikslide{
+    max-width: 300px!important;
+    margin:0px auto;
+  }
+}
+
+@media only screen and (min-device-width: 501px) and (max-device-width: 823px) {
+  .boxtikslide{
+    max-width: 96%!important;
+    margin:0px auto;
+  }
 }

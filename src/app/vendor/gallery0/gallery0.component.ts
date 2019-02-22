@@ -66,14 +66,14 @@ export class Gallery0Component implements OnInit {
       this.portArray = res.length;
       //this.portfolio = res.length;
       },
-      error => { console.log('aaaaaaaaaaa',error)
+      error => { console.log(error)
     }
     )
 
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
-    console.log(this.basicplane)
+   
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
@@ -87,9 +87,6 @@ export class Gallery0Component implements OnInit {
   createAlbum(Album){
          
     this.createalbum_dailog = false;
-
-    console.log(Album);
-   
     let headers = new  Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append("content-type",'application/json ');
@@ -103,18 +100,17 @@ export class Gallery0Component implements OnInit {
       colorTags: "add colour tags"
     }
     this.http.post(this.url+'api/Albums/createupdatealbum',album,{headers:headers})
-      .subscribe(data =>{console.log(data.json())
+      .subscribe(data =>{
         this.router.navigate(['../vendor/albumview'])
         
       },(error)=>{console.log(error._body);
         this.toastr.error(error._body.split('[')[1].split(']')[0]);
-        // this.toastr.warning(error._body);
+       
      
   });
   }
   addFile(info): void {
-    // console.log(info);
- 
+  
      let fi = this.fileInput.nativeElement;
    
      if (fi.files && fi.files[0]) {
@@ -130,11 +126,10 @@ export class Gallery0Component implements OnInit {
            formData.append(image.name,image)
          }
 
-    
-         console.log(fileToUpload)
-
          this.http.post(this.uploadimage,formData,{headers:headers})
-         .subscribe(data =>{console.log(data);},(error)=>{console.log(error)});
+         .subscribe(data =>{
+         
+          },(error)=>{console.log(error)});
     }
   }
   public ngOnChanges(changes: SimpleChanges) {
@@ -166,7 +161,7 @@ export class Gallery0Component implements OnInit {
           canvas.getContext('2d').drawImage(image, 0, 0, width, height);
           el.nativeElement.src = canvas.toDataURL('image/jpeg');
       };
-             //image.src = reader.result;
+           
     };
 
     if (this.image) {
@@ -175,19 +170,19 @@ export class Gallery0Component implements OnInit {
 
   }
   previewFile(event) {
-    // var preview = this.previewimg.nativeElement;
+   
      let files = event.target.files;
      if (files) {
          for (let file of files) {
              let FI  = new FileItem(this.uploader,file,null);
              this.uploader.queue.push(FI);  
              this.fileNames.push(file.name);
-             console.log(file);   
+           
              this.previewImages = [];
              let reader = new FileReader();
              reader.onload = (e: any) => {
              this.previewImages.push(e.target.result);
-             console.log(this.previewImages);
+            
              }
              reader.readAsDataURL(file);
          }
@@ -202,9 +197,9 @@ export class Gallery0Component implements OnInit {
      const formData = new FormData();
      for(let file of this.uploader.queue){
         formData.append(file['some'].name,file['some'])
-        //console.log(file['some'])
+       
      }         
-     console.log(this.uploader.queue.length)
+  
 
      if( this.basicplane == '1' && this.uploader.queue.length > 5){
             swal({
@@ -216,7 +211,7 @@ export class Gallery0Component implements OnInit {
               confirmButtonText: "Yes",
               cancelButtonText: "No",
               }).then((res)=>{
-                console.log(res);
+               
                 if(res.value===true){
                 
                     this.router.navigate(['../vendor/membership'])
@@ -229,11 +224,12 @@ export class Gallery0Component implements OnInit {
             headers.append("Authorization",'Bearer '+authToken);
             this._http.withUploadProgressListener(progress => {
                 this.progress_bar = true; 
-                console.log(`Uploading ${progress.percentage}%`);
+              
                 this.closeModel(); 
                 this.progressPercentage = progress.percentage
             })
-          .withDownloadProgressListener(progress => { console.log(`Downloading ${progress.percentage}%`); })
+          .withDownloadProgressListener(progress => { }
+            )
           .post(this.url+'api/ImageUploader/PortfolioUploader', formData,{headers: headers})
           .subscribe((response) => {   
                                       this.toastr.success(response.json().message);
@@ -249,7 +245,7 @@ export class Gallery0Component implements OnInit {
                                                 confirmButtonText: "Yes",
                                                 cancelButtonText: "No",
                                                 }).then((res)=>{
-                                                  console.log(res);
+                                                 
                                                   if(res.value===true){
                                                   
                                                       this.router.navigate(['../vendor/membership'])
@@ -265,7 +261,7 @@ export class Gallery0Component implements OnInit {
   }
   upgrade(){
     this.basicplane = parseInt(localStorage.getItem('basic-plan')) 
-    console.log(this.basicplane)
+    
     if( parseInt(this.basicplane) == 1 ){ 
       $(".drop_zone").hide();
       swal({
@@ -277,7 +273,7 @@ export class Gallery0Component implements OnInit {
         confirmButtonText: "Yes",
         cancelButtonText: "No",
         }).then((res)=>{
-          console.log(res);
+         
           if(res.value===true){
               this.router.navigate(['../vendor/membership'])
           }
@@ -297,7 +293,7 @@ export class Gallery0Component implements OnInit {
     this.uploadphoto_dailog = false;
     this.createalbum_dailog = false;
     this.uploader.queue =[];
-   // alert("progress_bar")
+  
     
   }
 

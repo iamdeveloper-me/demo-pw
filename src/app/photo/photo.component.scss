@@ -7,17 +7,101 @@
   margin:5px 5px 0px 0px;
   display: inline-block;
   }
+
   .colortags{
-    width:40px;height:21px;
     border-radius:10px;
     display:inline-block;
     margin:2px;
     text-indent:-9999px!important;
 }
+.tag-color{
+  cursor: pointer;
+  color:blue;
+  font-size: 12px;
+}
+.tagbox{
+  padding: 0;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  line-height: 12px;
+}
+.martop10px{
+  margin-top:10px;
+}
+.vendorlogoimg{
+  width:35px!important;
+  height:35px!important;
+  object-fit: cover;
+  border-radius:50%;
+  margin-right:5px;
+  float:left!important;
+  display:inline-block!important;
+}
+.tagkeyword{
+    border: 1px solid #e5e5e5;
+    display: inline;
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-size: 12px;
+    background: #fff;
+}
+.vendorlogoimg img{
+  width:35px!important;
+  height:35px!important;
+  object-fit: cover;
+  border-radius:50%;
+}
+.photdetailtext{
+  display:inline-block!important;
+  width:calc(100% - 50px)!important;
+  margin-top: 5px;
+}
+.colorselect span.head{
+  display:block;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  height: 40px;
+  text-indent: 10px;
+  line-height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.colorselect .caret{
+      right: 17px;
+      top: 17px;
+      position: absolute;
+}
+.colorselect .colorlist{
+    position: absolute;
+    display: none;
+    background: #fff;
+    border: 1px solid #ccc;
+    width: 163px;
+    z-index: 999;
+}
+.colorselect .colorlist ul{
+  padding: 0px;
+}
+.colorselect .colorlist ul li{
+  list-style: none;
+  text-transform:capitalize;
+  position: relative;
+  cursor: pointer;
+}
+.seelist{
+  display: block!important;
+}
 .colortagcontain {
   width: 100%;
   padding: 3px 0px;
   text-align: center;
+}
+.ticklist{
+position: absolute;
+left: 16px;
+top: 4px;
+color: #333;
 }
 .tagstik{
   border-radius:10px;
@@ -69,31 +153,40 @@ margin-top:1px;
     background:blue!important;
 }
 .tips{
-
-  padding-top: 80px;
-  background-color: #fff;
+  margin-top: 60px;
+  background-color:#fff;
+  padding-bottom:20px;
+  padding-top:20px;
 }
-
+.select{
+  background:#fff;
+}
 .searchtopbar{
-margin-bottom:20px;
-margin-top:20px;
-overflow: hidden;
+margin:0px auto;
+max-width:1100px; 
 }
 .searchtopbar div{
-    padding: 0px;
+    padding: 0px 10px;
 }
 .Search_img .search-button{
-  
-
-    background: url(https://s3.us-east-2.amazonaws.com/prefect-image/search.png) center no-repeat;
     border: 0;
     cursor: pointer;
-    height: 30px;
+    height: 40px;
     position: absolute;
-    right: 4px;
-    top: 4px;
-    width: 30px;
-
+    right: 9px;
+    top: 0px;
+    width: 45px;
+    background-color: #d8005a;
+    border-radius: 0px 4px 4px 0px;
+}
+ .search-button i.material-icons{
+  font-size: 20px!important;
+  font-weight: bold!important;
+  color: #fff!important;
+  margin-top: 6px;
+ }
+.fancybox-content img{
+  max-height:100vh!important;
 }
 .searchinput{
   border-radius: 3px;
@@ -102,16 +195,25 @@ overflow: hidden;
 .mar_left_75{
    margin-left: 75px;
 }
-.Search_img{
-margin-left: 50px
-}
-.searchtopbar input, .searchtopbar select{
+.searchtopbar input{
     width: 100%;
     background: #ffffff;
     border:1px solid #ccc;
-    -webkit-apperience:none;
     height: 40px;
     text-indent: 10px;
+}
+.caretcaty{
+  position: absolute;
+  top:17px;
+  right: 16px;
+}
+.searchtopbar select{
+    width: 100%;
+    background: #ffffff;
+    border:1px solid #ccc;
+    -webkit-appearance:none!important;
+    padding-right: 15px;
+    height: 40px;
 }
 .cityinput2{
   border-radius: 3px;
@@ -249,9 +351,6 @@ a:hover, a:active{
   transform: scale(1.05);
 }
    
-
-
-
 .imgholder meta{
 	text-align:right;
 	color:#777;
@@ -271,11 +370,11 @@ a:hover, a:active{
   font-size: 13px;
 }
 #categoryProductContainer{
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  padding: 0px;
+  padding: 1px;
   overflow: hidden;
 }
 
@@ -291,14 +390,15 @@ a:hover, a:active{
 [class*="span"] {
   float: left;
   min-height: 1px;
-  margin-left: 20px;
+  margin-bottom:25px;
+  min-height:250px;
 }
-.span2 {
-  width: 250px;
-}
+
 .span2 img {
   width: 100%;
   margin-bottom: 5px;
+      height: 150px;
+    object-fit: cover;
 }
 .photodetail{
   width:100%;
@@ -324,10 +424,11 @@ a:hover, a:active{
 }
 .photodetail p.detaildiv{
 display:block;
-width:70%;
+width:100%;
 float:left;
 font-size:14px;
 text-align: left;
+margin-bottom: 0px;
 }
 
 .photodetail p span{
@@ -335,20 +436,63 @@ text-align: left;
   width:100%;
 }
 .colortag{
-  width: 35px !important;
-  border-radius: 10px;
-  height: 18px;
-  margin-left: 5px;
-  display: inline-block !important;
-  box-shadow: 0px 0px 5px #ccc;
+      width: 35px !important;
+      border-radius: 10px;
+      height: 17px;
+      margin-left: 5px;
+      display: inline-block !important;
+      box-shadow: 0px 0px 5px #ccc;
+      text-align: center;
+      line-height: 1;
+      font-weight: bold;
+      font-size: 13px;
+      padding: 1px 0px;
 }
-.photodetail div.linkdiv{
-  display:block;
-  width:30%;
-  float:left;
-  font-size:20px;
-  text-align: right;
+.boxcolorround{
+  height: 12px!important;   
+  width: 12px !important;
+  border-radius: 50%;
+}
+.linkdiv{
+    display: block;
+    font-size: 20px;
+    text-align: right;
+    margin-top: 13px;
+    position: absolute;
+    right: 15px;
+    bottom: 32px;
+    width: 80px;
   }
+  .halfdiv span{
+  font-size:12px;
+  }
+.linkdiv .halfdiv{
+float: left;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    margin: 0px 5px 0px 0px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 30px;
+    cursor:pointer;
+  }
+.linkdiv .halfdiv:hover{
+    float: left;
+    width: 30px;
+    height: 30px;
+    background: #e60060;
+    margin: 0px 5px 0px 0px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 30px;
+
+}
+.linkdiv .halfdiv:hover i{
+  color:#fff!important;
+}
+
+
 @media screen and (max-width : 1240px) {
 	body{
 		overflow:auto;
@@ -434,9 +578,56 @@ margin-top: 50px;
     margin-top: 22px;
 }
 
+
+.expander {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 16px;
+    height: 16px;
+    padding: 4px;
+    background: white url(https://github.com/openxe/django-ace/diff_blob/1993c731626a44139b97d2d9fca8f4f4023f107a/django_ace/static/django_ace/img/expand.png?raw=true) center center no-repeat;
+    z-index: 99999;   
+    cursor: pointer;
+}
+
 .photo_cont{background: #ffffff; padding: 0px; box-shadow: 0 2px 5px 0 rgba(0,0,0,.2) }
 
 @media(max-width:768px){
+  .rowset{
+  margin:0px!important;
+  padding:10px!important;
+  }
+  .rowset .col-4{
+  padding:0px;
+  }
+.tips{
+  background-color:#fff;
+}
+    .rowset .col-3 select, .rowset .col-4 input, .rowset .col-5 input{
+  border-radius:0px;
+  border:1px solid #ccc; 
+  font-size:12px!important;
+  padding:5px;
+  text-align:left;
+  text-indent:0px!important;
+  }
+  .colorselect span.head{
+ border-radius:0px!important;
+  border:1px solid #ccc!important; 
+  font-size:12px!important;
+  padding:5px!important;
+  line-height:28px!important;
+  text-indent:0px!important;
+  }
+  ::-webkit-input-placeholder { text-align:left; }
+.mobadjust{
+  width: 25px !important;
+    margin-left: 4px;
+    line-height: 17px;
+    padding: 0px;
+    color: #fff;
+}
 .search-button{
   background-size:80%;
 }
@@ -491,34 +682,33 @@ width:48%!important;
 .searchtopbar{
 margin-bottom:0px;
 margin-top:0px;
-overflow: hidden;
+overflow: inherit!important;
     box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.12);
     -moz-box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.12);
     -webkit-box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.12);
 }
-.searchtopbar select{
-  border-left:0px;
-  border-bottom:0px;
-  botder-top:0px;
+.Search_img .search-button{
+    height: 40px;
+    right: 0px;
+    top: 0px;
+    width: 35px;
+    background-color: #d8005a;
 }
-
+.mobileviewfix{
+  margin-top:150px!important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[class*="span"] {
+  margin-left: 5px;
+  margin-right: 5px;
+  min-height:235px;
+}
+.span2 {
+  width: calc(100% - 10px);
+}
+.span2 img {
+      height: 170px;
+}
+}
 
 /* card css*/
 .portfolio-box {
@@ -859,12 +1049,22 @@ margin-bottom:30px;
     position: fixed;
     z-index: 1;
     padding-top: 0;
-    top: 50px;
+    top: 0px;
 }
 .Venders{padding-top: 130px;}
 .col-xs-6{width: 50%;}
 
 .searchtopbar input,.searchtopbar select{border-radius: 0;}
+
+.searchtopbar select{border-radius: 0;padding: 0px 10px 0px 5px;font-size: 12px;}
+
+.colorselect{
+  padding-right: 0px!important;
+}
+.caretcaty {
+    right: 8px;
+}
+
 }
 //tool
 .homeTools__item:hover {

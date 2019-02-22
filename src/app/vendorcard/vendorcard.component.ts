@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { apiService } from '../shared/service/api.service';
-import { find } from 'rxjs-compat/operator/find';
 import { Router } from '@angular/router';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
 
+import{ratingStars} from '../ngservices/ratingstars';
+import { SearchresultComponent } from '../searchresult/searchresult.component';
+import { MasterserviceService } from '../ngservices/masterservice.service';
 @Component({
   selector: 'app-vendorcard',
   templateUrl: './vendorcard.component.html',
@@ -12,10 +14,10 @@ import { SlidesOutputData } from 'ngx-owl-carousel-o';
   providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
 })
 export class VendorcardComponent implements OnInit {
-
+  ratingmodel: ratingStars;
   customOptions: any = {
     margin: 20,
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
@@ -23,28 +25,9 @@ export class VendorcardComponent implements OnInit {
     autoplay: true,
     navSpeed: 700,
     navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1,
-        stagePadding: 40
-      },
-      768: {
-        items: 2,
-        stagePadding: 40
-      },
-      1024: {
-        items: 4
-      },
-      1366: {
-        items: 4
-      }
-    },
+    responsive: { 0: { items: 1, stagePadding: 40 }, 768: { items: 2, stagePadding: 40 }, 1024: { items: 4 }, 1366: { items: 4 } },
     nav: true,
-    //autoplaySpeed:1
   }
-
-  
-
   featured_supplier_data = []
   max = []
   dream_wedding_location = []
@@ -54,44 +37,23 @@ export class VendorcardComponent implements OnInit {
   Popular=''
   objFilterParam: filterParam;
   activeSlides: SlidesOutputData;
-
   slidesStore: any[];
-  constructor( private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
+  noImage:string='https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg';
+  constructor( private masterservice: MasterserviceService ,private router: Router ,config: NgbCarouselConfig, private apiService: apiService) {
     // customize default values of carousels used by this component tree
+    this.ratingmodel = new ratingStars();
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
     this.objFilterParam = new filterParam();
-    // this.slidesStore = [
-    //   {
-    //     src: "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-    //   },
-    //   {
-    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-    //   },
-    //   {
-    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-    //   },
-    //   {
-    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-    //   },
-    //   {
-    //     src: "https://images.pexels.com/photos/458766/pexels-photo-458766.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
-    //   }
-    // ] 
-    
+  }
+  getData(data: SlidesOutputData) {
+    this.activeSlides = data;
   }
   
 
+  
 
-  getData(data: SlidesOutputData) {
-    this.activeSlides = data;
-    console.log(this.activeSlides);
-  }
   ngOnInit() {
     
     this.featured_supplier()
@@ -106,44 +68,30 @@ export class VendorcardComponent implements OnInit {
     $.getScript('./assets/js/curosselfun.js');  
   }
   featured_supplier(){
-    this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
-      
+      this.apiService.getData(this.apiService.serverPath+'PerfectWedding/featuredsuppliers').subscribe(data => {
       this.featured_supplier_data = data.featuredWeddingSuppliers;
-
-
-
-      this.slidesStore = this.featured_supplier_data
-
-      this.featured_supplier_data.forEach(element => {
-        element.reviews.forEach(element => {           
-          this.max.push(element.rating) 
-          this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
+      this.slidesStore = this.featured_supplier_data;
+       console.log(this.slidesStore);
+      if(this.featured_supplier_data.length > 0){
+        this.featured_supplier_data.forEach(element => {
+          if(element.reviews != null)
+          {
+            element.reviews.forEach(element => {           
+              this.max.push(element.rating) 
+              this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
+            });
+          }
         });
-      });
-     console.log(this.slidesStore)
-
-
-      // this.featured_supplier_data.forEach(element => {
-      //   element.reviews.forEach(element => {           
-      //     this.max.push(element.rating) 
-      //     this.max.sort((a,b) => 0 - (a > b ? 1 : -1))
-      //   });
-      // });
-
-
-
-      //this.max = [];
-      console.log(data.featuredWeddingSuppliers)
-    },
-      error => {
+      }
+    },error => {
        console.log(error)
       }
     )
   }
   Dream_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'PerfectWedding/dreamweddinglocation').subscribe(data => {
-      console.log(data.dreamWeddingLocations)
       this.dream_wedding_location =  data.dreamWeddingLocations;
+       console.log(this.dream_wedding_location);
       this.dream_wedding_location_length = this.dream_wedding_location.length
     },
       error => {
@@ -151,17 +99,16 @@ export class VendorcardComponent implements OnInit {
       }
     )
   }
+
   Popular_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'Categories/categorieswithlistingcount').subscribe(data => {
-      console.log(data)
+       console.log(data);
       for (let i of data) {
         if(i.isPopular == true){
           this.Popular_Wedding_array.push(i);
+          // console.log(this.Popular_Wedding_array);
         }
-        console.log( this.Popular_Wedding_array)
       }
-      
-    
     },
       error => {
        console.log(error)
@@ -169,15 +116,24 @@ export class VendorcardComponent implements OnInit {
     )
   }
   goToVendordetails(slide) {
-    console.log(slide);
-    this.router.navigate(['home/detailprofile/',slide.vendorId])
+     // let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
+     //this.apiService.getData(url+'?id='+slide.vendorId).subscribe(res=>{
+        //sessionStorage.setItem('vendorDetails',JSON.stringify(res));
+       
+        const a = slide.vendorCategories[0].categories.categoryName;
+        const b = slide.vendorId;
+        const c = slide.nameOfBusiness;
+        this.router.navigateByUrl('/home/weddingvendorsdetailprofile/'+a+'/'+b+'/'+c.replace(/\s/g,''));
+       //this.router.navigate(['home/detailprofile',0]);
+    //});
+   // this.router.navigate(['home/detailprofile/',slide.vendorId])
   }
-  
   Categories_each(c,isAllSupplier,isDreamLocation){
     if(c){
-      console.log(this.objFilterParam);
+    
+
    this.objFilterParam.catId  = c.categoryId;
-   this.objFilterParam.categoryName= c.categoryName;
+   this.objFilterParam.categoryName= c?c.categoryName:'';
    this.objFilterParam.isDreamLocation=isDreamLocation;
    this.objFilterParam.isAllSupplier=isAllSupplier;
    this.objFilterParam.page = 0;
@@ -189,44 +145,36 @@ export class VendorcardComponent implements OnInit {
   }
 
    sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+    this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
-  supplier_all(c,isAllSupplier,isDreamLocation){
-// debugger
+  supplier_all(c,isAllSupplier,isDreamLocation,isSearchInFeaturedSupplier){
       this.objFilterParam.catId  = c?c.categoryId:0;
       this.objFilterParam.categoryName= c?c.categoryName:'';
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
+      this.objFilterParam.isSearchInFeaturedSupplier = isSearchInFeaturedSupplier;
       this.objFilterParam.page = 0;
       this.objFilterParam.pageSize = 25;
       this.objFilterParam.sortDir = "";
       this.objFilterParam.sortedBy ="";
       this.objFilterParam.searchQuery ="";
+      sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+      this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   
-    sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-    this.router.navigate(['home/searchresult',this.objFilterParam.categoryName.replace(/\s/g,'')]);
-   // console.log(this.objFilterParam.categoryName);
   }
-  // location_all(c){
-   
-  //   let catId= c.categoryId;
-  //   let CatName= c.categoryName;
-  //   alert("location")
-  //   console.log(c)
-  //   this.router.navigate(['home/searchresult',true]);
-  // }
-}
 
+}
 export class filterParam{
   catId:number=0;
   categoryName:string='';
   isAllSupplier:boolean=false;
   isDreamLocation:boolean=false;
-  page:number=1;
+  isSearchInFeaturedSupplier:boolean=false;
+  page:number=0;
   pageSize: number=3;
   sortDir: "";
   sortedBy: "";
   searchQuery: "";
-  locationId:number;
-  totalCount:number;
+  locationId:number=0;
+  totalCount:number=0;
 }

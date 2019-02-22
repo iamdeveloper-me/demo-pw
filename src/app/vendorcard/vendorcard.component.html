@@ -1,4 +1,5 @@
-  <div class="vendor">
+
+<div class="vendor">
     <div class="container mob_margin_top_100">
       <div class="container p-0" *ngIf='Popular_Wedding_array.length>0'>
         <section class="p-0 container" id="portfolio">
@@ -11,18 +12,16 @@
             </div>
             <div class="row no-gutters popup-gallery">
               <div class="col-lg-4 col-sm-6 col-6  galleryview" *ngFor='let Popular of Popular_Wedding_array'>
-                <a class="portfolio-box" (click) = "Categories_each(Popular,false,false)"  *ngIf = "Popular.isPopular == true">
-                  <img class="img-fluid" [src]="Popular.imagePath" class="img-responsive" alt="">
+                <a class="portfolio-box" (click) = "Categories_each(Popular,false)"  *ngIf = "Popular.isPopular == true">
+                  <img class="img-fluid"  *ngIf = "Popular" [src]="Popular.imagePath" class="img-responsive" alt="">
                   <div class="portfolio-box-caption">
                     <div class="portfolio-box-caption-content">
                       <div class="text-faded">
-                        <img [src]="Popular.iconImageURL">
+                        <img  *ngIf = "Popular"  [src]="Popular.iconImageURL">
                       </div>
                       <div class="project-name">
                         {{Popular.categoryName}}
-                        <!-- {{Popular.listingCount}} Listing -->
                       </div>
-                  
                     </div>
                   </div>
                 </a>
@@ -30,99 +29,106 @@
             </div>
           </div>
         </section>
-        <p class="browse_cat"> <a routerLink="/home/category"  > <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+        <p class="browse_cat"> 
+          <a routerLink="/home/weddingcategories"> 
+            <button class="btn btn-lg btn-primary btc">See all</button> 
+          </a> 
+        </p>
       </div>
 
     </div>
     <div class="container-fluid mob_padd_30px" *ngIf='slidesStore?.length > 0'>
-          <!--Carousel Wrapper-->
-          <!-- {{slidesStore | json}} -->
+        
           <div class="caroosel_headin text-center">
-            <h3>Featured Wedding  <strong style="color: #e72e77;">Suppliers </strong>  </h3>
+            <h3>Featured Wedding <strong style="color: #e72e77;">Suppliers </strong>  </h3>
           </div>
          
           <div class="container" style="padding: 13px;">
               <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
- 
-                  <ng-container *ngFor="let slide of slidesStore">
+                  <ng-container *ngFor="let slide of slidesStore ;let s=index">
                     <ng-template carouselSlide="1">
-                      <div class="boxtikslide" (click)='goToVendordetails(slide)'>
+                      <div class="boxtikslide" >
                         <div class="procard"> </div>
-
-                      <img class="card-img-top" [src]="slide.profileImage" >
-                      <span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-                     <div class="imgnum">
-                          <span>
+                        <span class="book_mark" (click)="apiService.bookMark(slide,'promoted_list','bookmarked','albums')"><i class="material-icons">bookmark_border</i></span>
+                       <div (click)='goToVendordetails(slide)'>
+                        <img class="card-img-top" *ngIf = "!slide.profileImage"  src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg"> 
+                          <div  *ngIf = "slide.profileImage" >
+                              <img class="card-img-top" [src]="slide.profileImage" >
+                          </div>
+                      
+                         <div class="imgnum">
+                          <span *ngIf="slide?.albums.length > 0">
                              <img src="../../assets/img/picture.png"/>
-                             <span *ngIf="slide?.albums == 0; else salbum">
-                             0
-                             </span>
-                             <ng-template #salbum>
-                                <span>
-                                    {{slide?.albums}}
-                                </span>
-                             </ng-template>
+                             {{slide?.albums?.length}} 
                           </span>
-                          <span>
+                          <span *ngIf="slide?.vendorVideos.length > 0">
                             <img src="../../assets/img/video.png"/>
-                            <span *ngIf="slide?.vendorVideos == 0; else vvideo">
-                              0
-                            </span>
-                            <ng-template #vvideo>
-                              <span>
-                                {{slide?.vendorVideos}}
-                              </span>
-                           </ng-template>
+                            {{slide?.vendorVideos?.length}}
                           </span>
                         </div>
 
-                      <div class="card-body ">
+                        <div class="card-body ">
                           <div class="text-center"> 
-                            <!--  {{slidesStore | json}} -->
-                             <h6> <strong>{{slide.nameOfBusiness}}  </strong> </h6>
-                           <!-- <button class="wedding_btn">{{slide?.nameOfBusiness}} </button> -->
+                          
+                            <h6> <strong>{{slide?.nameOfBusiness}}  </strong> </h6>   
                             <button class="wedding_btn" *ngIf="slide?.vendorCategories.length == 0; else vcat"> N/A  </button>
                             <ng-template #vcat>
-                                <button class="wedding_btn">{{slide?.vendorCategories}} </button>
+                                <button class="wedding_btn" *ngFor="let c of slide.vendorCategories">
+                                  {{ c?.categories.categoryName }}
+                                 </button>
                             </ng-template>
-                          <p  class="locat_icon" *ngIf="slide?.district == null; else fwloc">
-                              <i class="material-icons">location_on</i>  N/A 
-                          </p>
+                            <p  class="locat_icon" *ngIf="slide?.district == null; else fwloc">
+                                <i class="material-icons">location_on</i>  N/A 
+                            </p>
                           
                           <ng-template #fwloc>
-                           <P class="locat_icon">
+                            <P class="locat_icon">
                               <i class="material-icons">location_on</i> 
-                              {{slide?.district}} 
+                              {{slide?.district.name}} 
                             </P>
                           </ng-template>
 
-                             <p class="statr_point" *ngFor='let list_star of max | slice:0:1'>
+                             <!-- <p class="statr_point" *ngFor='let list_star of max | slice:0:1'>
                                 <ngb-rating [rate]="list_star"></ngb-rating>
                                 {{list_star}}  
 
-                            </p>
+                            </p> -->
+                            <p *ngIf='slide.averageRating>0' class="statr_point">
+                                <span style="color:red" [innerHTML]='ratingmodel.printStars(slide.averageRating)'></span>
+                              </p>
+                              <p *ngIf='!slide.averageRating>0' class="statr_point">
+                                <span style="color:red">Not Yet Rated !</span>
+                              </p>
+
+
                           </div>
                           <div class="col-md-12 col-12 mobnopadd ">
                               <div class="col-md-8 col-7 pad_left_0 pad_left_5px pribox">
                                 <img src="../../assets/img/money.svg" class="imgfloatleft" alt="">
                                   <span>Price from</span>
-                                  <span class="pric_200">200 $</span>
+                                  <span *ngIf='slide.priceTag' class="pric_200">{{slide?.priceTag}}</span>
+                                  <span *ngIf='!slide.priceTag' class="pric_200">Custom Price</span>
+                                  <!-- <span class="pric_200">200 $</span> -->
                               </div>
                               <div class="col-md-4 col-5 span_positin">
-                                <img src="../../assets/img/tag.svg"  alt=""> 
-                              <span>Deals</span>
-                              <span>1</span>
+                              
+                              <!-- <span>Deals</span> -->
+                              <span *ngIf='slide.deals.length >0'>
+                                <img src="../../assets/img/tag.svg"  alt="">   
+                                {{slide?.deals.length}} Deals
+                              </span>
+                              <!-- <span *ngIf='slide.deals.length == 0'>N/A Deals</span> -->
                               </div>
                           </div>
                         </div>
                       </div>
+                      </div>
                     </ng-template>
-                  </ng-container>
-                
-                </owl-carousel-o>
+                  </ng-container>               
+              </owl-carousel-o>
           </div> 
           <!--/.Carousel Wrapper-->
-          <p class="browse_cat"> <a (click) = "supplier_all(Popular,'true','false')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+          <p class="browse_cat"> <a (click) = "supplier_all(Featured,'true','false','true')"> <button class="btn btn-lg btn-primary btc">See All</button> </a> </p>
     </div>
 
 
@@ -132,7 +138,7 @@
       <div class="row" id="headcss" >
           <div class="col-sm-12" >
               <h3 class="font_size_22">Dream Wedding  <strong style="color: #e72e77"> Locations </strong> </h3>
-              <!-- <p class="content-sub-header">Image gallery grid with 30 subtle hover effect. Try to hover below demo images to show each hover effect.</p> -->
+             
           </div>
       </div>
       <section id="hover-effects" class="card" >
@@ -142,13 +148,22 @@
               <div class="row" >
                 <div class="col-md-4 col-6 locationbox" *ngFor='let list_dream of dream_wedding_location' 
                 (click)='goToVendordetails(list_dream)' >
-                    <img [src]="list_dream.profileImage" class="img-responsive" alt="img06" /> 
+
+                <!-- *ngIf = "Popular"  -->
+                    <img  *ngIf="list_dream.storeFrontImage; else noStoreImg" [src]="list_dream.storeFrontImage" class="img-responsive" alt="img06" /> 
+                    <!-- <img  [src]="{{noImage}}" class="img-responsive" alt="img06" />  -->
+                    <ng-template #noStoreImg>
+                        <img  [src]="list_dream.profileImage" class="img-responsive" alt="img06" /> 
+                    </ng-template>
+                    <div *ngIf="!list_dream.profileImage && !list_dream.storeFrontImage">
+                        <img  [src]="noImage" class="img-responsive" alt="img06" /> 
+                    </div>
                     <h2>{{list_dream?.nameOfBusiness}}
-                      <div *ngIf="list_dream?.district == null; else dwloc">
-                          <i class="material-icons">location_on</i> N/A    
-                      </div>
+                      <span *ngIf="list_dream?.district == null; else dwloc">
+                         N/A    
+                      </span>
                       <ng-template #dwloc>
-                          <span> <i class="material-icons">location_on</i>  {{list_dream?.district}}
+                          <span>{{list_dream?.district.name}}
                           </span>
                       </ng-template>
                       </h2>
@@ -156,7 +171,7 @@
                
               </div>
               <div class="clearfix"></div>
-              <p class="browse_cat"> <a (click) = "supplier_all(Popular,'false','true')"> <button class="btn btn-lg btn-primary btc">View all</button> </a> </p>
+              <p class="browse_cat"> <a (click) = "supplier_all(Popular,'false','true','false')"> <button class="btn btn-lg btn-primary btc">See All</button> </a> </p>
             </div>
           </div>
         </div>
@@ -204,15 +219,6 @@
                   </div>
                 </a>
                 </div>
-                <!-- <div class="col-md-4 col-6">
-                    <div class="homeTools__item pure-u-1-5 app-link" data-href="/tools/Info?page=Wedsite">
-                      <span class="homeTools__itemIcon homeTools__itemIcon--wedsite"></span>
-                      <p class="homeTools__itemIconText">Create your free wedding website</p>
-                  </div>
-                  </div>
-                  <div class="col-md-4 col-6">
-
-                  </div> -->
             </div>      
             
 

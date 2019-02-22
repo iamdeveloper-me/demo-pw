@@ -40,7 +40,6 @@ export class VediosettingComponent implements OnInit {
     this.validtionform = fb.group({
       'id': new FormControl(Validators.required),
       'title': new FormControl(Validators.required),
-      // 'link': new FormControl(Validators.required,Validators.pattern(reg)),
       'link': new FormControl(Validators.required),
     });
    }
@@ -55,28 +54,20 @@ export class VediosettingComponent implements OnInit {
     });
   }
   addDetails() {
-    console.log(this.form.value )
+   
   }
   ngOnInit() {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
-    // this.videoForm = this.fb.group(
-    //   {
-    //       id:      [],
-    //       title:       ['', Validators.required],
-    //       Link:       ['', Validators.required, Validators.pattern(reg)],
-    //       videosId: ["0"],
-    //       createdOn: "2018-10-29T17:35:51.067Z"
-    //   })
-
+   
     let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
           var categoryid = localStorage.getItem('categoryid');
-          console.log(categoryid);
+        ;
           headers.append('Accept', 'application/json')
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
  this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Videos/myvideos',{headers:headers}).subscribe((res)=>{
-                console.log(res.json())
+              
                 this.video_all_data = res.json();
                 
           })
@@ -97,19 +88,17 @@ this.Editvediodetail_dailog = true;
 }
 singleData(data){
   this.objVideo = data;
-  // this.validtionform =  data;
-  console.log(this.objVideo)
   this.Editvediodetail_dailog = true 
 }
 videosave(){
   
 const updatedata = this.objVideo
   
-  console.log(this.objVideo)
+ 
   let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
           var categoryid = localStorage.getItem('categoryid');
-          console.log(categoryid);
+      
           headers.append('Accept', 'application/json')
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
@@ -122,22 +111,19 @@ const updatedata = this.objVideo
       },{headers:headers})
                 .subscribe(
                     resp => {
-                        // this.t.success('Project created successfully');
-                        // this.ui.laddaSave = false;
-                        // this.initForm();
+                        
                         this.ngOnInit();
                         if(resp.status == 200){
-                          // this.toastr.error(e.statusText );
+                         
                           this.Editvediodetail_dailog = false;  
                         }
                         
-                        // Editvediodetail_dailog
+                       
                     },
                     e => {
-                      // this.toastr.error(e.statusText );
-                        // this.ui.laddaSave = false;
-                        // this.l.error('Project error', e);
-                        // this.t.error(e.error.error.detail);
+                    // console.log(e)
+                         
+                        
                     }
                 )
 }
@@ -152,21 +138,21 @@ deleteData(data){
   confirmButtonText: "Yes, delete it!",
   cancelButtonText: "No, cancel plx!",
   }).then((res)=>{
-    console.log(res);
+  
     if(res.value===true){
-  console.log(data.videosId)
-  let headers = new Headers();
+ 
+          let headers = new Headers();
           var authToken = localStorage.getItem('userToken');
           var categoryid = localStorage.getItem('categoryid');
-          console.log(categoryid);
+          
           headers.append('Accept', 'application/json')
           headers.append('Content-Type', 'application/json');
           headers.append("Authorization",'Bearer '+authToken);
 
-          // if(confirm("Are you sure to delete ")) {
+        
             this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Videos/removevideo?VideoId'+'='+data.videosId,{headers:headers}).subscribe((res)=>{
               this.video_all_data.splice(this.video_all_data.indexOf(data.videosId),1);
-                console.log('Delete Responce '+res)
+               
                                            })
                                            this.ngOnInit();
           // }

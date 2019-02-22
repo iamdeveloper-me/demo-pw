@@ -1,13 +1,14 @@
 <div id="wrappervendor" class="" >
   <app-menu></app-menu>
   <section>
-    <section class="container-fluid tipslist">
-       <img src="../../assets/img/adventure.jpg" alt="">
+    <section class="container-fluid tipslist" *ngFor="let datas of tipsdata">
+       <!-- <img src="../../assets/img/adventure.jpg" alt=""> -->
+       <img [src]="datas?.imagePath" alt="">
        <div class="clearfix"></div>
        <div class="advanture container">
-           <h4> <strong>  My adventure</strong></h4>
+           <h4> <strong> {{datas?.blogTopic?.topic}} </strong></h4>
            <p class="user_date"> 
-            <span> <i class="fa fa-camera" aria-hidden="true"></i> By John Due </span> |
+            <span> <i class="fa fa-camera" aria-hidden="true"></i> By {{datas?.author}} </span> 
             <span class="pull-right">
                 <span>  <a href=""> <i class="fa fa-linkedin" aria-hidden="true"></i> </a></span>  
                 <span>  <a href=""> <i class="fa fa-twitter" aria-hidden="true"></i> </a></span> 
@@ -17,13 +18,13 @@
             <span> <i class="fa fa-tag" aria-hidden="true"></i> By John Due </span> |
             <span> <i class="fa fa-comment" aria-hidden="true"></i> By John Due </span>  -->
           </p>
-          <p>
+          <!-- <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book 
-          </p>
-
-          <p>
+          </p> -->
+            <p>{{datas?.description}}</p>
+          <!-- <p>
             <strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry industry's standard dummy text ever since the 1500s. </strong> <br>  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
-          </p>
+          </p> -->
        </div>
     </section>
     <div class="clearfix"></div>
@@ -31,17 +32,17 @@
       
       <h5> <strong>OTHER ARTICLES THAT MAY INTERST YOU  </strong>    </h5>
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-3"  *ngFor="let item of tipsArrays_items  | slice:0:4">
             <div class="img_box text-center">
-               <img src="../../assets/img/photo.jpg"     width="100%" class="img-responsive" alt="">
+               <img [src]="item?.imagePath" width="100%" class="img-responsive" alt="">
                 <div class="box_text">
-                  <p class="posi_absolut"> <button> WEDDING </button>  </p>
-                  <p> If your sister getting married soon <br> you are charge in wedding</p>
+                  <p class="posi_absolut"> <button> {{item?.title}} </button>  </p>
+                  <p> {{item?.description}} </p>
                 </div>
             </div>
           </div>
 
-          <div class="col-md-3">
+          <!-- <div class="col-md-3">
               <div class="img_box text-center">
                  <img src="../../assets/img/photo.jpg"     width="100%" class="img-responsive" alt="">
                   <div class="box_text">
@@ -67,7 +68,7 @@
                         <p> If your sister getting married soon <br> you are charge in wedding</p>
                       </div>
                   </div>
-                </div>
+                </div> -->
         
         </div>
     </section>

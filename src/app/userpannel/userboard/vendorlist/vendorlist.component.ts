@@ -11,57 +11,50 @@ export class VendorlistComponent implements OnInit {
   constructor(public http: Http) { }
 
   ngOnInit() {  $("li").removeClass("user");
-  $("#login").hide();
+                $("#login").hide();
 
-    $(document).ready(function(){
-          $('.filterbtn').click(function(e){
-              $(".filterboxtik").toggleClass( "in");
-          });
-          $('.closebtn').click(function(e){
-            $(this).parent('.yikyik').addClass("hip");
-            });
+                $(document).ready(function(){
+                      $('.filterbtn').click(function(e){
+                          $(".filterboxtik").toggleClass( "in");
+                      });
+                      $('.closebtn').click(function(e){
+                        $(this).parent('.yikyik').addClass("hip");
+                        });
 
-           $('.allbtn').click(function(e){
-              $(".bookedbox").show();
-              $(".savedbox").show();
-              $(".shortlistbox").show();
-          });
-           $('.bookbtn').click(function(e){
-              $(".bookedbox").show();
-              $(".savedbox").hide();
-              $(".shortlistbox").hide();
-          });
-            $('.savebtn').click(function(e){
-              $(".bookedbox").hide();
-              $(".savedbox").show();
-              $(".shortlistbox").hide();
-          });
-             $('.shortlistbtn').click(function(e){
-              $(".bookedbox").hide();
-              $(".savedbox").hide();
-              $(".shortlistbox").show();
-          });
-
-
+                      $('.allbtn').click(function(e){
+                          $(".bookedbox").show();
+                          $(".savedbox").show();
+                          $(".shortlistbox").show();
+                      });
+                      $('.bookbtn').click(function(e){
+                          $(".bookedbox").show();
+                          $(".savedbox").hide();
+                          $(".shortlistbox").hide();
+                      });
+                        $('.savebtn').click(function(e){
+                          $(".bookedbox").hide();
+                          $(".savedbox").show();
+                          $(".shortlistbox").hide();
+                      });
+                        $('.shortlistbtn').click(function(e){
+                          $(".bookedbox").hide();
+                          $(".savedbox").hide();
+                          $(".shortlistbox").show();
+                      });
 
 
 
-    });
-
-    let headers = new Headers();
-    var authToken = localStorage.getItem('userToken');
-    headers.append('Accept', 'application/json')
-    headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
 
 
-     this.http.get(this.urlg,{headers:headers}).subscribe(
-      data =>{ 
-        this.countryArray = data.json();  
-          console.log(this.countryArray);  
-             });
+                });
 
-
+                let headers = new Headers();
+                var authToken = localStorage.getItem('_u');
+                headers.append('Accept', 'application/json')
+                headers.append('Content-Type', 'application/json');
+                headers.append("Authorization",'Bearer '+authToken);
+                this.http.get(this.urlg,{headers:headers}).subscribe(
+                data =>{ this.countryArray = data.json();});
   }
 
 }

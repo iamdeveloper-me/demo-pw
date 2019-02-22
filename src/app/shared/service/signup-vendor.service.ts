@@ -14,54 +14,13 @@ export class SignupVendorService {
 
   signup(user)
   {
-//     console.log(user);
-//     var firstname = user.logInInfo.firstName;
-//     var lastname = user.logInInfo.lastName;
-//     var upassword = user.logInInfo.password;
-//     var cpassword = user.logInInfo.confirmPassword;
-
-//     var contactPerson = user.contactInfo.contactPerson;
-
-//     var email = user.contactInfo.email;
-//      var phone = user.contactInfo.phone;
-//     var website = user.contactInfo.website;
-//     var city = user.businessInfo.city;
-
-
-//     var countryId = user.businessInfo.countryId;
-//     var districtId = user.businessInfo.districtId;
-//     var suburbId = user.businessInfo.suburbId;
-
-
-
-//     var postalcode = user.businessInfo.postalCode;
-//     var address =user.businessInfo.address ;
-//     var nameOfBusiness = user.businessInfo.nameOfBusiness;
-//     var planId = user.businessInfo;
-//     console.log(planId);
-//     var categoryId = user.vendorCategories[0].categoryId;
      const header = new Headers({'Content-Type': 'application/json'});
-//  const a =    { logInInfo: {  firstName: firstname,lastName:lastname, password:upassword,confirmPassword: cpassword},
-
-//  contactInfo: { contactPerson: contactPerson, email: email, phone: phone, website: website},
-//  businessInfo: {countryId:countryId,districtId:districtId ,suburbId:suburbId,city: city, postalCode: postalcode,address: address, nameOfBusiness: nameOfBusiness, 
-//                 pricingPlanId:planId.pricingPlanId ,payFrequency: parseInt(planId.payFrequency) },
-//  vendorCategories: [ { categoryId: categoryId }]
-//  }
-// console.log(a)
     return this.http.post('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/register',user
     ,{headers: header});
-
-
     }
-
      typeSuccess() {
       this.toastr.success('Account created!', 'Success !!');
-
- 
-
-
-  }
+     }
      typeError() {
       this.toastr.error('Account Not Created', 'Error !!');
   }
@@ -95,11 +54,9 @@ export class logInInfo
   confirmPassword:string;
 }
 export class contactInfo {
-  // contactPerson:string;
   email: string;
   phone: string;
   website: string;
-  // phoneType: string;
 }
 export class businessInfo {
   countryId: number;
@@ -111,20 +68,10 @@ export class businessInfo {
   nameOfBusiness:string;
   pricingPlanId: number;
   payFrequency: number;
-  // businessDetails: string;
-  // lat: number;
-  // long: number;
-  // website: string;
   constructor(){
     this.payFrequency=2;
     this.city="";
     this.districtId=0;
-    // this.districtId=0;
-    // this.nameOfBusiness="";
-    // this.lat=0;
-    // this.long=0;
-    // this.businessDetails='';
-    // this.website="";
   }
 }
 export class vendorCategories{

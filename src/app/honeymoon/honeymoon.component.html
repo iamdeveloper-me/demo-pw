@@ -1,194 +1,79 @@
 <div id="wrappervendor" class="" style="text-align:center;background-color:f5f5f5;">
 	<app-menu></app-menu>
-
-
 		<div class="container martop60px">
-				<owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
- 
-						<ng-container *ngFor="let slide of slidesStore">
-						  <ng-template carouselSlide="1" >
-							<div class="boxtikslide ng-star-inserted">
-								<div class="procard"></div>
-								<img class="card-img-top" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg">
-								<span class="book_mark"><i class="material-icons">bookmark_border</i></span>
-								<div class="card-body ">
-									<div class="text-center">
-									<h6><strong>Business Name</strong></h6>
-									<button class="wedding_btn">Cakes</button>
-									<p class="locat_icon"><i class="material-icons">location_on</i>
-									Indore</p>
-									<p class="statr_point">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span> 
-										5.0 (47) 
-									</p>
-								</div>
-								<div class="col-md-12 col-12">
-									<div class="col-md-8 col-8 pad_left_0 pad_left_5px">
-										<img alt="" class="imgfloatleft" src="../../assets/img/money.svg">
-										<span>Price from</span>
-										<span class="pric_200">200 $</span>
+
+			<owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
+				<ng-container *ngFor="let slide of slidesStore">
+				<ng-template carouselSlide="1" >
+					<div class="boxtikslide ng-star-inserted">
+						<div class="procard"></div>
+				
+							<img class="card-img-top" [src]="slide.profileImage" *ngIf="slide.profileImage">
+						
+						<div  *ngIf="!slide.profileImage ">
+							<img class="card-img-top" src="https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg"> 
+						</div>
+					
+						<span (click)="apiService.bookMark(slide,'albums','bookmarked','honeymoonpage')"  class="book_mark"><i class="material-icons">bookmark_border</i></span>
+						<div class="card-body ">
+							<div class="text-center">
+							<h6><strong>{{slide.nameOfBusiness}}</strong></h6>
+						
+							<p class="locat_icon" *ngIf = "slide?.district">
+								<i class="material-icons">location_on</i>
+							    {{slide.district.name}}
+							</p>
+							<p class="locat_icon" *ngIf = "!slide.district">
+									<i class="material-icons">location_on</i>
+								      N/A
+								</p>
+					
+								<div class="large_subtext" *ngIf = "slide?.averageRating > 0 ">
+									<div class="rating_star">
+									<rating [(ngModel)]="slide.averageRating" readonly="isReadonly"></rating>
 									</div>
-										<div class="col-md-4 col-4 span_positin">
-											<img alt="" src="../../assets/img/tag.svg">
-											<span>Deals</span>
-											<span>1</span>
+								</div>
+								<div class="large_subtext" *ngIf = "slide?.averageRating == 0 ">
+										<div class="rating_star">
+									      No Review Yet
 										</div>
 									</div>
+						
+						</div>
+						<div class="col-md-12 col-12">
+							<div class="col-md-8 col-8 pad_left_0 pad_left_5px">
+								<img alt="" class="imgfloatleft" src="../../assets/img/money.svg">
+								<span>Price from</span>
+								<span class="pric_200">{{slide.priceTag}}</span>
+                                <span class="pric_200" *ngIf = "!slide.priceTag">Custom Price</span>
+							</div>
+								<div class="col-md-4 col-4 span_positin">
+									<img alt="" src="../../assets/img/tag.svg">
+									<span> Deals</span>
+									<span>{{slide.deals.length}}</span>
 								</div>
 							</div>
-						  </ng-template>
-						</ng-container>
-					  
-					  </owl-carousel-o>
+						</div>
+					</div>
+				</ng-template>
+				</ng-container>
+			</owl-carousel-o>
 			<h1 class="headingtext"><strong style="color: #e72e77;">Honeymoon & Travel Destinations</strong></h1>
-			<div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali1.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				BALI
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
-            <div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali2.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				Maldives
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
-            <div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali3.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				Malaysia
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
-            <div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali4.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				Thailand
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
-            <div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali5.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				Singapore
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
-            <div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali6.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				India
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
-            <div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali7.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				Honkong
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
-            <div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali8.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				Dubai
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
+			<div *ngFor='let Honeymoon of Honeymoon_destinations '>
+				<div class="col-sm-3 col-6 image_div" (click) = "searchmore(Honeymoon)">
+					<div class="disboxloop" >
+						<a>
+							<img [src]="Honeymoon.imageURL" class="discountimg">
+								<div class="titlebox">
+										{{Honeymoon.name}}
+									<span>14 Listings</span>
+								</div>						
+						</a>
+					</div>
+				</div>
 			</div>
-			<div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali9.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				Maldives
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-			</div>
-			<div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali10.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				Maldives
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-			</div>
-			<div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali11.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				Maldives
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-			</div>
-			<div class="col-sm-3 col-6 image_div">
-	            <div class="disboxloop">
-		                		<a routerLink="/Honeymoon_Details">
-		                			<img src="../../assets/img/bali12.jpg" class="discountimg">
-			                			<div class="titlebox">
-			                				Maldives
-			                				<span>14 Listings</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
+		
+          
 		</div>
 		<div class="container">
 			<div class="row">
@@ -197,62 +82,6 @@
 				</div>	
 			</div>
 		</div>	
-	<!-- <div class="container">
-			<h1 class="headingtext">Holiday for <strong style="color: #e72e77;">Every Mood</strong></h1>
-			<div class="col-sm-3">
-	            <div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="../../assets/img/bali9.jpg" class="holicountimg">
-		                			<div class="holicountimgbox"></div>
-			                			<div class="holititlebox">
-			                				Couples
-			                				<span>Handpicked packages for couples</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
-            <div class="col-sm-3">
-	            <div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://promos.makemytrip.com/images/218X300_Image02_12042017.jpg" class="holicountimg">
-		                			<div class="holicountimgbox"></div>
-			                			<div class="holititlebox">
-			                				Family
-			                				<span>Recommended Family Pacakges</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
-            <div class="col-sm-3">
-	            <div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://promos.makemytrip.com/images/218X300_Image03_12042017.jpg" class="holicountimg">
-		                			<div class="holicountimgbox"></div>
-			                			<div class="holititlebox">
-			                				Friends
-			                				<span>Holiday Pacakges for Freinds</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
-            <div class="col-sm-3">
-	            <div class="disboxloop">
-		                		<a routerLink="/home/Deal_Details">
-		                			<img src="https://promos.makemytrip.com/images/218x300-Dubai-20062017.jpg" class="holicountimg">
-		                			<div class="holicountimgbox"></div>
-			                			<div class="holititlebox">
-			                				International
-			                				<span>Best International Pacakges</span>
-			                			</div>
-			                			
-		                		</a>
-	            </div>
-            </div>
-		</div> -->
-
 	<app-foot></app-foot>
 </div>
 <router-outlet></router-outlet>  

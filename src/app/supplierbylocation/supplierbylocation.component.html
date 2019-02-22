@@ -4,58 +4,22 @@
 
 
 	<div class="caroosel_headin text-center">
-		<h3>Featured Wedding 
-			<strong style="color: #e72e77;">Suppliers</strong>
+		<h3>Supplier By
+			<strong style="color: #e72e77;">Location</strong>
 		</h3>
-	</div>
+	</div> 
 <div class="clearfix"></div>
 
-	<div class="col-sm-12 citybox1">
-		<img src="../../assets/img/black_river_img.jpg">
-		<!-- <div class="overlay">
-			<div class="text">Hello World</div>
-		  </div> -->
-		<h2>Black River</h2>
-	</div>
-	
-	<div class="col-sm-6 citybox cityboxcontant mob375">
-		<img src="../../assets/img/flacq.jpg">
-		<h2>Flacq</h2>
-	</div>
-
-	<div class="col-sm-6 citybox cityboxcontant">
-		<img src="../../assets/img/gand_port.jpg">
-		<h2>Grand Port</h2>
-	</div>
-
-
-<div class="col-sm-4 citybox">
-		<img src="../../assets/img/moka_img.jpg">
-		<h2>Moka</h2>
-	</div>
-	<div class="col-sm-8 citybox">
-		<img src="../../assets/img/pamless.jpg">
-		<h2>Pamplemousses</h2>
-	</div>
-	<div class="col-sm-8 citybox">
-		<img src="../../assets/img/plains_will.jpg">
-		<h2>Plaines-Wilhems</h2>
-	</div>
-	<div class="col-sm-4 citybox">
-		<img src="../../assets/img/port_louis.jpg">
-		<h2>Port-Louis</h2>
-	</div>
-	<div class="col-sm-6 citybox">
-		<img src="../../assets/img/maxresdefault.jpg">
-		<h2>Riviere du Rempart</h2>
-	</div>
-	<div class="col-sm-6 citybox">
-		<img src="../../assets/img/rodrigues.jpg">
-		<h2>Rodrigues</h2>
-	</div>
-
 	
 
+
+	<div *ngFor='let l of locations' [class]="l.className">
+			<a  (click)="searchLocation(l)">
+		<img [src]='l.locationUrl'>
+		<h2>{{l.locationName}}</h2>
+		</a>
+	</div>
+	
 
 </section>
 <div class="clearfix"></div>

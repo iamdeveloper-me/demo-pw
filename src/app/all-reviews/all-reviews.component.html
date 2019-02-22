@@ -1,0 +1,108 @@
+
+<p>All Reviews!!</p>
+
+<!--Review Model Start-->
+<div class="modal fade" id="Review_vendor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-left" style="width:100%;">Rate-{{vendorDetails?.nameOfBusiness}}</h4>
+        <button type="button" class="btnradius50per" data-dismiss="modal">
+          X
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="responce_review  == true ">
+          <form (ngSubmit)="putReview(review)" #f="ngForm">
+            <div class="vp_review_txt">
+              <div class="vp_giveReviewBox">
+                <span>Give A Review:</span>
+                <br>
+                <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
+                  <div class="jq-ry-group-wrapper">
+                    <br>
+                    <div class="jq-ry-normal-group jq-ry-group">
+                      <rating [(ngModel)]="review.rating" name="rating"></rating>
+                    </div>
+                  </div>
+                </span>
+                <br>
+                <div class="textInput">
+                  <input placeholder="Write a Review" type="text" class="textInputInner" required [(ngModel)]="review.comments" name="comments">
+                  <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
+                  <input class="submitedRating" type="hidden" value="0">
+                  <div class="errorInValidation sendAReview">
+                    Your review is empty. SUBMIT again to send this anyway
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      
+      </div>
+      <!-- <h1 *ngIf="responce_thanks == true ">THANK YOU FOR YOUR REVIEW</h1> -->
+    </div>
+  </div>
+</div>
+<!--Review Model End-->
+
+<!--Review Content-->
+<div id="wrappervendor" class="">
+  <app-menu></app-menu>
+   
+	<div class="container mobnopadd ipad100">
+      <div class="col-sm-12 detail_page nopadd">
+          <div class="card inspirationhead">
+               <a routerLink="/home" class="backlink"> 
+                 <i class="material-icons">arrow_back_ios</i>
+                 <span>Go Back</span>
+             </a>
+               <h2 class="text-center">All Reviews</h2>
+            </div>
+         </div>
+         <div class="clearfix"></div>
+	    <div class="boxLightStyles">
+             <!-- start Reviews form -->
+             <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" *ngIf="vendorDetails.reviews.length > 0">
+              <div class="vp_review_txt_title large_subtext "> Total Reviews    </div>
+              <div class="reviewrow" style="height:100px;">
+                <div class="ratingtexthead"><strong>{{vendorDetails.averageRating}}</strong></div>
+                <div class="reveiwsecondhead">
+                <div class="rating_star" style="text-align: left;">
+                  <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
+                </div>
+                <strong>({{vendorDetails.reviews.length}} REVIEWS)</strong>
+                </div>
+              </div>
+
+              <div *ngFor='let rev of vendorDetails.reviews'>
+                <div class="reviewrow">
+                  <div>
+                    <img src="../../assets/img/noImg.png" class="ratingimg" />
+                    <strong style="font-weight:bold;">{{rev.sendByFirstName}} {{rev.sendByLastName}}</strong>
+                    <br/>
+                    <span class="reviewedtext">
+                      <i class="material-icons">chat_bubble</i>
+                      {{rev.reviewStatus}} reviews
+                    </span>
+                  </div>
+                  <div>
+                    <span [innerHTML]='ratingmodel.printStars(rev.rating)'></span>
+                    {{rev.dateAddedOnString}}
+                  </div>
+                  <p class="font14px"> {{rev.comments}}</p>
+                </div>
+              </div>
+              <div class="text-center">
+                <button data-target="#Review_vendor" data-toggle="modal" class="btn pinkbg whitetext">Review this vendor</button>
+              </div>
+              <br>
+            </div>
+        <!-- End Reviews form -->
+		</div>
+   </div>
+<app-foot></app-foot>
+</div>
+<router-outlet></router-outlet>

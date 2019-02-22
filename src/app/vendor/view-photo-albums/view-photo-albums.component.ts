@@ -75,15 +75,13 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
   .subscribe(data =>{
                         this.totalImage =  data.json();
-                       // console.log(data.json()); 
-                       // console.log(this.albumid.id); 
-                        console.log(data.json()); 
+                       
+                     
                         for (var item of  this.totalImage ) {
                         
                         if(this.albumid.id == item.albumsId)
                           {
-                          console.log(item);
-                          // console.log(item.tags);
+                         
                           this.albumname = item.albumName;
                           this.tags = item.tags;
                           this.colourtags = item.colorTags;
@@ -97,7 +95,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
      $.getScript('./assets/js/vendorsidebar.js');
 
   this.route.params.subscribe( params => {
-    console.log(params) ;
+   
         this.albumid = params;
   });
 
@@ -110,7 +108,9 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   headers.append("Authorization",'Bearer '+authToken);
 
   this.http.get(this.url+"api/Albums/BackgroundImage",{headers:headers})
-  .subscribe(data => {console.log(data.json())},error=>{console.log(error)});
+  .subscribe(data => {
+    
+  },error=>{console.log(error)});
     $(".gearicon").click(function(){
     
       $( this ).toggleClass( "open" );
@@ -118,13 +118,12 @@ export class ViewPhotoAlbumsComponent implements OnInit {
 
     this.http.get(this.albumget,{headers:headers}).subscribe(data =>{  
         this.eventArray = data.json()
-        console.log(this.eventArray);
+     
        })
 
 
        this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/storefrontimage',{headers:headers}).subscribe(data =>{
-        console.log(data.json())
-
+      
        if(data.json().setAsBackground == true ){   
         this.selcte_setAsBackground =  data.json().setAsBackground;
         this.id =  data.json().albumImageId;
@@ -136,15 +135,13 @@ export class ViewPhotoAlbumsComponent implements OnInit {
   this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
   .subscribe(data =>{
    this.totalImage =  data.json();
-   console.log(data.json()); 
-   console.log(this.albumid.id); 
+  
    for (var item of  this.totalImage ) {
    
    if(this.albumid.id == item.albumsId)
     {
    
-     console.log(item);
-    // console.log(item.tags);
+    
     this.albumname = item.albumName;
     this.tags = item.tags;
     this.colourtags = item.colorTags;
@@ -157,8 +154,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
       }
       
       this.albumImagesModify.push(albumtag);
-      console.log(this.albumImagesModify)
-     
+    
     }
 
 
@@ -174,8 +170,7 @@ export class ViewPhotoAlbumsComponent implements OnInit {
           this.colour_table = this.colour_table.filter((el, i, a) => i === a.indexOf(el))
 
          }
-    }
-    console.log(this.colour_table)
+    }  
   });
  
   let modalId = $('#image-gallery');
@@ -185,7 +180,7 @@ $(document)
 
     loadGallery(true, 'a.thumbnail');
 
-    //This function disables buttons when needed
+   
     function disableButtons(counter_max, counter_current) {
       $('#show-previous-image, #show-next-image')
         .show();
@@ -286,13 +281,8 @@ $(document)
     confirmButtonText: "Yes",
     cancelButtonText: "No",
     }).then((res)=>{
-      console.log(res);
+   
       if(res.value===true){
-    // let con = confirm('Are you sure you want to delete this?')
-    // if (con) {
-      console.log(image);
-      console.log(index);
-      console.log(image.albumImageId);
       this.myalbumimages.splice(index,1);
       let headers = new Headers();
       var authToken = localStorage.getItem('userToken');
@@ -301,22 +291,20 @@ $(document)
       headers.append("Authorization",'Bearer '+authToken);
     
     
-      //Album Getremoveevent?id'+'='+id  ?AlbumImageId'+'='+image.albumImageId
+     
       this.http.get(this.url+'api/Albums/removeimage?AlbumImageId'+'='+image.albumImageId,{headers:headers})
       .subscribe(data =>{
-        console.log(data.json());
+
           //Album Get
           this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
           .subscribe(data =>{
            this.totalImage =  data.json();
-           console.log(data.json()); 
-           console.log(this.albumid.id); 
-           console.log(data.json()); 
+      
            for (var item of  this.totalImage ) {
               if(this.albumid.id == item.albumsId)
                 {
                     this.albumImagesModify =  item.albumImages;
-                    console.log(  this.albumImagesModify ); 
+                   
                 }
             }
           });},(error)=>{console.log(error)});
@@ -336,38 +324,32 @@ $(document)
 
 
   albumcoverimage(albumId){
-    console.log(albumId)
+  
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/albumcoverimage?AlbumId' + '=' + albumId,{headers:headers}).subscribe(data =>{
-      console.log(data.json())
+     
     },error=>{console.log(error)})
 
 
   }
   setas_storefront_image(a){
-    console.log(a)
+  
     let headers = new Headers();
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
     headers.append("Authorization",'Bearer '+authToken);
 
-    // this.http.get(this.urll+'/api/albums/setasstorefrontimage?AlbumImageId'+'='+image.id,{headers:headers}).subscribe(data =>{
-          
-    //   console.log(data.json());
-    //   this.getstoreimage();
-    
-    //  });
     this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/albums/setasstorefrontimage?AlbumImageId' + '=' + a,{headers:headers}).subscribe(data =>{
-      console.log(data.json())
+    
       this.toastr.success(data.json().message);
 
       this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Albums/storefrontimage',{headers:headers}).subscribe(data =>{
-        console.log(data.json())
+     
 
        if(data.json().setAsBackground == true ){   
         this.selcte_setAsBackground =  data.json().setAsBackground;
@@ -387,32 +369,29 @@ $(document)
       
     this.http.get(this.Setasbackground,{headers:headers}).subscribe(data =>{
             this.Set_as_background = data.json() as string[];
-            console.log( this.Set_as_background );
+         
             this.toastr.success(data.json().message);
         },error=>{console.log(error)})
-      console.log(setId)
+    
   }
   previewFile(event) {
-    // var preview = this.previewimg.nativeElement;
+   
      let files = event.target.files;
      if (files) {
          for (let file of files) {
              let FI  = new FileItem(this.uploader,file,null);
              this.uploader.queue.push(FI);  
              this.fileNames.push(file.name);
-           //  console.log(file);   
-           //  this.previewImages = [];
+         
              let reader = new FileReader();
              reader.onload = (e: any) => {
              this.previewImages.push(e.target.result);
-           //  this.uploadAll()
-            // this.albumImagesModify = this.previewImages 
-            // console.log(this.previewImages);
+           
              }
              reader.readAsDataURL(file);
          }
      }
-     //console.log(this.uploader.queue);
+    
  }
  removePreviewImg(index){
   this.previewImages.splice(index,1);
@@ -427,6 +406,7 @@ uploadAll(){
  
   this.lodar = true;
   var i = 0;
+  debugger
 const formData = new FormData();
   for (let file of this.uploader.queue)
   {
@@ -442,33 +422,31 @@ var authToken = localStorage.getItem('userToken');
 headers.append("Authorization",'Bearer '+authToken);
 
 //Post Album 2 photos
-console.log(formData);
+
 
 this.uploader.queue = [];
 
 
     this._http.withUploadProgressListener(progress => {this.progress_bar = true; 
-      // console.log(`Uploading ${progress.percentage}%`);
+     
       this.closeModel(); this.progressPercentage = progress.percentage})
     .withDownloadProgressListener(progress => { 
-      // console.log(`Downloading ${progress.percentage}%`);
+    
      })
         .post(this.url +'api/ImageUploader/AlbumImageUpload', formData,{headers: headers})
     .subscribe(data =>{
       this.albumImagesModify = [];
   
-            console.log(  data.json()); 
+          
            
             this.http.get(this.url+'api/Albums/myalbums',{headers:headers})
             .subscribe(data =>{
             this.totalImage =  data.json();
-            console.log(data.json()); 
-            console.log(this.albumid.id); 
+       
             for (var item of  this.totalImage ) {
               if(this.albumid.id == item.albumsId)
                 {
-                    console.log(item);
-                    // console.log(item.tags);
+                   
                     this.albumname = item.albumName;
                     this.tags = item.tags;
                     this.colourtags = item.colorTags;
@@ -481,7 +459,7 @@ this.uploader.queue = [];
                       }
                       
                       this.albumImagesModify.push(albumtag);
-                      console.log(this.albumImagesModify)
+                    
                     
                     }
                 }
@@ -496,7 +474,7 @@ this.uploader.queue = [];
           
                   }
               }
-              console.log(this.colour_table)
+      
             });
 
             this.previewImages =[];

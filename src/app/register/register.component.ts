@@ -38,7 +38,6 @@ export class RegisterComponent  {
             let country = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/countries");
             country.subscribe(data => { 
               this.countryArray = data as string[];  
-              console.log(this.countryArray);
               this.arra = this.countryArray
             });
          
@@ -46,7 +45,6 @@ export class RegisterComponent  {
             let obj = this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/LookupMaster/pricingplans");
             obj.subscribe(data => {
               this.planArray = data as string[]; 
-              console.log(this.planArray);
             });
 
             $(".Suppliertab").click(function(){
@@ -70,11 +68,9 @@ export class RegisterComponent  {
  loadScript(){this.ngOnInit;}
 
     onSubmit() {   
-   console.log(this.country_id)
    this.arra.forEach((element,pos) => {
      if(pos == this.country_id){
        this.user.businessInfo.countryId = Number(element.countryId);
-      //  this.user.businessInfo.countryName = element.countryName;
      }
     this.district.forEach((dist ,d_pos) => {
       if(d_pos == this.city_id){
@@ -82,7 +78,6 @@ export class RegisterComponent  {
         this.user.businessInfo.city = dist.name;
       } 
     }); 
-    console.log(this.sub_id)
 
     this.suburb.forEach((subr ,s_pos) => {
       if(s_pos == this.sub_id){
@@ -90,9 +85,8 @@ export class RegisterComponent  {
       } 
     }); 
    });
- console.log(JSON.stringify(this.user));
       this.cservice.signup(this.user).subscribe(( data )  =>  
-      { console.log(data.json())
+      {
         this.cservice.typeSuccess();
         this.router.navigate(['../home'])
        }
@@ -101,33 +95,19 @@ export class RegisterComponent  {
     })
 
   }
-    //   this.cservice.signup(this.user).subscribe(( data )  =>  {
-    //     console.log(data.json())
-    //     var abc = data.json()
-        
-    //    if(data.json().message == 'Account created'){
-    //      this.cservice.typeSuccess();
-    //    }else{
-    //     this.cservice.typeError(); 
-    //    } 
-        
-    // });}
 
 idgenerate(users){
-  console.log(users)
+ 
    this.user.businessInfo.pricingPlanId = users.pricingPlanId;
    this.user.businessInfo.payFrequency = '1';
-   console.log(this.user.businessInfo.payFrequency );
+  
 }
 annualPrice(users){ 
   this.user.businessInfo.pricingPlanId = users.pricingPlanId;
   this.user.businessInfo.payFrequency = '2';
-  console.log(this.user.businessInfo.payFrequency );
+ 
  }
- typeSuccess() {
-        // this.cservice.typeSuccess();
-
-    }
+ 
 
     country(event): void {  
       const newVal = event.target.value;
@@ -139,12 +119,12 @@ annualPrice(users){
     }
     subr(event): void {  
       const newVal = event.target.value;
-      console.log(newVal)
+     
     }
 
 
     getDecimal(monthlyPrice,noOfMonthFeeOff){
-      // {{((plan.monthlyPrice * (12 - plan.noOfMonthFeeOff))/12 | number:'1.0-2')}}
+     
     var number = (monthlyPrice * (12 - noOfMonthFeeOff))/12
     var a = (monthlyPrice * (12 - noOfMonthFeeOff))/ 12 | number
     return number.toFixed(2).split(".")[1]

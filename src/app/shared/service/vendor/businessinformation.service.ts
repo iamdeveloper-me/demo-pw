@@ -17,16 +17,11 @@ export class BusinessinformationService {
     var authToken = localStorage.getItem('userToken');
     headers.append('Accept', 'application/json')
     headers.append('Content-Type', 'application/json');
-    headers.append("Authorization",'Bearer '+authToken);
+    headers.append("Authorization",'Bearer '+authToken);   
+    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile',{headers:headers}).subscribe(data =>{ 
+    
+      })
+   }
 
-   
-          
-    this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/myprofile',{headers:headers}).subscribe(data =>{ alert("vsz"); console.log(data);})
-
-    // this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/mylocations',{headers:headers}).subscribe(data =>{console.log(data);})
-
-    // this.http.get('http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Supplier/businessinfo',{headers:headers}).subscribe(data =>{ console.log(data);})
-}
-// business(){}
 }
 

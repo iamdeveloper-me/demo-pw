@@ -1,172 +1,211 @@
 <div>
-<div class="profile-image"></div>`.
-<div *ngFor='let list_banner_data of banner_data'>
-<div *ngFor='let list_banner_Images of list_banner_data.bannerImages'>
-<!-- <h1>{{list_banner_Images.files.path}}</h1> [ngStyle]="{ 'background-image': 'url(' + list_banner_Images.files.path + ')'}" -->
-<header class="masthead text-center text-white d-flex">
-<img alt="close" class="homebanner webbanner" [src]="list_banner_Images.files.path">
-<img alt="close" class="homebanner mobilesidebanner" src="https://s3.us-east-2.amazonaws.com/prefect-image/wed.jpeg">
-
-<div class="container my-auto hombannertext">
-<div class="row heading_mob_mar">
-
-            <div class="col-lg-8 mx-auto text-center">
-              <h2 class="section-heading text-white">{{list_banner_data.title}}</h2>
-              <p class="text-faded mb-4">Find Photographers, Venues, and more wedding vendors </p>
-              <div class="mobvendorebtn"> 
-                    <i class="large material-icons firsticon">search</i>
-                    Find Vendor
-                    <span class="arrow">
-                      <span></span>
-                    </span>
-              </div>
-            </div>
-            <form (ngSubmit)="search(e,true,false)" #e="ngForm">
-              <div class="col-sm-10 mx-auto no-gutters searchbar mob_dis_none">
-                <div class="form-group col-sm-5 padd_bottom">
-                    <span class="home_search"><i class="material-icons">camera_alt</i></span>
-                    <select class="form-control round_first" [(ngModel)]="category" name="category" >
-                        <option value='undefined'> All Categories </option>
-                        <option *ngFor='let list_Categories of Categories' [ngValue]="list_Categories" > {{list_Categories.categoryName}} </option>
-                    </select>
+  <div class="profile-image"></div>
+  <div *ngIf="banner_data.length > 0">
+    <div *ngFor='let list_banner_data of banner_data'>
+      <div *ngFor='let list_banner_Images of list_banner_data.bannerImages'>
+        <header class="masthead text-center text-white d-flex">
+          <img alt="close" class="homebanner webbanner"   *ngIf="list_banner_Images" [src]="list_banner_Images.files.path">
+          <img alt="close" class="homebanner mobilesidebanner" src="https://s3.us-east-2.amazonaws.com/prefect-image/wed.jpeg">
+          <div class="container my-auto hombannertext">
+            <div class="row heading_mob_mar">
+              <div class="col-lg-8 mx-auto text-center">
+                  
+                <h2 class="section-heading text-white">
+               
+                    {{list_banner_data.title}}</h2>
+                <p class="text-faded mb-4">Find Photographers, Venues, and more wedding vendors </p>
+                <div class="mobvendorebtn">
+                  <i class="large material-icons firsticon">search</i>
+                  Find Vendor
+                  <span class="arrow">
+                    <span></span>
+                  </span>
                 </div>
-                <div class="form-group col-sm-5">
+              </div>
+              <form (ngSubmit)="search(e,true,false)" #e="ngForm">
+                <div class="col-sm-10 mx-auto no-gutters searchbar mob_dis_none">
+                  <div id="append" class="form-group col-sm-5 padd_bottom">
+                    <span class="home_search"><i class="material-icons">camera_alt</i></span>
+                    <ngx-select-dropdown [(ngModel)]="category" [(value)]="singleSelect" [allowClear]="true" name="category" [config]="configCategory" [options]="Categories"  [disabled]="disabled"
+                    [multiple]="false" ></ngx-select-dropdown>
+                    <!-- <select id="source" class="form-control chosen-wrapper chosen-wrapper--style2 round_first" [(ngModel)]="category" name="category" data-js="custom-scroll">
+                      <option value='undefined'> All Categories </option>
+                      <option *ngFor='let list_Categories of Categories' [ngValue]="list_Categories">
+                        {{list_Categories.categoryName}} </option>
+                    </select> -->
+   
+                  </div>
+                  <div class="form-group col-sm-5">
+                    <span class="home_search"><i class="material-icons">location_on</i></span>
+                    <!-- <select class="form-control" name='location' [(ngModel)]='locationId'>
+                      <option value='0'> All Locations</option>
+                      <option *ngFor='let list_locations of locations' [value]='list_locations.districtId'>
+                        {{list_locations.name}}</option>
+                    </select> -->
+                    <ngx-select-dropdown [(ngModel)]='locationId' name='location' [config]="configLocation" [options]="locations" 
+                    [multiple]="false">
+                    </ngx-select-dropdown>
+                   
+                  </div>
+                  <div class="form-group col-sm-2 posi_rela_100px">
+                    <button type="submit" class="form-control search_btn_pink">
+                      <i class="material-icons">
+                        search
+                      </i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <div class="text-center just_picture">
+                <span><i class="material-icons">camera_alt</i>Knot just Pictures </span>
+              </div>
+              <div id="tiktik" class="FilterDialog" style="display: none;">
+  
+                <div class="category-body">
+  
+                  <div class="searchmobtitlebar">
+                    <img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
+                    <input type="text" [(ngModel)]='categoryFilterParam' id="search" placeholder="Type to Search Category">
+                  </div>
+  
+                  <div class="regular" (click)=categoryClick(0)>
+                    <i class="material-icons">location_on</i>
+                    All  Categories
+                  </div>
+  
+                  <div *ngFor='let list_Categories of Categories | categoryPipe:categoryFilterParam' (click)=categoryClick(list_Categories)>
+                    <div class="regular">
+                      <!-- <i class="material-icons">location_on</i>
+                      {{list_Categories.categoryName}} -->
+                      <i class="cake" aria-hidden="true">
+                          <img [src]="list_Categories.iconImageURL" />
+                      </i>{{list_Categories.categoryName}}
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="city-body" style="display: none;">
+                  <div class="searchm  obtitlebar searchmobtitlebar">
+                    <img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
+                    <input type="text" [(ngModel)]='locationFilterParam' id="search2" placeholder="Type to Search Location">
+                  </div>
+  
+                  <div class="regular" (click)="locationClick(0)">
+                    <i class="material-icons">location_on</i>
+                    All locations
+                  </div>
+  
+                  <div *ngFor="let list_locations of locations | custompipe:locationFilterParam" (click)="locationClick(list_locations.districtId)">
+                    <div class="regular">
+                      <i class="material-icons">location_on</i>
+                      {{list_locations.name}}
+                    </div>
+                  </div>
+  
+                </div>
+  
+              </div>
+              
+            </div>
+          </div>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="defaultbanner == true">
+        <header class="masthead text-center text-white d-flex">
+        
+          <img alt="close" class="homebanner mobilesidebanner" src="https://s3.us-east-2.amazonaws.com/prefect-image/wed.jpeg">
+          <div class="container my-auto hombannertext">
+            <div class="row heading_mob_mar">
+              <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-heading text-white"> Everything you need to plan your perfect day</h2>
+                <p class="text-faded mb-4">Find Photographers, Venues, and more wedding vendors </p>
+                <div class="mobvendorebtn">
+                  <i class="large material-icons firsticon">search</i>
+                  Find Vendor
+                  <span class="arrow">
+                    <span></span>
+                  </span>
+                </div>
+              </div>
+              <form (ngSubmit)="search(e,true,false)" #e="ngForm">
+                <div class="col-sm-10 mx-auto no-gutters searchbar mob_dis_none">
+                  <div class="form-group col-sm-5 padd_bottom">
+                    <span class="home_search"><i class="material-icons">camera_alt</i></span>
+                    <select class="form-control round_first" [(ngModel)]="category" name="category">
+                      <option value='undefined'> All Categories </option>
+                      <option *ngFor='let list_Categories of Categories' [ngValue]="list_Categories">
+                        {{list_Categories.categoryName}} </option>
+                    </select>
+                  </div>
+                  <div class="form-group col-sm-5">
                     <span class="home_search"><i class="material-icons">location_on</i></span>
                     <select class="form-control" name='location' [(ngModel)]='locationId'>
-                        <option value='0'> All Location</option>
-                        <option *ngFor='let list_locations of locations' [value]='list_locations.districtId'> {{list_locations.name}}</option>
+                      <option value='0'> All Locations</option>
+                      <option *ngFor='let list_locations of locations' [value]='list_locations.districtId'>
+                        {{list_locations.name}}</option>
                     </select>
-                </div>   
-                <div class="form-group col-sm-2 posi_rela_100px">
-                    <button type = "submit" class="form-control search_btn_pink"  >
-                        <i class="material-icons">
-                            search
-                            </i>
-                      </button>
-                    
-                </div>     
-              </div>
-            </form>    
-              <div class="text-center just_picture">
-                        <span><i class="material-icons">camera_alt</i>Knot just Pictures </span>
-              </div> 
-                
-              <div id="tiktik" class="FilterDialog" style="display: none;">
-
-                <div class="category-body">
-                    <div class="searchmobtitlebar">
-                      <img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
-                      <input type="text" [(ngModel)]='categoryFilterParam' id="search1" placeholder="Type to Search Category">
-                    </div>
-                    <div class="regular" (click)=categoryClick(0)>
-                      <i class="material-icons">location_on</i>
-                     All Category
-                    </div>
-                    <div *ngFor='let list_Categories of Categories | categoryPipe:categoryFilterParam' (click)=categoryClick(list_Categories)>
-                      <div class="regular" >
-                        <i class="material-icons">location_on</i>
-                       {{list_Categories.categoryName}}
-                      </div>
-                    </div>
-                   
-                  
-                </div>
-                <div class="city-body" style="display: none;">
-                    <div class="searchm  obtitlebar searchmobtitlebar">
-                  <img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
-                  
-                      <input type="text" [(ngModel)]='locationFilterParam' id="search2" placeholder="Type to Search">
-                  
-                </div>
-                <div class="regular" (click)="locationClick(0)">
-                  <i class="material-icons">location_on</i>
-                  All location               
                   </div>
-                <div *ngFor="let list_locations of locations | custompipe:locationFilterParam" (click)="locationClick(list_locations.districtId)">
-                  <div class="regular" >
-                    <i class="material-icons">location_on</i>
-                    {{list_locations.name}}                  
-                    </div>
-                </div> 
+                  <div class="form-group col-sm-2 posi_rela_100px">
+                    <button type="submit" class="form-control search_btn_pink">
+                      <i class="material-icons">
+                        search
+                      </i>
+                    </button>
+                  </div>
                 </div>
-</div>
-<div id="tiktik" class="FilterDialog" style="display: none;">
-
-<div class="category-body">
-<div class="searchmobtitlebar">
-<img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
-<input type="text" value="" id="search1" placeholder="Type to Search Category">
-</div>
-
-<div class="regular">
-<i>
-<img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding_cake.svg"/> 
-</i>Cakes
-</div>
-<div class="regular">
-<i>
-<img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_decorator.svg"/>
-</i> Decorators & Wedding Stylist
-</div>
-<div class="regular">
-<i>
-<img src="https://s3.us-east-2.amazonaws.com/prefect-image/drinks_beverages.svg"/>
-</i> Drinks and Beverages
-</div>
-<div class="regular">
-<i>
-<img src="https://s3.us-east-2.amazonaws.com/prefect-image/Fashion&Clothing.svg"/></i> Fashion & Clothing
-</div>
-<div class="regular">
-<i>
-<img src="https://s3.us-east-2.amazonaws.com/prefect-image/florist.svg"/></i> Florists, Bouquets and Centerpiece
-</div>
-<div class="regular"><i>
-<img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/> </i> Food & Catering</div>
-<div class="regular"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Footwear.svg"/></i> Footwear</div>
-<div class="regular"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/honeymoon.svg"/></i> Honeymoon & Travel</div>
-<div class="regular"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/stationary.svg"/></i> Invitation Cards & Wedding Stationary</div>
-<div class="regular"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Jewellery.svg"/></i> Jewellery & Wedding Rings</div>
-<div class="regular"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/make_up.svg"/></i> Make Up, Hair & Mehendi</div>
-<div class="regular"> <i>No</i> Marriage Celebrant</div>
-<div class="regular"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/music_dj.svg"/></i> Music, DJs & Entertainment</div>
-<div class="regular"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Wedding Planner.svg"/></i> Other wedding Supplies & Accessories</div>
-<div class="regular"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Photography.svg"/></i> Photography, Videography & Cinematography</div>
-<div class="regular"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Venues.svg" alt=""> </i> Venues</div>
-<div class="regular"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/wedding_car.svg"/></i> Wedding Cars & Transport</div>
-<div class="regular"> <i>No</i> Wedding Planner & Event Management</div>
-<div class="regular"> <i><img src="https://s3.us-east-2.amazonaws.com/prefect-image/Shape&Fitness.svg" alt=""> </i> Shape & Fitness</div>
-</div>
-<div class="city-body" style="display: none;">
-<div class="searchm obtitlebar">
-<img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
-
-<input type="text" value="" id="search2" placeholder="Type to Search">
-
-</div>
-<div class="regular" routerLink="searchresult">
-<i class="material-icons">location_on</i>
-All Location
-</div>
-<div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Black River</div>
-<div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Flacq</div>
-<div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Grand Port</div>
-<div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Moka</div>
-<div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Pamplemousses</div>
-<div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Plaines-Wilhems</div>
-<div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Port-Louis</div>
-<div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Riviere du Rempart</div>
-<div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Savanne</div>
-<div class="regular" routerLink="searchresult"><i class="material-icons">location_on</i> Rodrigues</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-
-</header>
-</div> 
-</div> 
+              </form>
+              <div class="text-center just_picture">
+                <span><i class="material-icons">camera_alt</i>Knot just Pictures </span>
+              </div>
+              <div id="tiktik" class="FilterDialog" style="display: none;">
+  
+                <div class="category-body">
+  
+                  <div class="searchmobtitlebar">
+                    <img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
+                    <input type="text" [(ngModel)]='categoryFilterParam' id="search" placeholder="Type to Search Category">
+                  </div>
+  
+                  <div class="regular" (click)=categoryClick(0)>
+                    <i class="material-icons">location_on</i>
+                    All  Categories
+  
+                  </div>
+  
+                  <div *ngFor='let list_Categories of Categories | categoryPipe:categoryFilterParam' (click)=categoryClick(list_Categories)>
+                    <div class="regular">
+                      <i class="material-icons">location_on</i>
+                      {{list_Categories.categoryName}}
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="city-body" style="display: none;">
+                  <div class="searchm  obtitlebar searchmobtitlebar">
+                    <img alt="close" class="icon-small margin-r-10" src="https://s3.us-east-2.amazonaws.com/prefect-image/cross-grey.png">
+                    <input type="text" [(ngModel)]='locationFilterParam' id="search2" placeholder="Type to Search Location">
+                  </div>
+  
+                  <div class="regular" (click)="locationClick(0)">
+                    <i class="material-icons">location_on</i>
+                    All locations
+                  </div>
+  
+                  <div *ngFor="let list_locations of locations | custompipe:locationFilterParam" (click)="locationClick(list_locations.districtId)">
+                    <div class="regular">
+                      <i class="material-icons">location_on</i>
+                      {{list_locations.name}}
+                    </div>
+                  </div>
+  
+                </div>
+  
+              </div>
+              
+            </div>
+          </div>
+        </header>
+  </div>
 </div>

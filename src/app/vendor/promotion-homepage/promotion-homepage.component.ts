@@ -32,9 +32,9 @@ export class PromotionHomepageComponent implements OnInit {
     this.router.navigateByUrl('/vendor/PromoteBusiness');
   }
   contactus(list){
-    console.log(list.value)
+
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
-      console.log(data)
+     
       this.toastr.success(data.message);
       list.reset()
     },

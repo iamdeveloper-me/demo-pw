@@ -10,7 +10,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EventlistComponent implements OnInit {
 
   constructor(private meta : Meta, private title : Title,private apiService: apiService, 
-    private route : ActivatedRoute ,private router : Router) { 
+
+    private route : ActivatedRoute,private router : Router ) { 
+
     this.meta.addTag({ name: 'description', content: 'Event Title | Perfect Weddings' });
   }
 
@@ -55,6 +57,14 @@ export class EventlistComponent implements OnInit {
           this.title.setTitle(this.data[0].eventTitle + ` | ` + this.data[0].districts);   
           this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
         });  
+  }
+
+
+  goToDetailPage(a){
+    const b = 'categoryname';
+    this.router.navigate(['home/weddingvendorsdetailprofile/'+b.replace(/\s/g,'')+'/'+a.vendorId+'/'+'bussinesname']);
+    //this.router.navigateByUrl('/home/Deal_Details/'+a+'/'+b+'/'+c.replace(/\s/g,'')+'/'+'deals'+'/'+l);
+
   }
 
 

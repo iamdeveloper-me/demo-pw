@@ -25,10 +25,11 @@ export class AllReviewsComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
-    console.log(this.vendorDetails);
+    // this.vendorDetails = JSON.parse(sessionStorage.getItem('vendorDetails'));
+    // console.log(this.vendorDetails);
     this.route.paramMap.subscribe(params => {
       this.vendorid = params
+      console.log(params)
        this.apiService.getData(this.apiService.serverPath+'PerfectWedding/vendordetails'+'?id='+this.vendorid.params.id).subscribe(data=>{    
          this.vendorDetails  = data;     
          },error =>{console.log(error)});

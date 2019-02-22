@@ -197,9 +197,9 @@ export class MenuComponent implements OnInit {
                     $(".signup_click").click(function(){
                     $("#panel8").addClass( "in");
                     $("#panel8").addClass( "active");
-                    $("#panel7").removeClass( "active");
-                    $("#panel7").removeClass( "show");
-                    $("#panel7").removeClass( "in"); 
+                    $("#CouplesLogin").removeClass( "active");
+                    $("#CouplesLogin").removeClass( "show");
+                    $("#CouplesLogin").removeClass( "in"); 
                     $(".logintab").removeClass( "active");
                     $(".registertab").addClass( "active");
                     });
@@ -208,9 +208,9 @@ export class MenuComponent implements OnInit {
                     $("#panel8").removeClass( "in");
                     $("#panel8").removeClass( "active");
                     $("#panel8").removeClass( "show");
-                    $("#panel7").addClass( "active");
-                    $("#panel7").addClass( "show");
-                    $("#panel7").addClass( "in");
+                    $("#CouplesLogin").addClass( "active");
+                    $("#CouplesLogin").addClass( "show");
+                    $("#CouplesLogin").addClass( "in");
                     $(".logintab").addClass( "active");
                     $(".registertab").removeClass( "active");
                     });
@@ -344,12 +344,12 @@ export class MenuComponent implements OnInit {
         }
         //loginpage
         loadScript(){ 
-            $("#panel9").removeClass( "in");
-            $("#panel9").removeClass( "active");
-            $("#panel9").removeClass( "show");
-            $("#panel7").removeClass( "active");
-            $("#panel7").removeClass( "show");
-            $("#panel7").removeClass( "in");
+            $("#VendorsLogin").removeClass( "in");
+            $("#VendorsLogin").removeClass( "active");
+            $("#VendorsLogin").removeClass( "show");
+            $("#CouplesLogin").removeClass( "active");
+            $("#CouplesLogin").removeClass( "show");
+            $("#CouplesLogin").removeClass( "in");
             $("#panel8").addClass( "in");
             $("#panel8").addClass( "active");
             $("#panel8").addClass( "show");
@@ -361,12 +361,12 @@ export class MenuComponent implements OnInit {
             $("#panel11").removeClass( "show");
         }
         userin(){
-            $("#panel9").removeClass( "in");
-            $("#panel9").removeClass( "active");
-            $("#panel9").removeClass( "show");
-            $("#panel7").addClass( "active");
-            $("#panel7").addClass( "show");
-            $("#panel7").addClass( "in");
+            $("#VendorsLogin").removeClass( "in");
+            $("#VendorsLogin").removeClass( "active");
+            $("#VendorsLogin").removeClass( "show");
+            $("#CouplesLogin").addClass( "active");
+            $("#CouplesLogin").addClass( "show");
+            $("#CouplesLogin").addClass( "in");
             $("#panel8").removeClass( "in");
             $("#panel8").removeClass( "active");
             $("#panel8").removeClass( "show");
@@ -378,12 +378,12 @@ export class MenuComponent implements OnInit {
             $("#panel11").removeClass( "show");
         }
         forgotbox(){ 
-            $("#panel9").removeClass( "in");
-            $("#panel9").removeClass( "active");
-            $("#panel9").removeClass( "show");
-            $("#panel7").removeClass( "active");
-            $("#panel7").removeClass( "show");
-            $("#panel7").removeClass( "in");
+            $("#VendorsLogin").removeClass( "in");
+            $("#VendorsLogin").removeClass( "active");
+            $("#VendorsLogin").removeClass( "show");
+            $("#CouplesLogin").removeClass( "active");
+            $("#CouplesLogin").removeClass( "show");
+            $("#CouplesLogin").removeClass( "in");
             $("#panel8").removeClass( "in");
             $("#panel8").removeClass( "active");
             $("#panel8").removeClass( "show");
@@ -395,12 +395,12 @@ export class MenuComponent implements OnInit {
             $("#panel11").removeClass( "show");
         }
         forgotvendor(){ 
-            $("#panel9").removeClass( "in");
-            $("#panel9").removeClass( "active");
-            $("#panel9").removeClass( "show");
-            $("#panel7").removeClass( "active");
-            $("#panel7").removeClass( "show");
-            $("#panel7").removeClass( "in");
+            $("#VendorsLogin").removeClass( "in");
+            $("#VendorsLogin").removeClass( "active");
+            $("#VendorsLogin").removeClass( "show");
+            $("#CouplesLogin").removeClass( "active");
+            $("#CouplesLogin").removeClass( "show");
+            $("#CouplesLogin").removeClass( "in");
             $("#panel8").removeClass( "in");
             $("#panel8").removeClass( "active");
             $("#panel8").removeClass( "show");

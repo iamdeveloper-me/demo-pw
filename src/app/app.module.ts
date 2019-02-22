@@ -228,6 +228,7 @@ import { EventsearchentryPipe } from './events/eventsearch.pipe';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
 import { AllReviewsComponent } from './all-reviews/all-reviews.component';
+import { DealListComponent } from './deal-list/deal-list.component';
 
 // import { ShareButtonsModule } from '@ngx-share/buttons';
 
@@ -460,7 +461,9 @@ export function getAuthServiceConfigs() {
         
         VendorDealDetailComponent,
         
-        AllReviewsComponent
+        AllReviewsComponent,
+        
+        DealListComponent
 
 
 
@@ -484,7 +487,7 @@ export function getAuthServiceConfigs() {
 
         OwlModule,
         ProgressHttpModule
-,NgxDatatableModule,
+        ,NgxDatatableModule,
        // NgProgressModule,
         ReactiveFormsModule,
         CustomFormsModule,

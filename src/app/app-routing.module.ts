@@ -151,7 +151,7 @@ import { PaymentSummaryComponent } from './payment-summary/payment-summary.compo
 import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
 import { AllReviewsComponent } from './all-reviews/all-reviews.component';
 
-
+import { DealListComponent } from './deal-list/deal-list.component';
 const appRoutes: Routes = [
  
   { path: 'home', component: HomeComponent },
@@ -182,19 +182,20 @@ const appRoutes: Routes = [
   { path: 'home/Careers', component:  CareersComponent  },
   { path: 'home/Advertise', component:  AdvertiseComponent },
   { path: 'home/cuplefoot', component:  FootCupleComponent },
-  { path: 'home/weddingvendorss/:id/:id/:id', component:  PhotogallaryComponent },
+  { path: 'home/weddingvendorss/:categoryname/:id/:bussinesname/Allalbum', component:  PhotogallaryComponent },
   //All Reviews Page
-  { path: 'home/weddingsvendors/:id/:id/:id/:id', component: AllReviewsComponent },
+  { path: 'home/weddingsvendors/:categoryname/:id/:bussinesname/allReviews', component: AllReviewsComponent },
   { path: 'home/Vediogallary', component:  VediogallaryComponent },
   { path: 'home/supplierbylocation', component:  SupplierbylocationComponent },
-  { path: 'home/weddingvendorsss/:id/:id/:id/:id/:id', component:  PhotogallerydetailComponent },
+  { path: 'home/vendordealslist/:categoryname/:id/:bussinesname/deals', component:  DealListComponent },
+  { path: 'home/weddingvendorsss/:categoryname/:id/:bussinesname/:album/:albumid/:albumname', component:  PhotogallerydetailComponent },
   { path: 'home/ResetPassword', component:  ResetPasswordComponent },
   { path: 'home/allDreamWedding', component:  DreamWeddingLocationsComponent },
   { path: 'home/FeaturedWeddingSuppliers', component:  FeaturedWeddingSuppliersComponent },
 
   { path: 'home/Deals', component:  DealsComponent },
   { path: 'home/Deal_Details', component:  DealDetailsComponent },
-  { path: 'home/Deal_Details/:id', component:  DealDetailsComponent },
+  { path: 'home/Deal_Details/:categoryname/:id/:bussinesname/deals/:id', component:  DealDetailsComponent },
   { path: 'home/Honeymoondestinations', component:  HoneymoonComponent },
   { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
   { path: 'home/Honeymoon_Details/:id', component:  HoneymoonDetailsComponent },

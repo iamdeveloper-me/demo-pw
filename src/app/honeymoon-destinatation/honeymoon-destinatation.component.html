@@ -1,6 +1,31 @@
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h5 class="btn btn-default" routerLink="/home/Honeymoondestinations">Back</h5>
-<div class="container">
+<div>
+<app-menu></app-menu>
+<!-- <br><br><b><br></b>
+<h5 class="btn btn-default text-center" routerLink="/home/Honeymoondestinations">Back</h5> -->
+<section class="all_category" id="portfolio">
+    <div class="container martop60px">
+      <ol _ngcontent-c11="" class="breadcrumb breadcrumbcontainer mob_dis_none">
+        <!-- <li><a routerLink="/home/Honeymoondestinations">Home</a></li> -->
+      </ol>
+    </div>
+    <div class="container text-center">
+      <h3 class="brows_head"> 
+  <a routerLink="/home" class="homelinkmobile"><i class="material-icons"> arrow_back_ios </i></a>
+        <strong> Honeymoon & Travel Destinations </strong> </h3>
+    </div>
+    <div class="container mob_parallax mob_padd0">
+      <div class="col-md-3 col-6 box_img"  *ngFor='let Honeymoon of Honeymoon_destinations '>
+        <a (click) = "searchmore(Honeymoon)"  >
+          <img [src]="Honeymoon.imageURL"  class="zoom_in discountimg">
+          <div class="tranparentlayer">
+            <h5>   {{Honeymoon.name}}</h5>
+            <p>14 listing </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+<!-- <div class="container">
   <div class="row">
     <h1 class="headingtext"><strong style="color: #e72e77;">Honeymoon & Travel Destinations</strong></h1>
     <div *ngFor='let Honeymoon of Honeymoon_destinations '>
@@ -17,4 +42,9 @@
       </div>
     </div>
   </div>
+</div> -->
+<br>
+<div class="clearfix"></div>
+<app-foot></app-foot>
 </div>
+<router-outlet></router-outlet>

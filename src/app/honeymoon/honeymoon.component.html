@@ -28,12 +28,12 @@
 						<div class="card-body ">
 							<div class="text-center">
 							<h6><strong>{{slide?.nameOfBusiness}}</strong></h6>
-						    <button class="wedding_btn" *ngIf="slide?.vendorCategories.length == 0; else vcat"> N/A  </button>
+						    <!-- <button class="wedding_btn" *ngIf="slide?.vendorCategories.length == 0; else vcat"> N/A  </button>
                             <ng-template #vcat>
                                 <button class="wedding_btn" *ngFor="let c of slide.vendorCategories">
                                   {{ c?.categories.categoryName }}
                                  </button>
-                            </ng-template>
+                            </ng-template> -->
 							<p class="locat_icon" *ngIf = "slide?.district">
 								<i class="material-icons">location_on</i>
 							    {{slide?.district.name}}

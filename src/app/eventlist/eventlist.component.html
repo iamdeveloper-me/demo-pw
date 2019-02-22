@@ -75,12 +75,12 @@
 
                         <div class="col-md-12 marbot5px"  *ngFor='let event of data[0]?.eventsDates | slice:0:1 ;let i=index '>
                             <p><span class="bold">Duration</span><br />
-                                <div *ngIf="event.duration === 1">
-                                    {{event.duration*24}} Hours
-                                </div>
-                                <div *ngIf="event.duration > 1">
-                                    {{event.duration}} Days
-                                </div>
+                                <p *ngIf="event.duration === 1">
+                                        <span>Duration</span> {{event.duration}} Day
+                                </p>	
+                            <p *ngIf="event.duration > 1">
+                                    <span>Duration</span> {{event.duration}} Days
+                            </p>
                                 <!-- {{event?.duration}} Days </p> -->
                         </div>
                     </div>

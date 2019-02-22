@@ -120,7 +120,15 @@
 											<div class="eventprice" *ngIf="item.entryFee != null">
 											 	{{item.entryFee}}
 											</div>
-
+											<div *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '>
+												<div *ngIf="Date.duration === 1">
+													Duration {{Date.duration*24}} Hours
+												</div>
+												<div *ngIf="Date.duration > 1">
+													Duration {{Date.duration}} Days
+												</div>
+												<!-- Duration {{Date.duration}} Days -->
+											</div>
 											
 										</div>
 										<div class="col-sm-12 footericon">

@@ -1,0 +1,20 @@
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h5 class="btn btn-default" routerLink="/home/Honeymoondestinations">Back</h5>
+<div class="container">
+  <div class="row">
+    <h1 class="headingtext"><strong style="color: #e72e77;">Honeymoon & Travel Destinations</strong></h1>
+    <div *ngFor='let Honeymoon of Honeymoon_destinations '>
+      <div class="col-sm-3 col-6 image_div" (click) = "searchmore(Honeymoon)">
+        <div class="disboxloop" >
+          <a>
+            <img [src]="Honeymoon.imageURL" class="discountimg">
+              <div class="titlebox">
+                  {{Honeymoon.name}}
+                <span>14 Listings</span>
+              </div>						
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

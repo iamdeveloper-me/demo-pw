@@ -75,7 +75,13 @@
 
                         <div class="col-md-12 marbot5px"  *ngFor='let event of data[0]?.eventsDates | slice:0:1 ;let i=index '>
                             <p><span class="bold">Duration</span><br />
-                                {{event?.duration}} </p>
+                                <div *ngIf="event.duration === 1">
+                                    {{event.duration*24}} Hours
+                                </div>
+                                <div *ngIf="event.duration > 1">
+                                    {{event.duration}} Days
+                                </div>
+                                <!-- {{event?.duration}} Days </p> -->
                         </div>
                     </div>
                 </section>
@@ -115,7 +121,7 @@
                                 <span> <i class="fa fa-linkedin" aria-hidden="true"></i></span>
                             </p>
                             <p>
-                                <a [routerLink]="['/home/events']"  class="profilebtn">View Profile</a>
+                                <a  class="profilebtn">View Profile</a>
                             </p>
                         </div>
                     </div>

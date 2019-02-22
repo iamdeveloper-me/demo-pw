@@ -59,6 +59,7 @@ export class EventsComponent implements OnInit {
 
   event(){
     //Event API
+    this.objSearchlistvm['userId'] = sessionStorage.getItem('userId') != null ? sessionStorage.getItem('userId') : null;
     this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',this.objSearchlistvm).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data.items;
         console.log(this.allItems);

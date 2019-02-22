@@ -67,8 +67,9 @@
 											<i class="material-icons">share</i>
 										</button>
 
-										<!-- <button class="borradius50per purple-gradient"> -->
-										<button class="borradius50per" (click)="apiService.bookMark(item,'event','bookmarked','eventPage')">
+
+										<button [ngStyle]="{'background-color':item.isBookmarked == true ? 'red' : 'green' }" class="borradius50per" (click)="apiService.bookMark(item,'events','bookmarked','eventPage')">
+
 											<i class="material-icons">
 												bookmark_border
 											</i> 

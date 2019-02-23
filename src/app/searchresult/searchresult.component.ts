@@ -91,14 +91,14 @@ export class SearchresultComponent implements OnInit {
     this.objSearchFilter=new filterParam();
     this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
     this.objSearchlistvm = new SearchListingVM();
-    this.objSearchlistvm.searchInDreamLocation = this.objSearchFilter.isDreamLocation;
-    this.objSearchlistvm.searchInFeaturedVendors = this.objSearchFilter.isSearchInFeaturedSupplier;
+    this.objSearchlistvm.searchInDreamLocation = this.objSearchFilter?this.objSearchFilter.isDreamLocation:false;
+    this.objSearchlistvm.searchInFeaturedVendors = this.objSearchFilter?this.objSearchFilter.isSearchInFeaturedSupplier:false;
     if(this.objSearchlistvm.searchInFeaturedVendors || this.objSearchlistvm.searchInDreamLocation){
       this.featuredListingArray.forEach(element => {
         element.isSelect = true;
       });
     }
-    if(this.objSearchFilter.locationId != 0){
+    if(this.objSearchFilter && this.objSearchFilter.locationId != 0){
     this.objSearchlistvm.districts.push(this.objSearchFilter.locationId);}
     this.getLocations();
     this.getCategories();
@@ -164,7 +164,7 @@ export class SearchresultComponent implements OnInit {
   
     this.categories = JSON.parse(localStorage.getItem('catlist'));
     console.log(this.categories);
-    if(this.objSearchFilter.catId>0){
+    if(this.objSearchFilter && this.objSearchFilter.catId>0){
       this.categories.filter(c=>c.categoryId==this.objSearchFilter.catId)[0].isSelect=true;
       this.SelectedCategory = this.categories.filter(c=>c.isSelect==true)[0];
       this.showALlCategories=false;
@@ -175,7 +175,7 @@ export class SearchresultComponent implements OnInit {
       element.isSelect = false;
     });
     this.collection=[];
-    this.paginate(this.objSearchFilter.pageSize);  
+    this.paginate(this.objSearchFilter?this.objSearchFilter.pageSize: 25);  
     this.showALlCategories=false;
   }
   clearFilters(){
@@ -437,7 +437,9 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   sessionStorage.removeItem('filterParam');
   this.objSearchFilter = new filterParam();
   this.objSearchlistvm = new SearchListingVM();
-  this.initializeResult()
+  this._activeRoute.params.subscribe(p=>{
+    this.initializeResult();
+  })
   //this._route.navigate(['/home/weddingvendors/',this.SelectedCategory.categoryName]);
 }
 deselectAllItemsInCollection(collection:Array<any>){

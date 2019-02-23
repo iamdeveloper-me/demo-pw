@@ -55,17 +55,17 @@
 	<div class="container mobnopadd ipad100">
       <div class="col-sm-12 detail_page nopadd">
           <div class="card inspirationhead">
-               <a routerLink="/home" class="backlink"> 
+              <a (click) = "go_back_link_page()" class="backlink"> 
                  <i class="material-icons">arrow_back_ios</i>
                  <span>Go Back</span>
-             </a>
+              </a>
                <h2 class="text-center">All Reviews</h2>
             </div>
          </div>
          <div class="clearfix"></div>
 	    <div class="boxLightStyles">
              <!-- start Reviews form -->
-             <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" *ngIf="vendorDetails.reviews.length > 0">
+             <div class="boxLightStyles hideShowMeNow vp_review box_section_light r_s_pre reviewsection" *ngIf="vendorDetails?.reviews?.length > 0">
               <div class="vp_review_txt_title large_subtext "> Total Reviews    </div>
               <div class="reviewrow" style="height:100px;">
                 <div class="ratingtexthead"><strong>{{vendorDetails.averageRating}}</strong></div>
@@ -73,7 +73,7 @@
                 <div class="rating_star" style="text-align: left;">
                   <rating [(ngModel)]="vendorDetails.averageRating" readonly="isReadonly"></rating>
                 </div>
-                <strong>({{vendorDetails.reviews.length}} REVIEWS)</strong>
+                <strong>({{vendorDetails?.reviews?.length}} REVIEWS)</strong>
                 </div>
               </div>
 

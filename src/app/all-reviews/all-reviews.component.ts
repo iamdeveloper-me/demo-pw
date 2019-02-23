@@ -18,7 +18,7 @@ export class AllReviewsComponent implements OnInit {
   responce_review = true;
   responce_thanks = false;
   vendorid
-  constructor(private apiService : apiService, public toastr: ToastrService,  private route : ActivatedRoute ) {
+  constructor(private router : Router,  private apiService : apiService, public toastr: ToastrService,  private route : ActivatedRoute ) {
     this.ratingmodel = new ratingStars();
     this.user_login_token = sessionStorage.getItem('userToken')
     console.log(this.user_login_token);
@@ -38,59 +38,68 @@ export class AllReviewsComponent implements OnInit {
     this.reviewsArray = this.vendorDetails.reviews;
     console.log(this.reviewsArray);
   }
-
   review = { rating: '', comments: "", rateVendorID: '' }
   putReview(review) {
-   
-    
-    if (!sessionStorage.getItem('userToken')) {
-      this.toastr.error('Login To Give Your Review', 'Inconceivable!');
-    }else{
+          if (!sessionStorage.getItem('userToken')) {
+            this.toastr.error('Login To Give Your Review', 'Inconceivable!');
+          }else{
 
-    var rating1 = review.rating;
-    var comments1 = review.comments;
-    const a = {
-      rating: rating1, 
-      comments: comments1,
-      rateVendorID:  this.vendorDetails.vendorUniqueId
-   }
-    console.log(this.user_login_token);
-    this.apiService.postData(this.apiService.serverPath+'Reviews/postreview', a).subscribe(data => {
-      console.log(data);
-      review.resetForm();
-      swal({
-  
-        title: "Thank You!",
-        text: "Your submition has been received.",
-        type: "success",
-        showCancelButton: false,
-        confirmButtonClass: "btn-default",
-    }).then((res)=>{
-                    if(res.value===true){
-                          // this.responce_review = false;
-                          // this.responce_thanks = true;
-                          
-                   } else{
-                      //  console.log('Cancel Process !');
-                      this.responce_review = false;
+                  var rating1 = review.rating;
+                  var comments1 = review.comments;
+                  const a = {
+                                rating: rating1, 
+                                comments: comments1,
+                                rateVendorID:  this.vendorDetails.vendorUniqueId
                     }
-  },error=>{
-      alert(JSON.stringify(error));
-    })
-    return;
+                      console.log(this.user_login_token);
+                      this.apiService.postData(this.apiService.serverPath+'Reviews/postreview', a).subscribe(data => {
+                      console.log(data);
+                      //  review.resetForm();
 
 
+                      swal({
+                    
+                        title: "Thank You!",
+                        text: "Your submition has been received.",
+                        type: "success",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn-default",
+                    }).then((res)=>{
+                                      if(res.value===true){    
+                                            // this.responce_review = false;
+                                            // this.responce_thanks = true;
+                                            
+                                      } else{
+                                        //  console.log('Cancel Process !');
+                                        this.responce_review = false;
+                                      }
+                                   },error=>{
+                                             alert(JSON.stringify(error));
+                                            }
+                            )
+                            return;
 
-      }, error => { 
-        console.log(error);
-        this.toastr.error(error.statusText);
-       }
-      );
-    }
+                            /////api end 
+                        }, error => { 
+                          console.log(error);
+                          this.toastr.error(error.statusText);
+                        }
+                        );
 
 
-
-  
+               }
   }
+  go_back_link_page(){
 
+   
+    this.route.paramMap.subscribe(params => {
+      this.vendorid = params
+      console.log(params)
+    
+      const a =  this.vendorid.params.categoryname;
+      const b = this.vendorid.params.id;
+      const c = this.vendorid.params.bussinesname;
+      this.router.navigateByUrl('/home/weddingvendorsdetailprofile/'+a+'/'+b+'/'+c.replace(/\s/g,''));
+    })
+  }
 }

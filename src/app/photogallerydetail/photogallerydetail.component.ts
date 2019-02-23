@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class PhotogallerydetailComponent implements OnInit {
 
-  constructor( private route : ActivatedRoute,  private apiService: apiService) { }
+  constructor(private router: Router, private route : ActivatedRoute,  private apiService: apiService) { }
   vendorDetails:any={};
   portpholio = [];
   vendorid
@@ -48,10 +48,19 @@ export class PhotogallerydetailComponent implements OnInit {
  
 
   } 
-  session_data(){
-    
+
+
+
+  go_back_link_page(){
     if(JSON.parse(sessionStorage.getItem('portfolio_count')) == '1'){
       this.portpholio = [];
     }
+     this.route.paramMap.subscribe(params => {
+       this.vendorid = params
+      const a =  this.vendorid.params.categoryname;
+      const b = this.vendorid.params.id;
+      const c = this.vendorid.params.bussinesname;
+      this.router.navigateByUrl('/home/weddingvendorss/'+a+'/'+b+'/'+c.replace(/\s/g,'')+'/'+'Allalbum');
+   })
   }
 }

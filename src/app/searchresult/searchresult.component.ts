@@ -269,6 +269,7 @@ export class SearchresultComponent implements OnInit {
     this.objSearchResultItems.items.forEach(element => {
       this.collection.push(element);
       this.slidesStore = this.collection
+      console.log(this.slidesStore)
     });
   }
   filterLocations(ev){

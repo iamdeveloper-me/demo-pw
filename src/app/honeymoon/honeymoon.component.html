@@ -6,7 +6,7 @@
 				<ng-container *ngFor="let slide of slidesStore">
 				<ng-template carouselSlide="1" >
 					<div class="boxtikslide ng-star-inserted">
-						<div class="procard"></div>
+						<div class="procard"> </div>
 				
 							<img class="card-img-top" [src]="slide.profileImage" *ngIf="slide.profileImage">
 						
@@ -15,15 +15,30 @@
 						</div>
 					
 						<span (click)="apiService.bookMark(slide,'albums','bookmarked','honeymoonpage')"  class="book_mark"><i class="material-icons">bookmark_border</i></span>
+						<div class="imgnum">
+							<span *ngIf="slide?.albums.length > 0">
+							   <img src="../../assets/img/picture.png"/>
+							   {{slide?.albums?.length}} 
+							</span>
+							<span *ngIf="slide?.vendorVideos.length > 0">
+							  <img src="../../assets/img/video.png"/>
+							  {{slide?.vendorVideos?.length}}
+							</span>
+						  </div>
 						<div class="card-body ">
 							<div class="text-center">
-							<h6><strong>{{slide.nameOfBusiness}}</strong></h6>
-						
+							<h6><strong>{{slide?.nameOfBusiness}}</strong></h6>
+						    <!-- <button class="wedding_btn" *ngIf="slide?.vendorCategories.length == 0; else vcat"> N/A  </button>
+                            <ng-template #vcat>
+                                <button class="wedding_btn" *ngFor="let c of slide.vendorCategories">
+                                  {{ c?.categories.categoryName }}
+                                 </button>
+                            </ng-template> -->
 							<p class="locat_icon" *ngIf = "slide?.district">
 								<i class="material-icons">location_on</i>
-							    {{slide.district.name}}
+							    {{slide?.district.name}}
 							</p>
-							<p class="locat_icon" *ngIf = "!slide.district">
+								<p class="locat_icon" *ngIf = "!slide.district">
 									<i class="material-icons">location_on</i>
 								      N/A
 								</p>
@@ -33,11 +48,11 @@
 									<rating [(ngModel)]="slide.averageRating" readonly="isReadonly"></rating>
 									</div>
 								</div>
-								<div class="large_subtext" *ngIf = "slide?.averageRating == 0 ">
+								<div class="large_subtext" *ngIf = "slide.averageRating == 0 ">
 										<div class="rating_star">
-									      No Review Yet
+									      No Reviews Yet
 										</div>
-									</div>
+								</div>
 						
 						</div>
 						<div class="col-md-12 col-12">
@@ -47,10 +62,9 @@
 								<span class="pric_200">{{slide.priceTag}}</span>
                                 <span class="pric_200" *ngIf = "!slide.priceTag">Custom Price</span>
 							</div>
-								<div class="col-md-4 col-4 span_positin">
+								<div class="col-md-4 col-4 span_positin" *ngIf='slide.deals.length >0' >
 									<img alt="" src="../../assets/img/tag.svg">
-									<span> Deals</span>
-									<span>{{slide.deals.length}}</span>
+									{{slide?.deals.length}} Deals
 								</div>
 							</div>
 						</div>
@@ -60,7 +74,7 @@
 			</owl-carousel-o>
 			<h1 class="headingtext"><strong style="color: #e72e77;">Honeymoon & Travel Destinations</strong></h1>
 			<div *ngFor='let Honeymoon of Honeymoon_destinations '>
-				<div class="col-sm-3 col-6 image_div" (click) = "searchmore(Honeymoon)">
+				<div class="col-sm-3 col-12 image_div" (click) = "searchmore(Honeymoon)">
 					<div class="disboxloop" >
 						<a>
 							<img [src]="Honeymoon.imageURL" class="discountimg">
@@ -78,7 +92,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 Destination_btn">
-					<button>View All Destinations</button>
+					<button routerLink="/home/allDestination"  >View All Destinations</button>
 				</div>	
 			</div>
 		</div>	

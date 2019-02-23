@@ -17,6 +17,11 @@ export class BannerComponent implements OnInit {
   constructor( private router: Router ,private masterservice: MasterserviceService , private apiService: apiService) { 
     this.objFilterParam = new filterParam();
   }
+  categ:any;
+  locationData:any;
+  catShow:boolean= false
+  locShow:boolean= false
+  catImage:string =''
   locationFilterParam:string='';
   categoryFilterParam:string=''
   Categories = [];
@@ -36,11 +41,12 @@ export class BannerComponent implements OnInit {
     limitTo: 20,
     placeholder:'All Locations',
   };
- 
+ categoryTitle:string = 'All Categories'
+ locationTitle:string = 'All Locations'
   ngOnInit() {
     
    $.getScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js');
-   $.getScript('./assets/js/homebannersearch.js');
+   // $.getScript('./assets/js/homebannersearch.js');
     this.Categorie();
     this.location();
     this.banner();
@@ -86,8 +92,9 @@ export class BannerComponent implements OnInit {
     )
   }
   search(e,isAllSupplier,isDreamLocation,var_data){
+    debugger
       if(var_data == null){
-          this.objFilterParam.catId  = e.value.category?e.value.category.categoryId:0;
+          this.objFilterParam.catId  = this.categ?this.categ.categoryId:0;
           this.objFilterParam.categoryName= e.value.category?e.value.category.categoryName: '' ;
           this.objFilterParam.categoryName=this.objFilterParam.categoryName==undefined?'All Categories':this.objFilterParam.categoryName;
           this.objFilterParam.isDreamLocation=isDreamLocation;
@@ -97,7 +104,8 @@ export class BannerComponent implements OnInit {
           this.objFilterParam.sortDir = "";
           this.objFilterParam.sortedBy ="";
           this.objFilterParam.searchQuery ="";
-          this.objFilterParam.locationId = this.locationId['districtId'];
+          this.objFilterParam.locationId = this.locationData['districtId'];
+          debugger
       }else{
           this.objFilterParam.catId  = var_data['category'] != 0 ?var_data['category']['categoryId']:0;
           this.objFilterParam.categoryName= var_data['category']?var_data['category']['categoryName']: '' ;
@@ -112,6 +120,17 @@ export class BannerComponent implements OnInit {
         }
           sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
           this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+  }
+  cateDena(data){
+    this.categ = data
+    this.categoryTitle = data['categoryName']
+    this.catImage = data['iconImageURL']
+
+  }
+  locationDena(data){
+    this.locationData = data
+    this.locationTitle = data['name']
+
   }
   // Mobile size click to forword serch result page 
   categoryClick(data){
@@ -129,5 +148,6 @@ export class BannerComponent implements OnInit {
       }
       this.search(null,true,false,var_data)
   }
+
 
 }

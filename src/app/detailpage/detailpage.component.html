@@ -15,28 +15,30 @@
               </div>
             </div>
             <div class="col-sm-9 mobnopadd imgbannerboxcontainer">
-
-                  <!-- carosel slider -->
-                  <div class="boxLightStyles martop0px imgbannerbox">
-                    <button class="closepopup"><i class="material-icons">clear</i></button>
-                    <div id="detailpagecarousel" class="owl-carousel detailpagecarousel owl-loaded owl-drag gallery">
-                      <div class="item" *ngFor='let i of sliderImgaes; let pos = index'>
-                        <a data-fancybox="gallery" title="{{i.name}}" [attr.data-caption]="i.name" [href]="i.image" (click)="classAdd(i)">
-                            <img class="owl-lazy" [src]='i.image' style="height:400px ; width:900px" alt="">
-                        </a>
-
-                        <div class="namecontainer">{{i.name}}</div>
-                        <div class="numcontainer">{{pos + 1}}/{{sliderImgaes.length}}</div>
-                        <div class="linkcontainer">
-                          <button><i class="material-icons">favorite_border</i>({{i.likeCounts}})</button>
-                          <button><i class="material-icons">share</i></button>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                  <!-- carosel slider end -->
-
+                  <!-- carosel slider start -->
+                  <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
+                      <!-- *ngFor="let slide of slidesStore ;let s=index" -->
+                      <ng-container  *ngFor='let i of sliderImgaes; let pos = index' >
+                        <ng-template carouselSlide="1">
+                          <div class="boxtikslide" >
+                            
+                            <div class="owl-carousel detailpagecarousel owl-loaded owl-drag gallery">
+                                <a data-fancybox="gallery" title="{{i.name}}" [attr.data-caption]="i.name" [href]="i.image" (click)="classAdd(i)">
+                                <img class="card-img-top" style="height:400px ; width:900px"  [src]="i.image" >
+                                </a>
+                            </div>
+                            <div class="namecontainer">{{i.name}}</div>
+                            <div class="numcontainer">{{pos + 1}}/{{sliderImgaes.length}}</div>
+                                  <div class="linkcontainer">
+                                    <button><i class="material-icons">favorite_border</i>({{i.likeCounts}})</button>
+                                    <button><i class="material-icons">share</i></button>
+                                  </div>
+                              
+                          </div>
+                        </ng-template>
+                      </ng-container>               
+                  </owl-carousel-o>
+                    <!-- carosel slider end -->
                   <!-- onlymobilesection -->
                   <div class="onlymobilesection boxLightStyles">
                     <div class="large_text text-center">
@@ -47,7 +49,7 @@
                       <i class="fa fa-map-marker" aria-hidden="true"></i> {{vendorDetails?.suburb.name}}
                     </div>
                     <div class="carousel_city text-center">
-                        Membership Since {{vendorDetails?.memberSince | date:mediumDate}}
+                        Membership Since {{vendorDetails?.memberSince | date: mediumDate}}
                     </div>
                     <div class="vp_mainDetails_mini_rating text-center">
                       <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px" *ngIf="vendorDetails?.averageRating > 0 ">
@@ -164,12 +166,18 @@
                       <!--Icon Block-->
                       <div class="featurebtn row fixedheaderbtn">
                         <div class="col-3">
-                          <button class="btn purple-gradient borradius50per callbtn">
-                            <i class="material-icons">call</i>
-                          </button>
-                          <button class="btn purple-gradient borradius50per callbtnhide" style="display: none;">
-                            <i class="material-icons">call</i>
-                          </button>
+                           <div *ngIf="showD else elseModel8">
+                              <button class="btn purple-gradient borradius50per callbtn" (click)="phone_hover = !phone_hover ">
+                                  <i class="material-icons">call</i>
+                                </button>
+                           </div>
+                           <ng-template #elseModel8>
+                              <div class="col-4" >
+                                  <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#MMM">
+                                      <i class="material-icons">call</i>
+                                  </button>
+                              </div>
+                          </ng-template>
                         </div>
                         <!--Message Block Start-->
                         <div class="col-3" *ngIf="showD else elseModel4">
@@ -190,10 +198,11 @@
                             <i class="material-icons">bookmark_border</i>
                           </button>
                         </div>
-                        <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
+                        <div class="callinfo"  *ngIf= "phone_hover == true"  >
                           <strong>Contact Number</strong><br />
                           <!-- +91-99999 12345// -->
-                          Mobile : {{phone.mobile}}<br> Phone : {{phone.phone}}
+                          <div *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>  Mobile : {{phone.mobile}}<br> Phone : {{phone.phone}}</div>
+                        
                         </div>
                       </div>
                     </div>
@@ -474,7 +483,7 @@
                   <!-- Wedding Deals & Discount -->
                   <div class="boxLightStyles hideShowMeNow box_section_light dealsection" *ngIf="vendorDetails?.dealsCount > 0">
                     <div class="vp_review_txt_title large_subtext">Wedding Deals & Discount ({{vendorDetails?.deals.length}})
-                        <span style="cursor:pointer;font-weight: normal;" *ngIf='vendorDetails.deals.length>1' (click)='showHideevents()'>{{dealButtonLabel}}</span>
+                        <span style="cursor:pointer;font-weight: normal;" (click) = "goToAlldeals(vendorDetails)">{{dealButtonLabel}}</span>
                     </div>
                     <div class="row dealsinner">
                       <div style="width: 100%;" *ngIf='vendorDetails?.discounts'>
@@ -489,29 +498,14 @@
                             <i class="material-icons">call</i>
                           </button>
                         </div>
-                          <!--Message Block start-->
-                          <div class="col-sm-2" *ngIf="showD else elseModel5">
-                                <button class="btn purple-gradient btntik borradius50per" data-target="#address" data-toggle="modal">
-                                    <i class="material-icons">mail_outline</i>
-                                </button>
-                          </div>
-                          <ng-template #elseModel5>
-                              <div class="btnMessage">
-                                  <button class="btn purple-gradient btntik borradius50per" data-target="#MMM" data-toggle="modal">
-                                      <i class="material-icons">mail_outline</i>
-                                  </button>
-                            </div>
-                          </ng-template>
-                          <!--Message Block End-->
-
                       </div>
                       <div class="col-sm-12" *ngIf="vendorDetails?.discounts == null ">
                         <span class="text-center">No discounts Available </span>
                       </div>
 
                     </div>
-                    <div *ngFor='let deal of vendorDetails?.deals ;let i=index'>
-                      <div class="row dealsinner" *ngIf='deal.visible' (click)="deal_Detail(deal)" >
+                    <div *ngFor='let deal of vendorDetails?.deals  | slice:0:5'>
+                      <div class="row dealsinner" (click)="goto_detail_of_deals(deal)" >
                         <div>
                           <div class="col-sm-3">
                             <div>$800.00 Value</div>
@@ -639,18 +633,27 @@
                     <!--Icon Block-->
                     <div class="featurebtn row">
                       <div class="col-4">
-                        <button class="btn purple-gradient borradius50per callbtn">
-                          <i class="material-icons">call</i>
-                        </button>
-                        <button class="btn purple-gradient borradius50per callbtnhide" style="display: none;">
-                          <i class="material-icons">call</i>
-                        </button>
+                          <div *ngIf="showD else elseModel7">
+                            <button class="btn purple-gradient borradius50per callbtn" (click) = "display_loginuser_contactno()">
+                              <i class="material-icons">call</i>
+                            </button>
+                          </div>  
                         <div class="featurehead">Call</div>
-                        <div class="callinfo" style="display:none" *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
-                            <strong>Contact Number</strong><br />
-                            <!-- +91-99999 12345// -->
-                            {{phone.mobile}}<br> {{phone.phone}}
-                          </div>
+                        <div class="callinfo" *ngIf= "phone_hover == true" >
+                            <strong>Contact Number</strong>
+                            <br/>
+                            <div *ngFor='let phone of  vendorDetails?.vendorLocations | slice:0:1'>
+                                Mobile : {{phone.mobile}}<br> 
+                                Phone  : {{phone.phone}}
+                            </div>
+                        </div>
+                        <ng-template #elseModel7>
+                          
+                                <button class="btn purple-gradient borradius50per" data-toggle="modal" data-target="#MMM">
+                                    <i class="material-icons">call</i>
+                                    
+                                </button>
+                        </ng-template>
                       </div>
 
                       <!-- <div > -->
@@ -738,14 +741,14 @@
                   </div>
                 </div>
 
-                <!-- trading hour desktop view -->
+                <!-- trading hour desktop view *ngIf='loc.visible-->
                 <div class="left_box_section contactsection tradinghours">
                   <div class="branchrow row tradinghours" *ngIf="vendorDetails?.vendorLocations.length > 0 ">
                     <div *ngFor='let loc of vendorDetails?.vendorLocations  | slice:0:1 '>
-                      <div class="large_subtext detailtra text-center  col-12" *ngIf='loc.visible'>
+                      <div class="large_subtext detailtra text-center  col-12" >
                         Trading Hours
                         <ng-container >
-                          <div class="branchdefaulttable tabledesktop in">
+                          <div class="branchdefaulttable tabledesktop currentdate in">
                           <table class="banchtable text-center">
                             <tr *ngIf = 'loc.isMondayOpen && currentDate == 1'>
                               <th><strong>Mon</strong></th>
@@ -855,9 +858,9 @@
                         </ng-container>
                         <div class="clearfix"></div>
                         <ng-container >
-                        <div class="branchdetailtable  in">
-                          <table class="tabledesignwork text-center">
-                            <tr *ngIf = 'loc.isMondayOpen'>
+                        <div class="branchdetailtable  tabledesktop weekdate in" >
+                          <table class="tabledesignwork  text-center " >
+                            <tr *ngIf = 'currentDate != 1' >
                                   <th><strong>Mon</strong></th>
                                   <td>
                                       <span *ngIf='loc.mondayOpen != 0'>
@@ -872,7 +875,7 @@
                                   <td><span class="greentext" *ngIf='loc.isMondayOpen == true  && currentDate == 1'>Open</span></td>
                                   <td><span class="greentext" *ngIf='loc.isMondayOpen == false '>Close</span></td>
                             </tr>
-                            <tr *ngIf='loc.isTuesdayOpen'>
+                            <tr *ngIf='currentDate != 2'>
                               <th><strong>Tue</strong></th>
                               <td>
                                 <span *ngIf='loc.tuesdayOpen != 0'>
@@ -888,7 +891,7 @@
                               <td><span class="greentext" *ngIf='loc.isTuesdayOpen == true  && currentDate == 2'>Open</span></td>
                               <td><span class="greentext" *ngIf='loc.isTuesdayOpen == false '>Close</span></td>
                             </tr>
-                            <tr *ngIf='loc.isWednesdayOpen'>
+                            <tr *ngIf='currentDate != 3'>
                               <th><strong>Wed</strong></th>
                               <td>
 
@@ -904,7 +907,7 @@
                               <td><span class="greentext" *ngIf='loc.isWednesdayOpen == true  && currentDate == 3'>Open</span></td>
                               <td><span class="greentext" *ngIf='loc.isWednesdayOpen == false '>Close</span></td>
                             </tr>
-                            <tr *ngIf='loc.isThursdayOpen'>
+                            <tr *ngIf=' currentDate != 4'>
                               <th><strong>Thu</strong></th>
                               <td>
 
@@ -920,7 +923,7 @@
                               <td><span class="greentext" *ngIf='loc.isThursdayOpen == true  && currentDate == 4'>Open</span></td>
                               <td><span class="greentext" *ngIf='loc.isThursdayOpen == false '>Close</span></td>
                             </tr>
-                            <tr *ngIf='loc.isFridayOpen'>
+                            <tr *ngIf='currentDate != 5'>
                               <th><strong>Fri</strong></th>
                               <td>
 
@@ -936,7 +939,7 @@
                               <td><span class="greentext" *ngIf='loc.isFridayOpen == true  && currentDate == 5'>Open</span></td>
                               <td><span class="greentext" *ngIf='loc.isFridayOpen == false '>Close</span></td>
                             </tr>
-                            <tr *ngIf='loc.isSaturdayOpen'>
+                            <tr *ngIf='currentDate != 6'>
                               <th><strong>Sat</strong></th>
                               <td>
 
@@ -952,7 +955,7 @@
                               <td><span class="greentext" *ngIf='loc.isSaturdayOpen == true  && currentDate == 6'>Open</span></td>
                               <td><span class="greentext" *ngIf='loc.isSaturdayOpen == false '>Close</span></td>
                             </tr>
-                            <tr *ngIf='loc.isSundayOpen'>
+                            <tr *ngIf='currentDate != 7'>
                               <th><strong>Sun</strong></th>
                               <td>
 
@@ -1109,8 +1112,9 @@
                       </div>
                       <div class="clearfix"></div>
                       <div class="input-effect  form-group mt-3">
-                        <textarea class="effect-16" type="textarea" name="message" 
-                        [placeholder]="templateText" [(ngModel)]="MessagesVMObj.message"></textarea>
+                        <textarea rows="4" cols="50" class="effect-16" type="textarea" name="message" 
+                        [placeholder]="" [(ngModel)]="MessagesVMObj.message">
+                         </textarea>
                         <label>Message</label>
                         <span class="focus-border"></span>
                       </div>
@@ -1138,41 +1142,11 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title text-left" style="width:100%;">{{vendorDetails?.nameOfBusiness}}</h4>
+                <h4 class="modal-title text-left" style="width:100%;">Review : {{vendorDetails?.nameOfBusiness}}</h4>
                 <button type="button" class="btnradius50per" data-dismiss="modal">
                   X
                 </button>
               </div>
-
-
-              <!-- <div class="modal-body">
-
-                <form (ngSubmit)="putReview(review)" #f="ngForm">
-                  <div class="vp_review_txt">
-                    <div class="vp_giveReviewBox">
-                      <span>Give A Review:</span>
-
-                      <span id="rateYoRateAndComment" class="rateYo jq-ry-container" style="width: 60px">
-                        <div class="jq-ry-group-wrapper">
-                          <div class="jq-ry-normal-group jq-ry-group">
-                            <rating [(ngModel)]="review.rating" name="rating"></rating>
-                          </div>
-                        </div>
-                      </span>
-
-                      <div class="textInput">
-
-                        <input placeholder="Write a Review" type="text" class="textInputInner" required [(ngModel)]="review.comments" name="comments">
-                        <button type="submit" class="textInputSubmit" value="SUBMIT">SUBMIT</button>
-                        <input class="submitedRating" type="hidden" value="0">
-                        <div class="errorInValidation sendAReview">
-                          Your review is empty. SUBMIT again to send this anyway
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div> -->
               <div class="modal-body">
                 <div *ngIf="responce_review  == true ">
                   <form (ngSubmit)="putReview(review)" #f="ngForm">

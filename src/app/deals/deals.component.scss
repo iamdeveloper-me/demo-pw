@@ -5,27 +5,26 @@
 }
 .dealbanner{
 	width:100%;
-	height:400px;
+	height:350px;
 	object-fit: cover;
 }
 .dealbannerdetail{
-	padding-top: 50px;
+	padding-top: 40px;
 }
 .locationtext{
 	color: #999;
 	text-align: center;
 	width: auto;
-	margin: 0px auto;
-	max-width: 150px;
+	margin:0px auto 5px auto;
 }
 .locationtext i{
-	float: left;
+	font-size:16px;
 }
 .dealbannerdetail h1{
 	font-size: 2rem;
 	font-weight: bold;
     text-transform: uppercase;
-    padding: 20px 0px;
+    padding: 10px 0px;
     margin:0px;
 }
 .dealbannerdetail h2{
@@ -72,7 +71,7 @@
     padding: 0px;
     overflow: hidden;
     margin: 20px auto 40px auto;
-    width: 363px;
+    width: 320px;
     border-bottom: 0px!important;
 }
 .tab-content{
@@ -162,4 +161,51 @@
     font-size: 16px;
     line-height: 18px;
     padding-right: 3px;
+}
+@media (max-width:768px){
+    .dealbanner{
+    height:200px;
+    object-fit:cover;
+    }
+    .dealsbanner{
+    padding:5px 0px;
+    }
+    .dealsbanner col-6{
+    padding:0px 10px!important;
+    }
+    .dealbannerdetail{
+padding:0px 0px 0px 10px;
+    }
+    .dealbannerdetail h1{
+    font-size:13px!important;
+    }
+    .locationtext{
+    font-size: 11px;
+}
+    .locationtext i{
+    font-size: 11px;
+}
+.dealbannerdetail h2{
+    font-size:14px;
+}
+.bluetext, .greentext{
+    font-size:12px;
+}
+.bluetext h3, .greentext h3{
+    font-size:16px;
+    margin-bottom:0px;
+}
+.dealbtn{
+    max-width: 85%;
+    padding: 5px;
+    margin-top: 5px;
+}
+.dealspricebox {
+    margin: 8px auto;
+}
+.discountimg{
+    height: inherit;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
 }

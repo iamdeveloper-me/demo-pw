@@ -123,7 +123,7 @@ export class VendorcardComponent implements OnInit {
         const a = slide.vendorCategories[0].categories.categoryName;
         const b = slide.vendorId;
         const c = slide.nameOfBusiness;
-        this.router.navigateByUrl('/home/weddingvendorsdetailprofile/'+a+'/'+b+'/'+c.replace(/\s/g,''));
+        this.router.navigateByUrl('/home/weddingvendorsdetailprofile/'+a.replace(/\s/g,'')+'/'+b+'/'+c.replace(/\s/g,''));
        //this.router.navigate(['home/detailprofile',0]);
     //});
    // this.router.navigate(['home/detailprofile/',slide.vendorId])

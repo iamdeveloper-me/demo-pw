@@ -11,8 +11,7 @@
               <div class="col-lg-8 mx-auto text-center">
                   
                 <h2 class="section-heading text-white">
-               
-                    {{list_banner_data.title}}</h2>
+                {{list_banner_data.title}}</h2>
                 <p class="text-faded mb-4">Find Photographers, Venues, and more wedding vendors </p>
                 <div class="mobvendorebtn">
                   <i class="large material-icons firsticon">search</i>
@@ -24,27 +23,58 @@
               </div>
               <form (ngSubmit)="search(e,true,false)" #e="ngForm">
                 <div class="col-sm-10 mx-auto no-gutters searchbar mob_dis_none">
-                  <div id="append" class="form-group col-sm-5 padd_bottom">
-                    <span class="home_search"><i class="material-icons">camera_alt</i></span>
-                    <ngx-select-dropdown [(ngModel)]="category" [(value)]="singleSelect" [allowClear]="true" name="category" [config]="configCategory" [options]="Categories"  [disabled]="disabled"
-                    [multiple]="false" ></ngx-select-dropdown>
-                    <!-- <select id="source" class="form-control chosen-wrapper chosen-wrapper--style2 round_first" [(ngModel)]="category" name="category" data-js="custom-scroll">
-                      <option value='undefined'> All Categories </option>
-                      <option *ngFor='let list_Categories of Categories' [ngValue]="list_Categories">
-                        {{list_Categories.categoryName}} </option>
-                    </select> -->
+                  <div id="append" class="form-group col-sm-5 padd_bottom" (click)="catShow = !catShow">
+                    <span class="home_search">
+                      <i *ngIf="catImage == ''" class="material-icons">camera_alt</i>
+                      <img *ngIf="catImage != ''" src="{{catImage}}">
+                    </span>
+                  <!--   <ngx-select-dropdown [(ngModel)]="category" [(value)]="singleSelect" [allowClear]="true" name="category" [config]="configCategory" [options]="Categories"  [disabled]="disabled"
+                    [multiple]="false" ></ngx-select-dropdown> -->
+               
+                  <dl id="target" class="searcboxhome">
+                    <dt>
+                      <a>
+                         {{categoryTitle}}
+                      </a>
+                    </dt>
+                    <dd>
+                    <ul class="available-items" [ngStyle]="{'display':catShow ? 'block' : 'none' }">
+                      <li *ngFor="let list_Categories of Categories" (click)="cateDena(list_Categories)">
+                       <img src="{{list_Categories.iconImageURL}}"/>
+                        {{list_Categories.categoryName}}
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
+
+
    
                   </div>
-                  <div class="form-group col-sm-5">
+                  <div id="locationappend" class="form-group col-sm-5" (click)="locShow = !locShow">
                     <span class="home_search"><i class="material-icons">location_on</i></span>
-                    <!-- <select class="form-control" name='location' [(ngModel)]='locationId'>
+                    <!-- <select id="locationsource" class="form-control" name='location' [(ngModel)]='locationId'>
                       <option value='0'> All Locations</option>
                       <option *ngFor='let list_locations of locations' [value]='list_locations.districtId'>
                         {{list_locations.name}}</option>
                     </select> -->
-                    <ngx-select-dropdown [(ngModel)]='locationId' name='location' [config]="configLocation" [options]="locations" 
+                 <!--    <ngx-select-dropdown [(ngModel)]='locationId' name='location' [config]="configLocation" [options]="locations" 
                     [multiple]="false">
-                    </ngx-select-dropdown>
+                    </ngx-select-dropdown> -->
+                     <dl id="target" class="searcboxhome">
+                    <dt>
+                      <a>
+                         {{locationTitle}}
+                      <span class="value">undefined</span>
+                      </a>
+                    </dt>
+                    <dd>
+                    <ul class="available-items" [ngStyle]="{'display':locShow ? 'block' : 'none' }">
+                      <li *ngFor="let list_locations of locations" (click)="locationDena(list_locations)">
+                      <i class="material-icons">location_on</i>  {{list_locations.name}}
+                      </li>
+                    </ul>
+                  </dd>
+                </dl>
                    
                   </div>
                   <div class="form-group col-sm-2 posi_rela_100px">

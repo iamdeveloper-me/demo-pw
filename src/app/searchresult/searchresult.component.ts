@@ -435,6 +435,7 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
  }
  navigateToDynamicUrl() {
   sessionStorage.removeItem('filterParam');
+  this.objSearchFilter = new filterParam();
   this.objSearchlistvm = new SearchListingVM();
   this.initializeResult()
   //this._route.navigate(['/home/weddingvendors/',this.SelectedCategory.categoryName]);

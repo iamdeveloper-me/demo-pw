@@ -7,7 +7,7 @@ import { GuestserviceService } from './guestservice.service';
   styleUrls: ['./guest.component.scss']
 })
 export class GuestComponent implements OnInit {
-
+  twitterDailog = false
   guestList: any;
   constructor(public _guestservice: GuestserviceService) {
     
@@ -103,4 +103,7 @@ for (i = 0; i < acc.length; i++) {
 }
   }
 
+  closeModel(){
+    this.twitterDailog = false
+  }
 }

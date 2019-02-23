@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable ,  Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuardService } from 'app/services/auth-guard.service';
+import { headersToString } from 'selenium-webdriver/http';
 
 @Injectable()
 export class apiService {
@@ -163,6 +164,18 @@ export class apiService {
     }
     return this.postData(this.serverPath + 'PerfectWedding/loguseraction',data);     
 
+   }
+   deleteAction(url,data): Observable<any>{
+    var authToken = sessionStorage.getItem('userToken');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type':  'multipart/form-data',
+        
+        'Authorization': 'Bearer '+authToken
+      })
+    };
+ 
+    return this.http.delete(this.serverPath+ url,data);
    }
    
 }

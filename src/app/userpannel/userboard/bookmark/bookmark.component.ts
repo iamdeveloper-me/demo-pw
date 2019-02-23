@@ -2,7 +2,8 @@ import { Component, OnInit ,Input} from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { taskService } from './taskService';
-
+import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 @Component({
     selector: 'ngbd-modal-content',
     template: `
@@ -32,12 +33,14 @@ export class NgbdbookmarkModalContent {
   selector: 'app-bookmark',
   templateUrl: './bookmark.component.html',
   styleUrls: ['./bookmark.component.scss'],
-  providers: [taskService]
+  providers: [taskService, NgbActiveModal, ToastrService,Location]
 })
 export class BookmarkComponent implements OnInit {
  acc: any;
  myChecklist: any;
+ filteredToDos: any;
  modalref:any;
+ checklistOptions: any;
   // Prevent panel toggle code
   public beforeChange($event: NgbPanelChangeEvent) {
     if ($event.panelId === '2') {
@@ -50,29 +53,68 @@ export class BookmarkComponent implements OnInit {
 
      closeResult: string;
 
-    constructor(private modalService: NgbModal, public tskService: taskService){
+    constructor(private modalService: NgbModal,public activeModal: NgbActiveModal, public tskService: taskService,
+        public toastr: ToastrService, public locationService: Location
+        ){
+            this.checklistOptions=[
+            {id: 1, name: 'Category'},
+            {id: 2, name: 'Events'},
+            {id: 3, name: 'Photography & Vedio'},
+            {id: 4, name: 'Planing'},
+            {id: 5, name: 'Health & Beauty'},
+            {id: 6, name: 'Others'}
+        ]
         this.mychecklist();
     }
-     addNewTask(){ 
-         
+    goback(){
+        this.locationService.back();
+
+    }
+    getTaskOptionName(id){
+        return this.checklistOptions.filter(o=>o.id==id)?this.checklistOptions.filter(o=>o.id==id)[0].name: '';
+    }
+     addNewTask(obj){
+         if(obj.toDoId>0){this.tskService.objTodoVm.status=2}
+         debugger
+         this.tskService.objTodoVm = obj;
+         this.tskService.objTodoVm.status = 2;
          this.tskService.CreateUpdateTask().subscribe(res=>{ console.log(res);
-        this.mychecklist();
+            if(obj.toDoId>0){
+                this.toastr.success('Task Updated Successfully !', 'Done');
+            }else{
+            this.toastr.success('Task Added Successfully !', 'Done');
+            }
+            this.mychecklist();
         });
      }
      mychecklist(){
-         this.tskService.objMychecklistParam.timing ='0';
+         this.tskService.objMychecklistParam.timing ='';
          this.tskService.objMychecklistParam.categoryId = null;
          this.tskService.objMychecklistParam.filter = 0;
          this.tskService.myCheckList().subscribe(res=>{
             this.myChecklist = res;
+            this.filteredToDos = this.myChecklist;
             console.log(this.myChecklist);
-        
          });
+     }
+     filterByStatus(statusId){
+         if(statusId==0){
+             this.filteredToDos = this.myChecklist;
+         }else{
+            this.filteredToDos = this.myChecklist.filter(c=>c.status==statusId);
+         }
+         console.log(this.filteredToDos);
+     }
+     removeTodoList(id){
+        this.tskService.removeToDo(id).subscribe(res=>{
+            console.log(res);
+            this.mychecklist();
+        })
      }
 
     // Open default modal
     open(content) {
-       this.modalref= this.modalService.open(content).result.then((result) => {
+       this.modalService.open(content).result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -89,7 +131,6 @@ export class BookmarkComponent implements OnInit {
             return `with: ${reason}`;
         }
     }
-
     // Open modal with dark section
     openModal(customContent) {
         this.modalService.open(customContent, { windowClass: 'dark-modal' });
@@ -100,8 +141,6 @@ export class BookmarkComponent implements OnInit {
         const modalRef = this.modalService.open(NgbdbookmarkModalContent);
         modalRef.componentInstance.name = 'World';
     }
-
-
   ngOnInit() {
     $("li").removeClass("user");
     $("#login").hide();
@@ -150,8 +189,5 @@ $('.allbtncheck').click(function(e){
     $(".donecheckbox").show();
 });
   }
-
-
-
-
+  
 }

@@ -41,8 +41,8 @@ export class BannerComponent implements OnInit {
     limitTo: 20,
     placeholder:'All Locations',
   };
- categoryTitle:string = 'All Categories'
- locationTitle:string = 'All Locations'
+ categoryTitle:string = 'Select Category'
+ locationTitle:string = 'Select Locations'
   ngOnInit() {
     
    $.getScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js');

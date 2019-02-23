@@ -38,7 +38,17 @@
                 <!-- {{slide.profileImage }} -->
                 <div (click)="goToPortfolioDetail(slide)" >
                 <img class="card-img-top" *ngIf = "slide" [src]="slide.profileImage | defaultImage:'https://s3.us-east-2.amazonaws.com/prefect-image/store_noimg.jpg':true"/>
-               
+                 
+                <div class="imgnum">
+                  <span *ngIf='slide.albums[0]'>
+                     <img src="../../assets/img/picture.png"/>
+                     <span>
+                      {{slide.albums[0].albumImages.length}}</span>
+                      <span *ngIf='!slide.albums[0]'>0</span>
+                  </span>
+                  <span *ngIf='slide.vendorVideos.length>0'>
+                      <img src="../../assets/img/video.png"/>{{slide.vendorVideos[0].vendorVideos.length}}</span>
+                </div>
                 <div class="card-body ">
                   <div class="text-center"> 
                    <h6><strong>{{slide.nameOfBusiness}}</strong> </h6>

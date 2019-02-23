@@ -153,6 +153,7 @@ import { AllReviewsComponent } from './all-reviews/all-reviews.component';
 import { HoneymoonDestinatationComponent } from './honeymoon-destinatation/honeymoon-destinatation.component';
 
 import { DealListComponent } from './deal-list/deal-list.component';
+import { HoneymoonSearchResultComponent } from './honeymoon-search-result/honeymoon-search-result.component';
 const appRoutes: Routes = [
   
   { path: 'home', component: HomeComponent },
@@ -203,6 +204,7 @@ const appRoutes: Routes = [
   { path: 'home/Honeymoondestinations', component:  HoneymoonComponent },
   { path: 'home/Honeymoon_Details', component:  HoneymoonDetailsComponent },
   { path: 'home/allDestination', component:  HoneymoonDestinatationComponent },
+  { path: 'home/weddingvendors', component:  HoneymoonSearchResultComponent },
   // { path: 'home/Honeymoon_Details/:id', component:  HoneymoonDetailsComponent },
   { path: 'vendor/creatpromo', component:  CreatePromotionComponent, canActivate:[AuthGuardService]  },
   { path: 'vendor/messagess', component:  ChatComponent, canActivate:[AuthGuardService]  },

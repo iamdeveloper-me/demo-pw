@@ -34,11 +34,16 @@
                   <dl id="target" class="searcboxhome">
                     <dt>
                       <a>
-                         {{categoryTitle}}
+                      {{categoryTitle}}
                       </a>
                     </dt>
                     <dd>
                     <ul class="available-items" [ngStyle]="{'display':catShow ? 'block' : 'none' }">
+
+                      <li  (click)=categoryClick(0)>
+                        <i class="material-icons">camera_alt</i>
+                          All Categories
+                      </li>
                       <li *ngFor="let list_Categories of Categories" (click)="cateDena(list_Categories)">
                        <img src="{{list_Categories.iconImageURL}}"/>
                         {{list_Categories.categoryName}}
@@ -53,7 +58,7 @@
                   <div id="locationappend" class="form-group col-sm-5" (click)="locShow = !locShow">
                     <span class="home_search"><i class="material-icons">location_on</i></span>
                     <!-- <select id="locationsource" class="form-control" name='location' [(ngModel)]='locationId'>
-                      <option value='0'> All Locations</option>
+                      <option value='0'>All Locations</option>
                       <option *ngFor='let list_locations of locations' [value]='list_locations.districtId'>
                         {{list_locations.name}}</option>
                     </select> -->
@@ -69,6 +74,12 @@
                     </dt>
                     <dd>
                     <ul class="available-items" [ngStyle]="{'display':locShow ? 'block' : 'none' }">
+
+                      <li class="regular" (click)="locationClick(0)">
+                        <i class="material-icons">location_on</i>
+                          All locations
+                      </li>
+
                       <li *ngFor="let list_locations of locations" (click)="locationDena(list_locations)">
                       <i class="material-icons">location_on</i>  {{list_locations.name}}
                       </li>
@@ -201,7 +212,6 @@
                   <div class="regular" (click)=categoryClick(0)>
                     <i class="material-icons">location_on</i>
                     All  Categories
-  
                   </div>
   
                   <div *ngFor='let list_Categories of Categories | categoryPipe:categoryFilterParam' (click)=categoryClick(list_Categories)>

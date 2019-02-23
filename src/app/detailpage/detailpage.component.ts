@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef,NgZone } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { apiService } from 'app/shared/service/api.service';
-import{ratingStars} from '../ngservices/ratingstars';
+import { ratingStars } from '../ngservices/ratingstars';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import { MapsAPILoader, AgmMap } from '@agm/core';
@@ -58,7 +59,7 @@ export class DetailpageComponent implements OnInit {
   MemberSince:string;
   vendorid ;
   responce_review = true;
-  responce_thanks = false;
+  //responce_thanks = false;
   showLoader: boolean = true;
   sliderImgaes: any = [];
   trading_hours_popups:any= {isMondayOpen: ''};
@@ -110,6 +111,14 @@ export class DetailpageComponent implements OnInit {
       this.contactInfoObj = new ContactUsVM();
       var dateObj = new Date();
       this.currentDate  = dateObj.getDay()  //months from 1-12
+      console.log( dateObj)
+      console.log( dateObj.getHours())
+      console.log( dateObj.getMinutes())
+      console.log( dateObj.getSeconds())
+
+      var strDateTime = "09:30 am";
+      var myDate = new Date(strDateTime).toUTCString;
+      console.log( myDate)
       this.role = (sessionStorage.getItem('role'))
       if(sessionStorage.getItem('role') == 'Users'){
         this.showD = true
@@ -181,6 +190,8 @@ export class DetailpageComponent implements OnInit {
   ngOnInit() {
     $('.weekdate').hide();
     $('.currentdate').show();
+  
+
                 $.getScript('./assets/js/prism.min.js');
                 $.getScript('./assets/js/owljsor.js');
                 $.getScript('./assets/js/curosselfun.js');
@@ -200,32 +211,44 @@ export class DetailpageComponent implements OnInit {
     }, 50);
   }
   review = { rating: '', comments: "", rateVendorID: '' }
-  putReview(review) {
-   
-    
-    if (!sessionStorage.getItem('userToken')) {
-      this.toastr.error('Login To Give Your Review', 'Inconceivable!');
-    }else{
-
-    var rating1 = review.rating;
-    var comments1 = review.comments;
-    const a = {
-      rating: rating1, 
-      comments: comments1,
-      rateVendorID:  this.vendorDetails.vendorUniqueId
-   }
-    console.log(this.user_login_token);
-    this.apiService.postData(this.apiService.serverPath+'Reviews/postreview', a).subscribe(data => {
-      console.log(data)
-      this.responce_review = false;
-      this.responce_thanks = true;
-      }, error => { console.log(error) }
-      );
-    }
-
-
-
-  
+  putReview(review) { 
+    console.log(review)
+                  if (!sessionStorage.getItem('userToken')) {
+                    this.toastr.error('Login To Give Your Review', 'Inconceivable!');
+                  }else{
+                        var rating1 = review.rating;
+                        var comments1 = review.comments;
+                        const a = {
+                          rating: rating1, 
+                          comments: comments1,
+                          rateVendorID:  this.vendorDetails.vendorUniqueId
+                        }
+                        console.log(this.user_login_token);
+                        this.apiService.postData(this.apiService.serverPath+'Reviews/postreview', a).subscribe(data => {
+                          
+                         
+                          swal({
+                                        
+                            title: "Thank You!",
+                            text: "Your submition has been received.",
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn-default",
+                          }).then((res)=>{
+                                          if(res.value===true){    
+                                            this.responce_review = false;
+                                            $("div").removeClass( "fade show modal-backdrop in");                  
+                                          } else{
+                                            this.responce_review = false;
+                                          }
+                                      },error=>{
+                                                alert(JSON.stringify(error));
+                                                }
+                          )
+                          return;
+                          //sweet alert end  
+                        }, error => { console.log(error) });
+                  }
   }
   setLightboxImages(pi,ev){
     this.lightBoxImages=[];

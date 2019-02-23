@@ -140,8 +140,13 @@ export class SearchresultComponent implements OnInit {
   goToPortfolioDetail(vendor){
     let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
     this.api.getData(url+'?id='+vendor.vendorId).subscribe(res=>{
-      sessionStorage.setItem('vendorDetails',JSON.stringify(res));
-    this._route.navigate(['home/detailprofile',0]);
+     // sessionStorage.setItem('vendorDetails',JSON.stringify(res));
+      const a = res.vendorCategories[0].categories.categoryName;
+      const b = res.vendorId;
+      const c = res.nameOfBusiness;
+      this._route.navigateByUrl('/home/weddingvendorsdetailprofile/'+a.replace(/\s/g,'')+'/'+b+'/'+c.replace(/\s/g,''));
+  
+    //this._route.navigate(['home/detailprofile',0]);
   });
   }
   getLocations(){
@@ -264,6 +269,7 @@ export class SearchresultComponent implements OnInit {
     this.objSearchResultItems.items.forEach(element => {
       this.collection.push(element);
       this.slidesStore = this.collection
+      console.log(this.slidesStore)
     });
   }
   filterLocations(ev){

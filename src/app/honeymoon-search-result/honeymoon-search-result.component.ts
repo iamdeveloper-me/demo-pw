@@ -1,6 +1,7 @@
 
 import { Pipe, PipeTransform , OnInit, Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 import {} from '@angular/core';
+
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MasterserviceService } from 'app/ngservices/masterservice.service';
 import {RatingModule, Rating} from 'ngx-rating';
@@ -20,7 +21,7 @@ import { PaginationService } from 'ngx-pagination';
 import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { VendorComponent } from 'app/dashboard/vendor/vendor.component';
 @Pipe({ name: 'defaultImage' })
-export class PP implements PipeTransform {
+export class PPl implements PipeTransform {
   transform(value: string, fallback: string, forceHttps: boolean = false ): string {
     let image = "";
     if (value) { image = value; } else { image = fallback; }

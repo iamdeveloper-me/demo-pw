@@ -9,7 +9,12 @@ export class BudgetComponent implements OnInit {
   Budgetlist = []; 
   AddBudget = false;
   constructor(  private apiService: apiService,) { }
-
+ name: string 
+  estimatedCost:string
+  finalCost: string
+  paidAmount:string
+  pendingAmount: string
+  budgetCategoryId:number
   ngOnInit() {
                 $("li").removeClass("user");
                 $("#login").hide();

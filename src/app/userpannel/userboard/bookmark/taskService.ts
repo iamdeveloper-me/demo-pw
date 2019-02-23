@@ -1,11 +1,13 @@
 import { Injectable, OnInit } from "@angular/core";
 import { apiService } from "app/shared/service/api.service";
 import { Observable } from "rxjs";
+import { isThisHour } from "date-fns";
 
 @Injectable()
 export class taskService implements OnInit{
-createUpdateTaskUrl = 'ToDo/createupdatetodo'
-myChecklistUrl = 'ToDo/mychecklist'
+createUpdateTaskUrl = 'ToDo/createupdatetodo';
+myChecklistUrl = 'ToDo/mychecklist';
+removeToDoUrl = 'ToDo/removetodo';
 objTodoVm: toDoVm;
 objMychecklistParam: myChecklistParams;
 constructor(public apiService: apiService){
@@ -22,6 +24,9 @@ public CreateUpdateTask(): Observable <any>{
 public myCheckList(): Observable <any>{
     console.log(this.objMychecklistParam);
     return this.apiService.postData(this.apiService.serverPath+this.myChecklistUrl,this.objMychecklistParam);
+}
+public removeToDo(id): Observable<any>{
+    return this.apiService.deleteAction(this.removeToDoUrl,{'id':id});
 }
 }
 export class toDoVm{

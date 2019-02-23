@@ -2,7 +2,7 @@ import { Component, OnInit ,Input} from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { taskService } from './taskService';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
     selector: 'ngbd-modal-content',
     template: `
@@ -32,7 +32,7 @@ export class NgbdbookmarkModalContent {
   selector: 'app-bookmark',
   templateUrl: './bookmark.component.html',
   styleUrls: ['./bookmark.component.scss'],
-  providers: [taskService]
+  providers: [taskService, NgbActiveModal, ToastrService]
 })
 export class BookmarkComponent implements OnInit {
  acc: any;
@@ -50,13 +50,15 @@ export class BookmarkComponent implements OnInit {
 
      closeResult: string;
 
-    constructor(private modalService: NgbModal, public tskService: taskService){
+    constructor(private modalService: NgbModal,public activeModal: NgbActiveModal, public tskService: taskService,
+        public toastr: ToastrService
+        ){
         this.mychecklist();
     }
      addNewTask(){ 
-         
          this.tskService.CreateUpdateTask().subscribe(res=>{ console.log(res);
-        this.mychecklist();
+            this.toastr.success('Task Added Successfully !', 'Done');
+            this.mychecklist();
         });
      }
      mychecklist(){
@@ -66,8 +68,13 @@ export class BookmarkComponent implements OnInit {
          this.tskService.myCheckList().subscribe(res=>{
             this.myChecklist = res;
             console.log(this.myChecklist);
-        
          });
+     }
+     removeTodoList(id){
+        this.tskService.removeToDo(id).subscribe(res=>{
+            console.log(res);
+            this.mychecklist();
+        })
      }
 
     // Open default modal

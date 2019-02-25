@@ -275,7 +275,7 @@
             </div>
             <div class="clearfix"></div>
                <div class="panel-body nopadd card martop0px">
-                    <div class="CheckListdiv donecheckbox" style="display:block!important" *ngFor='let td of filteredToDos'>
+                    <div class="CheckListdiv" style="display:block!important" *ngFor='let td of filteredToDos'>
                     	<i class="material-icons tikchecklist" *ngIf='td.status==1' (click)='addNewTask(td)'>check</i>
                     	<span>
                     		<strong>{{td.name}}</strong>
@@ -288,7 +288,7 @@
                     </div>
                     <div id='content' class="modal fade" role="dialog" >
                         <div class="modal-dialog">
-                            <div style="margin-top:5%" class="modal-content">
+                            <div style="margin-top:15%" class="modal-content">
                             <div class="modal-header">
                             	<br/>
                                 <h4 class="modal-title">Add New Task</h4>
@@ -301,10 +301,9 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <div class="input-effect form-group md-form ">
-                                                        <input class="effect-16 validate" type="text" name="taskName" [(ngModel)]='tskService.objTodoVm.name' placeholder="" required="required">
-                                                        <label>Task Name</label>
-                                                        <span class="focus-border"></span>
+                                                    <div class="field">
+                                                        <input type="text" name="taskName" [(ngModel)]='tskService.objTodoVm.name' placeholder="Task Name" required="required" id="taskName">
+                                                        <label for="taskName">Task Name</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -312,19 +311,21 @@
                                         <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <div class="input-effect form-group md-form ">
-                                            <select class="effect-16 validate" name="timing" [(ngModel)]='tskService.objTodoVm.timing'>
+                                           <div class="field">
+                                                <select name="timing" [(ngModel)]='tskService.objTodoVm.timing' id="bydate" placeholder="By Date" >
                                                     <option *ngFor='let t of tskService.timings' [value]='t.id'>{{t.timing}}</option>
-                                            </select>
+                                                </select>
+                                                <label for="bydate">By Date</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <div class="input-effect form-group md-form ">
-                                            <select class="effect-16 validate" name="category" [(ngModel)]='tskService.objTodoVm.categoryId'>
-                                                    <option *ngFor='let o of checklistOptions' [value]='o.id'>{{o.name}}</option>
-                                            </select>
+                                            <div class="field">
+                                                <select name="category" [(ngModel)]='tskService.objTodoVm.categoryId' id="bycategory"  placeholder="By Category">
+                                                        <option *ngFor='let o of checklistOptions' [value]='o.id'>{{o.name}}</option>
+                                                </select>
+                                                 <label for="bycategory">By Category</label>
                                             </div>
                                         </div>
                                     </div>
@@ -332,10 +333,9 @@
                                         <div class="row">
                                         <div class="col-md-12">
                                         <div class="form-group">
-                                            <div class="input-effect form-group md-form ">
-                                                <textarea class="effect-16 validate" name="notes" [(ngModel)]='tskService.objTodoVm.notes' type="text" placeholder="" required="required"></textarea>
-                                                <label>Notes</label>
-                                                <span class="focus-border textareafocus"></span>
+                                            <div class="field">
+                                                <textarea   id="notes" name="notes" [(ngModel)]='tskService.objTodoVm.notes' type="text" placeholder="Notes" required="required"></textarea>
+                                                <label for="notes">Notes</label>
                                             </div>
                                         </div>
                                         </div>

@@ -92,16 +92,16 @@
                             <div class="form-group">
                                 <input 
                                     type="text" 
-                                    [(ngModel)]="contactInfoObj.name" 
-                                    #name="ngModel" 
-                                    [ngClass]="{ 'is-invalid': list.submitted && name.invalid }"
+                                    [(ngModel)]="contactInfoObj.firstName" 
+                                    #firstName="ngModel" 
+                                    [ngClass]="{ 'is-invalid': list.submitted && firstName.invalid }"
                                     class="form-control" 
-                                    name="name" 
+                                    name="firstName" 
                                     required 
                                     placeholder="Name*" 
                                 />
-                                <div *ngIf="list.submitted && name.invalid" class="invalid-feedback">
-                                    <div *ngIf="name.errors.required">Name is required</div>
+                                <div *ngIf="list.submitted && firstName.invalid" class="invalid-feedback">
+                                    <div *ngIf="firstName.errors.required">Name is required</div>
                                 </div>
                             </div>
                         </div>

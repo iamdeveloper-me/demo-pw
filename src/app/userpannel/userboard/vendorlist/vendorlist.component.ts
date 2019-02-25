@@ -49,7 +49,7 @@ export class VendorlistComponent implements OnInit {
                 });
 
                 let headers = new Headers();
-                var authToken = localStorage.getItem('userToken');
+                var authToken = localStorage.getItem('_u');
                 headers.append('Accept', 'application/json')
                 headers.append('Content-Type', 'application/json');
                 headers.append("Authorization",'Bearer '+authToken);

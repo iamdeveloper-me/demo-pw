@@ -1,9 +1,9 @@
 <div id="wrappervendor" class="">
    <app-menu></app-menu>
-   <section class="tips fixedtik">
+  <!--  <section class="tips fixedtik">
       <div class="container search-div">
          <div class="select">
-            <div class="searchtopbar">
+            <div class="searchtopbar"> -->
                <!-- <form (ngSubmit)="search_tips(f)" #f="ngForm">
                      <div class="row">
                            <div class="col-md-2 col-sm-4 col-4">
@@ -37,12 +37,12 @@
                      </div>
                </div>
       </form> -->
-            </div>
+  <!--           </div>
 
          </div>
       </div>
-   </section>
-   <section class="container Venders fixedtik">
+   </section> -->
+   <section class="container Venders tips fixedtik">
       <div class="col-md-12 card paddall20px">
          <!-- <div *ngFor="let item of tipsArray1">
             Topics : {{item?.count}}
@@ -58,7 +58,7 @@
       <div class="col-md-12 card paddall20px">
          <div>
             <select class="pull-right" [(ngModel)]='selectedTipic'>
-               <option  value='all'>All Types</option>
+               <option  value='all'>All Topics</option>
                <option *ngFor="let t of distinctTipic" [value]='t'>{{t}}</option>
             </select>
          </div>
@@ -69,8 +69,8 @@
                      <!-- routerLink="../tips_list" -->
                   <a><img class="imgshadow" [src]="page.imagePath"></a>
                   <div class="card-block card-body-cascade text-center">
-                     <h4 class="card-title"> {{page.blogTopic.topic}} </h4>
-                     <h4 class="card-title-small"> {{page.title}} </h4>
+                     <h4 class="card-title"> {{page.title}} </h4>
+                     <h4 class="card-title-small">{{page.blogTopic.topic}} </h4>
                      <p class="card-text"> {{page.description}}</p>
                      <p class="text-center">
                         <a class="px-2 fb-ic">

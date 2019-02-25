@@ -60,7 +60,7 @@
               </div>
           </div>
           <div class="col-sm-9 mobnopadd guestbox">
-            <div class="col-sm-12 nopadd accordinholder">
+            <div *ngFor='let g of guestList' class="col-sm-12 nopadd accordinholder">
                 <div class="accordion row">
                   <div class="col-8 col-sm-4 mobnopadd">
                     <div class="pull-left">
@@ -174,348 +174,7 @@
                   </div>
                 </div>
             </div>
-            <div class="col-sm-12 nopadd accordinholder">
-                <div class="accordion row">
-                  <div class="col-8 col-sm-4 mobnopadd">
-                    <div class="pull-left">
-                      <i class="material-icons"> group</i> 
-                    </div>
-                    <div class="pull-left marleft10px">
-                      <strong>Aditi's Family</strong>
-                      <div class="clearfix"></div>  
-                      <span>120 People Children: 2</span> 
-                    </div>   
-                  </div>
-                  <div class="col-3 col-sm-3 text-center hidden-xs">
-                      Menu
-                  </div>
-                  <div class="col-2 col-sm-2 text-center hidden-xs">
-                    Invitation
-                  </div>
-                  <div class="col-4 col-sm-3 text-right mobnopadd mobwidth90">
-                    <button class="btnplain"><i class="material-icons">person_add</i></button>
-                    <button class="btnplain"><i class="material-icons">settings</i></button>
-                    <div class="pull-right arrowiconmob">
-                      <i class="material-icons downarrow">keyboard_arrow_down</i>
-                      <i class="material-icons uparrow">keyboard_arrow_up</i>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel">
-                  <div class="checkbox row mobnopaddltrt">
-                      <div class="col-4">
-                       <strong>Aditi</strong> 
-                        <i class="material-icons pull-right">child_care</i>
-                      </div>
-                      <div class="col-3 text-center">
-                        Chicken
-                      </div>
-                      <div class="col-2 text-center">
-                        <i class="material-icons">check_circle_outline</i>
-                      </div>
-                      <div class="col-3  text-right">
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">delete_forever</i>
-                        </button>
-                          <div class="material-button-anim hidden-sm hidden-md hidden-lg">
-                              <button class="material-button material-button-toggle" type="button">
-                                <span class="material-icons">add</span>
-                              </button>
-                              <ul class="list-inline" id="options">
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">edit</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                  <span class="material-icons">group_work</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">clear</span>
-                                  </button>
-                                </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                    <div class="checkbox row mobnopaddltrt">
-                      <div class="col-4">
-                       <strong>Gaurav</strong> 
-                        
-                      </div>
-                      <div class="col-3 text-center">
-                        Vegeterian
-                      </div>
-                      <div class="col-2 text-center">
-                        <i class="material-icons">check_circle_outline</i>
-                      </div>
-                      <div class="col-3  text-right">
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">delete_forever</i>
-                        </button>
-                          <div class="material-button-anim hidden-sm hidden-md hidden-lg">
-                              <button class="material-button material-button-toggle" type="button">
-                                <span class="material-icons">add</span>
-                              </button>
-                              <ul class="list-inline" id="options">
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">edit</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                  <span class="material-icons">group_work</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">clear</span>
-                                  </button>
-                                </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
-            <div class="col-sm-12 nopadd accordinholder">
-                <div class="accordion row">
-                  <div class="col-8 col-sm-4 mobnopadd">
-                    <div class="pull-left">
-                      <i class="material-icons"> group</i> 
-                    </div>
-                    <div class="pull-left marleft10px">
-                      <strong>Aditi's Family</strong>
-                      <div class="clearfix"></div>  
-                      <span>120 People Children: 2</span> 
-                    </div>   
-                  </div>
-                  <div class="col-3 col-sm-3 text-center hidden-xs">
-                      Menu
-                  </div>
-                  <div class="col-2 col-sm-2 text-center hidden-xs">
-                    Invitation
-                  </div>
-                  <div class="col-4 col-sm-3 text-right mobnopadd mobwidth90">
-                    <button class="btnplain"><i class="material-icons">person_add</i></button>
-                    <button class="btnplain"><i class="material-icons">settings</i></button>
-                    <div class="pull-right arrowiconmob">
-                      <i class="material-icons downarrow">keyboard_arrow_down</i>
-                      <i class="material-icons uparrow">keyboard_arrow_up</i>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel">
-                  <div class="checkbox row mobnopaddltrt">
-                      <div class="col-4">
-                       <strong>Aditi</strong> 
-                        <i class="material-icons pull-right">child_care</i>
-                      </div>
-                      <div class="col-3 text-center">
-                        Chicken
-                      </div>
-                      <div class="col-2 text-center">
-                        <i class="material-icons">check_circle_outline</i>
-                      </div>
-                      <div class="col-3  text-right">
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">delete_forever</i>
-                        </button>
-                          <div class="material-button-anim hidden-sm hidden-md hidden-lg">
-                              <button class="material-button material-button-toggle" type="button">
-                                <span class="material-icons">add</span>
-                              </button>
-                              <ul class="list-inline" id="options">
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">edit</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                  <span class="material-icons">group_work</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">clear</span>
-                                  </button>
-                                </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                    <div class="checkbox row mobnopaddltrt">
-                      <div class="col-4">
-                       <strong>Gaurav</strong> 
-                        
-                      </div>
-                      <div class="col-3 text-center">
-                        Vegeterian
-                      </div>
-                      <div class="col-2 text-center">
-                        <i class="material-icons">check_circle_outline</i>
-                      </div>
-                      <div class="col-3  text-right">
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">delete_forever</i>
-                        </button>
-                          <div class="material-button-anim hidden-sm hidden-md hidden-lg">
-                              <button class="material-button material-button-toggle" type="button">
-                                <span class="material-icons">add</span>
-                              </button>
-                              <ul class="list-inline" id="options">
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">edit</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                  <span class="material-icons">group_work</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">clear</span>
-                                  </button>
-                                </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
-            <div class="col-sm-12 nopadd accordinholder">
-                <div class="accordion row">
-                  <div class="col-8 col-sm-4 mobnopadd">
-                    <div class="pull-left">
-                      <i class="material-icons"> group</i> 
-                    </div>
-                    <div class="pull-left marleft10px">
-                      <strong>Aditi's Family</strong>
-                      <div class="clearfix"></div>  
-                      <span>120 People Children: 2</span> 
-                    </div>   
-                  </div>
-                  <div class="col-3 col-sm-3 text-center hidden-xs">
-                      Menu
-                  </div>
-                  <div class="col-2 col-sm-2 text-center hidden-xs">
-                    Invitation
-                  </div>
-                  <div class="col-4 col-sm-3 text-right mobnopadd mobwidth90">
-                    <button class="btnplain"><i class="material-icons">person_add</i></button>
-                    <button class="btnplain"><i class="material-icons">settings</i></button>
-                    <div class="pull-right arrowiconmob">
-                      <i class="material-icons downarrow">keyboard_arrow_down</i>
-                      <i class="material-icons uparrow">keyboard_arrow_up</i>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel">
-                  <div class="checkbox row mobnopaddltrt">
-                      <div class="col-4">
-                       <strong>Aditi</strong> 
-                        <i class="material-icons pull-right">child_care</i>
-                      </div>
-                      <div class="col-3 text-center">
-                        Chicken
-                      </div>
-                      <div class="col-2 text-center">
-                        <i class="material-icons">check_circle_outline</i>
-                      </div>
-                      <div class="col-3  text-right">
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">delete_forever</i>
-                        </button>
-                          <div class="material-button-anim hidden-sm hidden-md hidden-lg">
-                              <button class="material-button material-button-toggle" type="button">
-                                <span class="material-icons">add</span>
-                              </button>
-                              <ul class="list-inline" id="options">
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">edit</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                  <span class="material-icons">group_work</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">clear</span>
-                                  </button>
-                                </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                    <div class="checkbox row mobnopaddltrt">
-                      <div class="col-4">
-                       <strong>Gaurav</strong> 
-                        
-                      </div>
-                      <div class="col-3 text-center">
-                        Vegeterian
-                      </div>
-                      <div class="col-2 text-center">
-                        <i class="material-icons">check_circle_outline</i>
-                      </div>
-                      <div class="col-3  text-right">
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">delete_forever</i>
-                        </button>
-                          <div class="material-button-anim hidden-sm hidden-md hidden-lg">
-                              <button class="material-button material-button-toggle" type="button">
-                                <span class="material-icons">add</span>
-                              </button>
-                              <ul class="list-inline" id="options">
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">edit</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                  <span class="material-icons">group_work</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">clear</span>
-                                  </button>
-                                </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
+
           </div>
           <div class="col-sm-3 mobnopadd">
               <div class="card martop0px hidden-xs">
@@ -537,12 +196,12 @@
                             Child 54
                           </div>
                   </div>
-                  <div class="text-center">
-                  <a href="">
-                    <span class="bg_red">
-                      <i class="material-icons">insert_emoticon</i> Guest 
+                  <div class="text-center" (click) = "twitterDailog = true ">
+                 
+                    <span class="bg_red" >
+                      <i class="material-icons">insert_emoticon</i> Guest
                     </span>
-                  </a>
+                
                   </div>
                   <div class="clearfix"></div>
               </div>
@@ -558,11 +217,62 @@
                       </ol>
                 </div>
                 <div class="text-center">
-                  <a href="">
-                    <span class="bg_red">
-                      <i class="material-icons">group</i> Group 
-                    </span>
-                  </a>
+                  <button type="button" class="btn btn-info btn-lg bg_red" data-toggle="modal" data-target="#myModal"><i class="material-icons">group</i>Group</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-3">
+                <label for="pwd">Group Name:</label>
+            </div>
+            <div class="col-md-6">
+                <input type="name" class="form-control" id="name"  name="name">
+            </div>
+            <div class="col-md-3">
+              <button>save</button>
+            </div>
+          </div>
+          <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">S No.</th>
+                    <th scope="col">Group Name</th>
+                    <th scope="col">Edit/Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Cell</td>
+                    <td>Cell</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Cell</td>
+                    <td>Cell</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
                 </div>
                 <div class="clearfix"></div>
               </div>
@@ -594,11 +304,58 @@
                       </ol>
                 </div>
                 <div class="text-center">
-                <a href="">
-                  <span class="bg_red">
-                    <i class="material-icons">restaurant_menu</i> Menu 
-                  </span>
-                </a>
+                <button type="button" class="btn btn-info btn-lg bg_red" data-toggle="modal" data-target="#myModal"><i class="material-icons">restaurant_menu</i>Menu</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-3">
+                <label for="pwd">Menu Name:</label>
+            </div>
+            <div class="col-md-6">
+                <input type="name" class="form-control" id="name"  name="name">
+            </div>
+            <div class="col-md-3">
+              <button>save</button>
+            </div>
+          </div>
+          <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Menu</th>
+                    <th scope="col">Edit/Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Cell</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Cell</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
                 </div>
                 <div class="clearfix"></div>
               </div>
@@ -608,3 +365,55 @@
 </div></div>
 <app-foot></app-foot>
 <router-outlet></router-outlet> 
+<!-- mymodel -->
+<div class="modal fade" [ngClass] = "{'show' : twitterDailog}" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+            <h4 class="modal-title"><b>Create Event</b></h4>
+            <button type="button" class="close" (click) = "closeModel()" >
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+       
+        <div class="modal-body formscroll">
+            <div class="col-sm-12 nopadd">
+              <div class="col-sm-6">
+                    <div class="row field">
+                      <div class="col-md-8">
+                          <label for="image">Select Group</label>
+                      </div>
+                      <div class="col-md-4">
+                          <select>
+                              <option value="volvo">Volvo</option>
+                              <option value="saab">Saab</option>
+                              <option value="opel">Opel</option>
+                              <option value="audi">Audi</option>
+                            </select>
+                      </div>
+                    </div>
+                    <div class="row field">
+                        <div class="col-md-8">
+                            <label for="image">Select Group</label>
+                        </div>
+                        <div class="col-md-4">
+                            <select>
+                                <option value="volvo">DDL V</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                              </select>
+                        </div>
+                      </div>
+              </div>
+           
+            </div>
+        </div> 
+        <div class="modal-footer marbot0px">
+            <button type="submit"  class="btn newbtn">Save</button>
+
+            <button type="button" class="btn newbtn newcancelbtn"  (click) = "closeModel()" >Cancel</button>
+          </div>
+      </div>       
+    </div>          
+  </div>

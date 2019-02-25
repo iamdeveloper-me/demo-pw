@@ -22,9 +22,9 @@ function toggleChevron(e) {
 // $('#accordion').on('hidden.bs.collapse', toggleChevron);
 // $('#accordion').on('shown.bs.collapse', toggleChevron);
 
-if ($(window).width() < 514) {
-    $('.collapse').removeClass('in');
-} 
+// if ($(window).width() < 514) {
+//     $('.collapse').removeClass('in');
+// } 
 
 // $(document).ready(function () {
 //   $("#supplierscarousel").owlCarousel({
@@ -228,7 +228,6 @@ $(".rating").click(function(){
 // });
 
 
-
 // $(".panel-heading").click(function(){
 //   // debugger
 //   // console.log($(this).parents('.panel-body').find('.panel-collapse'))
@@ -251,13 +250,44 @@ $(".rating").click(function(){
 
 
 
+ // $('.panel-collapse').on('show.bs.collapse', function () {
+ //   alert("show");
+ //    $(this).siblings('.panel-heading').addClass('active');
+ //  });
 
- $('.panel-collapse').on('show.bs.collapse', function () {
-   alert("show");
-    $(this).siblings('.panel-heading').addClass('active');
-  });
+ //  $('.panel-collapse').on('hide.bs.collapse', function () {
+     
+    
+ //     if ($('.panel-collapse').attr('aria-expanded') == "true") {
+ //       alert("add");
+ //      // $('.panel-collapse').attr("aria-expanded", "true");
+ //        $(this).siblings('.panel-heading').addClass('active');
+ //     }else{
+ //       alert("remove");
+ //       //$('.panel-collapse').attr("aria-expanded", "false");
+ //       $(this).siblings('.panel-heading').removeClass('active');
+ //     }
 
-  $('.panel-collapse').on('hide.bs.collapse', function () {
-     alert("hide");
-    $(this).siblings('.panel-heading').removeClass('active');
-  });
+
+ //     //  if ($('.panel-collapse').hasClass('.in')) {
+ //     //   alert("add");
+ //     //    $(this).siblings('.panel-heading').addClass('active');
+ //     // }else{
+ //     //   alert("remove");
+ //     //   $(this).siblings('.panel-heading').removeClass('active');
+ //     // }
+
+
+
+    
+ //  });
+
+// $('.panel-collapse').on('show.bs.collapse', function () {
+//  // alert("add");
+//   $(this).siblings('.panel-heading').addClass('active');
+// });
+
+// $('.panel-collapse').on('hide.bs.collapse', function () {
+//  // alert("remove");
+//   $(this).siblings('.panel-heading').removeClass('active');
+// });

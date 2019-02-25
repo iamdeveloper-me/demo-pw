@@ -13,7 +13,11 @@ import { Router } from '@angular/router';
 export class ContactUsComponent implements OnInit {
   contactInfoObj: ContactUsVM;
   listCaptchaValue;
-  subjects = ["General Enquiry","Business Enquiry - Advertising","Complaints"];
+  subjects = [
+    { id:1,name:"General Enquiry" },
+    { id:3,name:"Business Enquiry - Advertising" },
+    { id:4,name:"Complaints" }
+  ];
   constructor(private apiService: apiService, public toastr: ToastrService, private meta : Meta, private title : Title,private router : Router ) {
     this.contactInfoObj = new ContactUsVM();
   }
@@ -25,16 +29,17 @@ export class ContactUsComponent implements OnInit {
   }
 
   resolved(captchaResponse: string) {
-    console.log(`Resolved captcha with response ${captchaResponse}:`);
+    // console.log(`Resolved captcha with response ${captchaResponse}:`);
 }
 
 
   contact(list){
     this.apiService.postData(this.apiService.serverPath+'Home/contactus',list.value).subscribe(data => {
+      console.log(list.value);
+      console.log(data);
       list.resetForm();
       // this.toastr.success(data.message);
       grecaptcha.reset();
-
       swal({
   
         title: "Thank You!",
@@ -48,7 +53,7 @@ export class ContactUsComponent implements OnInit {
                     if(res.value===true){
                       this.router.navigate(['/home'])
                    } else{
-                       console.log('Cancel Process !');
+                      //  console.log('Cancel Process !');
                     }
   },error=>{
       alert(JSON.stringify(error));
@@ -56,11 +61,7 @@ export class ContactUsComponent implements OnInit {
     })
     return;
    
-    },
-      // error => {
-      //  this.toastr.error(error._body.split('[')[1].split(']')[0]);
-      // }
-      )
+    },)
   }
   keyPress(event: any) {
     const pattern = /[0-9]/;

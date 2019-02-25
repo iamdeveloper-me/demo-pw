@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Meta, Title } from '@angular/platform-browser';
 import { PagerService } from 'app/_services';
 import { TopicPipe } from './topic.pipe';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-tips',
   templateUrl: './tips.component.html',
@@ -41,10 +41,9 @@ export class TipsComponent  {
       public toastr: ToastrService,
       private meta:Meta, 
       private title : Title,
-      private router : Router) {
-           }
+      private router : Router,
+      private route : ActivatedRoute) { }
     ngOnInit() { 
-      sessionStorage.clear();
       this.title.setTitle('Wedding Tips & Articles | Perfect Weddings');    
       this.meta.addTag({name:'description',content:'Wedding Tips & Articles |Perfect Weddings'});    
   
@@ -78,8 +77,8 @@ export class TipsComponent  {
 
     //GotoNextPage
     goToNextPage(page){
-      sessionStorage.setItem('page',JSON.stringify(page));
-      this.router.navigate(['home/tips_list']);
-    }
+      // sessionStorage.setItem('page',JSON.stringify(page));
+      this.router.navigate(['home/tips_list', page.blogId,page.title.replace(/\s/g,'')]);
+   }
 }
 

@@ -7,7 +7,7 @@ import {RatingModule, Rating} from 'ngx-rating';
 import { CustompipePipe } from 'app/custompipe.pipe';
 import { CategoryPipePipe } from 'app/category-pipe.pipe';
 import { apiService } from 'app/shared/service/api.service';
-import { filterParam} from 'app/vendorcard/vendorcard.component';
+import { filterParam, VendorcardComponent} from 'app/vendorcard/vendorcard.component';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import{ratingStars} from '../ngservices/ratingstars';
@@ -16,6 +16,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { forEach } from '@angular/router/src/utils/collection';
 import { ToastrService } from 'ngx-toastr';
+import { PaginationService } from 'ngx-pagination';
+import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
+import { VendorComponent } from 'app/dashboard/vendor/vendor.component';
 @Pipe({ name: 'defaultImage' })
 export class PP implements PipeTransform {
   transform(value: string, fallback: string, forceHttps: boolean = false ): string {
@@ -29,10 +32,10 @@ export class PP implements PipeTransform {
   selector: 'app-searchresult',
   templateUrl: './searchresult.component.html',
   styleUrls: ['./searchresult.component.scss'],
-  providers: [CustompipePipe, CategoryPipePipe]
+  providers: [CustompipePipe, CategoryPipePipe, PaginationService]
 })
 export class SearchresultComponent implements OnInit {
-  customOptions: any = { loop: false, margin: 20, mouseDrag: true, touchDrag: true, pullDrag: true, dots: true,
+  customOptions: any = { loop: true, margin: 20, mouseDrag: true, touchDrag: true, pullDrag: true, dots: true,
     nav: false, autoplay: true, navSpeed: 700, responsive: { 0: { items: 1 }, 400: { items: 2 }, 740: { items: 3 }, 
     940: { items: 4 } },
   }
@@ -40,10 +43,12 @@ export class SearchresultComponent implements OnInit {
   slidesStore: any[];
   collection = [];
   paginations=[];
+  page:number = 1;
   objSearchFilter: filterParam
   locations:any;
   categories:any;
   filters: any;
+  numberOfPages:number;
   SelectedLocation:any;
   
   @ViewChild('servicefilters') servicefilters:SafeHtml;
@@ -56,6 +61,7 @@ export class SearchresultComponent implements OnInit {
   locationFilterParam:string='';
   categoryFilterParam:string='';
   pageNumber=0;
+  maxSize:number=71;
   priceRange: any;
   disableLoadingButton=true;
   blankImg='../../assets/img/noImg.png';
@@ -68,9 +74,9 @@ export class SearchresultComponent implements OnInit {
   ratingmodel: ratingStars;
   Honeymoon_detail:any = {};
     constructor(private masterservice: MasterserviceService,public _route:Router, public _activeRoute: ActivatedRoute, 
-    private _masterservice: MasterserviceService, private api: apiService,
+    private _masterservice: MasterserviceService, private api: apiService, public _ngbConfigService: NgbPaginationConfig,
     public toastr: ToastrService) {
-      debugger;
+      this._ngbConfigService.pageSize = 25
       this._activeRoute.params.subscribe((params) => {
         this.initializeResult();   
      });
@@ -84,10 +90,15 @@ export class SearchresultComponent implements OnInit {
     this.generateStaticArray();
     this.objSearchFilter=new filterParam();
     this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
-    
     this.objSearchlistvm = new SearchListingVM();
-    this.objSearchlistvm.searchInDreamLocation = this.objSearchFilter.isDreamLocation;
-    if(this.objSearchFilter.locationId != 0){
+    this.objSearchlistvm.searchInDreamLocation = this.objSearchFilter?this.objSearchFilter.isDreamLocation:false;
+    this.objSearchlistvm.searchInFeaturedVendors = this.objSearchFilter?this.objSearchFilter.isSearchInFeaturedSupplier:false;
+    if(this.objSearchlistvm.searchInFeaturedVendors || this.objSearchlistvm.searchInDreamLocation){
+      this.featuredListingArray.forEach(element => {
+        element.isSelect = true;
+      });
+    }
+    if(this.objSearchFilter && this.objSearchFilter.locationId != 0){
     this.objSearchlistvm.districts.push(this.objSearchFilter.locationId);}
     this.getLocations();
     this.getCategories();
@@ -103,16 +114,12 @@ export class SearchresultComponent implements OnInit {
   this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(element => {element['isSelect'] = false});
  }
 
-
-   
- 
-
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
   }
   getCategoryName(i):string{
-    if(this.SelectedCategory){
+    if(this.SelectedCategory && this.SelectedCategory.categoryId!=0){
       return this.SelectedCategory.categoryName;
     }else{
       return i.vendorCategories[0].categories.categoryName;
@@ -121,10 +128,10 @@ export class SearchresultComponent implements OnInit {
   ngOnInit() {   
  
   $.getScript('./assets/js/searchresult.js'); 
-  $.getScript('./assets/register/js/jquery-2.2.4.min.js');
   $.getScript('./assets/register/js/bootstrap.min.js');
+  $.getScript('./assets/register/js/jquery-2.2.4.min.js');
   $.getScript('./assets/jss/core/popper.min.js');
-  $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
+  // $.getScript('./assets/jss/core/bootstrap-material-design.min.js');
 //  $.getScript('./assets/jss/plugins/perfect-scrollbar.jquery.min.js');
   $.getScript('./assets/jss/plugins/chartist.min.js');
   $.getScript('./assets/jss/plugins/bootstrap-notify.js');
@@ -133,8 +140,13 @@ export class SearchresultComponent implements OnInit {
   goToPortfolioDetail(vendor){
     let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
     this.api.getData(url+'?id='+vendor.vendorId).subscribe(res=>{
-      sessionStorage.setItem('vendorDetails',JSON.stringify(res));
-    this._route.navigate(['home/detailprofile',0]);
+     // sessionStorage.setItem('vendorDetails',JSON.stringify(res));
+      const a = res.vendorCategories[0].categories.categoryName;
+      const b = res.vendorId;
+      const c = res.nameOfBusiness;
+      this._route.navigateByUrl('/home/weddingvendorsdetailprofile/'+a.replace(/\s/g,'')+'/'+b+'/'+c.replace(/\s/g,''));
+  
+    //this._route.navigate(['home/detailprofile',0]);
   });
   }
   getLocations(){
@@ -157,19 +169,38 @@ export class SearchresultComponent implements OnInit {
   
     this.categories = JSON.parse(localStorage.getItem('catlist'));
     console.log(this.categories);
-    if(this.objSearchFilter.catId>0){
+    if(this.objSearchFilter && this.objSearchFilter.catId>0){
       this.categories.filter(c=>c.categoryId==this.objSearchFilter.catId)[0].isSelect=true;
       this.SelectedCategory = this.categories.filter(c=>c.isSelect==true)[0];
       this.showALlCategories=false;
+    }else{
+      this.SelectedCategory={ 'categoryId': 0,'categoryName':'All Categories', 'isSelect': false};
     }
     this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(element => {
       element.isSelect = false;
     });
     this.collection=[];
-    this.paginate(this.objSearchFilter.pageSize);  
+    this.paginate(this.objSearchFilter?this.objSearchFilter.pageSize: 25);  
     this.showALlCategories=false;
   }
   clearFilters(){
+    this.filters.services.forEach(service => {
+      service['isSelect'] = false;
+    });
+    this.categories[0].services[0].customFields[0].customFieldOptionList.forEach(priceRange => {
+      priceRange['isSelect'] = false;
+    });
+    this.featuredListingArray.forEach(featuredListing => {
+      featuredListing['isSelect'] = false;
+    });
+    this.dealsAndOfferArray.forEach(dealsAndOffer => {
+      dealsAndOffer['isSelect'] = false;
+    });
+    this.userRatingArray.forEach(userRating => {
+      userRating['isSelect'] = false;
+    });
+  
+    
     
   }
   getFilters(){
@@ -234,9 +265,11 @@ export class SearchresultComponent implements OnInit {
   }
   }
   addToCollection(){
+    this.collection = [];
     this.objSearchResultItems.items.forEach(element => {
       this.collection.push(element);
       this.slidesStore = this.collection
+      console.log(this.slidesStore)
     });
   }
   filterLocations(ev){
@@ -252,14 +285,13 @@ export class SearchresultComponent implements OnInit {
        });
       }
   }
-  setFilterOptions(filterType,FilterValue){
-    debugger;
+  setFilterOptions(filterType,FilterValue,collection){
     this.collection=[];
     this.objSearchlistvm.page=0;
     switch(filterType){
       case 1: // Category
- 
       this.objSearchlistvm= new SearchListingVM();
+      if(FilterValue!=''){
       this.checkUncheckFilter(FilterValue);
      if(FilterValue.isSelect){
       this.SelectedCategory = FilterValue;
@@ -268,13 +300,18 @@ export class SearchresultComponent implements OnInit {
       this.showALlCategories = false;}else{
         this.showALlCategories = true;
         this.SelectedCategory=null;
+      }}else{
+        this.SelectedCategory={ 'categoryId': 0,'categoryName':'All Categories', 'isSelect': false};
+        this.getFilters();
+        this.showALlCategories = false;
       }
        break;
       case 2: // Service
-      debugger;
+      this.deselectAllItemsInCollection(collection);
       FilterValue['isSelect'] = !FilterValue['isSelect']
        break;
       case 3: // location
+      this.deselectAllItemsInCollection(collection);
       this.checkUncheckFilter(FilterValue);
      if(FilterValue.isSelect){
        this.SelectedLocation = FilterValue;
@@ -292,14 +329,18 @@ export class SearchresultComponent implements OnInit {
       this.objSearchlistvm.customsFields=[];
       break;
       case 6: // Rating
+      this.deselectAllItemsInCollection(collection);
+  //    FilterValue['isSelect'] = !FilterValue['isSelect']
       this.checkUncheckFilter(FilterValue); break;
       case 7: // Pricing
-      FilterValue['isSelect'] = !FilterValue['isSelect']
+      this.deselectAllItemsInCollection(collection);
+//      FilterValue['isSelect'] = !FilterValue['isSelect']
       ; break;
       case 8: // Feature Listing
       this.checkUncheckFilter(FilterValue); break;
       case 9: // Deals And Offer
-       this.checkUncheckFilter(FilterValue); 
+      this.deselectAllItemsInCollection(collection);
+      this.checkUncheckFilter(FilterValue); 
       break;
     }
     if(filterType!==4){ 
@@ -309,6 +350,7 @@ export class SearchresultComponent implements OnInit {
   }
   checkUncheckFilter(filterValie){
     filterValie.isSelect = !filterValie.isSelect;
+    this.paginate(this._ngbConfigService.pageSize);
   }
    paginate (pageSize) {
     this.loading=true; 
@@ -371,10 +413,10 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   // Set Deals And Offers
   this.objSearchlistvm.deals = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]== undefined ? '' :this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]['key'] 
   
-  this.objSearchlistvm.pageSize = this.objSearchFilter.pageSize;
-  console.log(this.objSearchlistvm);
+  this.objSearchlistvm.pageSize = this._ngbConfigService.pageSize;
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
+    this.numberOfPages=res.totalPages;
     this.generatePageNumbers();
     console.log(JSON.stringify(this.objSearchResultItems));
     this.setBlankImg();
@@ -392,31 +434,25 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
     this.paginate(this.objSearchFilter.pageSize); 
   }
  }
- goToPage(pageNumber,buttonType){
-   debugger;
-  switch(buttonType){
-    case 'N':
-    if(this.objSearchResultItems.totalPages>this.objSearchlistvm.page)
-    {
-    this.collection=[];
-    this.objSearchlistvm.page+=1;
+ goToPage(ev:Event){
+    this.objSearchlistvm.page =  parseInt(JSON.stringify(ev));
+    this.objSearchlistvm.page= this.objSearchlistvm.page-1;
     this.paginate(this.objSearchFilter.pageSize);
-    }
-    break;
-    case 'P':
-    if(this.objSearchlistvm.page>1){
-    this.collection=[];
-    this.objSearchlistvm.page-=1;
-    this.paginate(this.objSearchFilter.pageSize);
-    }
-    break;
-    default:
-    this.collection=[];
-    this.objSearchlistvm.page= pageNumber;
-    this.paginate(this.objSearchFilter.pageSize);
-  }
-    
  }
+ navigateToDynamicUrl() {
+  sessionStorage.removeItem('filterParam');
+  this.objSearchFilter = new filterParam();
+  this.objSearchlistvm = new SearchListingVM();
+  this._activeRoute.params.subscribe(p=>{
+    this.initializeResult();
+  })
+  //this._route.navigate(['/home/weddingvendors/',this.SelectedCategory.categoryName]);
+}
+deselectAllItemsInCollection(collection:Array<any>){
+collection.forEach(element => {
+  element.isSelect=false;
+});
+}
 deselectAllCategories(){
   if(this.categories){
   this.categories.forEach(element => {
@@ -427,7 +463,6 @@ deselectAllCategories(){
   this.objSearchlistvm.page=0;
   this.collection=[];
 }
-
 selectCategory(paramType,Param){
   this.deselectAllCategories();
   if(paramType=='index'){
@@ -465,12 +500,7 @@ generateStaticArray(){
   ]
 
 }
-bookMark(data, type , action_which_lacation){
-  const id = data['vendorId'] 
- this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-   console.log(data)
- })
-}
+
 radioChecker(mainItem , selectedItem, filterType=0){
   debugger;
  // const data = selectedItem
@@ -481,7 +511,7 @@ radioChecker(mainItem , selectedItem, filterType=0){
       element['isSelect'] = false
     }
   });
-this.setFilterOptions(filterType,mainItem);
+// this.setFilterOptions(filterType,mainItem);
   //  this.paginate(this.objSearchFilter.page)
   }
 
@@ -495,12 +525,12 @@ generatePageNumbers(){
   }
 }
 }
-export class SearchFilterVm{
-  categoryId:number=1;
-  locationId:number=0;
-  searchInFeaturedLocation:boolean=true;
-  searchInDreamLocation:boolean=true;
-}
+// export class SearchFilterVm{
+//   categoryId:number=0;
+//   locationId:number=0;
+//   searchInFeaturedLocation:boolean=false;
+//   searchInDreamLocation:boolean=false;
+// }
 export class SearchListingVM{
   page: number;
   pageSize: number;
@@ -515,6 +545,7 @@ export class SearchListingVM{
   deals:string;
   listing:string;
   searchInDreamLocation:boolean=false;
+  searchInFeaturedVendors:boolean=false;
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
   constructor(){

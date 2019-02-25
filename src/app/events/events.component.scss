@@ -1,3 +1,8 @@
+
+.material-icons{
+  font-size: 13px;
+}
+
 .eventbanner{
 	padding-top:0px;
 }
@@ -77,6 +82,7 @@ padding:3px 0px 0px 0px;
 .footericon{
   text-align:right;
   font-size:14px;
+  padding-right:0px;
 }
 .footericon span{float:right;margin-right:10px;}
 .footericon i{    
@@ -101,9 +107,10 @@ color: #3498db!important;
   line-height:18px;
 }
 .eventbtnholder{
-	position:absolute;
-	right:5px;
-	top:-50px;
+    position: absolute;
+    right: 5px;
+    z-index: 999;
+    top: 125px;
 }
 .eventlisting .cardshadow{
 	overflow:hidden!important;
@@ -122,8 +129,8 @@ color: #3498db!important;
   position: absolute;
   display: block;
   width: 110px;
-  padding: 10px 0;
-  background-color: #3498db;
+  padding: 5px 0;
+  background-color: #0d8d09;
   box-shadow: 0 5px 10px rgba(0,0,0,.1);
   color: #fff;
   font: 700 14px/1 'Lato', sans-serif;
@@ -143,9 +150,29 @@ color: #3498db!important;
     border:0px;
     margin:0px 3px;
     color:#fff;
+    border-radius:50%;
 }
 .borradius50per{
     border-radius:50%;
+    // background: #fff!important;
+    border:1px solid #e5e5e5!important;
+    padding:5px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 5px 0 rgba(0,0,0,.12);
+    outline:none;
+    border:0px;
+    margin:0px 3px;
+    color:#000;
+}
+.borradius50per:hover{
+    border-radius:50%;
+    background: #e5e5e5!important;
+    border:1px solid #e5e5e5!important;
+    padding:5px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 5px 0 rgba(0,0,0,.12);
+    outline:none;
+    border:0px;
+    margin:0px 3px;
+    color:#000;
 }
 .totalpage{
   color:#aeaeaf;
@@ -158,6 +185,13 @@ color: #3498db!important;
 .page-nation{
   position: relative;
 }
+  .eventprice{
+    text-align: left;
+    padding: 5px 0px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #f16124;
+  }
 @media(max-width: 768px){
 .totalpage{
   position: relative; 
@@ -178,6 +212,7 @@ color: #3498db!important;
 	    text-align: center;
 	    min-height: inherit;
 	    line-height: 20px;
+      color:#3498db; 
 	}
 	.eventvenue{
 		text-align:center;

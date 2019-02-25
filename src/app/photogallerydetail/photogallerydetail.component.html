@@ -3,7 +3,7 @@
 	<div class="container mobnopadd ipad100">
 	  	<div class="col-sm-12 detail_page nopadd">
 		   <div class="card inspirationhead">
-	  			<a routerLink="../detailprofile/0" class="backlink" (click) = "session_data()"> 
+	  			<a  class="backlink" (click) = "go_back_link_page()"> 
 		            <i class="material-icons">arrow_back_ios</i>
 		            <span>Go Back</span>
 		        </a>
@@ -20,11 +20,10 @@
 				<div class="col-4 col-sm-3 mobnopadd" *ngFor='let filepath of vendorDetails?.albumImages'>           
 					<a data-fancybox="gallery" class="thumbnail" [href]="filepath?.path">
 							<img  *ngIf="filepath" [src]='filepath?.path' alt="...">
-
-                <div class="col-sm-12 footericon">
-            <span><i class="material-icons">bookmark</i> 0 </span>
-            <span><i class="material-icons">visibility</i> {{filepath?.likeCounts}} </span>
-          </div>
+              <div class="col-sm-12 footericon">
+                <span><i class="material-icons">share</i> 0 </span>
+                <span><i class="material-icons">favorite_border</i> {{filepath?.likeCounts}} </span>
+              </div>
           </a>
 
         
@@ -34,12 +33,14 @@
 				<div class="col-4 col-sm-3 mobnopadd"  *ngFor='let portpi of portpholio' >
 					<a data-fancybox="gallery" class="thumbnail" [href]="portpi?.path">
 						<img [src]="portpi?.path" alt="..." >
+
+             <div class="col-sm-12 footericon">
+               <span><i class="material-icons">share</i> 0 </span>
+               <span><i class="material-icons">favorite_border</i> {{filepath?.likeCounts}} </span>
+            </div>
 					</a>
 
-            <div class="col-sm-12 footericon">
-            <span><i class="material-icons">bookmark</i> 0 </span>
-            <span><i class="material-icons">visibility</i> 0 </span>
-          </div>
+           
 
 				</div>
 			</div>

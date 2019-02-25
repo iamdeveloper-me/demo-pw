@@ -19,7 +19,8 @@ export class DealsComponent implements OnInit {
  }
 
   ngOnInit() {
-    sessionStorage.clear();
+  
+    //sessionStorage.removeItem('Deal_Details');
     this.title.setTitle('Great Wedding Deals & Offers |Perfect Weddings');    
     this.meta.addTag({name:'description',content:'Great Wedding Deals & Offers |Perfect Weddings'});    
 
@@ -47,8 +48,9 @@ export class DealsComponent implements OnInit {
   }
 
   goToNextPage(a){
-    sessionStorage.setItem('deal,mydeal',JSON.stringify(a));
-    this.router.navigate(['home/Deal_Details']);
+    // sessionStorage.setItem('deal,mydeal',JSON.stringify(a));
+    // this.router.navigate(['home/Deal_Details']);
+    this.router.navigate(['home/Deal_Details',a.dealId,a.title.replace(/\s/g,'')]);
   }
 
 

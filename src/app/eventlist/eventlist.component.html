@@ -1,29 +1,29 @@
 <div id="wrappervendor" class="">
     <app-menu></app-menu>
 
-    <section class="container-fluid tipslist">
+    <section class="container-fluid tipslist" *ngFor="let item of data">
         <h1 class="eventtitle">
-            {{data.eventTitle}}
+            {{item?.eventTitle}}
         </h1>
-        <img [src]="data.files.path" class="imgClass">
+        <img [src]="item?.files.path" class="imgClass">
     </section>
 
     <div class="clearfix"></div>
-    <section class="container event_box">
+    <section class="container event_box" *ngFor="let item of data">
         <!-- <h4><span><i class="fa fa-calendar-check-o" aria-hidden="true"></i> </span> Schedule</h4> -->
         <div class="row">
             <div class="col-md-9">
                 <div class="event_para">
                     <h4><span><i class="material-icons">description</i> </span> Event Information
                         <span class="iconbox">
-                            <span><i class="material-icons">visibility</i> {{data?.numberOfViews}} </span>
-                            <span><i class="material-icons">bookmark</i> {{data?.numberOfBookmarks}} </span>
+                            <span><i class="material-icons">visibility</i> {{item?.numberOfViews}} </span>
+                            <span><i class="material-icons">bookmark</i> {{item?.numberOfBookmarks}} </span>
                             &nbsp;&nbsp;&nbsp;
                             <span><a href="#" class="pink_color">Share this Event </a></span>
                         </span>
                     </h4>
                     <p>
-                        {{data.eventDescription}}
+                        {{item?.eventDescription}}
                     </p>
                 </div>
 
@@ -34,12 +34,12 @@
                         <h4 class="location_up"><span><i class="material-icons">location_on
                                 </i> </span> Location</h4>
                         <div class="col-md-12">
-                            <p><strong>{{data?.venueName }}</strong></p>
-                            <p>{{data?.location}},</p>
-                            <p *ngIf="data?.country == null && data?.districts == null && data?.suburb == null">N/A Country , Districts , Suburb</p>
-                            <p *ngIf="data?.country !== null && data?.districts !== null && data?.suburb !== null"> {{data?.country}},{{data?.districts}},{{data?.suburb}}</p>
-                            <p><i class="material-icons pull-left" *ngIf="data?.phoneNumber == null">phone_iphone</i> N/A PhoneNumber</p>
-                            <p><i class="material-icons pull-left" *ngIf="!data?.phoneNumber== null">phone_iphone</i> {{data?.phoneNumber}}</p>
+                            <p><strong>{{item?.venueName }}</strong></p>
+                            <p>{{item?.location}},</p>
+                            <p *ngIf="item?.country == null && item?.districts == null && item?.suburb == null">N/A Country , Districts , Suburb</p>
+                            <p *ngIf="item?.country !== null && item?.districts !== null && item?.suburb !== null"> {{item?.country}},{{item?.districts}},{{item?.suburb}}</p>
+                            <p><i class="material-icons pull-left" *ngIf="item?.phoneNumber == null">phone_iphone</i> N/A PhoneNumber</p>
+                            <p><i class="material-icons pull-left" *ngIf="!item?.phoneNumber== null">phone_iphone</i> {{item?.phoneNumber}}</p>
                         </div>
                     </div>
                 </section>
@@ -50,8 +50,8 @@
                         <div class="row col-md-12 padd0">
                             <div class="col-md-3 col-6" *ngFor='let other_event of all_event  | slice:0:4 '>
                                 <div>
-                                    <img [src]="other_event.files.path" width="100%" alt="">
-                                    <p class="text-center bold">{{other_event.eventTitle}}</p>
+                                    <img [src]="other_event?.files.path" width="100%" alt="">
+                                    <p class="text-center bold">{{other_event?.eventTitle}}</p>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
 
                     <div class="row parking_row">
                         <h4><span><i class="material-icons">watch_later</i> </span> Schedule</h4>
-                        <div class="col-md-12 marbot5px" *ngFor='let event of data?.eventsDates | slice:0:1 ;let i=index '>
+                        <div class="col-md-12 marbot5px" *ngFor='let event of data[0]?.eventsDates | slice:0:1 ;let i=index '>
                             <p><span class="bold">Start Date & Time</span><br />
                                     {{event?.startDateString}} &nbsp;&nbsp;{{event?.startTimeString}}</p>
                             <!-- <div class="col-md-12 marbot5px"> -->
@@ -73,9 +73,15 @@
                             <!-- </div> -->
                         </div>
 
-                        <div class="col-md-12 marbot5px"  *ngFor='let event of data?.eventsDates | slice:0:1 ;let i=index '>
+                        <div class="col-md-12 marbot5px"  *ngFor='let event of data[0]?.eventsDates | slice:0:1 ;let i=index '>
                             <p><span class="bold">Duration</span><br />
-                                {{event?.duration}} </p>
+                                <p *ngIf="event.duration === 1">
+                                        <span>Duration</span> {{event.duration}} Day
+                                </p>	
+                            <p *ngIf="event.duration > 1">
+                                    <span>Duration</span> {{event.duration}} Days
+                            </p>
+                                <!-- {{event?.duration}} Days </p> -->
                         </div>
                     </div>
                 </section>
@@ -85,9 +91,9 @@
                         <h4><i class="material-icons">local_play</i> Tickets</h4>
                         <div class="clearfix"></div>
                         <div class="col-sm-12">
-                            <div class="tickets">ENTRY : {{data?.entry}}</div>
-                            <p class="text-center">FEES : {{data?.entryFee}}</p>
-                            <p class="text-center">CAPACITY : {{data.capacity}}</p>
+                            <div class="tickets">ENTRY : {{item?.entry}}</div>
+                            <p class="text-center">FEES : {{item?.entryFee}}</p>
+                            <p class="text-center">CAPACITY : {{item?.capacity}}</p>
                         </div>
                     </div>
                 </section>
@@ -98,16 +104,16 @@
                             <span> <i class="fa fa-user" aria-hidden="true"></i> </span> 
                             Event Organiser
                         </h4>
-                        <div class="col-md-12 text-center" *ngIf="data?.profileImage == null">
+                        <div class="col-md-12 text-center" *ngIf="item?.profileImage == null">
                                 <img class="circle_img" [src]="noImage" >
                         </div>                        
-                        <div class="col-md-12 text-center" *ngIf="data?.profileImage !== null">
-                            <img class="circle_img" [src]="data?.profileImage" [alt]="">
+                        <div class="col-md-12 text-center" *ngIf="item?.profileImage !== null">
+                            <img class="circle_img" [src]="item?.profileImage" [alt]="">
                         </div>
                         <div class="col-md-12 text-center">
                             <span> 
-                                <strong> {{data?.organiserName}}</strong> <br> 
-                                         {{data?.memberSince}} 
+                                <strong> {{item?.organiserName}}</strong> <br> 
+                                         {{item?.memberSince}} 
                             </span>
                             <p class="social_field">
                                 <span> <i class="fa fa-facebook" aria-hidden="true"></i></span>
@@ -115,7 +121,9 @@
                                 <span> <i class="fa fa-linkedin" aria-hidden="true"></i></span>
                             </p>
                             <p>
-                                <a [routerLink]="['/home/events']"  class="profilebtn">View Profile</a>
+
+                                <a (click)="goToDetailPage(item)"  class="profilebtn">View Profile</a>
+
                             </p>
                         </div>
                     </div>

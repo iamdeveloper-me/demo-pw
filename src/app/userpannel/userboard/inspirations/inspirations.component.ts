@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { apiService } from '../../../shared/service/api.service';
+import { PagerService } from 'app/_services';
+import { photoSearchParam } from 'app/photo/photo.component';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-inspirations',
   templateUrl: './inspirations.component.html',
@@ -7,9 +10,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InspirationsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private apiService : apiService,  private pagerService: PagerService,private router : Router,
+    private route : ActivatedRoute) {
+    this.photo_search_param = new  photoSearchParam();
+   }
+  eventItems:any[];
+  pager: any = {};
+  pagerPhoto:any = {};
+  pagedItems: any[];
+  pagedPhotos: any[];
+  allItems: any[];
+  photoItems:any[];
+  photo_search_param: photoSearchParam;
   ngOnInit() {  
+
+    /* Photos APi */
+    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchphotos',
+    this.photo_search_param
+    ).subscribe(photo => {
+          this.photoItems = photo.items;
+          console.log(this.photoItems);
+          this.setPhoto(1);
+    });
+          
+    /* Event APi */
+    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchevents',{
+      "page": 0,
+      "pageSize": 100000,
+      "sortDir": "",
+      "sortedBy": "asc",
+      "searchQuery": "",
+      "location": "",
+      "eventType": "all",
+      "dates": "all"
+    }).subscribe(data => {
+        this.allItems = data.items; 
+        console.log(this.allItems);
+        this.setPage(1);
+      });  
+
+
     $.getScript('./assets/js/jquery.fancybox.min.js');
     $.getScript('./assets/js/prism.min.js'); 
     $.getScript('./assets/js/curosselfun.js');
@@ -146,6 +186,21 @@ $(document)
     e.preventDefault(); // prevent the default action (scroll / move caret)
   });
   }
-  
+
+  setPage(page: number) {
+    this.pager = this.pagerService.getPagerEvent(this.allItems.length, page);
+    this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+
+  setPhoto(page: number) {
+    this.pagerPhoto = this.pagerService.getPagerEvent(this.photoItems.length, page);
+    this.pagedPhotos = this.photoItems.slice(this.pagerPhoto.startIndex, this.pagerPhoto.endIndex + 1);
+  }
+
+  goToNextPage(a){
+    //  sessionStorage.setItem('event',JSON.stringify(a));
+    //  alert("aaaaaaa");
+      this.router.navigate(['home/event_list' , a.eventId,a.eventTitle.replace(/\s/g,'')]);
+    }
 
 }

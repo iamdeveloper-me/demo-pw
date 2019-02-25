@@ -3,8 +3,9 @@
 	<div class="container mobnopadd ipad100">
 	  	<div class="col-sm-12 detail_page nopadd">
 		   <div class="card inspirationhead">
-	  			<a routerLink="../detailprofile/0" class="backlink"> 
-		            <i class="material-icons">arrow_back_ios</i>
+	  			<a (click) = "go_back_link_page()" class="backlink"> 
+					<!-- ./home/weddingvendorsdetailprofile/{{vendorDetails?.vendorCategories[0].categories?.categoryName}}/{{vendorDetails.vendorId}}/{{vendorDetails.nameOfBusiness}} -->
+					<i class="material-icons">arrow_back_ios</i>
 		            <span>Go Back</span>
 		        </a>
       			<h2 class="text-center">PORTFOLIO & ALBUMS</h2>
@@ -29,7 +30,7 @@
 					<img  [src]="portpi.path" alt="..." >
 					<div class="albumname"> My Portfolio <br/>
 						 ({{vendorDetails?.portfolios.length}}) Images </div>
-
+                   
                 </a>
 			  </div>
 			

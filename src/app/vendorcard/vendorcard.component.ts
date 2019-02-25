@@ -99,12 +99,7 @@ export class VendorcardComponent implements OnInit {
       }
     )
   }
-  bookMark(data, type , action_which_lacation){
-    const id = data['vendorId'] 
-   this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-     console.log(data)
-   })
-  }
+
   Popular_Wedding(){
     this.apiService.getData(this.apiService.serverPath+'Categories/categorieswithlistingcount').subscribe(data => {
        console.log(data);
@@ -121,12 +116,16 @@ export class VendorcardComponent implements OnInit {
     )
   }
   goToVendordetails(slide) {
-      let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
-      this.apiService.getData(url+'?id='+slide.vendorId).subscribe(res=>{
-        sessionStorage.setItem('vendorDetails',JSON.stringify(res));
-
-       this.router.navigate(['home/detailprofile',0]);
-    });
+     // let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
+     //this.apiService.getData(url+'?id='+slide.vendorId).subscribe(res=>{
+        //sessionStorage.setItem('vendorDetails',JSON.stringify(res));
+       
+        const a = slide.vendorCategories[0].categories.categoryName;
+        const b = slide.vendorId;
+        const c = slide.nameOfBusiness;
+        this.router.navigateByUrl('/home/weddingvendorsdetailprofile/'+a.replace(/\s/g,'')+'/'+b+'/'+c.replace(/\s/g,''));
+       //this.router.navigate(['home/detailprofile',0]);
+    //});
    // this.router.navigate(['home/detailprofile/',slide.vendorId])
   }
   Categories_each(c,isAllSupplier,isDreamLocation){
@@ -148,20 +147,19 @@ export class VendorcardComponent implements OnInit {
    sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
     this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   }
-  supplier_all(c,isAllSupplier,isDreamLocation){
+  supplier_all(c,isAllSupplier,isDreamLocation,isSearchInFeaturedSupplier){
       this.objFilterParam.catId  = c?c.categoryId:0;
       this.objFilterParam.categoryName= c?c.categoryName:'';
       this.objFilterParam.isDreamLocation=isDreamLocation;
       this.objFilterParam.isAllSupplier=isAllSupplier;
+      this.objFilterParam.isSearchInFeaturedSupplier = isSearchInFeaturedSupplier;
       this.objFilterParam.page = 0;
       this.objFilterParam.pageSize = 25;
       this.objFilterParam.sortDir = "";
       this.objFilterParam.sortedBy ="";
       this.objFilterParam.searchQuery ="";
-
-  
-    sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
-    this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
+      sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+      this.router.navigate(['home/weddingvendors',this.objFilterParam.categoryName.replace(/\s/g,'')]);
   
   }
 
@@ -171,6 +169,7 @@ export class filterParam{
   categoryName:string='';
   isAllSupplier:boolean=false;
   isDreamLocation:boolean=false;
+  isSearchInFeaturedSupplier:boolean=false;
   page:number=0;
   pageSize: number=3;
   sortDir: "";

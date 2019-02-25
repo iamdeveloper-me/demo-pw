@@ -39,7 +39,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from "./shared/shared.module";
 // import { VendorModule } from "./vendor/vendor.module" 
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpClientJsonpModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
@@ -229,6 +229,14 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { VendorDealDetailComponent } from './vendor-deal-detail/vendor-deal-detail.component';
 
 
+import { HoneymoonDestinatationComponent } from './honeymoon-destinatation/honeymoon-destinatation.component';
+
+import { AllReviewsComponent } from './all-reviews/all-reviews.component';
+import { DealListComponent } from './deal-list/deal-list.component';
+import { HoneymoonSearchResultComponent ,PPl} from './honeymoon-search-result/honeymoon-search-result.component';
+
+
+// import { ShareButtonsModule } from '@ngx-share/buttons';
 
 
 
@@ -258,6 +266,7 @@ export function getAuthServiceConfigs() {
         SafePipeP,
         SafePipe,
         PP,
+        PPl,
         CustompipePipe,
         CategoryPipePipe,
         ReversePipe  ,
@@ -457,7 +466,15 @@ export function getAuthServiceConfigs() {
         
         EventsearchentryPipe,
         
-        VendorDealDetailComponent
+        VendorDealDetailComponent,
+        
+        AllReviewsComponent,
+        
+
+        HoneymoonDestinatationComponent,
+        DealListComponent,
+        HoneymoonSearchResultComponent,
+
 
 
 
@@ -473,14 +490,15 @@ export function getAuthServiceConfigs() {
         FlatpickrModule.forRoot(),
         CalendarModule.forRoot(),
         // calender End
-
+        HttpClientJsonpModule,  // (Optional) Add if you want tumblr share counts
+        // ShareButtonsModule,
         NgxPaginationModule,
 
         RecaptchaModule,
 
         OwlModule,
         ProgressHttpModule
-,NgxDatatableModule,
+        ,NgxDatatableModule,
        // NgProgressModule,
         ReactiveFormsModule,
         CustomFormsModule,

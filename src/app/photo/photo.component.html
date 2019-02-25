@@ -5,9 +5,9 @@
          <div class="searchtopbar">
             <form (ngSubmit)="find_photo()" #list="ngForm" class="row rowset">
                <div class="col-md-2 col-4">
-                  <select class="form-control round_first" [(ngModel)]="category" name="categoryId" (change)="changeData('category')">
-                     <option value='undefined'> All Categories </option>
-                     <option *ngFor='let list_Categories of categories' [value]="list_Categories.categoryId">
+                  <select class="form-control round_first" placeholder="All Categories" [(ngModel)]="category" name="categoryId" (change)="changeData('category')">
+                     <option [attr.selected]="true" value='0'> All Categories </option>
+                     <option *ngFor='let list_Categories of categories ; let i = index'  [value]="list_Categories.categoryId">
                         {{list_Categories.categoryName}}
                      </option>
                   </select>
@@ -26,7 +26,7 @@
                   </div>
                </div>
                <div class="col-md-8 col-5 Search_img">
-                     <input type="text" [(ngModel)]="photo_search_param.searchQuery" type="text" name="searchQuery"
+                     <input type="text" [(ngModel)]="photo_search_param.searchTitle" type="text" name="searchQuery"
                      placeholder="Type a keyword" class="searchinput" >
                  <button (click)="changeData('title')" value=""  class="search-button"><i class="material-icons"> search </i></button>
                   <!-- <input type="svalue="" ubmit" class="search-button"> -->
@@ -48,7 +48,7 @@
                     <span (click)="removeColor(i)" *ngIf="colour_tag != ''  " class="colortag mobadjust" [style.background-color]='colour_tag'>X</span>
                   </span>
                   &nbsp;&nbsp;
-                  <span *ngIf="oneTime" (click)="colorDeselect()">Clear All</span>
+                  <span *ngIf="colorCount > 0" (click)="colorDeselect()">Clear All</span>
             </div>
             <div class="martop10px">
                   <span>
@@ -76,7 +76,7 @@
             <div style="position:relative;min-height:100vh;" id="categoryProductContainer">
                <h1>{{error_1}}</h1>
                <div class="row">
-                  <div class="col-md-3" *ngFor="let item of pagedItems ">
+                  <div class="col-md-3" *ngFor="let item of allItems ">
                      <div class="span2 pcon prodcont actioninside">
                         <div (click)="popup(item)">
                            <a data-fancybox="cl-group" (click)="classAdd(item)" class="fancybox" title="{{item.district}}"
@@ -105,8 +105,8 @@
                                     #{{colour1}},
                                  </span>
                               </div>
-                                <div class="linkdiv">
-                                    <span class="halfdiv"  (click)="bookMark(item,'albums','bookmarked')">
+                                <div class="linkdiv" >
+                                    <span class="halfdiv"  (click)="apiService.fillLikeUser(item,'albums','like','albums')">
                                        <i class="material-icons">favorite_border</i>
                                     </span>
                                     &nbsp;
@@ -120,8 +120,11 @@
                </div>
 
                <div class="clearfix"></div>
+               <div class="">
+                   <p class="text-center" *ngIf="empltyResult">No more result</p>
+               </div>
                <!-- pager -->
-               <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+               <!-- <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
                   <li [ngClass]="{disabled:pager.currentPage === 1}">
                      <a (click)="setPage(1)">First</a>
                   </li>
@@ -137,7 +140,7 @@
                   <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
                      <a (click)="setPage(pager.totalPages)">Last</a>
                   </li>
-               </ul>
+               </ul> -->
                <!-- pager end -->
             </div>
          </div>

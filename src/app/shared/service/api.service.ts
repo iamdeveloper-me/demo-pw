@@ -94,8 +94,6 @@ export class apiService {
         var id = data['vendorId'] 
          break; 
       }
-       
-
       default: { 
          //statements; 
          break; 

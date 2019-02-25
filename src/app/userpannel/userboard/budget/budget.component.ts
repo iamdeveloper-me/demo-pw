@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { apiService } from 'app/shared/service/api.service';
+import { Budgetservice, BudgetItemVM } from './budgetservice';
+import { jsonpCallbackContext } from '@angular/common/http/src/module';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-budget',
   templateUrl: './budget.component.html',
-  styleUrls: ['./budget.component.scss']
+  styleUrls: ['./budget.component.scss'],
+  providers: [Budgetservice]
 })
 export class BudgetComponent implements OnInit {
   Budgetlist = []; 
   AddBudget = false;
-  constructor(  private apiService: apiService,) { }
+  constructor(private apiService: apiService,public budgetservice: Budgetservice, public toaster: ToastrService) {
+      this.getMyBudgetItems();
+   }
  name: string 
   estimatedCost:string
   finalCost: string
@@ -43,10 +49,6 @@ export class BudgetComponent implements OnInit {
                     console.log(error)
                     }
                   )
-
-       
-
-
                    this.apiService.postData(this.apiService.serverPath+'BudgetItem/mybudgetitems',{BudgetCategoryId:81}).subscribe(data => {
                     console.log(data);
                     this.Budgetlist = data;
@@ -55,46 +57,29 @@ export class BudgetComponent implements OnInit {
                      console.log(error)
                      }
                    )
-
-
-                   //api/BudgetCategory/createupdatebudgetcategory
-
-
-                //   this.apiService.postData(this.apiService.serverPath+'BudgetCategory/createupdatebudgetcategory',{
-                //     "budgetCategoryId": 0,
-                //     "name": "Event"
-                //   }).subscribe(data => {
-                //     console.log(data)
-                //    },
-                //      error => {
-                //      console.log(error)
-                //      }
-                //    )
-
-                // this.apiService.postData(this.apiService.serverPath+'BudgetCategory/mybudgetcategory').subscribe(data => {
-                //     console.log(data);
-                //    },
-                //      error => {
-                //      console.log(error)
-                //      }
-                //    )
   }
   closeModel(){
     this.AddBudget = false;
   }
-  budget_Add_form(a){
-    console.log(a);
-            this.apiService.postData(this.apiService.serverPath+'BudgetItem/createupdatebudgetitem',a.value).subscribe(data => {
-                    console.log(data)
-                   },
-                     error => {
-                     console.log(error)
-                     }
-                   )
+  saveBudget(){
+    this.budgetservice.createUpdateBudgetItem().subscribe(res=>{
+      console.log(res.budgetItemId);
+      debugger;
+      if(this.budgetservice.objBudgetItem.budgetItemId==undefined || parseInt(res.budgetItemId) > this.budgetservice.objBudgetItem.budgetItemId){
+        this.budgetservice.objBudgetItem = new BudgetItemVM();
+        this.toaster.success(res.message,'Done !');
+        this.closeModel();
+      }else{
+        this.toaster.error(res.message,'Error !');
+      }
+    });
   }
-
-
-  //api/BudgetCategory/expensesbycategory
-  //api/BudgetItem/createupdatebudgetitem
-  //api/BudgetCategory/mybudgetcategory
+  getPendingAmount(){
+   this.budgetservice.objBudgetItem.pendingAmount= this.budgetservice.objBudgetItem.finalCost-this.budgetservice.objBudgetItem.paidAmount;
+  }
+  getMyBudgetItems(){
+    this.budgetservice.getMybudgetItems(0).subscribe(res=>{
+      console.log(res);
+    })
+  }
 }

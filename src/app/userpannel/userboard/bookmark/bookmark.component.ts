@@ -25,9 +25,7 @@ import { Location } from '@angular/common';
 export class NgbdbookmarkModalContent {
     @Input() name;
     constructor(public activeModal: NgbActiveModal, public modalref: NgbModalRef) { }
-
 }
-
 
 @Component({
   selector: 'app-bookmark',
@@ -40,6 +38,8 @@ export class BookmarkComponent implements OnInit {
  myChecklist: any;
  filteredToDos: any;
  modalref:any;
+ completedTaskTotal:number;
+ completedInPercent:number;
  checklistOptions: any;
   // Prevent panel toggle code
   public beforeChange($event: NgbPanelChangeEvent) {
@@ -65,13 +65,10 @@ export class BookmarkComponent implements OnInit {
             {id: 6, name: 'Others'}
         ]
         this.mychecklist();
-    }
-    goback(){
-        this.locationService.back();
-
+        
     }
     getTaskOptionName(id){
-        return this.checklistOptions.filter(o=>o.id==id)?this.checklistOptions.filter(o=>o.id==id)[0].name: '';
+        return this.checklistOptions.filter(o=>o.id==id)[0]?this.checklistOptions.filter(o=>o.id==id)[0].name: 'NA';
     }
      addNewTask(obj){
          if(obj.toDoId>0){this.tskService.objTodoVm.status=2}
@@ -93,7 +90,9 @@ export class BookmarkComponent implements OnInit {
          this.tskService.objMychecklistParam.filter = 0;
          this.tskService.myCheckList().subscribe(res=>{
             this.myChecklist = res;
+            this.completedTaskTotal = this.myChecklist.filter(ch=>ch.status===2).length;
             this.filteredToDos = this.myChecklist;
+            this.completedInPercent =this.completedTaskTotal*100/this.filteredToDos.length;
             console.log(this.myChecklist);
          });
      }

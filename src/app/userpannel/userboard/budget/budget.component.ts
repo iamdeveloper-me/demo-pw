@@ -21,6 +21,7 @@ export class BudgetComponent implements OnInit {
   paidAmount:string
   pendingAmount: string
   budgetCategoryId:number
+  expensesByCategory : any
   ngOnInit() {
                 $("li").removeClass("user");
                 $("#login").hide();
@@ -51,7 +52,7 @@ export class BudgetComponent implements OnInit {
                   )
                    this.apiService.postData(this.apiService.serverPath+'BudgetItem/mybudgetitems',{BudgetCategoryId:81}).subscribe(data => {
                     console.log(data);
-                    this.Budgetlist = data;
+                    this.expensesByCategory = data;
                    },
                      error => {
                      console.log(error)

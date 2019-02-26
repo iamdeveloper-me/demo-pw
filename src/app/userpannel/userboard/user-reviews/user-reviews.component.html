@@ -12,7 +12,9 @@
     <div *ngFor="let review of reviewsArray" >
       <div class="man_img" >
         <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
-        <span class="revie_name"> <strong> {{review.sendByFullName}} Peeter Parker </strong> <br>
+        <span class="revie_name"> <strong> 
+          {{review.sendByFirstName}} {{review.sendByLastName}} 
+        </strong> <br>
         <h5>{{review.sendByEmail}}</h5>
         </span>
         <p class="date">{{review.dateAddedOnString}}</p>
@@ -27,7 +29,9 @@
             <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
             
         </div>
-        <p> {{review.comments}} Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
+        <p> {{review.comments}}
+           <!-- Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time. -->
+        </p>
 
         <div class="btn_button ">
           <p> <span><i class="material-icons">thumb_up</i> </span> <span class="share_i"> <i class="material-icons"> share </i> <b> Share </b>  </span>  </p>

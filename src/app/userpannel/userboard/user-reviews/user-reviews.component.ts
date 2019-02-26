@@ -14,11 +14,11 @@ export class UserReviewsComponent implements OnInit {
   ngOnInit() {  
     this.myReviews();
                 $("li").removeClass("user");
-                var headers = new Headers();
-                var authToken = localStorage.getItem('userToken');
-                headers.append('Accept', 'application/json')
-                headers.append('Content-Type', 'application/json');
-                headers.append("Authorization",'Bearer '+authToken);
+                // var headers = new Headers();
+                // var authToken = localStorage.getItem('userToken');
+                // headers.append('Accept', 'application/json')
+                // headers.append('Content-Type', 'application/json');
+                // headers.append("Authorization",'Bearer '+authToken);
                 $("#login").hide();
                 // this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/myreviews",
                 // {headers:headers}).subscribe(
@@ -32,7 +32,6 @@ export class UserReviewsComponent implements OnInit {
     }).subscribe(data => {
       this.reviewsArray = data;
       console.log(this.reviewsArray)
-      // this.toastr.success(data.message);
     },
       error => {
       console.log(error)

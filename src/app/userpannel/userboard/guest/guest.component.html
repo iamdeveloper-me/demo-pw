@@ -13,9 +13,7 @@
                 <div class="col-md-8 text-right hidden-xs">
                   <label>Sort By </label>
                    <select>
-                      <option>Menu Type</option>
-                      <option >Vegeterian</option>
-                      <option >Non-Vegeterian</option>
+                      <option *ngFor='let m of _guestservice.menuGuestCount' [value]='m.menuId'>{{m.name}}</option>
                    </select>
                    <select>
                      <option>Invitation Status</option>
@@ -39,15 +37,15 @@
                     <div class="roundbox">
                             <i class="material-icons">group</i>
                             Total
-                            210
+                            {{totalGuests}}
                     </div>
                     <div class="roundbox">
                         <i class="material-icons">person</i>
-                            Adults 156
+                            Adults {{totalAdulst}}
                     </div>
                     <div class="roundbox">
                       <i class="material-icons">child_care</i>
-                            Child 54
+                            Child {{totalChilds}}
                     </div>
                   </div>
                   <div class="text-center">
@@ -67,9 +65,10 @@
                       <i class="material-icons"> group</i> 
                     </div>
                     <div class="pull-left marleft10px">
-                      <strong>Aditi's Family</strong>
+                      <strong>{{g.name}}</strong>
                       <div class="clearfix"></div>  
-                      <span>120 People Children: 2</span> 
+                      <span *ngIf='g.peopleCount>0'>{{g.peopleCount}} People </span>
+                      <span *ngIf='g.kidsCount>0'>Children: {{g.kidsCount}}</span> 
                     </div>   
                   </div>
                   <div class="col-3 col-sm-3 text-center hidden-xs">
@@ -88,9 +87,9 @@
                   </div>
                 </div>
                 <div class="panel">
-                  <div class="checkbox row mobnopaddltrt">
+                  <!-- <div class="checkbox row mobnopaddltrt" *ngFor='let m of g.guests'>
                       <div class="col-4">
-                       <strong>Aditi</strong> 
+                       <strong>{{m.name}}</strong> 
                         <i class="material-icons pull-right">child_care</i>
                       </div>
                       <div class="col-3 text-center">
@@ -129,7 +128,7 @@
                               </ul>
                           </div>
                       </div>
-                  </div>
+                  </div> -->
                     <div class="checkbox row mobnopaddltrt">
                       <div class="col-4">
                        <strong>Gaurav</strong> 
@@ -183,17 +182,17 @@
                     <div class="roundbox">
                             <i class="material-icons">group</i>
                             Total
-                            210
+                            {{totalGuests}}
                           </div>
 
                            <div class="roundbox">
                             <i class="material-icons">person</i>
-                            Adults 156
+                            Adults {{totalAdulst}}
                         </div>
 
                          <div class="roundbox">
                             <i class="material-icons">child_care</i>
-                            Child 54
+                            Child {{totalChilds}}
                           </div>
                   </div>
                   <div class="text-center" (click) = "twitterDailog = true ">
@@ -213,10 +212,8 @@
                 <h1 class="sidebarhead">Groups</h1>
                 <div>
                    <ol class="timeline">
-                        <li><a href="#">Aditi's Family <span class="badge badge-pill badge-default">120</span></a></li>
-                        <li><a href="#">Work Friends<span class="badge badge-pill badge-default">17</span></a></li>
-                        <li><a href="#">Vega's Friends <span class="badge badge-pill badge-default">55</span></a></li>
-                        <li><a href="#">Unassigned<span class="badge badge-pill badge-default">125</span></a></li>
+                        <li *ngFor='let g of _guestservice.myGroups'>
+                          <a href="#">{{g.name}} <span class="badge badge-pill badge-default">{{g.guestsCount}}</span></a></li>
                       </ol>
                 </div>
                 <div class="text-center">
@@ -247,9 +244,9 @@
                 <h1 class="sidebarhead">Menu</h1>
                 <div>
                    <ol class="timeline">
-                        <li><a href="#">Vegetarian<span class="badge badge-pill badge-default">0</span></a></li>
-                        <li><a href="#">Chicken<span class="badge badge-pill badge-default">150</span></a></li>
-                        <li><a href="#">Fish<span class="badge badge-pill badge-default">60</span></a></li>
+                        <li *ngFor='let m of _guestservice.menuGuestCount'>
+                          <a href="#">{{m.name}}<span class="badge badge-pill badge-default">{{m.guestsCount}}</span></a>
+                        </li>
                       </ol>
                 </div>
                 <div class="text-center">
@@ -264,11 +261,11 @@
 </div></div>
 <app-foot></app-foot>
 <router-outlet></router-outlet> 
-<!-- myModalGroup -->
+<!-- myModalGroup Guest-->
 <div class="modal fade" [ngClass] = "{'show' : twitterDailog}" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form>
+        <form (ngSubmit)='createUpdateGuest()'>
         <div class="modal-header text-center">
             <h4 class="modal-title"><b>Add New Guest</b></h4>
             <button type="button" class="close" (click) = "closeModel()" >
@@ -280,8 +277,8 @@
             <div class="col-sm-12 nopadd">
               <div class="col-sm-12">
                     <div class="row field select_group">
-                        <label>Enter Group Name</label>
-                        <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name">                    
+                        <label>Enter Guest Name</label>
+                        <input type="text" id="guestName" name="guestName" [(ngModel)]='_guestservice.objGuest.name' class="form-control mb-4" placeholder="Name">                    
                     </div>
               </div>
             </div>
@@ -290,17 +287,14 @@
                     <div class="row field">
                       <div class="col-md-6 select_group1">
                           <label>Select Group</label>
-                          <select class="browser-default custom-select mb-4">
-                              <option value="" disabled>DDL.V</option>
-                              <option value="1" selected>Feedback</option>
-                              <option value="2">Report a bug</option>
-                              <option value="3">Feature request</option>
-                              <option value="4">Feature request</option>
+                          <select class="browser-default custom-select mb-4" id='guestGroupId' name='guestGroupId' [(ngModel)]='_guestservice.objGuest.groupsId'>
+                              <option *ngFor='let g of _guestservice.myGroups' [value]='g.groupsId'>{{g.name}}</option>
                           </select> 
                       </div>
                       <div class="col-md-6 age_group">
                           <label>Age Group</label>
-                          <select class="browser-default custom-select mb-4">
+                        <select class="browser-default custom-select mb-4" name="guestAgeGroup" id='guestAgeGroup' 
+                        [(ngModel)]='_guestservice.objGuest.ageGroup'>
                               <option value="" disabled>22</option>
                               <option value="1" selected>23</option>
                               <option value="2">25</option>
@@ -315,29 +309,27 @@
                 <div class="row field">
                   <div class="col-md-6 select_group1">
                     <label>Menu</label>
-                       <select class="browser-default custom-select mb-4">
-                          <option value="" disabled>vegiteriyan</option>
-                          <option value="1" selected>Nonvegiteriyan</option>
+                       <select class="browser-default custom-select mb-4" id='guestmenuId' name="guestmenuId" [(ngModel)]='_guestservice.objGuest.menuId'>
+                          <option *ngFor='let m of _guestservice.menuGuestCount' [value]='m.menuId'>{{m.name}}</option>
                        </select> 
                   </div>
                   <div class="col-md-1 blanck_box">
                   </div>
                   <div class="col-md-5 age_group check_box">
-                      <input type="checkbox">Invitation Send
+                      <input type="checkbox" [(ngModel)]='_guestservice.objGuest.invitationSent' id='invitationSent' name="invitationSent">Invitation Send
                   </div>
                 </div>
           </div>
         </div> 
         <div class="modal-footer marbot0px">
             <button type="submit"  class="btn newbtn">Save</button>
-
             <button type="button" class="btn newbtn newcancelbtn"  (click) = "closeModel()" >Cancel</button>
           </div>
           </form>
       </div>       
     </div>          
 </div>
-  <!-- mymodel -->
+  <!-- mymodel Group -->
 <div class="modal fade" [ngClass] = "{'show' : groupDailog }" id="groupDailog" tabindex="-1" role="dialog" aria-labelledby="myModalGroup">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -351,10 +343,10 @@
         <div class="modal-body formscroll">
             <div class="col-sm-12 nopadd">
               <div class="col-sm-12">
-                <form (ngSubmit)='createUpdateGroup()'>
+                <form (ngSubmit)='createUpdateGroup()' #Group="ngForm">
                     <div class="row field">
                         <label>Group Name</label>
-                        <input type="text" id="groupName" [(ngModel)]='_guestservice.objGroup.name' class="form-control mb-4" placeholder="Name">                    
+                        <input type="text" id="groupName" name='groupName' [(ngModel)]='_guestservice.objGroup.name' class="form-control mb-4" placeholder="Name">                    
                     </div>
                     <div class="modal-footer marbot0px">
                         <button type="submit"  class="btn newbtn">Save</button>
@@ -378,20 +370,10 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
+                                <tr *ngFor='let g of  _guestservice.myGroups'>
                                   <th scope="row">1</th>
-                                  <td>Cell</td>
-                                  <td>Cell</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">2</th>
-                                  <td>Cell</td>
-                                  <td>Cell</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">3</th>
-                                  <td>Cell</td>
-                                  <td>Cell</td>
+                                  <td>{{g.name}}</td>
+                                  <td><div class="btn btn-edit">Edit</div></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -417,10 +399,16 @@
           <div class="modal-body formscroll">
               <div class="col-sm-12 nopadd">
                 <div class="col-sm-12">
+                  <form (ngSubmit)='createUpdateMenu()' #menu="ngForm">
                       <div class="row field">
                           <label>Menu Name</label>
-                          <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name">                
+                          <input type="text" name="menuName" id="menuName" [(ngModel)]='_guestservice.objMenu.name' class="form-control mb-4" placeholder="Name">                
                       </div>
+                      <div class="modal-footer marbot0px">
+                          <button type="submit"  class="btn newbtn">Save</button>
+                          <button type="reset" class="btn newbtn newcancelbtn"  (click) = "closeModel()" >Cancel</button>
+                        </div>
+                      </form>
                 </div>
               </div>
               <div class="col-sm-12 nopadd topmargin">
@@ -453,11 +441,6 @@
                 </div>
               </div>
           </div> 
-          <div class="modal-footer marbot0px">
-              <button type="submit"  class="btn newbtn">Save</button>
-  
-              <button type="button" class="btn newbtn newcancelbtn"  (click) = "closeModel()" >Cancel</button>
-            </div>
         </div>       
       </div>          
 </div>

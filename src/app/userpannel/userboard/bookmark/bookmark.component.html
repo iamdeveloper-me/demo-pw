@@ -12,9 +12,9 @@
                         <img src="https://s3.us-east-2.amazonaws.com/prefect-image/checklist-icon.png">
                     </div>
                     <div class="span4tik col-sm-8" style="position: relative;">
-                    <span class="tools-boxProgress-tooltip" style="left:25px;">25%</span>
-                     <ngb-progressbar showValue="true" type="success" [value]="25"></ngb-progressbar>
-                     1 of 112 tasks completed
+                    <span class="tools-boxProgress-tooltip" style="left:25px;">{{completedInPercent| number:'.2-2'}} %</span>
+                     <ngb-progressbar showValue="true" type="success" [value]="completedInPercent| number:'.2-2'"></ngb-progressbar>
+                     {{completedTaskTotal}} of {{myChecklist?myChecklist.length: 0}} tasks completed
                     </div>
                     <div class="col-sm-2">
                         <button class="btn addtaskbtn filterbtn">
@@ -22,7 +22,7 @@
                                 filter_list
                             </i>
                         </button>
-                        <button class="btn addtaskbtn" (click)="open(content)">
+                        <button class="btn addtaskbtn" data-toggle="modal" data-target="#content">
                             <i class="material-icons disnone">add_circle_outline</i>
                             New Task
                         </button>
@@ -261,47 +261,38 @@
 </ngb-accordion> -->
 
             <div class="tabsectionmobile">
-                <a class="todobtncheck">
+                <a class="todobtncheck" (click)='filterByStatus(1)'>
                     <i class="material-icons">schedule</i>
                     <br/>To Do
                 </a>
-                <a class="donebtncheck">
+                <a class="donebtncheck" (click)='filterByStatus(2)'>
                     <i class="material-icons">sentiment_satisfied</i>
                     <br/>Complete
                 </a>
-                  <a class="allbtncheck">
+                  <a class="allbtncheck" (click)='filterByStatus(0)'>
                     <i class="material-icons">adjust</i>
                     <br/>All</a>
             </div>
             <div class="clearfix"></div>
-                    
                <div class="panel-body nopadd card martop0px">
-
-
-                    <div class="CheckListdiv donecheckbox" *ngFor='let td of myChecklist'>
-                    	<i class="material-icons tikchecklist" *ngIf='td.status===1'>check</i>
+                    <div class="CheckListdiv" style="display:block!important" *ngFor='let td of filteredToDos'>
+                    	<i class="material-icons tikchecklist" *ngIf='td.status==1' (click)='addNewTask(td)'>check</i>
                     	<span>
                     		<strong>{{td.name}}</strong>
                     		<br/>
-                    		Events
+                    		{{getTaskOptionName(td.toDoId)}}
                             <br/>
-                            {{td.timing}} <span class="badge badge-success" *ngIf='td.status==1'>{{statusString}}</span>
+                            {{td.timing}} <span class="badge badge-success" *ngIf='td.status==1'>{{td.statusString}}</span>
                     	</span>
                     	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
                     </div>
-                </div>
-        </div>
-    </div>
-</div>
-
-
-<ng-template #content let-c="close" let-d="dismiss">
-	<div  class="card">
-	<div class="card-body">
+                    <div id='content' class="modal fade" role="dialog" >
+                        <div class="modal-dialog">
+                            <div style="margin-top:15%" class="modal-content">
                             <div class="modal-header">
                             	<br/>
                                 <h4 class="modal-title">Add New Task</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <button type="button" class="close" aria-label="Close" data-dismiss="modal">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -310,10 +301,9 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <div class="input-effect form-group md-form ">
-                                                        <input class="effect-16 validate" type="text" name="taskName" [(ngModel)]='tskService.objTodoVm.name' placeholder="" required="required">
-                                                        <label>Task Name</label>
-                                                        <span class="focus-border"></span>
+                                                    <div class="field">
+                                                        <input type="text" name="taskName" [(ngModel)]='tskService.objTodoVm.name' placeholder="Task Name" required="required" id="taskName">
+                                                        <label for="taskName">Task Name</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -321,33 +311,21 @@
                                         <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <div class="input-effect form-group md-form ">
-                                            <select class="effect-16 validate" name="timing" [(ngModel)]='tskService.objTodoVm.timing'>
-                                                <option>Timing</option>
-                                                <option>From 10 to 12 months</option>
-                                                <option>From 07 to 09 months</option>
-                                                <option>From 04 to 06 months</option>
-                                                <option>From 02 to 03 months</option>
-                                                <option>Last months</option>
-                                                <option>Two Weeks</option>
-                                                <option>Last Week</option>
-                                                <option>After the Wedding</option>
-                                                <option>Real Wedding Shoot</option>
-                                            </select>
+                                           <div class="field">
+                                                <select name="timing" [(ngModel)]='tskService.objTodoVm.timing' id="bydate" placeholder="By Date" >
+                                                    <option *ngFor='let t of tskService.timings' [value]='t.id'>{{t.timing}}</option>
+                                                </select>
+                                                <label for="bydate">By Date</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <div class="input-effect form-group md-form ">
-                                            <select class="effect-16 validate" name="category" [(ngModel)]='tskService.objTodoVm.categoryId'>
-                                                <option value="1">Category</option>
-                                                <option value="2">Events</option>
-                                                <option value="3">Photography & Vedio</option>
-                                                <option value="4">Planing</option>
-                                                <option value="5">Health & Beauty</option>
-                                                <option value="6">Others</option>
-                                            </select>
+                                            <div class="field">
+                                                <select name="category" [(ngModel)]='tskService.objTodoVm.categoryId' id="bycategory"  placeholder="By Category">
+                                                        <option *ngFor='let o of checklistOptions' [value]='o.id'>{{o.name}}</option>
+                                                </select>
+                                                 <label for="bycategory">By Category</label>
                                             </div>
                                         </div>
                                     </div>
@@ -355,10 +333,9 @@
                                         <div class="row">
                                         <div class="col-md-12">
                                         <div class="form-group">
-                                            <div class="input-effect form-group md-form ">
-                                                <textarea class="effect-16 validate" name="notes" [(ngModel)]='tskService.objTodoVm.notes' type="text" placeholder="" required="required"></textarea>
-                                                <label>Notes</label>
-                                                <span class="focus-border textareafocus"></span>
+                                            <div class="field">
+                                                <textarea   id="notes" name="notes" [(ngModel)]='tskService.objTodoVm.notes' type="text" placeholder="Notes" required="required"></textarea>
+                                                <label for="notes">Notes</label>
                                             </div>
                                         </div>
                                         </div>
@@ -367,16 +344,21 @@
                                     <div class="row">
                                         <div class="col-md-12 mobCenter">
                                         <div class="form-group">
-                                            <button type="button" (click)='addNewTask()' data-dismiss='modal' class="btn pinkbtn">Add Task</button>
+                                            <button type="button" (click)='addNewTask(tskService.objTodoVm)' data-dismiss='modal' class="btn pinkbtn">Add Task</button>
                                     </div></div>
                                     </div>
                    
                                 </form>
                             </div>
-                          
-        </div></div>
-</ng-template>
+                          </div>
+                        
+                        </div>
+                     </div>
 
+                </div>
+        </div>
+    </div>
+</div>
 
 <app-foot></app-foot>
 <router-outlet></router-outlet> 

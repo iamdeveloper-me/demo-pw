@@ -233,6 +233,7 @@ import { HoneymoonDestinatationComponent } from './honeymoon-destinatation/honey
 
 import { AllReviewsComponent } from './all-reviews/all-reviews.component';
 import { DealListComponent } from './deal-list/deal-list.component';
+import { HoneymoonSearchResultComponent ,PPl} from './honeymoon-search-result/honeymoon-search-result.component';
 
 
 // import { ShareButtonsModule } from '@ngx-share/buttons';
@@ -265,6 +266,7 @@ export function getAuthServiceConfigs() {
         SafePipeP,
         SafePipe,
         PP,
+        PPl,
         CustompipePipe,
         CategoryPipePipe,
         ReversePipe  ,
@@ -471,6 +473,7 @@ export function getAuthServiceConfigs() {
 
         HoneymoonDestinatationComponent,
         DealListComponent,
+        HoneymoonSearchResultComponent,
 
 
 

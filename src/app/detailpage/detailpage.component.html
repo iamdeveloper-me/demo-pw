@@ -1138,7 +1138,7 @@
           </div>
         </div>
 
-        <div class="modal fade" id="Review_vendor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div *ngIf="responce_review  == true " class="modal fade" id="Review_vendor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -1148,7 +1148,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <div *ngIf="responce_review  == true ">
+                <div >
                   <form (ngSubmit)="putReview(review)" #f="ngForm">
                     <div class="vp_review_txt">
                       <div class="vp_giveReviewBox">
@@ -1176,7 +1176,6 @@
                   </form>
                 </div>
               </div>
-              <h1 *ngIf="responce_thanks == true ">THANK YOU FOR YOUR REVIEW</h1>
             </div>
           </div>
         </div>

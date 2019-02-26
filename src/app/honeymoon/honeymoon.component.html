@@ -73,7 +73,7 @@
 				</ng-container>
 			</owl-carousel-o>
 			<h1 class="headingtext"><strong style="color: #e72e77;">Honeymoon & Travel Destinations</strong></h1>
-			<div *ngFor='let Honeymoon of Honeymoon_destinations '>
+			<!-- <div *ngFor='let Honeymoon of Honeymoon_destinations '>
 				<div class="col-sm-3 col-12 image_div" (click) = "searchmore(Honeymoon)">
 					<div class="disboxloop" >
 						<a>
@@ -85,8 +85,22 @@
 						</a>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		
+			<div *ngFor='let l of Categories' [class]="l.className">
+					<div class="col-sm-3 col-12 image_div" (click)="searchLocation(l)">
+						<div class="disboxloop" >
+							<a>
+								<img src='https://s3.us-east-2.amazonaws.com/prefect-image/1200px-GarudaWisnuKencana_head.jpg' class="discountimg">
+									<div class="titlebox">
+											<h2>Bali</h2>
+										<span>14 Listings</span>
+									</div>						
+							</a>
+						</div>
+					</div>
+				</div>
+
           
 		</div>
 		<div class="container">
@@ -96,6 +110,7 @@
 				</div>	
 			</div>
 		</div>	
+
 	<app-foot></app-foot>
 </div>
 <router-outlet></router-outlet>  

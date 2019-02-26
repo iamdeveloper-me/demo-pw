@@ -34,4 +34,18 @@ export class DealListComponent implements OnInit {
 
 
   }
+
+  go_back_link_page(){
+
+   
+    this.route.paramMap.subscribe(params => {
+      this.vendorid = params
+      console.log(params)
+    
+      const a =  this.vendorid.params.categoryname;
+      const b = this.vendorid.params.id;
+      const c = this.vendorid.params.bussinesname;
+      this.router.navigateByUrl('/home/weddingvendorsdetailprofile/'+a+'/'+b+'/'+c.replace(/\s/g,''));
+    })
+  }
 }

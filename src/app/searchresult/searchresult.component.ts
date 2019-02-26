@@ -91,14 +91,14 @@ export class SearchresultComponent implements OnInit {
     this.objSearchFilter=new filterParam();
     this.objSearchFilter =JSON.parse(sessionStorage.getItem('filterParam'));
     this.objSearchlistvm = new SearchListingVM();
-    this.objSearchlistvm.searchInDreamLocation = this.objSearchFilter.isDreamLocation;
-    this.objSearchlistvm.searchInFeaturedVendors = this.objSearchFilter.isSearchInFeaturedSupplier;
+    this.objSearchlistvm.searchInDreamLocation = this.objSearchFilter?this.objSearchFilter.isDreamLocation:false;
+    this.objSearchlistvm.searchInFeaturedVendors = this.objSearchFilter?this.objSearchFilter.isSearchInFeaturedSupplier:false;
     if(this.objSearchlistvm.searchInFeaturedVendors || this.objSearchlistvm.searchInDreamLocation){
       this.featuredListingArray.forEach(element => {
         element.isSelect = true;
       });
     }
-    if(this.objSearchFilter.locationId != 0){
+    if(this.objSearchFilter && this.objSearchFilter.locationId != 0){
     this.objSearchlistvm.districts.push(this.objSearchFilter.locationId);}
     this.getLocations();
     this.getCategories();
@@ -140,8 +140,13 @@ export class SearchresultComponent implements OnInit {
   goToPortfolioDetail(vendor){
     let url: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/PerfectWedding/vendordetails';
     this.api.getData(url+'?id='+vendor.vendorId).subscribe(res=>{
-      sessionStorage.setItem('vendorDetails',JSON.stringify(res));
-    this._route.navigate(['home/detailprofile',0]);
+     // sessionStorage.setItem('vendorDetails',JSON.stringify(res));
+      const a = res.vendorCategories[0].categories.categoryName;
+      const b = res.vendorId;
+      const c = res.nameOfBusiness;
+      this._route.navigateByUrl('/home/weddingvendorsdetailprofile/'+a.replace(/\s/g,'')+'/'+b+'/'+c.replace(/\s/g,''));
+  
+    //this._route.navigate(['home/detailprofile',0]);
   });
   }
   getLocations(){
@@ -164,7 +169,7 @@ export class SearchresultComponent implements OnInit {
   
     this.categories = JSON.parse(localStorage.getItem('catlist'));
     console.log(this.categories);
-    if(this.objSearchFilter.catId>0){
+    if(this.objSearchFilter && this.objSearchFilter.catId>0){
       this.categories.filter(c=>c.categoryId==this.objSearchFilter.catId)[0].isSelect=true;
       this.SelectedCategory = this.categories.filter(c=>c.isSelect==true)[0];
       this.showALlCategories=false;
@@ -175,7 +180,7 @@ export class SearchresultComponent implements OnInit {
       element.isSelect = false;
     });
     this.collection=[];
-    this.paginate(this.objSearchFilter.pageSize);  
+    this.paginate(this.objSearchFilter?this.objSearchFilter.pageSize: 25);  
     this.showALlCategories=false;
   }
   clearFilters(){
@@ -264,6 +269,7 @@ export class SearchresultComponent implements OnInit {
     this.objSearchResultItems.items.forEach(element => {
       this.collection.push(element);
       this.slidesStore = this.collection
+      console.log(this.slidesStore)
     });
   }
   filterLocations(ev){
@@ -437,7 +443,9 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   sessionStorage.removeItem('filterParam');
   this.objSearchFilter = new filterParam();
   this.objSearchlistvm = new SearchListingVM();
-  this.initializeResult()
+  this._activeRoute.params.subscribe(p=>{
+    this.initializeResult();
+  })
   //this._route.navigate(['/home/weddingvendors/',this.SelectedCategory.categoryName]);
 }
 deselectAllItemsInCollection(collection:Array<any>){

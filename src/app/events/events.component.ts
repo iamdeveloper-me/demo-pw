@@ -60,9 +60,10 @@ export class EventsComponent implements OnInit {
   event(){
     //Event API
     this.objSearchlistvm['userId'] = sessionStorage.getItem('userId') != null ? sessionStorage.getItem('userId') : null;
+    debugger;
     this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',this.objSearchlistvm).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data.items;
-        console.log(this.allItems);
+        console.log(JSON.stringify(this.allItems));
         this.setPage(1);
     });
     this.locationD()
@@ -119,13 +120,8 @@ export class EventsComponent implements OnInit {
       })
     }else{
         this.router.navigateByUrl('/home',{ queryParams: { login: true}});
-        
-  
        }
-    
-   
   }
-
 }
 
 

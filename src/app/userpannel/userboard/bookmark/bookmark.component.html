@@ -261,15 +261,15 @@
 </ngb-accordion> -->
 
             <div class="tabsectionmobile">
-                <a class="todobtncheck">
+                <a class="todobtncheck" (click)='filterByStatus(1)'>
                     <i class="material-icons">schedule</i>
                     <br/>To Do
                 </a>
-                <a class="donebtncheck">
+                <a class="donebtncheck" (click)='filterByStatus(2)'>
                     <i class="material-icons">sentiment_satisfied</i>
                     <br/>Complete
                 </a>
-                  <a class="allbtncheck">
+                  <a class="allbtncheck" (click)='filterByStatus(0)'>
                     <i class="material-icons">adjust</i>
                     <br/>All</a>
             </div>
@@ -278,44 +278,18 @@
                <div class="panel-body nopadd card martop0px">
 
 
-                    <div class="CheckListdiv donecheckbox">
-                    	<i class="material-icons tikchecklist">check</i>
+                    <div class="CheckListdiv donecheckbox" *ngFor='let td of filteredToDos'>
+                    	<i class="material-icons tikchecklist" *ngIf='td.status==1' (click)='addNewTask(td)'>check</i>
                     	<span>
-                    		<strong>Check if your wedding date is on an auspicious day</strong>
+                    		<strong>{{td.name}}</strong>
                     		<br/>
-                    		Events
+                    		{{getTaskOptionName(td.toDoId)}}
                             <br/>
-                            From 10 to 12 months <span class="badge badge-success">Done</span>
+                            {{td.timing}} <span class="badge badge-success" *ngIf='td.status==1'>{{statusString}}</span>
                     	</span>
                     	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
                     </div>
-                    <div class="CheckListdiv donecheckbox">
-                        <i class="material-icons tikchecklist">check</i>
-                        <span>
-                            <strong>Check if your wedding date is on an auspicious day</strong>
-                            <br/>
-                            Events
-                            <br/>
-                            From 10 to 12 months <span class="badge badge-success">Done</span>
-                        </span>
-                        <button class="deletebtnhover"><i class="material-icons">delete</i></button>
-                    </div>
-                    <div class="CheckListdiv todocheckbox">
-                        <i class="material-icons tikchecklist">check</i>
-                        <span>
-                            <strong>Check if your wedding date is on an auspicious day</strong>
-                            <br/>
-                            Events
-                            <br/>
-                            From 10 to 12 months <span class="badge badge-warning">To Do List</span>
-                        </span>
-                        <button class="deletebtnhover"><i class="material-icons">delete</i></button>
-                    </div>
                 </div>
-
-          
-
-           
         </div>
     </div>
 </div>
@@ -333,74 +307,62 @@
                             </div>
                             <div class="modal-body">
                                 <form>
-                    <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                            <input class="effect-16 validate" type="text" placeholder="" required="required">
-                            <label>Task Name</label>
-                            <span class="focus-border"></span>
-                        </div>
-                    </div>
-                  </div>
-                    </div>
-                    <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <select class="effect-16 validate">
-                            <option>Timing</option>
-                            <option>From 10 to 12 months</option>
-							<option>From 07 to 09 months</option>
-							<option>From 04 to 06 months</option>
-							<option>From 02 to 03 months</option>
-							<option>Last months</option>
-							<option>Two Weeks</option>
-							<option>Last Week</option>
-							<option>After the Wedding</option>
-                            <option>Real Wedding Shoot</option>
-                          </select>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="input-effect form-group md-form ">
-                          <select class="effect-16 validate">
-                            <option>Category</option>
-                            <option>Events</option>
-							<option>Photography & Vedio</option>
-							<option>Planing</option>
-							<option>Health & Beauty</option>
-							<option>Others</option>
-                          </select>
-                        </div>
-                    </div>
-                  </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                          <div class="input-effect form-group md-form ">
-                              <textarea class="effect-16 validate" type="email" placeholder="" required="required"></textarea>
-                              <label>Notes</label>
-                              <span class="focus-border textareafocus"></span>
-                          </div>
-                      </div>
-                    </div>
-                    </div>
-                     <div class="clearfix"></div>
-                   <div class="row">
-                    <div class="col-md-12 mobCenter">
-                      <div class="form-group">
-                         <button type="submit" class="btn pinkbtn">Add Task</button>
-                </div></div>
-            </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="input-effect form-group md-form ">
+                                                        <input class="effect-16 validate" type="text" name="taskName" [(ngModel)]='tskService.objTodoVm.name' placeholder="" required="required">
+                                                        <label>Task Name</label>
+                                                        <span class="focus-border"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-effect form-group md-form ">
+                                            <select class="effect-16 validate" name="timing" [(ngModel)]='tskService.objTodoVm.timing'>
+                                                    <option *ngFor='let t of tskService.timings' [value]='t.id'>{{t.timing}}</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-effect form-group md-form ">
+                                            <select class="effect-16 validate" name="category" [(ngModel)]='tskService.objTodoVm.categoryId'>
+                                                    <option *ngFor='let o of checklistOptions' [value]='o.id'>{{o.name}}</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-effect form-group md-form ">
+                                                <textarea class="effect-16 validate" name="notes" [(ngModel)]='tskService.objTodoVm.notes' type="text" placeholder="" required="required"></textarea>
+                                                <label>Notes</label>
+                                                <span class="focus-border textareafocus"></span>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    <div class="row">
+                                        <div class="col-md-12 mobCenter">
+                                        <div class="form-group">
+                                            <button type="button" (click)='addNewTask(tskService.objTodoVm)' data-dismiss='modal' class="btn pinkbtn">Add Task</button>
+                                    </div></div>
+                                    </div>
                    
-                    </form>
+                                </form>
                             </div>
                           
-                        </div></div>
-                        </ng-template>
+        </div></div>
+</ng-template>
+
+
 <app-foot></app-foot>
 <router-outlet></router-outlet> 

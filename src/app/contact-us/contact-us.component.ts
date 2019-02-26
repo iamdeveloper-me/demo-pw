@@ -13,7 +13,11 @@ import { Router } from '@angular/router';
 export class ContactUsComponent implements OnInit {
   contactInfoObj: ContactUsVM;
   listCaptchaValue;
-  subjects = ["General Enquiry","Business Enquiry - Advertising","Complaints"];
+  subjects = [
+    { id:1,name:"General Enquiry" },
+    { id:3,name:"Business Enquiry - Advertising" },
+    { id:4,name:"Complaints" }
+  ];
   constructor(private apiService: apiService, public toastr: ToastrService, private meta : Meta, private title : Title,private router : Router ) {
     this.contactInfoObj = new ContactUsVM();
   }

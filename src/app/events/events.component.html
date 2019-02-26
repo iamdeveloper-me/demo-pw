@@ -67,11 +67,12 @@
 											<i class="material-icons">share</i>
 										</button>
 
-										<!-- <button class="borradius50per purple-gradient"> -->
-										<button class="borradius50per" (click)="bookMark(item,'events','bookmarked')">
+
+										<button [ngStyle]="{'background-color':item.isBookmarked == true ? 'red' : 'green' }" class="borradius50per" (click)="apiService.bookMark(item,'events','bookmarked','eventPage')">
+
 											<i class="material-icons">
 												bookmark_border
-											</i>
+											</i> 
 										</button>
 								</div>
 								<div (click)="goToNextPage(item)">
@@ -94,6 +95,27 @@
 										<div class="eventdate col-sm-4" *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '>
 										<p><span> Start Date </span>  {{Date.startDateString | date}}</p>
 										<p><span> End Date </span> {{Date.endDateString | date}} </p>
+
+										<p>
+
+										</p>
+
+
+												<!-- <p *ngIf="Date.duration === 1">
+													<span>Duration</span>{{Date.duration*24}} Hours
+												</p> -->
+											<p *ngIf="Date.duration === 1">
+														<span>Duration</span> {{Date.duration}} Day
+												</p>	
+											<p *ngIf="Date.duration > 1">
+													<span>Duration</span> {{Date.duration}} Days
+											</p>
+											<!-- Duration {{Date.duration}} Days -->
+										
+
+
+
+
 										</div>
 										<div class="col-sm-8 heightadjust">
 
@@ -120,7 +142,7 @@
 											<div class="eventprice" *ngIf="item.entryFee != null">
 											 	{{item.entryFee}}
 											</div>
-
+											
 											
 										</div>
 										<div class="col-sm-12 footericon">

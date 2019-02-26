@@ -7,6 +7,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { AuthGuardService } from 'app/services/auth-guard.service';
 
 @Component({
   selector: 'app-events',
@@ -17,6 +18,7 @@ export class EventsComponent implements OnInit {
   objSearchlistvm: SearchListingVM;
 
   constructor( 
+    public auth:AuthGuardService, 
     public http:Http, 
     private pagerService: PagerService,
     private apiService: apiService,
@@ -26,7 +28,7 @@ export class EventsComponent implements OnInit {
     private title : Title,
     private route : ActivatedRoute 
     ) {
-              this.objSearchlistvm = new SearchListingVM()
+    this.objSearchlistvm = new SearchListingVM()
 
   }
 
@@ -46,14 +48,10 @@ export class EventsComponent implements OnInit {
   page_sizzze  = 1;
   searchQuery: ""
 
-  public firstname: string;
-    public lastname: string;
-
   ngOnInit() {
 
     this.title.setTitle('Top Wedding Events in Mauritius |Perfect Weddings');    
     this.meta.addTag({name:'description',content:'Top Wedding Events in Mauritius |Perfect Weddings'});    
-    sessionStorage.clear();
     this.locationD();
     this.event();
   }
@@ -61,6 +59,7 @@ export class EventsComponent implements OnInit {
 
   event(){
     //Event API
+    this.objSearchlistvm['userId'] = sessionStorage.getItem('userId') != null ? sessionStorage.getItem('userId') : null;
     this.http.post(this.apiService.serverPath+'PerfectWedding/searchevents',this.objSearchlistvm).map((response: Response) => response.json()).subscribe(data => {
         this.allItems = data.items;
         console.log(this.allItems);
@@ -110,13 +109,21 @@ export class EventsComponent implements OnInit {
   goToNextPage(a){
   //  sessionStorage.setItem('event',JSON.stringify(a));
   //  alert("aaaaaaa");
-    this.router.navigate(['home/event_list' , a.eventId]);
+    this.router.navigate(['home/event_list' , a.eventId,a.eventTitle.replace(/\s/g,'')]);
   }
   bookMark(data, type , action_which_lacation){
     const id = data['eventId'] 
-   this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-     console.log(data)
-   })
+    if(this.auth.userActive()){
+      this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
+        console.log(data)
+      })
+    }else{
+        this.router.navigateByUrl('/home',{ queryParams: { login: true}});
+        
+  
+       }
+    
+   
   }
 
 }

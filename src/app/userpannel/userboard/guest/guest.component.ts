@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GuestserviceService } from './guestservice.service';
 
 @Component({
   selector: 'app-guest',
@@ -6,8 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./guest.component.scss']
 })
 export class GuestComponent implements OnInit {
-
-  constructor() { }
+  twitterDailog = false;
+  groupDailog = false;
+  menuDailog = false;
+  guestList: any;
+  constructor(public _guestservice: GuestserviceService) {
+    
+    this._guestservice.getMyGuestList().subscribe(res=>{
+      this.guestList = res;  
+      console.log(this.guestList)
+    });
+   }
+   
 
   ngOnInit(){ 
   $.getScript('http://code.jquery.com/jquery-1.11.1.min.js'); 
@@ -94,4 +105,9 @@ for (i = 0; i < acc.length; i++) {
 }
   }
 
+  closeModel(){
+    this.twitterDailog = false
+    this.groupDailog = false;
+    this.menuDailog = false;
+  }
 }

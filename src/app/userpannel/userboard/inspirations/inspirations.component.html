@@ -23,35 +23,53 @@
       </div>
       <div class="clearfix"></div>
       <div class="row photobox">
-          <div class="col-lg-3 col-md-4 col-6 thumb hovereffect">
+          <div class="col-lg-3 col-md-4 col-6 thumb hovereffect" *ngFor="let photo of pagedPhotos">
+            <!-- {{photo | json}} -->
                     <img class="img-thumbnail noborder"
-                             src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                             [src]="photo.imageURL"
                              alt="Another alt text">
                              <div class="overlay">
-                                <h2>Business Name</h2>
+                                <h2>{{photo.nameOfBusiness}}</h2>
                                <a class="thumbnail fancybox info hidden-xs"  rel="ligthbox"
-                       href="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                       >View</a>
-
+                               [href]="photo.imageURL"
+                                >View</a>
+                                <!-- [href]="photo.imageURL" -->
                                <div class="shareholder">
                                  <span class="shareicon">
                                    <i class="material-icons">share</i>
                                  </span>
-
                                  <span class="shareicon">
                                    <i class="material-icons">clear</i>
                                  </span>
-
                                   <span class="shareicon fancybox hidden-sm hidden-lg hidden-md" rel="ligthbox"
-                       href="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+                                    >
+                                    <!-- [href]="photo.imageURL" -->
                                    <i class="material-icons">remove_red_eye</i>
                                  </span>
-
-
                                </div>
                             </div>  
           </div>
-          <div class="col-lg-3 col-md-4 col-6 thumb hovereffect">
+
+          		<!--Photo pager -->
+							<ul *ngIf="pagerPhoto.pages && pagerPhoto.pages.length" class="pagination">
+                  <li [ngClass]="{disabled:pagerPhoto.currentPage === 1}">
+                    <a (click)="setPhoto(1)">First</a>
+                  </li>
+                  <li [ngClass]="{disabled:pagerPhoto.currentPage === 1}">
+                    <a (click)="setPhoto(pagerPhoto.currentPage - 1)">Previous</a>
+                  </li>
+                  <li *ngFor="let page of pagerPhoto.pages" [ngClass]="{active:pagerPhoto.currentPage === page}">
+                    <a (click)="setPhoto(page)">{{page}}</a>
+                  </li>
+                  <li [ngClass]="{disabled:pagerPhoto.currentPage === pagerPhoto.totalPages}">
+                    <a (click)="setPhoto(pagerPhoto.currentPage + 1)">Next</a>
+                  </li>
+                  <li [ngClass]="{disabled:pagerPhoto.currentPage === pagerPhoto.totalPages}">
+                    <a (click)="setPhoto(pagerPhoto.totalPages)">Last</a>
+                  </li>
+                </ul>
+              <!-- pager end -->
+          <!-- <div class="col-lg-3 col-md-4 col-6 thumb hovereffect">
            
                         <img class="img-thumbnail noborder"
                              src="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
@@ -235,14 +253,19 @@
                                  
                                </div>
                             </div>
-          </div>
+          </div> -->
       </div>
       <div class="row eventbox eventlisting" style="display: none;">
-          <div class="col-sm-3">
-            <a  routerLink="../../home/event_list" target="_blank">
+          <div class="col-sm-3" *ngFor="let item of pagedItems">
+            <a (click)="goToNextPage(item)">
               <div class="card cardshadow">
-                <img class="card-img-top img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide4.jpg">
-                <div class="ribbon ribbon-top-right"><span>FREE</span></div>
+                <img class="card-img-top img-fluid" *ngIf="item.files" [src]="item.files.path">
+                <div class="ribbon ribbon-top-right" *ngIf="item?.entryFee == null; else entry">
+                  <span>FREE</span>
+                </div>
+                <ng-template #entry>
+										<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
+								</ng-template>
                 <div class="card-block text-center row">
                     <div class="eventbtnholder">
                       <button class="purple-gradient borradius50per">
@@ -256,26 +279,47 @@
                           </i>
                       </button>
                     </div>    
-                    <div class="eventdate col-2"> 
-                      <span>Nov</span>
-                      <span class="date">09</span>
-                  </div>
+                    <div class="eventdate col-2" *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '> 
+                        <span>{{Date.startDate | date:'MMM'}}</span>
+                        <span class="date">{{Date.startDate | date:'dd'}}</span>
+                    </div>
                   <div class="col-10">
                     <div class="eventtitle">
-                      Free Modelling Workshop - Be a Model.
+                        {{item.eventTitle}}
+                    </div>
+                    <div class="eventvenue" *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '>
+                        {{Date.startDate | date:'E'}}, {{Date.startDate | date:'MMM'}} {{Date.startDate | date:'dd'}}, {{Date.startTimeString}}
                     </div>
                     <div class="eventvenue">
-                      Wed, Nov 09, 7:30pm
-                    </div>
-                    <div class="eventvenue">
-                      Indore Marriott Hotel, Indore
+                        <i class="material-icons">location_on</i> 
+                        {{item.venueName}}, {{item.location}}
                     </div>
                   </div>
                 </div>
               </div>
             </a>
           </div>
-          <div class="col-sm-3">
+						<!-- pager -->
+							<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+								<li [ngClass]="{disabled:pager.currentPage === 1}">
+									<a (click)="setPage(1)">First</a>
+								</li>
+								<li [ngClass]="{disabled:pager.currentPage === 1}">
+									<a (click)="setPage(pager.currentPage - 1)">Previous</a>
+								</li>
+								<li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+									<a (click)="setPage(page)">{{page}}</a>
+								</li>
+								<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+									<a (click)="setPage(pager.currentPage + 1)">Next</a>
+								</li>
+								<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+									<a (click)="setPage(pager.totalPages)">Last</a>
+								</li>
+							</ul>
+						<!-- pager end -->
+
+          <!-- <div class="col-sm-3">
             <a routerLink="../../home/event_list" target="_blank">
               <div class="card cardshadow">
                 <img class="card-img-top img-fluid" src="https://s3.us-east-2.amazonaws.com/prefect-image/detail_slide4.jpg">
@@ -533,7 +577,7 @@
                 </div>
               </div>
             </a>
-          </div>
+          </div> -->
       </div>
    
     </div>

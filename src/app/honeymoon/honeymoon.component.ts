@@ -34,7 +34,50 @@ export class HoneymoonComponent implements OnInit{
     nav: true,
     //autoplaySpeed:1
   }
+  //Start Block
+  locations = [];
+  Categories = [];
+  
+  Categoriess(){ 
+    this.Categories=[
+      { 'categoryId':8, 'categoryName': 'Honeymoon & Travel', 'className': 'col-sm-12 citybox1', 'locationUrl': '../../assets/img/black_river_img.jpg'}, 
+    ]
+      this._masterservice.getAllCategories().subscribe(data => {
+      console.log(data);
+      },error => {  console.log(error) })
+  }
+  location(){
+    this.locations=[
+      { 'districtId':1, 'locationName': 'Black River', 'className': 'col-sm-12 citybox1', 'locationUrl': '../../assets/img/black_river_img.jpg'},
+    ]
+      this._masterservice.getAllLocation().subscribe(datas => {
+          console.log(datas);
+          },error => {  console.log(error) })
+  }
+
+  searchLocation(location:any){      
+    console.log(location);
+    if(location!= null){
+      this.objFilterParam.categoryName=location.categoryName;
+      this.objFilterParam.isDreamLocation=false;
+      this.objFilterParam.isAllSupplier=false;
+      this.objFilterParam.page = 0;
+      this.objFilterParam.pageSize = 25;
+      this.objFilterParam.sortDir = "";
+      this.objFilterParam.sortedBy ="";
+      this.objFilterParam.searchQuery ="";
+      this.objFilterParam.catId = location.categoryId;
+      this.objFilterParam.locationId = location.districtId;
+  }
+      sessionStorage.setItem('filterParam',JSON.stringify(this.objFilterParam));
+      this.router.navigate(['home/weddingvendors/bali/1']);
+}
+ //End Block
   ngOnInit() {
+     //Start Block
+    this.location();
+    this.Categoriess();
+     //End Block
     this.title.setTitle('Honeymoon & Travel | Perfect Weddings');    
     this.meta.addTag({name:'description',content:'Honeymoon & Travel | Perfect Weddings'});    
 
@@ -110,6 +153,8 @@ export class HoneymoonComponent implements OnInit{
      
       this.search(null,true,false,var_data)
   }
+
+  
   // honeymoondetail_page(a){
     
   //   sessionStorage.setItem('Honeymoon_detail',JSON.stringify(a));
@@ -117,4 +162,18 @@ export class HoneymoonComponent implements OnInit{
   //   this.router.navigate(['home/weddingvendors',a.name.replace(/\s/g,''),a.honeymoonLocationId]);
   
   // }
+}
+
+
+export class Locations {
+  locationId:number;
+  locationName:string;
+  locationUrl:string;
+  locationClass:string;
+}
+export class Categories {
+  categoryId:number;
+  categoryName:string;
+  locationUrl:string;
+  locationClass:string;
 }

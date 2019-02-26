@@ -48,9 +48,19 @@ a.linktext{
 }
 .bridegroomlable{
   position: absolute;
-  right:50px;
+  right: 50px;
   font-size: 12px;
+  border-left: 1px solid #ccc;
+  padding-left: 5px;
 }
+.bridegroomlable img{
+width:20px!important;
+height:20px!important;
+border-radius:0px!important;
+margin-top:0px!important;
+margin-bottom:4px!important;
+}
+
 .divsetwidth{
 width:calc(100% - 70px);
 }
@@ -77,6 +87,12 @@ text-align: center;
   width:20%;
   float:left;
   text-align: center;
+  position:relative;
+}
+.mypreference_box div.fifthdiv i{
+display:block;
+font-size:60px;
+color:#999;
 }
 .mypreference_box div.fifthdiv h1{
   font-weight: bold;
@@ -105,7 +121,9 @@ text-align: center;
     max-width: 25px;
     max-height: 25px;
     padding: 10px 0px 5px 0px;
-    margin-top: 25px;
+    top: 25px;
+    left:60%;
+    outline:none;
 }
 .mypreference_box div.fifthdiv button i{
 font-size: 18px;
@@ -321,6 +339,22 @@ height:30px;
   }
 }
 @media(max-width:767px){
+.mypreference_box div.fifthdiv img{
+  max-width: 30px;
+  max-height: 30px;
+}
+.mypreference_box div.fifthdiv h1{
+    font-size: 11px;
+}
+.mypreference_box div.fifthdiv h2{
+    font-size: 11px!important;
+}
+.mypreference_box div.fifthdiv button{
+    margin-top: 0px;
+}
+.mypreference_box div.fifthdiv button i{
+    font-size: 14px;
+}
 .mem_detail{
   padding-left:0px;
   padding-right:0px;
@@ -392,4 +426,182 @@ height:30px;
 
 .table > tbody > tr > .thick-line {
   border-top: 2px solid;
+}
+
+
+
+.colorlist{
+    background: #fff;
+}
+.colorlist ul{
+  padding: 0px;
+}
+.colorlist ul li{
+  list-style: none;
+  text-transform:capitalize;
+  position: relative;
+  cursor: pointer;
+  display:inline-block;
+}
+.colorlist ul li .ticklist{
+position: absolute;
+left: 16px;
+top: 4px;
+color: #333;
+display:none;
+}
+.colorlist ul li:hover .ticklist{display:block;}
+.colortag{
+      width: 35px !important;
+      border-radius: 10px;
+      height: 17px;
+      margin-left: 5px;
+      display: inline-block !important;
+      box-shadow: 0px 0px 5px #ccc;
+      text-align: center;
+      line-height: 1;
+      font-weight: bold;
+      font-size: 13px;
+      padding: 1px 0px;
+}
+.whitebg{
+    background: white!important;
+    box-shadow:0px 0px 5px #ccc;
+}
+.greybg{
+    background: #333!important;
+}
+.blackbg{
+    background: #000!important;
+}
+.bluebg{
+    background:#339fe5!important;
+}
+.orangebg{
+    background: #fb6f57!important;
+}
+.redbg{
+    background: #f03861!important;
+}
+.pinkbg{
+    background: #ff84ca!important;
+}
+.yellowbg{
+    background:#fee856!important;
+}
+.greenbg{
+    background:#18cc7d!important;
+}
+.purplebg{
+    background:#8964b7!important;
+}
+
+
+/* form starting stylings ------------------------------- */
+
+.field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-top:10px;
+}
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
+
+ .field label, .field input, .field select, .field textarea {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+ .field  input, .field select, .field textarea{
+  font-size: 1.2em;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  font-family: inherit;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 0 0 10px 0;
+  cursor: text;
+  z-index:999;
+  background:transparent;
+}
+
+ .field input:focus,   .field select:focus, .field textarea:focus {
+  outline: 0;
+  border-bottom: 1px solid #f0118c;
+}
+
+ .field label {
+  text-transform: uppercase;
+  margin-bottom: 0px;
+  letter-spacing: 0.05em;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+ .field input:placeholder-shown + label, .field select:placeholder-shown + label, .field textarea:placeholder-shown + label {
+  cursor: text;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 2.125rem);
+  transition: .5s all;
+}
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+   transition: .5s all;
+}
+::-webkit-select-placeholder {
+  opacity: 0;
+  transition: inherit;
+   transition: .5s all;
+}
+::-webkit-textarea-placeholder {
+  opacity: 0;
+  transition: inherit;
+   transition: .5s all;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+ .field input:focus::-webkit-input-placeholder,  .field select:focus::-webkit-input-placeholder,  .field textarea:focus::-webkit-input-placeholder  {
+  opacity: 0;
+  color:#f0118c;
+}
+ .field input::placeholder, .field select::placeholder, .field textarea::placeholder{
+  color:#fff!important;
+ }
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is _not_ shown, i.e. when 
+* there's something in the input at all.
+*/
+ .field input:not(:placeholder-shown) + label,
+ .field input:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+ .field select:not(:placeholder-shown) + label,
+ .field select:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+ .field textarea:not(:placeholder-shown) + label,
+ .field textarea:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
 }

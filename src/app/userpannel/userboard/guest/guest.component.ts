@@ -15,6 +15,7 @@ export class GuestComponent implements OnInit {
     
     this._guestservice.getMyGuestList().subscribe(res=>{
       this.guestList = res;  
+      this._guestservice.objGroup.name
       console.log(this.guestList)
     });
    }
@@ -103,6 +104,14 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
+  }
+  createUpdateGroup(){
+    this._guestservice.addUpdateGroup().subscribe(res=>{
+      console.log(res);
+    },error=>{
+      console.log(error);
+    }
+    )
   }
 
   closeModel(){

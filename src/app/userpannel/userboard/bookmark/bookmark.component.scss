@@ -370,3 +370,112 @@ margin: 20% auto;
 	   }
 
 }
+
+/* form starting stylings ------------------------------- */
+
+.field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-top:10px;
+}
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
+
+ .field label, .field input, .field select, .field textarea {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+ .field  input, .field select, .field textarea{
+  font-size: 1.2em;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  font-family: inherit;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 0 0 10px 0;
+  cursor: text;
+  z-index:999;
+  background:transparent;
+}
+
+ .field input:focus,   .field select:focus, .field textarea:focus {
+  outline: 0;
+  border-bottom: 1px solid #f0118c;
+}
+
+ .field label {
+  text-transform: uppercase;
+  margin-bottom: 0px;
+  letter-spacing: 0.05em;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+ .field input:placeholder-shown + label, .field select:placeholder-shown + label, .field textarea:placeholder-shown + label {
+  cursor: text;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 2.125rem);
+  transition: .5s all;
+}
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+   transition: .5s all;
+}
+::-webkit-select-placeholder {
+  opacity: 0;
+  transition: inherit;
+   transition: .5s all;
+}
+::-webkit-textarea-placeholder {
+  opacity: 0;
+  transition: inherit;
+   transition: .5s all;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+ .field input:focus::-webkit-input-placeholder,  .field select:focus::-webkit-input-placeholder,  .field textarea:focus::-webkit-input-placeholder  {
+  opacity: 0;
+  color:#f0118c;
+}
+ .field input::placeholder, .field select::placeholder, .field textarea::placeholder{
+  color:#fff!important;
+ }
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is _not_ shown, i.e. when 
+* there's something in the input at all.
+*/
+ .field input:not(:placeholder-shown) + label,
+ .field input:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+ .field select:not(:placeholder-shown) + label,
+ .field select:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+ .field textarea:not(:placeholder-shown) + label,
+ .field textarea:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}

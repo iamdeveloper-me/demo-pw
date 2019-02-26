@@ -66,10 +66,7 @@
 										<button class="borradius50per purple-gradient">
 											<i class="material-icons">share</i>
 										</button>
-
-
 										<button [ngStyle]="{'background-color':item.isBookmarked == true ? 'red' : 'green' }" class="borradius50per" (click)="apiService.bookMark(item,'events','bookmarked','eventPage')">
-
 											<i class="material-icons">
 												bookmark_border
 											</i> 
@@ -77,11 +74,9 @@
 								</div>
 								<div (click)="goToNextPage(item)">
 									<img class="card-img-top img-fluid eventimg" *ngIf="item.files" [src]="item.files.path">
-
 									<div class="ribbon ribbon-top-right" *ngIf="item?.entryFee == null; else entry">
 										<span>Free</span>
 									</div>
-
 									<!-- <ng-template #entry>
 										<div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
 									</ng-template> -->
@@ -111,14 +106,8 @@
 													<span>Duration</span> {{Date.duration}} Days
 											</p>
 											<!-- Duration {{Date.duration}} Days -->
-										
-
-
-
-
 										</div>
 										<div class="col-sm-8 heightadjust">
-
 											<div class="eventtitle">
 												<!--  routerLink="../event_list"p -->
 												{{item.eventTitle}}
@@ -142,8 +131,6 @@
 											<div class="eventprice" *ngIf="item.entryFee != null">
 											 	{{item.entryFee}}
 											</div>
-											
-											
 										</div>
 										<div class="col-sm-12 footericon">
 												<span>

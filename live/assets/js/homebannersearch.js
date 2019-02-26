@@ -7,8 +7,8 @@
         }
     }, 2000);
 
-    $(document).on('click', ".dropdown dt a", function() {
-        $(".dropdown dd ul").toggle();
+    $(document).on('click', ".searcboxhome dt a", function() {
+        $(".searcboxhome dd ul").toggle();
         // if ($(".dropdown dd ul").hasClass("hide")) {
         //     $(".dropdown dd ul").removeClass("hide");
         // } else {
@@ -17,14 +17,14 @@
     });
     $(document).bind('click', function(e) {
         var $clicked = $(e.target);
-        if (! $clicked.parents().hasClass("dropdown"))
-            $(".dropdown dd ul").hide();
+        if (! $clicked.parents().hasClass("searcboxhome"))
+            $(".searcboxhome dd ul").hide();
     });
                 
-    $(document).on('click', ".dropdown dd ul li a", function() {
+    $(document).on('click', ".searcboxhome dd ul li a", function() {
         var text = $(this).html();
-        $(".dropdown dt a").html(text);
-        $(".dropdown dd ul").hide();
+        $(".searcboxhome dt a").html(text);
+        $(".searcboxhome dd ul").hide();
         
         var source = $("#source");
         source.val($(this).find("span.value").html())
@@ -38,11 +38,11 @@ function createDropDown(){
     var selected = source.find("option[selected]");  // get selected <option>
     var options = $("option", source);  // get all <option> elements
     // create <dl> and <dt> with selected value inside it
-    $("#append").append('<dl id="target" class="dropdown"></dl>')
-    $("#target").append('<dt><a>' + selected.text() + 
+    $("#append").append('<dl id="target" class="searcboxhome"></dl>')
+    $("#target").append('<dt><a (click)=categoryClick(list_Categories)>' + selected.text() + 
         '<span class="value">' + selected.val() + 
         '</span></a></dt>')
-    $("#target").append('<dd><ul></ul></dd>')
+    $("#target").append('<dd><ul class="available-items"></ul></dd>')
     // iterate through all the <option> elements and create UL
     options.each(function(){
         $("#target dd ul").append('<li><a>' + 

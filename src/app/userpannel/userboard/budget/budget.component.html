@@ -6,33 +6,33 @@
         <h2 class="text-center">My Budget Planner</h2>
           <div class="text-center">
             <table class="headtable">
-              <tr>
+              <tr *ngFor='let ex of expensesByCategory'>
                 <td>
                   <div style="display: grid;"> 
                   <i class="material-icons">account_balance_wallet</i>
                   <span>Estimated Cost</span>
-                  <span class="pink">RS 350,000</span>
+                  <span class="pink">{{ex.estimatedCost}}</span>
                   </div>
                 </td>
                 <td>
                   <div> 
                   <i class="material-icons">gps_not_fixed</i>
                   <span>Final Cost</span>
-                  <span class="blue">RS 400,000</span>
+                  <span class="blue">{{ex.finalCost}}</span>
                   </div>
                 </td>
                 <td>
                   <div> 
                   <i class="material-icons">attach_money</i>
                   <span>Paid</span>
-                  <span class="green">RS 350,000</span>
+                  <span class="green">{{ex.paidAmount}}</span>
                   </div>
                 </td>
                 <td>
                   <div> 
                   <i class="material-icons">access_time</i>
                   <span>Pending</span>
-                  <span class="red">RS 350,000</span>
+                  <span class="red">{{ex.pendingAmount}}</span>
                   </div>
                 </td>
               </tr>
@@ -59,9 +59,9 @@
                 <i class="material-icons uparrow">keyboard_arrow_up</i>
                 <table width="100%" class="martop20px pink">
                       <tr>
-                        <td width="31%">Final Cost: Rs 15,000</td>
-                        <td width="25%" class="text-center">Paid: Rs 20,000</td>
-                        <td width="25%" class="text-center">Pending: Rs 40,000</td>
+                        <td width="31%">Final Cost: 5000</td>
+                        <td width="25%" class="text-center">Paid: 3000</td>
+                        <td width="25%" class="text-center">Pending: 2000</td>
                         <td></td>
                       </tr>
                 </table>
@@ -283,24 +283,36 @@
             </div>
             <div class="modal-body">
                 <div>
-                   
-                   <form (ngSubmit)="budget_Add_form(budget)" #budget="ngForm">
+                   <form (ngSubmit)="saveBudget()" #budget="ngForm">
                       <!-- <input type = "hidden"   id="budgetItemId" name="budgetItemId"  [value]="0" [(ngModel)]="budgetItemId"  ><br> -->
-                      name: <input   type = "text" ><br>
-                      estimatedCost: <input  type = "text"    id="name" name="name" [(ngModel)]="name"  ><br>
-                      finalCost: <input  type = "text"    id="finalCost" name="finalCost"  [(ngModel)]="finalCost" ><br>
-                      paidAmount: <input type = "text"    id="paidAmount" name="paidAmount" [(ngModel)]="paidAmount"  ><br>
-                      pendingAmount: <input  type = "text"   id="pendingAmount" name="pendingAmount"   [(ngModel)]="pendingAmount" ><br>
-                      budgetCategoryId:
-                      <select id="budgetCategoryId" name="budgetCategoryId"  [(ngModel)]="budgetCategoryId" >
-                        <option >  budgetCategory</option>
-                        <option>  budgetCategory</option>
-                        <option>  budgetCategory</option>
-                        <option>  budgetCategory</option>
+                      <div class="form-group col-md-6">
+                      Name: 
+                      <input   type = "text" class="form-control" required [ngModelOptions]="{standalone: true}" [(ngModel)]='budgetservice.objBudgetItem.name'></div>
+                    <div class="form-group col-md-6">
+                      EstimatedCost: 
+                      <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" [ngModelOptions]="{standalone: true}" id="estimatedCost" name="estimatedCost" [(ngModel)]="budgetservice.objBudgetItem.estimatedCost" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                    FinalCost: 
+                    <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" (change)='getPendingAmount()' [ngModelOptions]="{standalone: true}" id="finalCost" name="finalCost"  [(ngModel)]="budgetservice.objBudgetItem.finalCost" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                      PaidAmount: <input type = "number" pattern="^\d*(\.\d{0,2})?$" [ngModelOptions]="{standalone: true}" (change)='getPendingAmount()' class="form-control" id="paidAmount" name="paidAmount" [(ngModel)]="budgetservice.objBudgetItem.paidAmount" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                      PendingAmount: <input  type = "number" readonly [ngModelOptions]="{standalone: true}" pattern="^\d*(\.\d{0,2})?$" class="form-control" id="pendingAmount" name="pendingAmount"   [(ngModel)]="budgetservice.objBudgetItem.pendingAmount" required >
+                      </div>
+                      <div class="form-group col-md-6">
+                      BudgetCategoryId:
+                      <select id="budgetCategoryId" name="budgetCategoryId" [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="budgetservice.objBudgetItem.budgetCategoryId">
+                        <option value="1">  budgetCategory</option>
+                        <option value="1">  budgetCategory</option>
+                        <option value="1">  budgetCategory</option>
+                        <option value="1">  budgetCategory</option>
                       </select>
-  
-   
-                      <button type="submit" class="btn newbtn" (click)="closeModel()">Close</button>&nbsp;
+                    </div>
+                    <button type="submit" class="btn newbtn">Save</button>&nbsp;
+                      <button type="reset" class="btn newbtn" (click)="closeModel()">Close</button>&nbsp;
 
                    </form>
 

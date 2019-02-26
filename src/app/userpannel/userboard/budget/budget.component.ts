@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class BudgetComponent implements OnInit {
   Budgetlist = []; 
   AddBudget = false;
+  expensesByCategory: any;
   constructor(private apiService: apiService,public budgetservice: Budgetservice, public toaster: ToastrService) {
       this.getMyBudgetItems();
    }
@@ -21,7 +22,6 @@ export class BudgetComponent implements OnInit {
   paidAmount:string
   pendingAmount: string
   budgetCategoryId:number
-  expensesByCategory : any
   ngOnInit() {
                 $("li").removeClass("user");
                 $("#login").hide();
@@ -52,7 +52,7 @@ export class BudgetComponent implements OnInit {
                   )
                    this.apiService.postData(this.apiService.serverPath+'BudgetItem/mybudgetitems',{BudgetCategoryId:81}).subscribe(data => {
                     console.log(data);
-                    this.expensesByCategory = data;
+                    this.Budgetlist = data;
                    },
                      error => {
                      console.log(error)
@@ -80,7 +80,8 @@ export class BudgetComponent implements OnInit {
   }
   getMyBudgetItems(){
     this.budgetservice.getMybudgetItems(0).subscribe(res=>{
-      console.log(res);
+      this.expensesByCategory = res;
+      console.log(this.expensesByCategory);
     })
   }
 }

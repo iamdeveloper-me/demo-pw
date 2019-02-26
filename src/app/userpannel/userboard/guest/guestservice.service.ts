@@ -9,8 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class GuestserviceService implements OnInit {
 url = 'Guests/myGuests';
+createUpdateGroup_url = 'Groups/createupdategroups';
+objGroup:GroupVm;
   constructor(public apiservice: apiService) {
-    
+    this.objGroup = new GroupVm();
    };
    ngOnInit(){
 
@@ -18,5 +20,12 @@ url = 'Guests/myGuests';
    getMyGuestList(): Observable <any>  {
      return this.apiservice.getData(this.apiservice.serverPath+ this.url);
    };
-
-}
+   addUpdateGroup(): Observable<any>{
+    return this.apiservice.postData(this.apiservice.serverPath+this.createUpdateGroup_url,this.objGroup);
+   }
+  }
+  export class GroupVm {
+    groupsId: number;
+    memberId: number;
+    name: string;
+  }

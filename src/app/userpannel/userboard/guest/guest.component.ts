@@ -7,12 +7,15 @@ import { GuestserviceService } from './guestservice.service';
   styleUrls: ['./guest.component.scss']
 })
 export class GuestComponent implements OnInit {
-  twitterDailog = false
+  twitterDailog = false;
+  groupDailog = false;
+  menuDailog = false;
   guestList: any;
   constructor(public _guestservice: GuestserviceService) {
     
     this._guestservice.getMyGuestList().subscribe(res=>{
       this.guestList = res;  
+      this._guestservice.objGroup.name
       console.log(this.guestList)
     });
    }
@@ -102,8 +105,18 @@ for (i = 0; i < acc.length; i++) {
     });
 }
   }
+  createUpdateGroup(){
+    this._guestservice.addUpdateGroup().subscribe(res=>{
+      console.log(res);
+    },error=>{
+      console.log(error);
+    }
+    )
+  }
 
   closeModel(){
     this.twitterDailog = false
+    this.groupDailog = false;
+    this.menuDailog = false;
   }
 }

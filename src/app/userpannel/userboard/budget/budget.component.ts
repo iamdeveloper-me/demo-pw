@@ -3,6 +3,8 @@ import { apiService } from 'app/shared/service/api.service';
 import { Budgetservice, BudgetItemVM } from './budgetservice';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { ToastrService } from 'ngx-toastr';
+import { GuestserviceService } from '../guest/guestservice.service'
+
 @Component({
   selector: 'app-budget',
   templateUrl: './budget.component.html',
@@ -13,7 +15,8 @@ export class BudgetComponent implements OnInit {
   Budgetlist = []; 
   AddBudget = false;
   expensesByCategory: any;
-  constructor(private apiService: apiService,public budgetservice: Budgetservice, public toaster: ToastrService) {
+  categoryDailog = false;
+  constructor(private apiService: apiService,public budgetservice: Budgetservice, public toaster: ToastrService,private _guestservice : GuestserviceService) {
     this.getMyBudgetItems();
   }
   name: string; 
@@ -71,6 +74,7 @@ export class BudgetComponent implements OnInit {
 
   closeModel(){
     this.AddBudget = false;
+    this.categoryDailog = false;
   }
 
   onOptionsSelected(event){

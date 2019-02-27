@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { GuestserviceService } from './guestservice.service';
 import { apiService } from 'app/shared/service/api.service';
+import { GuestserviceService, GroupVm } from './guestservice.service';
+import { ToastrService } from 'ngx-toastr';
+import { NumberValueAccessor } from '@angular/forms/src/directives';
+
 
 @Component({
   selector: 'app-guest',
@@ -8,10 +11,18 @@ import { apiService } from 'app/shared/service/api.service';
   styleUrls: ['./guest.component.scss']
 })
 export class GuestComponent implements OnInit {
-  twitterDailog = false
+  twitterDailog = false;
+  groupDailog = false;
+  menuDailog = false;
   guestList: any;
-  constructor(public _guestservice: GuestserviceService,private apiService : apiService) {
-    
+  totalGuests:Number;
+  totalChilds: number;
+  totalAdulst: number;
+  constructor(public _guestservice: GuestserviceService,private apiService : apiService, public toaster: ToastrService) {
+    this.myguestCount();
+    this.getMyGroups();
+    this.searchMyGuest();
+    this.getMyMenu()
     this._guestservice.getMyGuestList().subscribe(res=>{
       this.guestList = res;  
       console.log(this.guestList)
@@ -103,6 +114,38 @@ for (i = 0; i < acc.length; i++) {
     });
 }
   }
+  createUpdateGroup(){
+    console.log(this._guestservice.objGroup);
+    this._guestservice.addUpdateGroup().subscribe(res=>{
+      this.toaster.success(res.message,'Done !');
+      this._guestservice.objGroup = new GroupVm();
+      this.closeModel();
+      this.getMyGroups();
+    },error=>{
+      this.toaster.error(error,'Error');
+      console.log(error);
+    }
+    )
+  }
+  getMyGroups(){
+    this._guestservice.getMyGroups().subscribe(res=>{
+      this._guestservice.myGroups = res;
+      console.log(this._guestservice.myGroups);
+    })
+  }
+  searchMyGuest(){
+    this._guestservice.searchMyGuest('').subscribe(res=>{
+      this.guestList = res;
+    })
+  }
+  myguestCount(){
+    this._guestservice.myguestCount().subscribe(res=>{
+      this.guestList = res;
+      this.totalAdulst = res.adults;
+      this.totalChilds = res.childs;
+      this.totalGuests = res.total;
+    })
+  }
 
 
   myGuests(){
@@ -151,6 +194,40 @@ for (i = 0; i < acc.length; i++) {
 
   closeModel(){
     this.twitterDailog = false
+    this.groupDailog = false;
+    this.menuDailog = false;
+  }
+  createUpdateMenu(){
+    this._guestservice.createUpdateMenu().subscribe(res=>{
+      this.toaster.success(res.message,'Done !');
+      this.getMyMenu();
+    },error=>{
+      this.toaster.error(error,'Error');
+    })
+  }
+  getMyMenu(){
+    this._guestservice.getMyMenu().subscribe(res=>{
+      this._guestservice.menuGuestCount = res;
+      console.log(this._guestservice.menuGuestCount);
+    })
+  }
+
+  /// Guest Section
+  createUpdateGuest(){
+    this._guestservice.objGuest.groupsId
+    this._guestservice.objGuest.groups.name = this._guestservice.myGroups.filter(g=>g.groupsId==this._guestservice.objGuest.groupsId)[0].name;
+    this._guestservice.createUpdateGuest().subscribe(res=>{
+      if(this._guestservice.objGuest.guestsId ===res.guestsId){
+        this.toaster.success(res.message, 'Updated !');
+        this.searchMyGuest();
+        this.closeModel();
+      }else{
+        this.toaster.success(res.message, 'Done !');
+      }
+      console.log(res);
+    },error=>{
+      this.toaster.error(error,'Error !');
+    })
   }
 }
 

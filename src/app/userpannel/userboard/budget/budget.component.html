@@ -6,33 +6,33 @@
         <h2 class="text-center">My Budget Planner</h2>
           <div class="text-center">
             <table class="headtable">
-              <tr *ngFor='let ex of expensesByCategory'>
+              <tr>
                 <td>
                   <div style="display: grid;"> 
                   <i class="material-icons">account_balance_wallet</i>
                   <span>Estimated Cost</span>
-                  <span class="pink">{{ex.estimatedCost}}</span>
+                  <span class="pink">{{estimatedCostTotal}}</span>
                   </div>
                 </td>
                 <td>
                   <div> 
                   <i class="material-icons">gps_not_fixed</i>
                   <span>Final Cost</span>
-                  <span class="blue">{{ex.finalCost}}</span>
+                  <span class="blue">{{finalCostTotal}}</span>
                   </div>
                 </td>
                 <td>
                   <div> 
                   <i class="material-icons">attach_money</i>
                   <span>Paid</span>
-                  <span class="green">{{ex.paidAmount}}</span>
+                  <span class="green">{{paidAmountTotal}}</span>
                   </div>
                 </td>
                 <td>
                   <div> 
                   <i class="material-icons">access_time</i>
                   <span>Pending</span>
-                  <span class="red">{{ex.pendingAmount}}</span>
+                  <span class="red">{{pendingAmountTotal}}</span>
                   </div>
                 </td>
               </tr>
@@ -43,227 +43,85 @@
     <div class="clearfix"></div>          
     </div>
     <div class="col-sm-12">
-        <div class="col-sm-9 Mobwidth100">
-          <div class="container-fluid nopadd">
-            <div class="col-sm-12 nopadd">
-              <div class="card martop0px">
-                <button class="btn addbtn mob100px" (click)="AddBudget = true" ><i class="material-icons"> filter_tilt_shift </i> Add</button>
-                <div class="clearfix"></div>
-              </div>
+      <div class="col-sm-9 Mobwidth100">
+        <div class="container-fluid nopadd">
+          <div class="col-sm-12 nopadd">
+            <div class="card martop0px">
+              <button class="btn addbtn mob100px" (click)="AddBudget = true" ><i class="material-icons"> filter_tilt_shift </i> Add</button>
+              <div class="clearfix"></div>
             </div>
           </div>
+        </div>
         <div class="container-fluid accordin">
           <div class="col-md-12 nopadd">
-              <button class="accordion"><i class="material-icons colo_pink"> home</i> <strong class="positi_rel"> Evens </strong>  
-                <i class="material-icons downarrow">keyboard_arrow_down</i>
-                <i class="material-icons uparrow">keyboard_arrow_up</i>
-                <table width="100%" class="martop20px pink">
-                      <tr>
-                        <td width="31%">Final Cost: 5000</td>
-                        <td width="25%" class="text-center">Paid: 3000</td>
-                        <td width="25%" class="text-center">Pending: 2000</td>
-                        <td></td>
-                      </tr>
-                </table>
-              </button>
-              <div class="panel">
-                  <div class="checkbox"  *ngFor='let Budget of Budgetlist'>
-                    <table width="100%">
-                      <tr>
-                        <td>
-                          <p class="rental">
-                            <strong> {{Budget.name}} </strong><br/>
-                            <i>Estimated: RS {{Budget.estimatedCost}}</i> 
-                          </p>
-                          <p> 
-                            <strong>Final Cost: ${{Budget.finalCost}}  </strong> </p>
-                        </td>
-                        <td class="text-center">
-                          <i class="material-icons">check_circle_outline</i><br/>
-                          <strong>Paid: <span class="green">Rs {{Budget.paidAmount}}</span></strong>
-                        </td>
-                        <td class="text-center">
-                          <i class="material-icons">query_builder</i><br/>
-                          <strong>Pending: <span class="orange">Rs {{Budget.pendingAmount}}</span></strong>
-                        </td>
-                        <td class="text-right">
-                          <button class="btn-warning btnround">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          &nbsp;
-                            <button class="btn-danger btnround">
-                            <i class="material-icons">clear</i>
-                          </button>
-                        </td>
-                      </tr>
-                    </table> 
-                  </div>
-              </div>
-                
-          </div>
-
-          <div class="col-md-12 nopadd martop20px">
-              <button class="accordion"><i class="material-icons colo_pink"> fastfood</i> <strong class="positi_rel"> Catering </strong>   
-                <i class="material-icons downarrow">keyboard_arrow_down</i>
-                <i class="material-icons uparrow">keyboard_arrow_up</i>
-                <table width="100%" class="martop20px pink">
-                      <tr>
-                        <td width="31%">Final Cost: Rs 15,000</td>
-                        <td width="25%" class="text-center">Paid: Rs 20,000</td>
-                        <td width="25%" class="text-center">Pending: Rs 40,000</td>
-                        <td></td>
-                      </tr>
-                </table>
-              </button>
-              <div class="panel">
-                <div class="checkbox">
-                    <table width="100%">
-                      <tr>
-                        <td>
-                          <p class="rental">
-                            <strong>Sangeet Venue rental  </strong><br/>
-                            <i>Estimated: RS 10,000</i> 
-                          </p>
-                          <p> 
-                            <strong>Final Cost: $20,000  </strong> </p>
-                        </td>
-                        <td class="text-center">
-                          <i class="material-icons">check_circle_outline</i><br/>
-                          <strong>Paid: <span class="green">Rs 5000</span></strong>
-                        </td>
-                        <td class="text-center">
-                          <i class="material-icons">query_builder</i><br/>
-                          <strong>Pending: <span class="orange">Rs 10000</span></strong>
-                        </td>
-                        <td class="text-right">
-                          <button class="btn-warning btnround">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          &nbsp;
-                            <button class="btn-danger btnround">
-                            <i class="material-icons">clear</i>
-                          </button>
-                        </td>
-                      </tr>
-                    </table> 
-                  </div>
-                  <div class="checkbox">
-                      <table width="100%">
-                        <tr>
-                        <td>
-                          <p class="rental">
-                            <strong>Sangeet Venue rental  </strong><br/>
-                            <i>Estimated: RS 10,000</i> 
-                          </p>
-                          <p> 
-                            <strong>Final Cost: $20,000  </strong> </p>
-                        </td>
-                        <td class="text-center">
-                          <i class="material-icons">check_circle_outline</i><br/>
-                          <strong>Paid: <span class="green">Rs 5000</span></strong>
-                        </td>
-                        <td class="text-center">
-                          <i class="material-icons">query_builder</i><br/>
-                          <strong>Pending: <span class="orange">Rs 10000</span></strong>
-                        </td>
-                        <td class="text-right">
-                          <button class="btn-warning btnround">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          &nbsp;
-                            <button class="btn-danger btnround">
-                            <i class="material-icons">clear</i>
-                          </button>
-                        </td>
-                        </tr>
-                      </table>
-                  </div>
-                  <div class="checkbox">
-                      <table width="100%">
-                        <tr>
-                        <td>
-                          <p class="rental">
-                            <strong>Sangeet Venue rental  </strong><br/>
-                            <i>Estimated: RS 10,000</i> 
-                          </p>
-                          <p> 
-                            <strong>Final Cost: $20,000  </strong> </p>
-                        </td>
-                        <td class="text-center">
-                          <i class="material-icons">check_circle_outline</i><br/>
-                          <strong>Paid: <span class="green">Rs 5000</span></strong>
-                        </td>
-                        <td class="text-center">
-                          <i class="material-icons">query_builder</i><br/>
-                          <strong>Pending: <span class="orange">Rs 10000</span></strong>
-                        </td>
-                        <td class="text-right">
-                          <button class="btn-warning btnround">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          &nbsp;
-                            <button class="btn-danger btnround">
-                            <i class="material-icons">clear</i>
-                          </button>
-                        </td>
-                        </tr>
-                      </table>
-                  </div>
-                  <div class="checkbox">
-                        <table width="100%">
-                          <tr>
-                            <td>
-                              <p class="rental">
-                                <strong>Sangeet Venue rental  </strong><br/>
-                                <i>Estimated: RS 10,000</i> 
-                              </p>
-                              <p> 
-                                <strong>Final Cost: $20,000  </strong> </p>
-                            </td>
-                            <td class="text-center">
-                              <i class="material-icons">check_circle_outline</i><br/>
-                              <strong>Paid: <span class="green">Rs 5000</span></strong>
-                            </td>
-                            <td class="text-center">
-                              <i class="material-icons">query_builder</i><br/>
-                              <strong>Pending: <span class="orange">Rs 10000</span></strong>
-                            </td>
-                            <td class="text-right">
-                              <button class="btn-warning btnround">
-                                <i class="material-icons">edit</i>
-                              </button>
-                              &nbsp;
-                                <button class="btn-danger btnround">
-                                <i class="material-icons">clear</i>
-                              </button>
-                            </td>
-                          </tr>
-                        </table>
-                  </div>
-              </div>
-          </div>
+            <button class="accordion"><i class="material-icons colo_pink"> home</i> <strong class="positi_rel"> Evens </strong>  
+              <i class="material-icons downarrow">keyboard_arrow_down</i>
+              <i class="material-icons uparrow">keyboard_arrow_up</i>
+              <table width="100%" class="martop20px pink">
+                    <tr>
+                      <td width="31%">Final Cost: {{finalCostTotal}}</td>
+                      <td width="25%" class="text-center">Paid: {{paidAmountTotal}}</td>
+                      <td width="25%" class="text-center">Pending: {{pendingAmountTotal}}</td>
+                      <td></td>
+                    </tr>
+              </table>
+            </button>
+            <div class="panel">
+                <div class="checkbox"  *ngFor='let Budget of expensesByCategory'>
+                  <table width="100%">
+                    <tr>
+                      <td>
+                        <p class="rental">
+                          <strong> {{Budget.name}} </strong><br/>
+                          <i>Estimated: RS {{Budget.estimatedCost}}</i> 
+                        </p>
+                        <p> 
+                          <strong>Final Cost: ${{Budget.finalCost}}  </strong> </p>
+                      </td>
+                      <td class="text-center">
+                        <i class="material-icons">check_circle_outline</i><br/>
+                        <strong>Paid: <span class="green">Rs {{Budget.paidAmount}}</span></strong>
+                      </td>
+                      <td class="text-center">
+                        <i class="material-icons">query_builder</i><br/>
+                        <strong>Pending: <span class="orange">Rs {{Budget.pendingAmount}}</span></strong>
+                      </td>
+                      <td class="text-right">
+                        <button class="btn-warning btnround">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        &nbsp;
+                          <button class="btn-danger btnround">
+                          <i class="material-icons">clear</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </table> 
+                </div>
+            </div>   
           </div>
         </div>
-        <div class="col-sm-3 filterbox">
-            <div  class="card" style="margin-top:0PX;">
-              <div class="card-body" >
-                <div class="px-3 py-3 expensesIPad">
-                        <h2>EXPENSES BY CATEGORY</h2>
-                        <ol class="timeline">
-                    <li><a href="#">Events <span class="badge badge-pill badge-default">Rs 15,000</span></a></li>
-                    <li><a href="#">Photography & Vedio <span class="badge badge-pill badge-default">Rs 24,000</span></a></li>
-                    <li><a href="#">Planing <span class="badge badge-pill badge-default">Rs 35,000</span></a></li>
-                    <li><a href="#">Health & Beauty <span class="badge badge-pill badge-default">Rs 15,000</span></a></li>
-                    <li><a href="#">Others <span class="badge badge-pill badge-default">Rs 25,000</span></a></li>
-                  </ol>
+      </div>
+      <div class="col-sm-3 filterbox">
+          <div  class="card" style="margin-top:0PX;">
+            <div class="card-body" >
+              <div class="px-3 py-3 expensesIPad">
+                      <h2>EXPENSES BY CATEGORY</h2>
+                      <ol class="timeline">
+                  <li><a href="#">Events <span class="badge badge-pill badge-default">Rs 15,000</span></a></li>
+                  <li><a href="#">Photography & Vedio <span class="badge badge-pill badge-default">Rs 24,000</span></a></li>
+                  <li><a href="#">Planing <span class="badge badge-pill badge-default">Rs 35,000</span></a></li>
+                  <li><a href="#">Health & Beauty <span class="badge badge-pill badge-default">Rs 15,000</span></a></li>
+                  <li><a href="#">Others <span class="badge badge-pill badge-default">Rs 25,000</span></a></li>
+                </ol>
 
-                  <div class="clearfix text-center">
-                  <button class="btn btn-pink"> Edit Category</button>
-                  </div>
+                <div class="clearfix text-center">
+                <button class="btn btn-pink"> Edit Category</button>
                 </div>
               </div>
             </div>
-        </div>
+          </div>
+      </div>
     </div>
     <div class="clearfix"></div>
     <app-foot></app-foot>
@@ -304,11 +162,8 @@
                       </div>
                       <div class="form-group col-md-6">
                       BudgetCategoryId:
-                      <select id="budgetCategoryId" name="budgetCategoryId" [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="budgetservice.objBudgetItem.budgetCategoryId">
-                        <option value="1">  budgetCategory</option>
-                        <option value="1">  budgetCategory</option>
-                        <option value="1">  budgetCategory</option>
-                        <option value="1">  budgetCategory</option>
+                      <select id="budgetCategoryId" name="budgetCategoryId" [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="budgetservice.objBudgetItem.budgetCategoryId" (ngModelChange)='onOptionsSelected($event)'>
+                        <option class='option' *ngFor='let option of budgetCategoryList' [value]="option.budgetCategoryId">{{option.name}}</option>
                       </select>
                     </div>
                     <button type="submit" class="btn newbtn">Save</button>&nbsp;

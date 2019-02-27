@@ -76,27 +76,30 @@
                             <div class="bridegroomlable"><img src="../../assets/img/bride.jpg"/> Bride</div>
                                 
                         </div>
-                        <div class="name_info">
-                            <p>
-                                <strong>First Name</strong><br/>  
-                               dgvfddf</p>
-                            <p> 
-                                <strong>Last Name</strong><br/>
-                            dfvdgv
-                            </p>
-                            <p>
-                                <strong>Telephone Number</strong><br/>
-                              dxfvdzf
-                            </p>
-                            <p>
-                                <strong>Email</strong>   
-                               &nbsp;&nbsp;<a class="linktext" data-toggle="modal" data-target="#cPassword">Change Password</a><br/>
-                               user@gmail.com
-                            </p>
-                           
-                        </div>
+                        <form>
+                            <div class="name_info">
+                                <p>
+                                    <strong>First Name</strong><br/>  
+                                    {{personalInfoArray.firstName}}
+                                </p>
+                                <p> 
+                                    <strong>Last Name</strong><br/>
+                                    {{personalInfoArray.lastName}}
+                                </p>
+                                <p>
+                                    <strong>Telephone Number</strong><br/>
+                                    {{personalInfoArray.phoneNumber}}
+                                </p>
+                                <p>
+                                    <strong>Email</strong>   
+                                &nbsp;&nbsp;<a class="linktext" data-toggle="modal" data-target="#cPassword">Change Password</a><br/>
+                                {{personalInfoArray.email}}
+                                </p>
+                            
+                            </div>
+                        </form>
                         <div class="updatebt text-center">
-                            <button  data-toggle="modal" data-target="#photo_ved">Update Profile
+                            <button  data-toggle="modal" (click)="getData_edit()">Update Profile / MY PERSONAL INFORMATION
                             </button>
                         </div>
                     </div>
@@ -120,16 +123,16 @@
                         <div class="col-sm-9 name_info setnameinfo">
                             <p>
                                 <strong>First Name</strong><br/>  
-                               dgvfddf</p>
+                               {{personalInfoArray.partnerFirstName}}</p>
                             <p> 
                                 <strong>Last Name</strong><br/>
-                            dfvdgv
+                                {{personalInfoArray.partnerLastName}}
                             </p>
                            
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-sm-12 updatebt text-center">
-                            <button  data-toggle="modal" data-target="#partner_detail">Update Profile
+                            <button  data-toggle="modal" data-target="#partner_detail">Update Profile / ABOUT MY PARTNER
                             </button>
                         </div>
                     </div>
@@ -151,8 +154,11 @@
                             </div>
                              <div class="divsetwidth">
                                 <h2>I,M GETTING MARRIED IN</h2>
-                                <p>Perth, Western Australia<br/>
+                                <!-- <p>Perth, Western Australia<br/>
                                     Australia <a href="#" class="linktext">Change</a>
+                                </p> -->
+                                 <p>{{weddingArray.weddingLocation}}<br/>
+                                 <a href="#" class="linktext">Change</a>
                                 </p>
                             </div>
                         </div>
@@ -162,7 +168,7 @@
                             </div>
                             <div class="divsetwidth">
                                 <h2>Wedding Date</h2>
-                                <p>16/03/2019
+                                <p>{{weddingArray.weddingDate | date}}
                                 </p>
                             </div>
                         </div>
@@ -172,7 +178,7 @@
                             </div>
                              <div class="divsetwidth">
                                 <h2>NUMBER OF GUESTS</h2>
-                                <p>300
+                                <p>{{weddingArray.numberOfGuests}}
                                 </p>
                             </div>
                         </div>
@@ -182,7 +188,7 @@
                             </div>
                             <div class="divsetwidth">
                                 <h2>WEDDING VENUE</h2>
-                                <p>NAME OF HALL, HOTEL
+                                <p>{{weddingArray.weddingVenue}}
                                 </p>
                             </div>
                         </div>
@@ -192,7 +198,7 @@
                             </div>
                              <div class="divsetwidth">
                                 <h2>ESTIMATED COST</h2>
-                                <p>RS 2,000,000
+                                <p>{{weddingArray.estimatedCost}}
                                 </p>
                             </div>
                         </div>
@@ -202,7 +208,8 @@
                             </div>
                             <div class="divsetwidth minheight92px">
                                 <h2>ABOUT THE WEDDING</h2>
-                                <p>Write a quick note about your big day!
+                                <p>
+                                    {{weddingArray.aboutWedding}}
                                 </p>
                             </div>
                         </div>
@@ -210,7 +217,7 @@
 
 
                           <div class="updatebt text-center">
-                            <button  data-toggle="modal" data-target="#wedddetail">Update Profile
+                            <button  data-toggle="modal" data-target="#wedddetail">Update Profile / MY WEDDING DETAILS
                             </button>
                         </div>
                     </div>
@@ -257,8 +264,8 @@
         <app-foot></app-foot>
         <router-outlet></router-outlet>
   
-
-<div class="modal fade" id="cPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<form #f="ngForm">
+<div class="modal fade" id="cPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" [ngClass]="{'show' : changePassword_form}">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -271,7 +278,15 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="field">
-                                        <input type="password" id="oldpassword" placeholder="Old Password" required="required">
+                                        <input 
+                                              type="password" 
+                                              [(ngModel)]='changePassObj.oldPassword' 
+                                              #oldPassword="ngModel"
+                                              name="oldPassword" 
+                                              minlength="6"
+                                              id="oldpassword" 
+                                              placeholder="Old Password" 
+                                              required>
                                         <label for="oldpassword">Old Password</label>
                                     </div>
                                 </div>
@@ -279,7 +294,14 @@
                             <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="field">
-                                            <input type="password" placeholder="New Password" id="newpassword" required="required">
+                                            <input 
+                                                  type="password" 
+                                                  placeholder="New Password" 
+                                                  [(ngModel)]='changePassObj.newPassword' 
+                                                  #newPassword="ngModel"
+                                                  name="newPassword" 
+                                                  id="newpassword" 
+                                                  required>
                                             <label for="newpassword">New Password</label>
                                         </div>
                                     </div>
@@ -287,7 +309,15 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" id="confirmpassword" type="password" placeholder="Confirm Password" required="required">
+                                        <input 
+                                              class="effect-16 validate" 
+                                              id="confirmpassword" 
+                                              type="password" 
+                                              [(ngModel)]='changePassObj.confirmPassword'
+                                              #confirmPassword="ngModel"
+                                              name="confirmPassword" 
+                                              placeholder="Confirm Password" 
+                                              required>
                                         <label for="confirmpassword">Confirm Password</label>
                                     </div>
                                 </div>
@@ -302,31 +332,48 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                      <button (click)="changePassword(f)" class="btn btn-secondary" data-dismiss="modal">Save</button>
                       &nbsp;&nbsp;
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" (click)="closeModel()" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
 </div>    
-
-<div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+</form>
+<!--MY PERSONAL INFORMATION Start-->
+<form #info="ngForm">
+<div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" [ngClass]="{'show' : personal_info }">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                     <h4 class="card-title">Personal Details</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">   
                 <div class="card">         
                     <div class="card-body">
+                    
                       <div class="col-md-12">
                             <div class="form-group">
                                 <div class="input-effect form-group md-form">
                                   My Self As The<br/>
-                                    <label><input type="radio"> 
+                                    <label>
+                                        <input 
+                                            type="radio"
+                                            name="gender"
+                                            [(ngModel)]="ProfileVMObj.gender" 
+                                            #gender="ngModel" 
+                                            id="gender" 
+                                            > 
                                       <img src="../../assets/img/groom.jpg"/> Groom</label>
-                                     <label><input type="radio"> 
+                                     <label>
+                                         <input 
+                                            type="radio"
+                                            name="gender"
+                                            [(ngModel)]="ProfileVMObj.partnerGender" 
+                                            #gender="ngModel" 
+                                            id="gender" 
+                                         > 
                                       <img src="../../assets/img/bride.jpg"/> Bride</label>
                                 </div>
                             </div>
@@ -334,7 +381,14 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="field">
-                                    <input type="text" placeholder="First Name" id="firstname" required="required">
+                                    <input 
+                                        type="text" 
+                                        name="firstName"
+                                        [(ngModel)]="ProfileVMObj.firstName" 
+                                        #firstName="ngModel" 
+                                        placeholder="First Name" 
+                                        id="firstname" 
+                                        required>
                                     <label for="firstname">First Name</label>
                                 </div>
                             </div>
@@ -342,15 +396,28 @@
                         <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="field">
-                                        <input type="text" placeholder="Last Name" required="required">
+                                        <input 
+                                            type="text" 
+                                            name="lastName"
+                                            [(ngModel)]="ProfileVMObj.lastName" 
+                                            #lastName="ngModel" 
+                                            placeholder="Last Name" 
+                                            required>
                                         <label for="lastname">Last Name</label>
                                     </div>
                                 </div>
-                        </div>                                      
+                        </div>                                     
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="field">
-                                    <input type="text" placeholder="Phone Number" id="phonenum" required="required">
+                                    <input 
+                                        type="text" 
+                                        placeholder="Phone Number" 
+                                        name="phoneNumber" 
+                                        [(ngModel)]="ProfileVMObj.phoneNumber" 
+                                        #phoneNumber="ngModel"
+                                        id="phoneNumber" 
+                                        required>
                                     <label for="phonenum">Phone Number</label>
                                 </div>
                             </div>
@@ -358,31 +425,41 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="field">
-                                    <input type="email" placeholder="Email" id="email" required="required">
+                                    <input 
+                                        type="email" 
+                                        placeholder="Email" 
+                                        name="email" 
+                                        [(ngModel)]="ProfileVMObj.email" 
+                                        #email="ngModel"
+                                        id="email" 
+                                        required>
                                     <label id="email">Email</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <!-- <div class="col-md-12">
                             <div class="form-group">
                                 <div class="field">
-                                    <textarea placeholder="About Me" id="aboutme"></textarea>
+                                    <textarea placeholder="About Me" name="aboutme" id="aboutme"></textarea>
                                     <label for="aboutme">About Me</label>
                                 </div>
                             </div>
-                        </div>
-
+                        </div> -->
                     </div> 
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                    <button (click)="UpdatePersonalInfo(info)" class="btn btn-secondary" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>    
- 
+</form>
+<!--MY PERSONAL INFORMATION END--> 
+
+<!--Subscription Form-->
+<form>
 <div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -432,13 +509,17 @@
             </div>
         </div>
 </div>  
+</form>
+<!--Subscription Form End-->
 
-<div class="modal fade" id="partner_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--ABOUT MY PARTNER-->
+<form #infoPartner="ngForm">
+<div class="modal fade" id="partner_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" [ngClass]="{'show' : UpdatePersonal_Info }">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                     <h4 class="card-title">Partner Details</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModel()"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">   
                 <div class="card">         
@@ -457,7 +538,15 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="field">
-                                    <input class="effect-16 validate" type="text" id="firstnamepartner" placeholder="First Name" required="required">
+                                    <input 
+                                        class="effect-16 validate" 
+                                        type="text" 
+                                        id="firstnamepartner" 
+                                        name="partnerFirstName"
+                                        [(ngModel)]="ProfileVMObj.partnerFirstName" 
+                                        #partnerFirstName="ngModel" 
+                                        placeholder="First Name" 
+                                        required>
                                     <label for="firstnamepartner">First Name</label>
                                     <span class="focus-border"></span>
                                 </div>
@@ -466,7 +555,14 @@
                         <div class="col-md-12">
                                 <div class="form-group">
                                      <div class="field">
-                                        <input type="text" id="lastnamepartner" placeholder="Last Name" required="required">
+                                        <input 
+                                            type="text" 
+                                            id="lastnamepartner" 
+                                            name="partnerLastName"
+                                            [(ngModel)]="ProfileVMObj.partnerLastName" 
+                                            #partnerLastName="ngModel" 
+                                            placeholder="Last Name" 
+                                            required>
                                         <label for="lastnamepartner">Last Name</label>
                                     </div>
                                 </div>
@@ -477,19 +573,23 @@
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button (click)="aboutUpdate(infoPartner)" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" (click)="closeModel()" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-</div>    
+</div>   
+</form> 
+<!--ABOUT MY PARTNER End-->
 
-<div class="modal fade" id="wedddetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--Wedding Details Update Form-->
+<form  #wedding="ngForm">
+<div class="modal fade" id="wedddetail" tabindex="-1" role="dialog" [ngClass]="{'show' : wedding_details_update}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                     <h4 class="card-title">Wedding Details</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">   
                 <div class="card">         
@@ -498,7 +598,14 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                  <div class="field">
-                                   <textarea placeholder="I,M GETTING MARRIED IN" required="required" id="marriedplace"></textarea>
+                                   <textarea 
+                                    placeholder="I,M GETTING MARRIED IN" 
+                                    required="required" 
+                                    id="marriedplace"
+                                    name="weddingLocation"
+                                    #weddingLocation="ngModel"
+                                    [(ngModel)]="WeddingDetailsObj.weddingLocation"
+                                    ></textarea>
                                     <label for="marriedplace">I,M GETTING MARRIED IN</label>
                                 </div>
                             </div>
@@ -506,7 +613,15 @@
                         <div class="col-md-12">
                                 <div class="form-group">
                                    <div class="field">
-                                        <input type="Date" id="weddate" placeholder="Wedding Date" required="required">
+                                        <input 
+                                            type="Date" 
+                                            id="weddate" 
+                                            placeholder="Wedding Date" 
+                                            required
+                                            name="weddingDate"
+                                            #weddingDate="ngModel"
+                                            [(ngModel)]="WeddingDetailsObj.weddingDate"
+                                            >
                                         <label for="weddate">Wedding Date</label>
                                     </div>
                                 </div>
@@ -514,7 +629,15 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                   <div class="field">
-                                    <input type="text" id="noguest" placeholder="Number Of Guest" required="required">
+                                    <input 
+                                        type="text" 
+                                        id="noguest" 
+                                        placeholder="Number Of Guest" 
+                                        required
+                                        name="numberOfGuests"
+                                        #numberOfGuests="ngModel"
+                                        [(ngModel)]="WeddingDetailsObj.numberOfGuests"
+                                        >
                                     <label for="noguest">Number Of Guest</label>
                                 </div>
                             </div>
@@ -522,7 +645,14 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                   <div class="field">
-                                    <input type="text" placeholder="Wedding Venue" required="required">
+                                    <input 
+                                        type="text" 
+                                        placeholder="Wedding Venue" 
+                                        required
+                                        name="weddingVenue"
+                                        #weddingVenue="ngModel"
+                                        [(ngModel)]="WeddingDetailsObj.weddingVenue"
+                                    >
                                     <label for="wedvenue">Wedding Venue</label>
                                 </div>
                             </div>
@@ -530,7 +660,15 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                   <div class="field">
-                                    <input type="text" id="estimatedcost" placeholder="Estimated Cost" required="required">
+                                    <input 
+                                        type="text" 
+                                        id="estimatedcost" 
+                                        placeholder="Estimated Cost" 
+                                        required
+                                        name="estimatedCost"
+                                        #estimatedCost="ngModel"
+                                        [(ngModel)]="WeddingDetailsObj.estimatedCost"
+                                    >
                                     <label for="estimatedcost">Estimated Cost</label>
                                 </div>
                             </div>
@@ -538,29 +676,33 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="field"> 
-                                   <textarea placeholder="About The Wedding" id="aboutwedding" required="required"></textarea>
+                                   <textarea 
+                                            placeholder="About The Wedding" 
+                                            id="aboutwedding" 
+                                            required
+                                            name="aboutWedding"
+                                            #aboutWedding="ngModel"
+                                            [(ngModel)]="WeddingDetailsObj.aboutWedding"
+                                    ></textarea>
                                     <label for="aboutwedding">About The Wedding</label>
                                     <span class="focus-border"></span>
                                 </div>
                             </div>
                         </div>
-                        
-                   
-
                     </div> 
                 </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button (click)="UpdateWeddingDetails(wedding)" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" (click)="closeModel()" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>    
+</form>
+<!--Wedding Details Update End-->
 
-
-
-
+<!--Set Color Theme-->
 <div class="modal fade" id="colortheme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

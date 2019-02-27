@@ -5,11 +5,14 @@
   <div class="col-sm-12">
   <div class="man_info">
     <h2 class="martop20px"> Reviews 
-      <select class="sortselect">
-        <option>Sort By: Most Helpful</option>
+      	<!-- <form (ngSubmit)="SortReview()" #sort="ngForm"> -->
+      <select class="sortselect" [(ngModel)]="ReviewSearchVMObj.Enum" name="Enum" (change)="changeData()">
+        <!-- <option [value]="">Sort By: Most Helpful</option> -->
+        <option *ngFor="let sort of SortBy ;let s = index" [value]="sort.id">{{sort.name}}</option>
       </select>
+      <!-- </form> -->
     </h2>
-    <div *ngFor="let review of reviewsArray" >
+    <div *ngFor="let review of filtered_reviews" > 
       <div class="man_img" >
         <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt=""> 
         <span class="revie_name"> <strong> 
@@ -34,7 +37,10 @@
         </p>
 
         <div class="btn_button ">
-          <p> <span><i class="material-icons">thumb_up</i> </span> <span class="share_i"> <i class="material-icons"> share </i> <b> Share </b>  </span>  </p>
+          <p> 
+            <span><i class="material-icons">thumb_up</i> </span> 
+            <span class="share_i"> <i class="material-icons"> share </i> <b> Share </b>  </span>  
+          </p>
         </div>
       </div>
       <br>

@@ -26,8 +26,6 @@
                         {{item?.eventDescription}}
                     </p>
                 </div>
-
-
                 <section class="margi_top_30px padd_bot_10px">
 
                     <div class="row parking_row">
@@ -36,10 +34,14 @@
                         <div class="col-md-12">
                             <p><strong>{{item?.venueName }}</strong></p>
                             <p>{{item?.location}},</p>
-                            <p *ngIf="item?.country == null && item?.districts == null && item?.suburb == null">N/A Country , Districts , Suburb</p>
-                            <p *ngIf="item?.country !== null && item?.districts !== null && item?.suburb !== null"> {{item?.country}},{{item?.districts}},{{item?.suburb}}</p>
-                            <p><i class="material-icons pull-left" *ngIf="item?.phoneNumber == null">phone_iphone</i> N/A PhoneNumber</p>
-                            <p><i class="material-icons pull-left" *ngIf="!item?.phoneNumber== null">phone_iphone</i> {{item?.phoneNumber}}</p>
+                            <p *ngIf="item?.country == null && item?.districts == null && item?.suburb == null">N/A
+                                Country , Districts , Suburb</p>
+                            <p *ngIf="item?.country !== null && item?.districts !== null && item?.suburb !== null">
+                                {{item?.country}},{{item?.districts}},{{item?.suburb}}</p>
+                            <p><i class="material-icons pull-left" *ngIf="item?.phoneNumber == null">phone_iphone</i>
+                                N/A PhoneNumber</p>
+                            <p><i class="material-icons pull-left" *ngIf="!item?.phoneNumber== null">phone_iphone</i>
+                                {{item?.phoneNumber}}</p>
                         </div>
                     </div>
                 </section>
@@ -66,21 +68,21 @@
                         <h4><span><i class="material-icons">watch_later</i> </span> Schedule</h4>
                         <div class="col-md-12 marbot5px" *ngFor='let event of data[0]?.eventsDates | slice:0:1 ;let i=index '>
                             <p><span class="bold">Start Date & Time</span><br />
-                                    {{event?.startDateString}} &nbsp;&nbsp;{{event?.startTimeString}}</p>
+                                {{event?.startDateString}} &nbsp;&nbsp;{{event?.startTimeString}}</p>
                             <!-- <div class="col-md-12 marbot5px"> -->
-                                <p><span class="bold">Ending Date and Time</span><br />
-                                    {{event?.endDateString}} &nbsp;&nbsp;{{event?.endTimeString}}</p>
+                            <p><span class="bold">Ending Date and Time</span><br />
+                                {{event?.endDateString}} &nbsp;&nbsp;{{event?.endTimeString}}</p>
                             <!-- </div> -->
                         </div>
 
-                        <div class="col-md-12 marbot5px"  *ngFor='let event of data[0]?.eventsDates | slice:0:1 ;let i=index '>
+                        <div class="col-md-12 marbot5px" *ngFor='let event of data[0]?.eventsDates | slice:0:1 ;let i=index '>
                             <p><span class="bold">Duration</span><br />
                                 <p *ngIf="event.duration === 1">
-                                        <span>Duration</span> {{event.duration}} Day
-                                </p>	
-                            <p *ngIf="event.duration > 1">
+                                    <span>Duration</span> {{event.duration}} Day
+                                </p>
+                                <p *ngIf="event.duration > 1">
                                     <span>Duration</span> {{event.duration}} Days
-                            </p>
+                                </p>
                                 <!-- {{event?.duration}} Days </p> -->
                         </div>
                     </div>
@@ -101,19 +103,19 @@
                 <section class="margi_top_30px">
                     <div class="row parking_row3">
                         <h4 class="location_up">
-                            <span> <i class="fa fa-user" aria-hidden="true"></i> </span> 
+                            <span> <i class="fa fa-user" aria-hidden="true"></i> </span>
                             Event Organiser
                         </h4>
                         <div class="col-md-12 text-center" *ngIf="item?.profileImage == null">
-                                <img class="circle_img" [src]="noImage" >
-                        </div>                        
+                            <img class="circle_img" [src]="noImage">
+                        </div>
                         <div class="col-md-12 text-center" *ngIf="item?.profileImage !== null">
                             <img class="circle_img" [src]="item?.profileImage" [alt]="">
                         </div>
                         <div class="col-md-12 text-center">
-                            <span> 
-                                <strong> {{item?.organiserName}}</strong> <br> 
-                                         {{item?.memberSince}} 
+                            <span>
+                                <strong> {{item?.organiserName}}</strong> <br>
+                                {{item?.memberSince}}
                             </span>
                             <p class="social_field">
                                 <span> <i class="fa fa-facebook" aria-hidden="true"></i></span>
@@ -122,17 +124,16 @@
                             </p>
                             <p>
 
-                                <a (click)="goToDetailPage(item)"  class="profilebtn">View Profile</a>
+                                <a (click)="goToDetailPage(item)" class="profilebtn">View Profile</a>
 
                             </p>
                         </div>
                     </div>
                 </section>
-
             </div>
         </div>
     </section>
     <div class="clearfix"></div>
     <app-foot></app-foot>
-</div>
+  </div>
 <router-outlet></router-outlet>

@@ -34,6 +34,7 @@ export class NgbdbookmarkModalContent {
   providers: [taskService, NgbActiveModal, ToastrService,Location]
 })
 export class BookmarkComponent implements OnInit {
+ status:any;
  acc: any;
  myChecklist: any;
  filteredToDos: any;
@@ -41,6 +42,7 @@ export class BookmarkComponent implements OnInit {
  completedTaskTotal:number;
  completedInPercent:number;
  checklistOptions: any;
+
   // Prevent panel toggle code
   public beforeChange($event: NgbPanelChangeEvent) {
     if ($event.panelId === '2') {
@@ -97,12 +99,14 @@ export class BookmarkComponent implements OnInit {
          });
      }
      filterByStatus(statusId){
+         
          if(statusId==0){
              this.filteredToDos = this.myChecklist;
          }else{
             this.filteredToDos = this.myChecklist.filter(c=>c.status==statusId);
          }
          console.log(this.filteredToDos);
+         this.status = !this.status;
      }
      removeTodoList(id){
         this.tskService.removeToDo(id).subscribe(res=>{

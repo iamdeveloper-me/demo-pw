@@ -58,7 +58,7 @@
               </div>
           </div>
           <div class="col-sm-9 mobnopadd guestbox">
-            <div *ngFor='let g of guestList' class="col-sm-12 nopadd accordinholder">
+              <div *ngFor='let g of guestList' class="col-sm-12 nopadd accordinholder">
                 <div class="accordion row">
                   <div class="col-8 col-sm-4 mobnopadd">
                     <div class="pull-left">
@@ -173,7 +173,7 @@
                   </div>
                 </div>
             </div>
-
+              
           </div>
           <div class="col-sm-3 mobnopadd">
               <div class="card martop0px hidden-xs">
@@ -267,7 +267,7 @@
       <div class="modal-content">
         <form (ngSubmit)='createUpdateGuest()'>
         <div class="modal-header text-center">
-            <h4 class="modal-title"><b>Add New Guest</b></h4>
+            <h4 class="modal-title"><b>Add New Guest </b></h4>
             <button type="button" class="close" (click) = "closeModel()" >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -295,11 +295,8 @@
                           <label>Age Group</label>
                         <select class="browser-default custom-select mb-4" name="guestAgeGroup" id='guestAgeGroup' 
                         [(ngModel)]='_guestservice.objGuest.ageGroup'>
-                              <option value="" disabled>22</option>
-                              <option value="1" selected>23</option>
-                              <option value="2">25</option>
-                              <option value="3">28</option>
-                              <option value="4">56</option>
+                              <option value="1" selected>Adult</option>
+                              <option value="1" selected>Child</option>
                           </select> 
                     </div>
                     </div>
@@ -322,7 +319,7 @@
           </div>
         </div> 
         <div class="modal-footer marbot0px">
-            <button type="submit"  class="btn newbtn">Save</button>
+            <button type="submit" class="btn newbtn" (click)="closeModel()">Save</button>
             <button type="button" class="btn newbtn newcancelbtn"  (click) = "closeModel()" >Cancel</button>
           </div>
           </form>
@@ -402,45 +399,16 @@
                   <form (ngSubmit)='createUpdateMenu()' #menu="ngForm">
                       <div class="row field">
                           <label>Menu Name</label>
-                          <input type="text" name="menuName" id="menuName" [(ngModel)]='_guestservice.objMenu.name' class="form-control mb-4" placeholder="Name">                
+                          <input type="text" name="menuName" id="menuName" [(ngModel)]='_guestservice.objMenu.name' class="form-control" placeholder="Name">                
                       </div>
-                      <div class="modal-footer marbot0px">
-                          <button type="submit"  class="btn newbtn">Save</button>
-                          <button type="reset" class="btn newbtn newcancelbtn"  (click) = "closeModel()" >Cancel</button>
-                        </div>
                       </form>
                 </div>
-              </div>
-              <div class="col-sm-12 nopadd topmargin">
-                <div class="col-sm-12">
-                      <div class="row field">
-                          <div class="table-responsive">
-                              <table class="table" style="border:1px solid #ced4da;margin: 0 !important;">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">S No.</th>
-                                    <th scope="col">Menu Name</th>
-                                    <th scope="col">Edit/Delete</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">3</th>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                      </div>
-                </div>
-              </div>
+              </div>       
           </div> 
+          <div class="modal-footer marbot0px">
+  <button type="submit" class="btn newbtn" (click)="closeModel()">Save</button>
+            <button type="reset" class="btn newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
+          </div>
         </div>       
       </div>          
 </div>

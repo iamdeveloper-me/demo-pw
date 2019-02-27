@@ -234,6 +234,7 @@ import { HoneymoonDestinatationComponent } from './honeymoon-destinatation/honey
 import { AllReviewsComponent } from './all-reviews/all-reviews.component';
 import { DealListComponent } from './deal-list/deal-list.component';
 import { HoneymoonSearchResultComponent ,PPl} from './honeymoon-search-result/honeymoon-search-result.component';
+import {GuestPipe} from '../app/userpannel/userboard/guest/guest.pipe';
 
 
 // import { ShareButtonsModule } from '@ngx-share/buttons';
@@ -474,6 +475,7 @@ export function getAuthServiceConfigs() {
         HoneymoonDestinatationComponent,
         DealListComponent,
         HoneymoonSearchResultComponent,
+        GuestPipe,
 
 
 

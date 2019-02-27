@@ -108,7 +108,10 @@ export class BookmarkComponent implements OnInit {
      removeTodoList(id){
         this.tskService.removeToDo(id).subscribe(res=>{
             console.log(res);
+            this.toastr.success(res.message,'Done !');
             this.mychecklist();
+        },error=>{
+            this.toastr.error(error,'Error !');
         })
      }
 

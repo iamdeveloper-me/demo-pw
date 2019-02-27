@@ -7,7 +7,7 @@
               <div class="clearfix"></div>
               <div class="col-md-12 row serabar">
                 <div class="col-md-4">
-                  <input  class="searchinput" name="" placeholder="Search Guest" type="text">
+                  <input  class="searchinput" name="" [(ngModel)]='searchGuestQuery' placeholder="Search Guest" type="text">
                   <span class="icon"><i class="material-icons">search</i></span>
                 </div>
                 <div class="col-md-8 text-right hidden-xs">
@@ -58,8 +58,8 @@
               </div>
           </div>
           <div class="col-sm-9 mobnopadd guestbox">
-            <div *ngFor='let g of guestList' class="col-sm-12 nopadd accordinholder">
-                <div class="accordion row">
+            <div *ngFor='let g of guestList |guest:searchGuestQuery' class="col-sm-12 nopadd accordinholder">
+              <div class="accordion row">
                   <div class="col-8 col-sm-4 mobnopadd">
                     <div class="pull-left">
                       <i class="material-icons"> group</i> 
@@ -78,7 +78,7 @@
                     Invitation
                   </div>
                   <div class="col-4 col-sm-3 text-right mobnopadd mobwidth90">
-                    <button class="btnplain"><i class="material-icons">person_add</i></button>
+                    <button class="btnplain" (click)='openDialogClose()'><i class="material-icons">person_add</i></button>
                     <button class="btnplain"><i class="material-icons">settings</i></button>
                     <div class="pull-right arrowiconmob">
                       <i class="material-icons downarrow">keyboard_arrow_down</i>
@@ -87,64 +87,22 @@
                   </div>
                 </div>
                 <div class="panel">
-                  <!-- <div class="checkbox row mobnopaddltrt" *ngFor='let m of g.guests'>
+                  <div class="checkbox row mobnopaddltrt" *ngFor='let m of g.guests'>
                       <div class="col-4">
                        <strong>{{m.name}}</strong> 
-                        <i class="material-icons pull-right">child_care</i>
+                        <i *ngIf='m.ageGroup==="c"' class="material-icons pull-right">child_care</i>
                       </div>
                       <div class="col-3 text-center">
-                        Chicken
+                        {{m.menu.name}}
                       </div>
                       <div class="col-2 text-center">
-                        <i class="material-icons">check_circle_outline</i>
+                        <i *ngIf='m.invitationSent' class="material-icons">check_circle_outline</i>
                       </div>
                       <div class="col-3  text-right">
-                        <button class="btnplain hidden-xs">
+                        <button (click)='openDialogClose(m)' class="btnplain hidden-xs">
                           <i class="material-icons">edit</i>
                         </button>
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">delete_forever</i>
-                        </button>
-                          <div class="material-button-anim hidden-sm hidden-md hidden-lg">
-                              <button class="material-button material-button-toggle" type="button">
-                                <span class="material-icons">add</span>
-                              </button>
-                              <ul class="list-inline" id="options">
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">edit</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                  <span class="material-icons">group_work</span>
-                                  </button>
-                                </li>
-                                <li class="option">
-                                  <button class="material-button option1" type="button">
-                                    <span class="material-icons">clear</span>
-                                  </button>
-                                </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div> -->
-                    <div class="checkbox row mobnopaddltrt">
-                      <div class="col-4">
-                       <strong>Gaurav</strong> 
-                        
-                      </div>
-                      <div class="col-3 text-center">
-                        Vegeterian
-                      </div>
-                      <div class="col-2 text-center">
-                        <i class="material-icons">check_circle_outline</i>
-                      </div>
-                      <div class="col-3  text-right">
-                        <button class="btnplain hidden-xs">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button class="btnplain hidden-xs">
+                        <button (click)='removeGuest(m.guestsId)' class="btnplain hidden-xs">
                           <i class="material-icons">delete_forever</i>
                         </button>
                           <div class="material-button-anim hidden-sm hidden-md hidden-lg">
@@ -171,6 +129,7 @@
                           </div>
                       </div>
                   </div>
+
                 </div>
             </div>
 
@@ -295,11 +254,8 @@
                           <label>Age Group</label>
                         <select class="browser-default custom-select mb-4" name="guestAgeGroup" id='guestAgeGroup' 
                         [(ngModel)]='_guestservice.objGuest.ageGroup'>
-                              <option value="" disabled>22</option>
-                              <option value="1" selected>23</option>
-                              <option value="2">25</option>
-                              <option value="3">28</option>
-                              <option value="4">56</option>
+                              <option value="c" disabled>Child Group</option>
+                              <option value="a" selected>Adult Group</option>
                           </select> 
                     </div>
                     </div>
@@ -370,10 +326,10 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr *ngFor='let g of  _guestservice.myGroups'>
-                                  <th scope="row">1</th>
+                                <tr *ngFor='let g of  _guestservice.myGroups;let i=index'>
+                                  <th scope="row">{{i+1}}</th>
                                   <td>{{g.name}}</td>
-                                  <td><div class="btn btn-edit">Edit</div></td>
+                                  <td><div (click)='editGroup(g)' class="btn btn-edit">Edit</div></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -424,8 +380,8 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr *ngFor='let m of _guestservice.myMenuList'>
-                                    <th scope="row">1</th>
+                                  <tr *ngFor='let m of _guestservice.myMenuList; let i = index'>
+                                    <th scope="row">{{i+1}}</th>
                                     <td>{{m.name}}</td>
                                     <td><div class="btn fa fa-edit" (click)=editMenu(m)>Edit</div></td>
                                   </tr>

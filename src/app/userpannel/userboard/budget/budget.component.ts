@@ -15,6 +15,7 @@ export class BudgetComponent implements OnInit {
   expensesByCategory: any;
   constructor(private apiService: apiService,public budgetservice: Budgetservice, public toaster: ToastrService) {
     this.getMyBudgetItems();
+    this.getMyBudgetCategory();
   }
   name: string; 
   estimatedCost:string;
@@ -27,7 +28,7 @@ export class BudgetComponent implements OnInit {
   finalCostTotal:number;
   paidAmountTotal:number;
   pendingAmountTotal:number;
-
+  budgetCategory:any;
   budgetCategoryList = [];
   
   
@@ -60,13 +61,6 @@ export class BudgetComponent implements OnInit {
       console.log(error)
       }
     )
-    
-    // this.apiService.postData(this.apiService.serverPath+'BudgetItem/mybudgetitems',{BudgetCategoryId:81}).subscribe(data => {
-    //   console.log(data);
-    //   this.Budgetlist = data;
-    // },error => {
-    //   console.log(error)
-    // })
   }
 
   closeModel(){
@@ -104,6 +98,12 @@ export class BudgetComponent implements OnInit {
       this.paidAmountTotal = res.reduce((sum, item) => sum + item.paidAmount, 0);
       this.pendingAmountTotal = res.reduce((sum, item) => sum + item.pendingAmount, 0);
       // console.log(this.expensesByCategory);
+    })
+  }
+  getMyBudgetCategory(){
+    this.budgetservice.getMyBudgetCategory().subscribe(res=>{
+      this.budgetCategory = res;
+      console.log(this.budgetCategory);
     })
   }
 }

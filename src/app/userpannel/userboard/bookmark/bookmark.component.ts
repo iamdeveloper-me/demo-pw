@@ -4,6 +4,7 @@ import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { taskService } from './taskService';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
+import { debug } from 'util';
 @Component({
     selector: 'ngbd-modal-content',
     template: `
@@ -54,8 +55,8 @@ export class BookmarkComponent implements OnInit {
      closeResult: string;
 
     constructor(private modalService: NgbModal,public activeModal: NgbActiveModal, public tskService: taskService,
-        public toastr: ToastrService, public locationService: Location
-        ){
+        public toastr: ToastrService, public locationService: Location){
+            debugger;
             this.checklistOptions=[
             {id: 1, name: 'Category'},
             {id: 2, name: 'Events'},

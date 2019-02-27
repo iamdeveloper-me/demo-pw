@@ -20,7 +20,8 @@ export class GuestComponent implements OnInit {
     this.myguestCount();
     this.getMyGroups();
     this.searchMyGuest();
-    this.getMyMenu()
+    this.getMenuGuestCount()
+    this.getMyMenu();
    }
    
 
@@ -115,6 +116,7 @@ for (i = 0; i < acc.length; i++) {
       this._guestservice.objGroup = new GroupVm();
       this.closeModel();
       this.getMyGroups();
+      this.getMyMenu();
     },error=>{
       this.toaster.error(error,'Error');
       console.log(error);
@@ -149,15 +151,24 @@ for (i = 0; i < acc.length; i++) {
   createUpdateMenu(){
     this._guestservice.createUpdateMenu().subscribe(res=>{
       this.toaster.success(res.message,'Done !');
-      this.getMyMenu();
+      this.getMenuGuestCount();
     },error=>{
       this.toaster.error(error,'Error');
     })
   }
-  getMyMenu(){
-    this._guestservice.getMyMenu().subscribe(res=>{
+  editMenu(m){
+    this._guestservice.objMenu = m;
+  }
+  getMenuGuestCount(){
+    this._guestservice.getMenuGuestCount().subscribe(res=>{
       this._guestservice.menuGuestCount = res;
       console.log(this._guestservice.menuGuestCount);
+    })
+  }
+  getMyMenu(){
+    this._guestservice.getMyMenu().subscribe(res=>{
+      this._guestservice.myMenuList = res;
+      console.log(this._guestservice.myMenuList)
     })
   }
 

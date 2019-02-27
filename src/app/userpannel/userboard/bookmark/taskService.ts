@@ -37,7 +37,7 @@ public myCheckList(): Observable <any>{
     return this.apiService.postData(this.apiService.serverPath+this.myChecklistUrl,this.objMychecklistParam);
 }
 public removeToDo(id): Observable<any>{
-    return this.apiService.deleteAction(this.removeToDoUrl,{'id':id});
+    return this.apiService.deleteAction2(this.removeToDoUrl+ '?id='+id,'');
 }
 }
 export class toDoVm{ toDoId: number; name: string; timing: string; categoryId: number; notes: string; status: number; }

@@ -41,20 +41,17 @@ export class VendorlistComponent implements OnInit {
                           $(".savedbox").hide();
                           $(".shortlistbox").show();
                       });
-
-
-
-
-
                 });
-
                 let headers = new Headers();
                 var authToken = localStorage.getItem('_u');
                 headers.append('Accept', 'application/json')
                 headers.append('Content-Type', 'application/json');
                 headers.append("Authorization",'Bearer '+authToken);
                 this.http.get(this.urlg,{headers:headers}).subscribe(
-                data =>{ this.countryArray = data.json();});
+                data =>{ 
+                  this.countryArray = data.json();
+                console.log(data);
+                });
   }
 
 }

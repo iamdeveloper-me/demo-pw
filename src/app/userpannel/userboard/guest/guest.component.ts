@@ -3,12 +3,14 @@ import { apiService } from 'app/shared/service/api.service';
 import { GuestserviceService, GroupVm } from './guestservice.service';
 import { ToastrService } from 'ngx-toastr';
 import { NumberValueAccessor } from '@angular/forms/src/directives';
+import { GuestPipe } from './guest.pipe';
 
 
 @Component({
   selector: 'app-guest',
   templateUrl: './guest.component.html',
-  styleUrls: ['./guest.component.scss']
+  styleUrls: ['./guest.component.scss'],
+  providers: [GuestPipe]
 })
 export class GuestComponent implements OnInit {
   twitterDailog = false;
@@ -17,6 +19,7 @@ export class GuestComponent implements OnInit {
   guestList: any;
   totalGuests:Number;
   totalChilds: number;
+  searchGuestQuery: string;
   totalAdulst: number;
   constructor(public _guestservice: GuestserviceService,private apiService : apiService, public toaster: ToastrService) {
     this.myguestCount();
@@ -27,6 +30,7 @@ export class GuestComponent implements OnInit {
       this.guestList = res;  
       console.log(this.guestList)
     });
+
    }
     
 
@@ -121,11 +125,16 @@ for (i = 0; i < acc.length; i++) {
       this._guestservice.objGroup = new GroupVm();
       this.closeModel();
       this.getMyGroups();
+      this.getMyMenu();
     },error=>{
       this.toaster.error(error,'Error');
       console.log(error);
     }
     )
+  }
+  editGroup(g){
+    this._guestservice.objGroup = g;
+    
   }
   getMyGroups(){
     this._guestservice.getMyGroups().subscribe(res=>{
@@ -200,15 +209,34 @@ for (i = 0; i < acc.length; i++) {
   createUpdateMenu(){
     this._guestservice.createUpdateMenu().subscribe(res=>{
       this.toaster.success(res.message,'Done !');
-      this.getMyMenu();
+      this.getMenuGuestCount();
     },error=>{
       this.toaster.error(error,'Error');
     })
   }
+  editMenu(m){
+    this._guestservice.objMenu = m;
+  }
+  getMenuGuestCount(){
+    this._guestservice.getMenuGuestCount().subscribe(res=>{
+      this._guestservice.menuGuestCount = res;
+    })
+  }
   getMyMenu(){
     this._guestservice.getMyMenu().subscribe(res=>{
-      this._guestservice.menuGuestCount = res;
-      console.log(this._guestservice.menuGuestCount);
+      this._guestservice.myMenuList = res;
+    })
+  }
+  openDialogClose(guest){
+    this._guestservice.objGuest = guest;
+    this.twitterDailog=true;;
+  }
+  removeGuest(id){
+    this._guestservice.removeGuest(id).subscribe(res=>{
+      this.toaster.success(res.message,'Done !');
+      this.searchMyGuest();
+    },error=>{
+      this.toaster.error(error,'Error !');
     })
   }
 

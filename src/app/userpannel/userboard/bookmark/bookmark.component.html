@@ -285,7 +285,11 @@
                             <br/>
                             {{td.timing}} <span class="badge badge-success" *ngIf='td.status==1'>{{td.statusString}}</span>
                     	</span>
+
                     <button class="deletebtnhover"><i class="material-icons">edit</i></button>
+
+                    	<!-- <button (click)='removeTodoList(td.toDoId)' class="deletebtnhover"><i class="material-icons">delete</i></button> -->
+
                     </div>
                     <div id='content' class="modal fade" role="dialog" >
                         <div class="modal-dialog">

@@ -14,7 +14,6 @@ export class ToolComponent implements OnInit {
   }
 
   routeChange(change){
-
     switch(change) { 
       case 'User/Timeline': { 
         this.router.navigate([change])

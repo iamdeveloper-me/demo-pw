@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { apiService } from 'app/shared/service/api.service';
 import { GuestserviceService, GroupVm } from './guestservice.service';
 import { ToastrService } from 'ngx-toastr';
 import { NumberValueAccessor } from '@angular/forms/src/directives';
+
 
 @Component({
   selector: 'app-guest',
@@ -16,13 +18,17 @@ export class GuestComponent implements OnInit {
   totalGuests:Number;
   totalChilds: number;
   totalAdulst: number;
-  constructor(public _guestservice: GuestserviceService, public toaster: ToastrService) {
+  constructor(public _guestservice: GuestserviceService,private apiService : apiService, public toaster: ToastrService) {
     this.myguestCount();
     this.getMyGroups();
     this.searchMyGuest();
     this.getMyMenu()
+    this._guestservice.getMyGuestList().subscribe(res=>{
+      this.guestList = res;  
+      console.log(this.guestList)
+    });
    }
-   
+    
 
   ngOnInit(){ 
   $.getScript('http://code.jquery.com/jquery-1.11.1.min.js'); 
@@ -141,6 +147,51 @@ for (i = 0; i < acc.length; i++) {
     })
   }
 
+
+  myGuests(){
+    this.apiService.getData(this.apiService.serverPath+'Guests/myGuests',).subscribe(
+      data => {
+      console.log(data);
+    },
+    error => {
+      console.log(error)
+    }
+  )
+}
+
+  createupdateguests(guest){
+    this.apiService.postData(this.apiService.serverPath+'Guests/createupdateguests',guest.value).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  myguestscounts(){
+    this.apiService.getData(this.apiService.serverPath+'Guests/myguestscounts',).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  myguestssearch(search){
+    this.apiService.postData(this.apiService.serverPath+'Guests/myguestssearch',search.value).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
   closeModel(){
     this.twitterDailog = false
     this.groupDailog = false;
@@ -178,4 +229,33 @@ for (i = 0; i < acc.length; i++) {
       this.toaster.error(error,'Error !');
     })
   }
+}
+
+
+export class GuestsVM {
+  guestsId : number;
+  name : string;
+  memberId : number;
+  groupsId : number;
+  groups:Array<GroupsVM>;
+  menuId : number;
+  menu:Array<MenuVM>;
+  ageGroup : string;
+  invitationSent : boolean;
+}
+
+export class GroupsVM {
+  groupsId : number;
+  memberId : number;
+  name: string;
+}
+
+export class 	MenuVM {
+  menuId : number;
+  memberId : number;
+  name : number;
+}
+
+export class SearchGuestsVM {
+  query : string;
 }

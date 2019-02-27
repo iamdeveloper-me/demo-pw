@@ -123,7 +123,6 @@ export class UseraccountComponent implements OnInit {
     changePassword(f){
       this.apiService.postData(this.apiService.serverPath+'Accounts/changepassword',f.value).subscribe(data => {
         this.toastr.success(data.message);
-        f.resetForm();
           this.changePassword_form =false;
           f.resetForm();
         },
@@ -156,8 +155,8 @@ export class MemberProfileVM {
 
 export class MemberWeddingDetails {
   weddingLocation:	string;
-  lat:	number;
-  long:	number;
+  // lat:	number;
+  // long:	number;
   weddingDate:	string;
   numberOfGuests:	number;
   weddingVenue:	string;

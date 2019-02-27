@@ -99,7 +99,7 @@
                             </div>
                         </form>
                         <div class="updatebt text-center">
-                            <button  data-toggle="modal" (click)="getData_edit()">Update Profile / MY PERSONAL INFORMATION
+                            <button  data-toggle="modal" (click)="getData_edit()">Update Profile
                             </button>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-sm-12 updatebt text-center">
-                            <button  data-toggle="modal" data-target="#partner_detail">Update Profile / ABOUT MY PARTNER
+                            <button  data-toggle="modal" data-target="#partner_detail">Update Profile
                             </button>
                         </div>
                     </div>
@@ -157,8 +157,10 @@
                                 <!-- <p>Perth, Western Australia<br/>
                                     Australia <a href="#" class="linktext">Change</a>
                                 </p> -->
-                                 <p>{{weddingArray.weddingLocation}}<br/>
-                                 <a href="#" class="linktext">Change</a>
+                                 <p>
+                                     {{weddingArray.weddingLocation}}
+                                     <br/>
+                                 <a class="linktext">Change</a>
                                 </p>
                             </div>
                         </div>
@@ -217,7 +219,7 @@
 
 
                           <div class="updatebt text-center">
-                            <button  data-toggle="modal" data-target="#wedddetail">Update Profile / MY WEDDING DETAILS
+                            <button  data-toggle="modal" data-target="#wedddetail">Update Profile
                             </button>
                         </div>
                     </div>
@@ -332,7 +334,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                      <button (click)="changePassword(f)" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                      <button (click)="changePassword(f)" [disabled]="!f.value" class="btn btn-secondary" data-dismiss="modal">Save</button>
                       &nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary" (click)="closeModel()" data-dismiss="modal">Close</button>
                 </div>
@@ -355,7 +357,7 @@
                     
                       <div class="col-md-12">
                             <div class="form-group">
-                                <div class="input-effect form-group md-form">
+                                <!-- <div class="input-effect form-group md-form"> -->
                                   My Self As The<br/>
                                     <label>
                                         <input 
@@ -366,16 +368,18 @@
                                             id="gender" 
                                             > 
                                       <img src="../../assets/img/groom.jpg"/> Groom</label>
-                                     <label>
-                                         <input 
-                                            type="radio"
-                                            name="gender"
-                                            [(ngModel)]="ProfileVMObj.partnerGender" 
-                                            #gender="ngModel" 
-                                            id="gender" 
-                                         > 
-                                      <img src="../../assets/img/bride.jpg"/> Bride</label>
                                 </div>
+                            <!-- <div class="input-effect form-group md-form"> -->
+                                <div class="form-group">
+                                <label>
+                                        <input 
+                                           type="radio"
+                                           name="partnerGender"
+                                           [(ngModel)]="ProfileVMObj.partnerGender" 
+                                           #partnerGender="ngModel" 
+                                           id="partnerGender" 
+                                        > 
+                                     <img src="../../assets/img/bride.jpg"/> Bride</label>
                             </div>
                         </div>  
                         <div class="col-md-12">
@@ -449,7 +453,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                    <button (click)="UpdatePersonalInfo(info)" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                    <button (click)="UpdatePersonalInfo(info)" [disabled]="!info.value" class="btn btn-secondary" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -573,7 +577,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                    <button (click)="aboutUpdate(infoPartner)" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                    <button (click)="aboutUpdate(infoPartner)" [disabled]="!infoPartner.valid"  class="btn btn-secondary" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-secondary" (click)="closeModel()" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -693,7 +697,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                    <button (click)="UpdateWeddingDetails(wedding)" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                    <button (click)="UpdateWeddingDetails(wedding)" [disabled]="!wedding.valid" class="btn btn-secondary" data-dismiss="modal">Save</button>
                 <button type="button" (click)="closeModel()" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

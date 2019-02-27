@@ -9,18 +9,17 @@ import { apiService } from 'app/shared/service/api.service';
 })
 export class UseraccountComponent implements OnInit {
 
-  firstName;
   //Popup
   personal_info:boolean=false;
   UpdatePersonal_Info:boolean=false;
   changePassword_form:boolean=false;
   wedding_details:boolean=false;
   wedding_details_update:boolean=false;
-  personalInfoArray:any[];
-  UpdateInfoArray:any[];
+  personalInfoArray:any = {};
+  UpdateInfoArray:any= {};
   //
-  weddingArray:any[];
-  updateWeddingArray:any[];
+  weddingArray:any = {};
+  updateWeddingArray:any = {};
   constructor(private apiService : apiService,public toastr: ToastrService) { }
   ProfileVMObj = new MemberProfileVM();
   changePassObj = new ChangePasswordViewModel();

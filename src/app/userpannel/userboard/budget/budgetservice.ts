@@ -12,8 +12,11 @@ budgetItemApi_url= 'BudgetItem/createupdatebudgetitem';
 myBudgetItem_url= 'BudgetItem/mybudgetitems';
 expenseByCategory_url = 'BudgetCategory/expensesbycategory';
 myBudgetCategory_url = 'BudgetCategory/mybudgetcategory';
+public objbudgetCategory: budgetCategoryVM;
 constructor(public apiservice: apiService){
 this.objBudgetItem = new BudgetItemVM();
+this.objbudgetCategory = new budgetCategoryVM();
+
 this.objBudgetItem.pendingAmount = this.objBudgetItem.finalCost-this.objBudgetItem.paidAmount;
 }
 ngOnInit(){
@@ -23,7 +26,7 @@ public createUpdateBudgetItem(): Observable<any> {
    return this.apiservice.postData(this.apiservice.serverPath+ this.budgetItemApi_url,this.objBudgetItem)
 }
 public createUpdateBudgetCategories(){
-    return this.apiservice.postData(this.apiservice.serverPath+ this.createUpdateBudgetCategories,'');
+    return this.apiservice.postData(this.apiservice.serverPath+ this.createbudgetCategory_url,this.objbudgetCategory);
 }
 public getMybudgetItems(categoryId){
     return this.apiservice.postData(this.apiservice.serverPath+ this.myBudgetItem_url+'?BudgetCategoryId='+categoryId,'');
@@ -45,3 +48,8 @@ export class BudgetItemVM{
     public pendingAmount:number;
     public budgetCategoryId:number;
     }
+export class budgetCategoryVM {
+    public budgetCategoryId: number;
+    public name: string
+    }
+      

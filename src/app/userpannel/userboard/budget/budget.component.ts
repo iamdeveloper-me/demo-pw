@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { apiService } from 'app/shared/service/api.service';
-import { Budgetservice, BudgetItemVM } from './budgetservice';
+import { Budgetservice, BudgetItemVM, budgetCategoryVM } from './budgetservice';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { ToastrService } from 'ngx-toastr';
 import { GuestserviceService } from '../guest/guestservice.service'
@@ -108,6 +108,17 @@ export class BudgetComponent implements OnInit {
     this.budgetservice.getMyBudgetCategory().subscribe(res=>{
       this.budgetCategory = res;
       console.log(this.budgetCategory);
+    })
+  }
+  createUpdateBudgetCategory(){
+    this.budgetservice.createUpdateBudgetCategories().subscribe(res=>{
+      this.toaster.success(res.message,'Done !');
+      this.getMyBudgetCategory();
+      this.categoryDailog = false;
+      this.budgetservice.objbudgetCategory = new budgetCategoryVM();
+      
+    },error=>{
+      this.toaster.error(error,'Error !');
     })
   }
 }

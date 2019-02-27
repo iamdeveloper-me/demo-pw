@@ -7,7 +7,7 @@
     <h2 class="martop20px"> Reviews 
       	<!-- <form (ngSubmit)="SortReview()" #sort="ngForm"> -->
       <select class="sortselect" [(ngModel)]="ReviewSearchVMObj.Enum" name="Enum" (change)="changeData()">
-        <!-- <option [value]="">Sort By: Most Helpful</option> -->
+        <option>Sort By: Most Helpful</option>
         <option *ngFor="let sort of SortBy ;let s = index" [value]="sort.id">{{sort.name}}</option>
       </select>
       <!-- </form> -->
@@ -36,12 +36,12 @@
            <!-- Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time. -->
         </p>
 
-        <div class="btn_button ">
+        <!-- <div class="btn_button ">
           <p> 
-            <span><i class="material-icons">thumb_up</i> </span> 
+            <span><i class="material-icons">thumb_up</i>{{review.isPinned}} </span> 
             <span class="share_i"> <i class="material-icons"> share </i> <b> Share </b>  </span>  
           </p>
-        </div>
+        </div> -->
       </div>
       <br>
     </div>

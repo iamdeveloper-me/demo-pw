@@ -121,14 +121,23 @@
                              <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
                         </div>
                         <div class="col-sm-9 name_info setnameinfo">
-                            <p>
+                            <p *ngIf="personalInfoArray.partnerFirstName == null">
                                 <strong>First Name</strong><br/>  
-                               {{personalInfoArray.partnerFirstName}}</p>
+                              N/A
+                            </p>
                             <p> 
+                            <p *ngIf="personalInfoArray.partnerFirstName">
+                                <strong>First Name</strong><br/>  
+                                {{personalInfoArray.partnerFirstName}}</p>
+
+                            <p  *ngIf="personalInfoArray.partnerLastName == null"> 
+                                <strong>Last Name</strong><br/>
+                               N/A
+                            </p>
+                            <p  *ngIf="personalInfoArray.partnerLastName"> 
                                 <strong>Last Name</strong><br/>
                                 {{personalInfoArray.partnerLastName}}
                             </p>
-                           
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-sm-12 updatebt text-center">
@@ -303,6 +312,7 @@
                                                   #newPassword="ngModel"
                                                   name="newPassword" 
                                                   id="newpassword" 
+                                                  validateEqual="confirmPassword" reverse="true"
                                                   required>
                                             <label for="newpassword">New Password</label>
                                         </div>
@@ -319,8 +329,14 @@
                                               #confirmPassword="ngModel"
                                               name="confirmPassword" 
                                               placeholder="Confirm Password" 
+                                              validateEqual="newPassword" reverse="false"
                                               required>
                                         <label for="confirmpassword">Confirm Password</label>
+                                    </div>
+                                    <div *ngIf="confirmPassword.invalid && (confirmPassword?.dirty || confirmPassword?.touched)"  class="form-text text-muted danger" >
+                                            <small [hidden]="confirmPassword?.valid || (confirmPassword?.pristine && !f.submitted)" class="text-danger">
+                                                    Password mismatch
+                                            </small>
                                     </div>
                                 </div>
                             </div> 
@@ -334,7 +350,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                      <button (click)="changePassword(f)" [disabled]="!f.value" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                      <button (click)="changePassword(f)" [disabled]="!f.valid" class="btn btn-secondary" data-dismiss="modal">Save</button>
                       &nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary" (click)="closeModel()" data-dismiss="modal">Close</button>
                 </div>
@@ -435,7 +451,7 @@
                                         name="email" 
                                         [(ngModel)]="ProfileVMObj.email" 
                                         #email="ngModel"
-                                        id="email" 
+                                        id="email" disabled
                                         required>
                                     <label id="email">Email</label>
                                 </div>

@@ -15,7 +15,6 @@ export class EventlistComponent implements OnInit {
 
     this.meta.addTag({ name: 'description', content: 'Event Title | Perfect Weddings' });
   }
-
   data:any = {};
   all_event:any;
   animal;
@@ -29,11 +28,9 @@ export class EventlistComponent implements OnInit {
       console.log(this.animal.params.eventId);
       this.event_all_load(this.animal.params.eventId);
     });
-
   //  this.data = JSON.parse(sessionStorage.getItem('event'));
     //console.log(this.data);
   } 
-
   event_all_load(a){
       //Event Api
       console.log(a)
@@ -58,14 +55,9 @@ export class EventlistComponent implements OnInit {
           this.meta.addTag({name:'description',content:'Team Contact | Perfect Weddings'});  
         });  
   }
-
-
   goToDetailPage(a){
     const b = 'categoryname';
     this.router.navigate(['home/weddingvendorsdetailprofile/'+b.replace(/\s/g,'')+'/'+a.vendorId+'/'+'bussinesname']);
     //this.router.navigateByUrl('/home/Deal_Details/'+a+'/'+b+'/'+c.replace(/\s/g,'')+'/'+'deals'+'/'+l);
-
   }
-
-
 }

@@ -13,12 +13,6 @@ export class ToolComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
-
-
-
-
   routeChange(change){
 
     switch(change) { 

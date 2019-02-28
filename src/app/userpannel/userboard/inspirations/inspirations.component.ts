@@ -33,7 +33,7 @@ export class InspirationsComponent implements OnInit {
       });
 
 
-    $.getScript('./assets/js/jquery.fancybox.min.js');
+    $.getScript('../../assets/register/jquery.fancybox.min.js');
     $.getScript('./assets/js/prism.min.js'); 
     $.getScript('./assets/js/curosselfun.js');
 

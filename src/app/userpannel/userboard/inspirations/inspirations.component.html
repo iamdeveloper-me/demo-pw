@@ -27,8 +27,12 @@
           <img class="img-thumbnail noborder" [src]="photo.imageUrl" alt="Image">
           <div class="overlay">
             <h2>Business Name</h2>
-            <a data-fancybox="cl-group" class="thumbnail info hidden-xs fancybox" [href]="photo.imageUrl"
-              attr.data-caption="">View</a>
+            <a  data-fancybox="cl-group" 
+                class="thumbnail info hidden-xs fancybox" 
+                title="Business Name" 
+                href="{{photo.imageURL}}">
+              View
+            </a>
 
             <div class="shareholder">
               <span class="shareicon">
@@ -39,10 +43,9 @@
                 <i class="material-icons">clear</i>
               </span>
 
-              <span class="shareicon fancybox hidden-sm hidden-lg hidden-md" rel="ligthbox" href="">
+              <span class="shareicon fancybox hidden-sm hidden-lg hidden-md" rel="ligthbox">
                 <i class="material-icons">remove_red_eye</i>
               </span>
-
 
             </div>
           </div>

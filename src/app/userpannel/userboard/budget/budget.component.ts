@@ -19,7 +19,7 @@ export class BudgetComponent implements OnInit {
   constructor(private apiService: apiService,public budgetservice: Budgetservice, public toaster: ToastrService,private _guestservice : GuestserviceService) {
     this.getMyBudgetItems();
 
-    // this.getBudgetCategoryList();
+    this.getBudgetCategoryList();
 
     this.getMyBudgetCategory();
 
@@ -64,27 +64,27 @@ export class BudgetComponent implements OnInit {
   }
   //BudgetItem
 
-  // getBudgetCategoryList(){
+  getBudgetCategoryList(){
 
-  //   this.apiService.getData(this.apiService.serverPath+'BudgetCategory/expensesbycategory').subscribe(data => {
-  //     this.budgetCategoryList = data;
-  //     this.budgetCategoryList.forEach(category => {
-  //       console.log(category);
-  //       this.budgetservice.getMybudgetItems(category.budgetCategoryId).subscribe(data=>{
+    this.apiService.getData(this.apiService.serverPath+'BudgetCategory/expensesbycategory').subscribe(data => {
+      this.budgetCategoryList = data;
+      // this.budgetCategoryList.forEach(category => {
+      //   console.log(category);
+      //   this.budgetservice.getMybudgetItems(category.budgetCategoryId).subscribe(data=>{
 
-  //         let  expenses_data = data;
-  //         let  estimatedCostTotal = data.reduce((sum, item) => sum + item.estimatedCost, 0);
-  //         let  finalCostTotal = data.reduce((sum, item) => sum + item.finalCost, 0);
-  //         let  paidAmountTotal = data.reduce((sum, item) => sum + item.paidAmount, 0);
-  //         let  pendingAmountTotal = data.reduce((sum, item) => sum + item.pendingAmount, 0);
+      //     let  expenses_data = data;
+      //     let  estimatedCostTotal = data.reduce((sum, item) => sum + item.estimatedCost, 0);
+      //     let  finalCostTotal = data.reduce((sum, item) => sum + item.finalCost, 0);
+      //     let  paidAmountTotal = data.reduce((sum, item) => sum + item.paidAmount, 0);
+      //     let  pendingAmountTotal = data.reduce((sum, item) => sum + item.pendingAmount, 0);
 
-  //         this.Budgetlist.push({category : category, expenses_data : expenses_data, estimatedCostTotal : estimatedCostTotal, finalCostTotal : finalCostTotal, paidAmountTotal : paidAmountTotal, pendingAmountTotal : pendingAmountTotal});
+      //     this.Budgetlist.push({category : category, expenses_data : expenses_data, estimatedCostTotal : estimatedCostTotal, finalCostTotal : finalCostTotal, paidAmountTotal : paidAmountTotal, pendingAmountTotal : pendingAmountTotal});
 
-  //       });
-  //     });
+      //   });
+      // });
 
-  //   });
-  // }
+    });
+  }
 
   pushBudgetlist(data){
     this.Budgetlist.push(data);
@@ -103,6 +103,7 @@ export class BudgetComponent implements OnInit {
   closeModel(){
     this.AddBudget = false;
     this.categoryDailog = false;
+
   }
 
   onOptionsSelected(event){
@@ -116,13 +117,18 @@ export class BudgetComponent implements OnInit {
         this.budgetservice.objBudgetItem = new BudgetItemVM();
         this.toaster.success(res.message,'Done !');
         this.getMyBudgetItems();
+        this.getBudgetCategoryList();
         this.closeModel();
       }else{
         this.toaster.error(res.message,'Error !');
       }
     });
   }
-  
+
+  editBudget(budgetObj){
+    this.budgetservice.objBudgetItem = budgetObj;
+  }
+
   getPendingAmount(){
    this.budgetservice.objBudgetItem.pendingAmount= this.budgetservice.objBudgetItem.finalCost-this.budgetservice.objBudgetItem.paidAmount;
   }
@@ -134,7 +140,6 @@ export class BudgetComponent implements OnInit {
       this.finalCostTotal = res.reduce((sum, item) => sum + item.finalCost, 0);
       this.paidAmountTotal = res.reduce((sum, item) => sum + item.paidAmount, 0);
       this.pendingAmountTotal = res.reduce((sum, item) => sum + item.pendingAmount, 0);
-      // console.log(this.expensesByCategory);
     })
   }
   
@@ -152,8 +157,13 @@ export class BudgetComponent implements OnInit {
       this.categoryDailog = false;
       this.budgetservice.objbudgetCategory = new budgetCategoryVM();
       
+      this.getBudgetCategoryList();
     },error=>{
       this.toaster.error(error,'Error !');
     })
+  }
+
+  editBudgetCategory(category){
+    this.budgetservice.objbudgetCategory = category;
   }
 }

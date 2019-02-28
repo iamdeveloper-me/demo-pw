@@ -36,17 +36,18 @@ export class NgbdbookmarkModalContent {
   providers: [taskService, NgbActiveModal, ToastrService,Location]
 })
 export class BookmarkComponent implements OnInit {
- status:any;
- acc: any;
- myChecklist: any;
- filteredToDos: any;
- modalref:any;
- completedTaskTotal:number;
- completedInPercent:number;
- checklistOptions: any;
-@ViewChild('all') all: ElementRef;
-@ViewChild('complete') complete: ElementRef;
-@ViewChild('pending') pending: ElementRef;
+  status:any;
+  acc: any;
+  myChecklist: any;
+  filteredToDos: any;
+  modalref:any;
+  completedTaskTotal:number;
+  completedInPercent:number;
+  checklistOptions: any;
+  categoriesWithCountTaskList = [];
+  @ViewChild('all') all: ElementRef;
+  @ViewChild('complete') complete: ElementRef;
+  @ViewChild('pending') pending: ElementRef;
 
   // Prevent panel toggle code
   public beforeChange($event: NgbPanelChangeEvent) {
@@ -60,9 +61,7 @@ export class BookmarkComponent implements OnInit {
 
      closeResult: string;
 
-    constructor(private modalService: NgbModal,public activeModal: NgbActiveModal, public tskService: taskService,
-        public toastr: ToastrService, public locationService: Location, private renderer: Renderer2){
-            debugger;
+    constructor(private modalService: NgbModal,public activeModal: NgbActiveModal, public tskService: taskService, public toastr: ToastrService, public locationService: Location, private renderer: Renderer2){
             this.checklistOptions=[
             {id: 1, name: 'Category'},
             {id: 2, name: 'Events'},
@@ -72,12 +71,13 @@ export class BookmarkComponent implements OnInit {
             {id: 6, name: 'Others'}
         ]
         this.mychecklist();
+        this.categoriesTask();
         
     }
     getTaskOptionName(id){
         return this.checklistOptions.filter(o=>o.id==id)[0]?this.checklistOptions.filter(o=>o.id==id)[0].name: 'NA';
     }
-     addNewTask(obj){
+    addNewTask(obj){
          if(obj.toDoId>0){this.tskService.objTodoVm.status=2}
          debugger
          this.tskService.objTodoVm = obj;
@@ -103,6 +103,13 @@ export class BookmarkComponent implements OnInit {
             console.log(this.myChecklist);
          });
      }
+
+    categoriesTask(){
+      this.tskService.categoriesWithCountTask().subscribe(data=>{
+
+        this.categoriesWithCountTaskList = data;
+      })
+    }
     // filterByStatus(statusId){
     //     switch(statusId){
     //         case 1 :

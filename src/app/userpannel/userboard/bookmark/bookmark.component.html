@@ -50,8 +50,8 @@
                     <div class="px-3 py-3 mobPad10px">
                         <h2>BY DATE</h2>
                         <ol class="timeline">
-                            <li><a href="#">
-                                    From 10 to 12 months <span class="badge badge-pill badge-default">11</span>
+                            <li>
+                                <a href="#">From 10 to 12 months <span class="badge badge-pill badge-default">11</span>
                                 </a>
                             </li>
                             <li><a href="#">From 07 to 09 months <span class="badge badge-pill badge-default">22</span></a></li>
@@ -70,11 +70,9 @@
                     <div class="px-3 py-3 mobPad10px">
                         <h2>BY CATEGORY</h2>
                         <ol class="timeline">
-                            <li><a href="#">Events <span class="badge badge-pill badge-default">22</span></a></li>
-                            <li><a href="#">Photography & Vedio <span class="badge badge-pill badge-default">22</span></a></li>
-                            <li><a href="#">Planing <span class="badge badge-pill badge-default">22</span></a></li>
-                            <li><a href="#">Health & Beauty <span class="badge badge-pill badge-default">22</span></a></li>
-                            <li><a href="#">Others <span class="badge badge-pill badge-default">22</span></a></li>
+                            <li *ngFor='let category of categoriesWithCountTaskList'>
+                                <a href="#">{{category.categoryName}}<span class="badge badge-pill badge-default">{{category.listingCount}}</span></a>
+                            </li>
                         </ol>
                     </div>
                 </div>

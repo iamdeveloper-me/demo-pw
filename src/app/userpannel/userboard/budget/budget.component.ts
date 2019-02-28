@@ -15,6 +15,7 @@ export class BudgetComponent implements OnInit {
   expensesByCategory: any;
   constructor(private apiService: apiService,public budgetservice: Budgetservice, public toaster: ToastrService) {
     this.getMyBudgetItems();
+    this.getBudgetCategoryList();
   }
   name: string; 
   estimatedCost:string;
@@ -29,7 +30,9 @@ export class BudgetComponent implements OnInit {
   pendingAmountTotal:number;
 
   budgetCategoryList = [];
+  expensesByCategoryData = {};
   
+  toggle = {};
   
   ngOnInit() {
     $("li").removeClass("user");
@@ -51,22 +54,43 @@ export class BudgetComponent implements OnInit {
         }
       });
     }
-    //BudgetItem
+  }
+  //BudgetItem
+
+  getBudgetCategoryList(){
 
     this.apiService.getData(this.apiService.serverPath+'BudgetCategory/expensesbycategory').subscribe(data => {
-      this.budgetCategoryList = data
-    },
-    error => {
+      this.budgetCategoryList = data;
+      this.budgetCategoryList.forEach(category => {
+        console.log(category);
+        this.budgetservice.getMybudgetItems(category.budgetCategoryId).subscribe(data=>{
+
+          let  expenses_data = data;
+          let  estimatedCostTotal = data.reduce((sum, item) => sum + item.estimatedCost, 0);
+          let  finalCostTotal = data.reduce((sum, item) => sum + item.finalCost, 0);
+          let  paidAmountTotal = data.reduce((sum, item) => sum + item.paidAmount, 0);
+          let  pendingAmountTotal = data.reduce((sum, item) => sum + item.pendingAmount, 0);
+
+          this.Budgetlist.push({category : category, expenses_data : expenses_data, estimatedCostTotal : estimatedCostTotal, finalCostTotal : finalCostTotal, paidAmountTotal : paidAmountTotal, pendingAmountTotal : pendingAmountTotal});
+
+        });
+      });
+
+    });
+  }
+
+  pushBudgetlist(data){
+    this.Budgetlist.push(data);
+    console.log(this.Budgetlist);
+  }
+
+  getBudgetCategoryById(CategoryId){
+
+    this.apiService.postData(this.apiService.serverPath+'BudgetItem/mybudgetitems',{BudgetCategoryId:CategoryId}).subscribe(data => {
+      return data;
+    },error => {
       console.log(error)
-      }
-    )
-    
-    // this.apiService.postData(this.apiService.serverPath+'BudgetItem/mybudgetitems',{BudgetCategoryId:81}).subscribe(data => {
-    //   console.log(data);
-    //   this.Budgetlist = data;
-    // },error => {
-    //   console.log(error)
-    // })
+    })
   }
 
   closeModel(){

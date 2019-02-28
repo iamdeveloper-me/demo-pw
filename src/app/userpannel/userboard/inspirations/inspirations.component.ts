@@ -14,17 +14,23 @@ export class InspirationsComponent implements OnInit {
   pager: any = {};
   pagedItems: any = {};
   allItems: any = {};
-
+  photosArray:any = {};
+  eventsArray:any = {};
   ngOnInit() {  
    
-    /* Inspiration API */
-    this.apiService.postData(this.apiService.serverPath+'Couple/myinspirationsphotos',{
-      "type": "0"
-    }).subscribe(data => {
-        this.allItems = data; 
-        console.log(this.allItems);
-        this.setPage(1);
+    /* Photos API */
+    this.apiService.getData(this.apiService.serverPath+'Couple/myinspirationsphotos',).subscribe(
+      data => {
+        this.photosArray = data;
+        console.log(this.photosArray)
       });  
+
+    /* Events API */
+    this.apiService.getData(this.apiService.serverPath+'Couple/myinspirationevents',).subscribe(
+      data => {
+        this.eventsArray = data;
+        console.log(this.eventsArray);
+      });
 
 
     $.getScript('./assets/js/jquery.fancybox.min.js');

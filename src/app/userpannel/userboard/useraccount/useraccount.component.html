@@ -376,23 +376,25 @@
                                 <!-- <div class="input-effect form-group md-form"> -->
                                   My Self As The<br/>
                                     <label>
+                                            <!-- [(ngModel)]="ProfileVMObj.gender" 
+                                            #gender="ngModel" -->
                                         <input 
                                             type="radio"
                                             name="gender"
-                                            [(ngModel)]="ProfileVMObj.gender" 
-                                            #gender="ngModel" 
+                                          
                                             id="gender" 
                                             > 
                                       <img src="../../assets/img/groom.jpg"/> Groom</label>
                                 </div>
                             <!-- <div class="input-effect form-group md-form"> -->
                                 <div class="form-group">
+                                        <!-- [(ngModel)]="ProfileVMObj.partnerGender" 
+                                        #partnerGender="ngModel"  -->
                                 <label>
                                         <input 
                                            type="radio"
                                            name="partnerGender"
-                                           [(ngModel)]="ProfileVMObj.partnerGender" 
-                                           #partnerGender="ngModel" 
+                                          
                                            id="partnerGender" 
                                         > 
                                      <img src="../../assets/img/bride.jpg"/> Bride</label>

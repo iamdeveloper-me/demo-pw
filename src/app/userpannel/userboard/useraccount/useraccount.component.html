@@ -13,40 +13,40 @@
                                 <div class="clearfix"></div>
 
                                  <div class="fifthdiv">
-                                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
-                                       <button>
+                                      <i class="material-icons" style="color:black;">color_lens</i>
+                                       <button  data-toggle="modal" data-target="#colortheme">
                                            <i class="material-icons">edit</i>
                                        </button>
                                        <h2>Color</h2>
                                        <h1>Black</h1>
                                  </div>
                                  <div class="fifthdiv">
-                                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
-                                       <button>
+                                      <i class="material-icons">help</i>
+                                       <button  data-toggle="modal" data-target="#seasontheme">
                                            <i class="material-icons">edit</i>
                                        </button>
                                         <h2>Season</h2>
                                        <h1>Spring</h1>
                                  </div>
                                  <div class="fifthdiv">
-                                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
-                                       <button>
+                                      <i class="material-icons">help</i> 
+                                       <button  data-toggle="modal" data-target="#weddingtheme">
                                            <i class="material-icons">edit</i>
                                        </button>
                                        <h2>Style</h2>
                                        <h1>Vintage</h1>
                                  </div>
                                  <div class="fifthdiv">
-                                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
-                                       <button>
+                                      <i class="material-icons">help</i>
+                                       <button  data-toggle="modal" data-target="#dresstheme">
                                            <i class="material-icons">edit</i>
                                        </button>
                                        <h2>Dress</h2>
                                        <h1>...</h1>
                                  </div>
                                  <div class="fifthdiv">
-                                      <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
-                                       <button>
+                                      <i class="material-icons">help</i>
+                                       <button  data-toggle="modal" data-target="#honeymoontheme">
                                            <i class="material-icons">edit</i>
                                        </button>
                                        <h2>Honeymoons</h2>
@@ -73,30 +73,33 @@
                                 <i class="material-icons ">settings</i>
                             </button>
                                 
-                            <div class="bridegroomlable">Bride</div>
+                            <div class="bridegroomlable"><img src="../../assets/img/bride.jpg"/> Bride</div>
                                 
                         </div>
-                        <div class="name_info">
-                            <p>
-                                <strong>First Name</strong><br/>  
-                               dgvfddf</p>
-                            <p> 
-                                <strong>Last Name</strong><br/>
-                            dfvdgv
-                            </p>
-                            <p>
-                                <strong>Telephone Number</strong><br/>
-                              dxfvdzf
-                            </p>
-                            <p>
-                                <strong>Email</strong>   
-                               &nbsp;&nbsp;<a class="linktext" data-toggle="modal" data-target="#cPassword">Change Password</a><br/>
-                               user@gmail.com
-                            </p>
-                           
-                        </div>
+                        <form>
+                            <div class="name_info">
+                                <p>
+                                    <strong>First Name</strong><br/>  
+                                    {{personalInfoArray.firstName}}
+                                </p>
+                                <p> 
+                                    <strong>Last Name</strong><br/>
+                                    {{personalInfoArray.lastName}}
+                                </p>
+                                <p>
+                                    <strong>Telephone Number</strong><br/>
+                                    {{personalInfoArray.phoneNumber}}
+                                </p>
+                                <p>
+                                    <strong>Email</strong>   
+                                &nbsp;&nbsp;<a class="linktext" data-toggle="modal" data-target="#cPassword">Change Password</a><br/>
+                                {{personalInfoArray.email}}
+                                </p>
+                            
+                            </div>
+                        </form>
                         <div class="updatebt text-center">
-                            <button  data-toggle="modal" data-target="#photo_ved">Update Profile
+                            <button  data-toggle="modal" (click)="getData_edit()">Update Profile
                             </button>
                         </div>
                     </div>
@@ -110,7 +113,7 @@
                               <h5> <strong>ABOUT MY PARTNER</strong> </h5>  
 
                               <div class="bridegroomlable">
-                                Groom
+                               <img src="../../assets/img/groom.jpg"/> Groom
                               </div> 
                         </div>
 
@@ -118,18 +121,27 @@
                              <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
                         </div>
                         <div class="col-sm-9 name_info setnameinfo">
-                            <p>
+                            <p *ngIf="personalInfoArray.partnerFirstName == null">
                                 <strong>First Name</strong><br/>  
-                               dgvfddf</p>
-                            <p> 
-                                <strong>Last Name</strong><br/>
-                            dfvdgv
+                              N/A
                             </p>
-                           
+                            <p> 
+                            <p *ngIf="personalInfoArray.partnerFirstName">
+                                <strong>First Name</strong><br/>  
+                                {{personalInfoArray.partnerFirstName}}</p>
+
+                            <p  *ngIf="personalInfoArray.partnerLastName == null"> 
+                                <strong>Last Name</strong><br/>
+                               N/A
+                            </p>
+                            <p  *ngIf="personalInfoArray.partnerLastName"> 
+                                <strong>Last Name</strong><br/>
+                                {{personalInfoArray.partnerLastName}}
+                            </p>
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-sm-12 updatebt text-center">
-                            <button  data-toggle="modal" data-target="#photo_ved">Update Profile
+                            <button  data-toggle="modal" data-target="#partner_detail">Update Profile
                             </button>
                         </div>
                     </div>
@@ -151,8 +163,13 @@
                             </div>
                              <div class="divsetwidth">
                                 <h2>I,M GETTING MARRIED IN</h2>
-                                <p>Perth, Western Australia<br/>
+                                <!-- <p>Perth, Western Australia<br/>
                                     Australia <a href="#" class="linktext">Change</a>
+                                </p> -->
+                                 <p>
+                                     {{weddingArray.weddingLocation}}
+                                     <br/>
+                                 <a class="linktext">Change</a>
                                 </p>
                             </div>
                         </div>
@@ -162,7 +179,7 @@
                             </div>
                             <div class="divsetwidth">
                                 <h2>Wedding Date</h2>
-                                <p>16/03/2019
+                                <p>{{weddingArray.weddingDate | date}}
                                 </p>
                             </div>
                         </div>
@@ -172,7 +189,7 @@
                             </div>
                              <div class="divsetwidth">
                                 <h2>NUMBER OF GUESTS</h2>
-                                <p>300
+                                <p>{{weddingArray.numberOfGuests}}
                                 </p>
                             </div>
                         </div>
@@ -182,7 +199,7 @@
                             </div>
                             <div class="divsetwidth">
                                 <h2>WEDDING VENUE</h2>
-                                <p>NAME OF HALL, HOTEL
+                                <p>{{weddingArray.weddingVenue}}
                                 </p>
                             </div>
                         </div>
@@ -192,7 +209,7 @@
                             </div>
                              <div class="divsetwidth">
                                 <h2>ESTIMATED COST</h2>
-                                <p>RS 2,000,000
+                                <p>{{weddingArray.estimatedCost}}
                                 </p>
                             </div>
                         </div>
@@ -202,7 +219,8 @@
                             </div>
                             <div class="divsetwidth minheight92px">
                                 <h2>ABOUT THE WEDDING</h2>
-                                <p>Write a quick note about your big day!
+                                <p>
+                                    {{weddingArray.aboutWedding}}
                                 </p>
                             </div>
                         </div>
@@ -210,13 +228,11 @@
 
 
                           <div class="updatebt text-center">
-                            <button  data-toggle="modal" data-target="#photo_ved">Update Profile
+                            <button  data-toggle="modal" data-target="#wedddetail">Update Profile
                             </button>
                         </div>
                     </div>
-
-
-                  <!--   <div class="col-md-12 mem_detail">
+                  <!--<div class="col-md-12 mem_detail">
                         <div class="col-md-4 col-xs-12 co-sm-12">
                             <img src="https://s3.us-east-2.amazonaws.com/prefect-image/card_icon.png">
                         </div>
@@ -226,8 +242,8 @@
                             <p class="col_green">Expiry : 5 August 2020( Active) </p>
                             <p>Plan type: <span>Free</span> <span class="upgrade"><a href="../membership"> Upgrade now </a> </span> </p>
                         </div>
-                    </div> -->
-                   <!--  <div class="col-md-12 mem_detail">
+                      </div> -->
+                  <!--<div class="col-md-12 mem_detail">
                             <div class="col-md-4">
                                  <img src="https://s3.us-east-2.amazonaws.com/prefect-image/password_icon.png">
                             </div>
@@ -238,8 +254,8 @@
                                     </div>
                                 </div>
                             </div>
-                    </div> -->
-                   <!--  <div class="col-md-12 mem_detail">
+                      </div> -->
+                  <!--<div class="col-md-12 mem_detail">
                         <div class="col-md-4">
                             <img  class="img-responsive" src="https://s3.us-east-2.amazonaws.com/prefect-image/invoice_icon.png">
                         </div>
@@ -251,7 +267,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                      </div> -->
                 </div>
             </div>
         </section>
@@ -259,92 +275,8 @@
         <app-foot></app-foot>
         <router-outlet></router-outlet>
   
-
-
-
-<div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                    <h4 class="card-title">Personal Details</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">   
-                <div class="card">         
-                    <div class="card-body">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                    <label>First Name</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                        <label>Last Name</label>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div>
-                        </div>                                      
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                    <label>Phone Number</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                        </div>                     
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="email" placeholder="" required="required">
-                                    <label>Email</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">
-                                    <input class="effect-16 validate" type="text" placeholder="" required="required">
-                                    <label>Website</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                            <div class="form-group">
-                                <div class="input-effect form-group md-form ">  
-                                    <input class="effect-16 validate"  required="required">
-                                    <label>About Me</label>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    <div class="col-md-12">
-                       <span><input type="checkbox">&nbsp; Setting &nbsp;  </span> 
-                       <span> <input type="checkbox">&nbsp; Enable </span>
-                    </div>
-
-                    </div> 
-                </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>    
-
-<div class="modal fade" id="cPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<form #f="ngForm">
+<div class="modal fade" id="cPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" [ngClass]="{'show' : changePassword_form}">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -356,28 +288,55 @@
                         <div class="card-body">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="password" placeholder="" required="required">
-                                        <label>Old Password</label>
-                                        <span class="focus-border"></span>
+                                    <div class="field">
+                                        <input 
+                                              type="password" 
+                                              [(ngModel)]='changePassObj.oldPassword' 
+                                              #oldPassword="ngModel"
+                                              name="oldPassword" 
+                                              minlength="6"
+                                              id="oldpassword" 
+                                              placeholder="Old Password" 
+                                              required>
+                                        <label for="oldpassword">Old Password</label>
                                     </div>
                                 </div>
                             </div>  
                             <div class="col-md-12">
                                     <div class="form-group">
-                                        <div class="input-effect form-group md-form ">
-                                            <input class="effect-16 validate" type="password" placeholder="" required="required">
-                                            <label>New Password</label>
-                                            <span class="focus-border"></span>
+                                        <div class="field">
+                                            <input 
+                                                  type="password" 
+                                                  placeholder="New Password" 
+                                                  [(ngModel)]='changePassObj.newPassword' 
+                                                  #newPassword="ngModel"
+                                                  name="newPassword" 
+                                                  id="newpassword" 
+                                                  validateEqual="confirmPassword" reverse="true"
+                                                  required>
+                                            <label for="newpassword">New Password</label>
                                         </div>
                                     </div>
                             </div>                                      
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-effect form-group md-form ">
-                                        <input class="effect-16 validate" type="password" placeholder="" required="required">
-                                        <label>Confirm Password</label>
-                                        <span class="focus-border"></span>
+                                        <input 
+                                              class="effect-16 validate" 
+                                              id="confirmpassword" 
+                                              type="password" 
+                                              [(ngModel)]='changePassObj.confirmPassword'
+                                              #confirmPassword="ngModel"
+                                              name="confirmPassword" 
+                                              placeholder="Confirm Password" 
+                                              validateEqual="newPassword" reverse="false"
+                                              required>
+                                        <label for="confirmpassword">Confirm Password</label>
+                                    </div>
+                                    <div *ngIf="confirmPassword.invalid && (confirmPassword?.dirty || confirmPassword?.touched)"  class="form-text text-muted danger" >
+                                            <small [hidden]="confirmPassword?.valid || (confirmPassword?.pristine && !f.submitted)" class="text-danger">
+                                                    Password mismatch
+                                            </small>
                                     </div>
                                 </div>
                             </div> 
@@ -391,14 +350,136 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                      <button (click)="changePassword(f)" [disabled]="!f.valid" class="btn btn-secondary" data-dismiss="modal">Save</button>
                       &nbsp;&nbsp;
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" (click)="closeModel()" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
 </div>    
-    
+</form>
+<!--MY PERSONAL INFORMATION Start-->
+<form #info="ngForm">
+<div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" [ngClass]="{'show' : personal_info }">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="card-title">Personal Details</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                    
+                      <div class="col-md-12">
+                            <div class="form-group">
+                                <!-- <div class="input-effect form-group md-form"> -->
+                                  My Self As The<br/>
+                                    <label>
+                                        <input 
+                                            type="radio"
+                                            name="gender"
+                                            [(ngModel)]="ProfileVMObj.gender" 
+                                            #gender="ngModel" 
+                                            id="gender" 
+                                            > 
+                                      <img src="../../assets/img/groom.jpg"/> Groom</label>
+                                </div>
+                            <!-- <div class="input-effect form-group md-form"> -->
+                                <div class="form-group">
+                                <label>
+                                        <input 
+                                           type="radio"
+                                           name="partnerGender"
+                                           [(ngModel)]="ProfileVMObj.partnerGender" 
+                                           #partnerGender="ngModel" 
+                                           id="partnerGender" 
+                                        > 
+                                     <img src="../../assets/img/bride.jpg"/> Bride</label>
+                            </div>
+                        </div>  
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="field">
+                                    <input 
+                                        type="text" 
+                                        name="firstName"
+                                        [(ngModel)]="ProfileVMObj.firstName" 
+                                        #firstName="ngModel" 
+                                        placeholder="First Name" 
+                                        id="firstname" 
+                                        required>
+                                    <label for="firstname">First Name</label>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="field">
+                                        <input 
+                                            type="text" 
+                                            name="lastName"
+                                            [(ngModel)]="ProfileVMObj.lastName" 
+                                            #lastName="ngModel" 
+                                            placeholder="Last Name" 
+                                            required>
+                                        <label for="lastname">Last Name</label>
+                                    </div>
+                                </div>
+                        </div>                                     
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="field">
+                                    <input 
+                                        type="text" 
+                                        placeholder="Phone Number" 
+                                        name="phoneNumber" 
+                                        [(ngModel)]="ProfileVMObj.phoneNumber" 
+                                        #phoneNumber="ngModel"
+                                        id="phoneNumber" 
+                                        required>
+                                    <label for="phonenum">Phone Number</label>
+                                </div>
+                            </div>
+                        </div>                     
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="field">
+                                    <input 
+                                        type="email" 
+                                        placeholder="Email" 
+                                        name="email" 
+                                        [(ngModel)]="ProfileVMObj.email" 
+                                        #email="ngModel"
+                                        id="email" disabled
+                                        required>
+                                    <label id="email">Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="field">
+                                    <textarea placeholder="About Me" name="aboutme" id="aboutme"></textarea>
+                                    <label for="aboutme">About Me</label>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button (click)="UpdatePersonalInfo(info)" [disabled]="!info.value" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    
+</form>
+<!--MY PERSONAL INFORMATION END--> 
+
+<!--Subscription Form-->
+<form>
 <div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -447,5 +528,451 @@
                 </div>
             </div>
         </div>
+</div>  
+</form>
+<!--Subscription Form End-->
+
+<!--ABOUT MY PARTNER-->
+<form #infoPartner="ngForm">
+<div class="modal fade" id="partner_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" [ngClass]="{'show' : UpdatePersonal_Info }">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="card-title">Partner Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModel()"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                       <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="input-effect form-group md-form">
+                                  My Partner As The<br/>
+                                    <label><input type="radio"> 
+                                      <img src="../../assets/img/groom.jpg"/> Groom</label>
+                                     <label><input type="radio"> 
+                                      <img src="../../assets/img/bride.jpg"/> Bride</label>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="field">
+                                    <input 
+                                        class="effect-16 validate" 
+                                        type="text" 
+                                        id="firstnamepartner" 
+                                        name="partnerFirstName"
+                                        [(ngModel)]="ProfileVMObj.partnerFirstName" 
+                                        #partnerFirstName="ngModel" 
+                                        placeholder="First Name" 
+                                        required>
+                                    <label for="firstnamepartner">First Name</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                     <div class="field">
+                                        <input 
+                                            type="text" 
+                                            id="lastnamepartner" 
+                                            name="partnerLastName"
+                                            [(ngModel)]="ProfileVMObj.partnerLastName" 
+                                            #partnerLastName="ngModel" 
+                                            placeholder="Last Name" 
+                                            required>
+                                        <label for="lastnamepartner">Last Name</label>
+                                    </div>
+                                </div>
+                        </div>                                      
+                       
+
+                    </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button (click)="aboutUpdate(infoPartner)" [disabled]="!infoPartner.valid"  class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" (click)="closeModel()" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>   
+</form> 
+<!--ABOUT MY PARTNER End-->
+
+<!--Wedding Details Update Form-->
+<form  #wedding="ngForm">
+<div class="modal fade" id="wedddetail" tabindex="-1" role="dialog" [ngClass]="{'show' : wedding_details_update}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="card-title">Wedding Details</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="closeModel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                     
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                 <div class="field">
+                                   <textarea 
+                                    placeholder="I,M GETTING MARRIED IN" 
+                                    required="required" 
+                                    id="marriedplace"
+                                    name="weddingLocation"
+                                    #weddingLocation="ngModel"
+                                    [(ngModel)]="WeddingDetailsObj.weddingLocation"
+                                    ></textarea>
+                                    <label for="marriedplace">I,M GETTING MARRIED IN</label>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                   <div class="field">
+                                        <input 
+                                            type="Date" 
+                                            id="weddate" 
+                                            placeholder="Wedding Date" 
+                                            required
+                                            name="weddingDate"
+                                            #weddingDate="ngModel"
+                                            [(ngModel)]="WeddingDetailsObj.weddingDate"
+                                            >
+                                        <label for="weddate">Wedding Date</label>
+                                    </div>
+                                </div>
+                        </div>                                      
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                  <div class="field">
+                                    <input 
+                                        type="text" 
+                                        id="noguest" 
+                                        placeholder="Number Of Guest" 
+                                        required
+                                        name="numberOfGuests"
+                                        #numberOfGuests="ngModel"
+                                        [(ngModel)]="WeddingDetailsObj.numberOfGuests"
+                                        >
+                                    <label for="noguest">Number Of Guest</label>
+                                </div>
+                            </div>
+                        </div>                     
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                  <div class="field">
+                                    <input 
+                                        type="text" 
+                                        placeholder="Wedding Venue" 
+                                        required
+                                        name="weddingVenue"
+                                        #weddingVenue="ngModel"
+                                        [(ngModel)]="WeddingDetailsObj.weddingVenue"
+                                    >
+                                    <label for="wedvenue">Wedding Venue</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                  <div class="field">
+                                    <input 
+                                        type="text" 
+                                        id="estimatedcost" 
+                                        placeholder="Estimated Cost" 
+                                        required
+                                        name="estimatedCost"
+                                        #estimatedCost="ngModel"
+                                        [(ngModel)]="WeddingDetailsObj.estimatedCost"
+                                    >
+                                    <label for="estimatedcost">Estimated Cost</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="field"> 
+                                   <textarea 
+                                            placeholder="About The Wedding" 
+                                            id="aboutwedding" 
+                                            required
+                                            name="aboutWedding"
+                                            #aboutWedding="ngModel"
+                                            [(ngModel)]="WeddingDetailsObj.aboutWedding"
+                                    ></textarea>
+                                    <label for="aboutwedding">About The Wedding</label>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button (click)="UpdateWeddingDetails(wedding)" [disabled]="!wedding.valid" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" (click)="closeModel()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>    
+</form>
+<!--Wedding Details Update End-->
+
+<!--Set Color Theme-->
+<div class="modal fade" id="colortheme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="card-title">Select Color Theme</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                              <div class="colorlist">
+                                 <ul>
+                                    <li>
+                                       <i class="fa fa-check ticklist"></i>
+                                       <span class="colortag whitebg"></span>
+                                    </li>
+                                     <li>
+                                       <i class="fa fa-check ticklist"></i>
+                                       <span class="colortag greybg"></span>
+                                    </li>
+                                     <li>
+                                       <i class="fa fa-check ticklist"></i>
+                                       <span class="colortag blackbg"></span>
+                                    </li>
+                                    <li>
+                                       <i class="fa fa-check ticklist"></i>
+                                       <span class="colortag bluebg"></span>
+                                    </li>
+                                     <li>
+                                       <i class="fa fa-check ticklist"></i>
+                                       <span class="colortag orangebg"></span>
+                                    </li>
+                                     <li>
+                                       <i class="fa fa-check ticklist"></i>
+                                       <span class="colortag redbg"></span>
+                                    </li>
+                                     <li>
+                                       <i class="fa fa-check ticklist"></i>
+                                       <span class="colortag pinkbg"></span>
+                                    </li>
+                                    <li>
+                                       <i class="fa fa-check ticklist"></i>
+                                       <span class="colortag yellowbg"></span>
+                                    </li>
+                                    <li>
+                                       <i class="fa fa-check ticklist"></i>
+                                       <span class="colortag greenbg"></span>
+                                    </li>
+                                     <li>
+                                       <i class="fa fa-check ticklist"></i>
+                                       <span class="colortag purplebg"></span>
+                                    </li>
+                                 </ul>
+                              </div>
+                            </div>
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>  
+
+
+<div class="modal fade" id="seasontheme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="card-title">Select Season Theme</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            <label>
+                              <input type="radio" name="season">
+                              Winter Season
+                            </label>
+                            <br/>
+                             <label>
+                              <input type="radio" name="season">
+                              Summer Season
+                            </label>
+                            <br/>
+                             <label>
+                              <input type="radio" name="season">
+                              Spring Season
+                            </label>
+                            <br/>
+                            <label>
+                              <input type="radio" name="season">
+                              Autumn Season
+                            </label>
+                              
+                            </div>
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>  
+
+
+<div class="modal fade" id="weddingtheme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="card-title">Select Wedding Theme</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            <label>
+                              <input type="radio" name="season">
+                              Romantic Theme
+                            </label>
+                            <br/>
+                             <label>
+                              <input type="radio" name="season">
+                              Vintage Theme
+                            </label>
+                            <br/>
+                             <label>
+                              <input type="radio" name="season">
+                              Whimsical Theme
+                            </label>
+                            <br/>
+                            <label>
+                              <input type="radio" name="season">
+                              Modern Theme
+                            </label>
+                              <br/>
+                            <label>
+                              <input type="radio" name="season">
+                              Rustic Theme
+                            </label>
+                            </div>
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>  
+
+
+
+<div class="modal fade" id="dresstheme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="card-title">Select Dress</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            <label>
+                              <input type="radio" name="season">
+                              Indo-Western
+                            </label>
+                            <br/>
+                             <label>
+                              <input type="radio" name="season">
+                              Suit
+                            </label>
+                            <br/>
+                             <label>
+                              <input type="radio" name="season">
+                              Servani
+                            </label>
+                            </div>
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div> 
     <!--mail popup -->
+
+
+
+
+<div class="modal fade" id="honeymoontheme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="card-title">Honeymoon Destination</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">   
+                <div class="card">         
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            <label>
+                              <input type="radio" name="season">
+                              Bali
+                            </label>
+                            <br/>
+                             <label>
+                              <input type="radio" name="season">
+                              Singapore
+                            </label>
+                            <br/>
+                             <label>
+                              <input type="radio" name="season">
+                              Europe
+                            </label>
+                            <br/>
+                             <label>
+                              <input type="radio" name="season">
+                              Malasia
+                            </label>
+                            </div>
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div> 

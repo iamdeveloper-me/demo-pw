@@ -175,5 +175,19 @@ export class apiService {
  
     return this.http.delete(this.serverPath+ url,data);
    }
+   deleteAction2(url,data){
+    var authToken = sessionStorage.getItem('userToken');
+    let options = {
+      
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+authToken
+      }),
+      body: {
+        id: data
+      },
+    };
+    console.log(options);
+   return this.http.delete(this.serverPath+ url,options)}
    
 }

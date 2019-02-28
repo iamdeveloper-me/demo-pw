@@ -5,12 +5,8 @@ import { UserpannelRoutingModule } from "./userpannel-routing.module";
 import { ChartistModule } from 'ng-chartist';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatchHeightModule } from "../shared/directives/match-height.directive";
+import { GuestPipe } from '../userpannel/userboard/guest/guest.pipe';
 //import { UseraccountComponent } from './userboard/useraccount/useraccount.component';
-
-
-
-
-
 
 @NgModule({
     imports: [
@@ -24,6 +20,8 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
     declarations: [
 
       // UseraccountComponent
+    GuestPipe,
+
     ],
 
     providers: [],

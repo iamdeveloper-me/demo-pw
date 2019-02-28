@@ -149,9 +149,18 @@ margin-right:15px;
 margin-bottom:30px;
 cursor: pointer;
 }
-.CheckListdiv:hover i.tikchecklist{
-background:green;
-color: #ffffff;
+.tikchecklicurs {
+ cursor: inherit !important;
+}
+.tikchecklist:active {
+background:green !important;
+color: #ffffff ;
+}
+.btn_danger {
+	color: #e72e77 !important;
+}
+.btn_success{
+	color: #000 !important;
 }
 .CheckListdiv span strong{
 font-size:16px;
@@ -372,11 +381,12 @@ margin: 20% auto;
 }
 
 /* form starting stylings ------------------------------- */
-
+.form-group{
+	margin-bottom: 10px!important;
+}
 .field {
   display: flex;
   flex-flow: column-reverse;
-  margin-top:10px;
 }
 /**
 * Add a transition to the label and input.
@@ -390,8 +400,8 @@ margin: 20% auto;
   touch-action: manipulation;
 }
 
- .field  input, .field select, .field textarea{
-  font-size: 1.2em;
+ .field input, .field select, .field textarea{
+  font-size: 14px!important;
   border: 0;
   border-bottom: 1px solid #ccc;
   font-family: inherit;
@@ -401,17 +411,20 @@ margin: 20% auto;
   cursor: text;
   z-index:999;
   background:transparent;
+  transition: all ease .2s;
 }
 
  .field input:focus,   .field select:focus, .field textarea:focus {
   outline: 0;
   border-bottom: 1px solid #f0118c;
+  font-size: 12px;
+  transition: all ease .2s;
 }
 
  .field label {
   text-transform: uppercase;
   margin-bottom: 0px;
-  letter-spacing: 0.05em;
+  font-size: 14px!important;
 }
 /**
 * Translate down and scale the label up to cover the placeholder,

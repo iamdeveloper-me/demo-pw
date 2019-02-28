@@ -1,9 +1,11 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit ,Input, ViewChild, ElementRef, Renderer, Renderer2} from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { taskService } from './taskService';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
+import { debug } from 'util';
+import { elementClassNamed } from '@angular/core/src/render3/instructions';
 @Component({
     selector: 'ngbd-modal-content',
     template: `
@@ -34,6 +36,7 @@ export class NgbdbookmarkModalContent {
   providers: [taskService, NgbActiveModal, ToastrService,Location]
 })
 export class BookmarkComponent implements OnInit {
+ status:any;
  acc: any;
  myChecklist: any;
  filteredToDos: any;
@@ -41,6 +44,10 @@ export class BookmarkComponent implements OnInit {
  completedTaskTotal:number;
  completedInPercent:number;
  checklistOptions: any;
+@ViewChild('all') all: ElementRef;
+@ViewChild('complete') complete: ElementRef;
+@ViewChild('pending') pending: ElementRef;
+
   // Prevent panel toggle code
   public beforeChange($event: NgbPanelChangeEvent) {
     if ($event.panelId === '2') {
@@ -54,8 +61,8 @@ export class BookmarkComponent implements OnInit {
      closeResult: string;
 
     constructor(private modalService: NgbModal,public activeModal: NgbActiveModal, public tskService: taskService,
-        public toastr: ToastrService, public locationService: Location
-        ){
+        public toastr: ToastrService, public locationService: Location, private renderer: Renderer2){
+            debugger;
             this.checklistOptions=[
             {id: 1, name: 'Category'},
             {id: 2, name: 'Events'},
@@ -96,18 +103,40 @@ export class BookmarkComponent implements OnInit {
             console.log(this.myChecklist);
          });
      }
-     filterByStatus(statusId){
-         if(statusId==0){
-             this.filteredToDos = this.myChecklist;
-         }else{
-            this.filteredToDos = this.myChecklist.filter(c=>c.status==statusId);
-         }
-         console.log(this.filteredToDos);
-     }
+    // filterByStatus(statusId){
+    //     switch(statusId){
+    //         case 1 :
+    //             this.renderer.addClass(this.pending.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.all.nativeElement,'btn_danger');
+    //         break;
+    //         case 2:
+    //             this.renderer.addClass(this.complete.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.all.nativeElement,'btn_danger');
+    //         break;
+    //         case 0:
+    //             this.renderer.addClass(this.all.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
+    //         break;
+    //     }
+    //      if(statusId==0){
+    //          this.all.nativeElement.toggleClass('btn_danger');
+    //          this.filteredToDos = this.myChecklist;
+    //      }else{
+    //         this.filteredToDos = this.myChecklist.filter(c=>c.status==statusId);
+    //      }
+    //      console.log(this.filteredToDos);
+    //      this.status = !this.status;
+    //  }
      removeTodoList(id){
         this.tskService.removeToDo(id).subscribe(res=>{
             console.log(res);
+            this.toastr.success(res.message,'Done !');
             this.mychecklist();
+        },error=>{
+            this.toastr.error(error,'Error !');
         })
      }
 
@@ -187,6 +216,6 @@ $('.allbtncheck').click(function(e){
     $(".todocheckbox").show();
     $(".donecheckbox").show();
 });
-  }
+}
   
 }

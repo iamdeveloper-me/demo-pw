@@ -13,14 +13,7 @@ export class ToolComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
-
-
-
-
   routeChange(change){
-
     switch(change) { 
       case 'User/Timeline': { 
         this.router.navigate([change])

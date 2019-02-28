@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { apiService } from 'app/shared/service/api.service';
-import { Budgetservice, BudgetItemVM } from './budgetservice';
+import { Budgetservice, BudgetItemVM, budgetCategoryVM } from './budgetservice';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { ToastrService } from 'ngx-toastr';
+import { GuestserviceService } from '../guest/guestservice.service'
+
 @Component({
   selector: 'app-budget',
   templateUrl: './budget.component.html',
@@ -13,9 +15,14 @@ export class BudgetComponent implements OnInit {
   Budgetlist = []; 
   AddBudget = false;
   expensesByCategory: any;
-  constructor(private apiService: apiService,public budgetservice: Budgetservice, public toaster: ToastrService) {
+  categoryDailog = false;
+  constructor(private apiService: apiService,public budgetservice: Budgetservice, public toaster: ToastrService,private _guestservice : GuestserviceService) {
     this.getMyBudgetItems();
-    this.getBudgetCategoryList();
+
+    // this.getBudgetCategoryList();
+
+    this.getMyBudgetCategory();
+
   }
   name: string; 
   estimatedCost:string;
@@ -28,9 +35,9 @@ export class BudgetComponent implements OnInit {
   finalCostTotal:number;
   paidAmountTotal:number;
   pendingAmountTotal:number;
-
+  budgetCategory:any;
   budgetCategoryList = [];
-  expensesByCategoryData = {};
+  // expensesByCategoryData = {};
   
   toggle = {};
   
@@ -57,27 +64,27 @@ export class BudgetComponent implements OnInit {
   }
   //BudgetItem
 
-  getBudgetCategoryList(){
+  // getBudgetCategoryList(){
 
-    this.apiService.getData(this.apiService.serverPath+'BudgetCategory/expensesbycategory').subscribe(data => {
-      this.budgetCategoryList = data;
-      this.budgetCategoryList.forEach(category => {
-        console.log(category);
-        this.budgetservice.getMybudgetItems(category.budgetCategoryId).subscribe(data=>{
+  //   this.apiService.getData(this.apiService.serverPath+'BudgetCategory/expensesbycategory').subscribe(data => {
+  //     this.budgetCategoryList = data;
+  //     this.budgetCategoryList.forEach(category => {
+  //       console.log(category);
+  //       this.budgetservice.getMybudgetItems(category.budgetCategoryId).subscribe(data=>{
 
-          let  expenses_data = data;
-          let  estimatedCostTotal = data.reduce((sum, item) => sum + item.estimatedCost, 0);
-          let  finalCostTotal = data.reduce((sum, item) => sum + item.finalCost, 0);
-          let  paidAmountTotal = data.reduce((sum, item) => sum + item.paidAmount, 0);
-          let  pendingAmountTotal = data.reduce((sum, item) => sum + item.pendingAmount, 0);
+  //         let  expenses_data = data;
+  //         let  estimatedCostTotal = data.reduce((sum, item) => sum + item.estimatedCost, 0);
+  //         let  finalCostTotal = data.reduce((sum, item) => sum + item.finalCost, 0);
+  //         let  paidAmountTotal = data.reduce((sum, item) => sum + item.paidAmount, 0);
+  //         let  pendingAmountTotal = data.reduce((sum, item) => sum + item.pendingAmount, 0);
 
-          this.Budgetlist.push({category : category, expenses_data : expenses_data, estimatedCostTotal : estimatedCostTotal, finalCostTotal : finalCostTotal, paidAmountTotal : paidAmountTotal, pendingAmountTotal : pendingAmountTotal});
+  //         this.Budgetlist.push({category : category, expenses_data : expenses_data, estimatedCostTotal : estimatedCostTotal, finalCostTotal : finalCostTotal, paidAmountTotal : paidAmountTotal, pendingAmountTotal : pendingAmountTotal});
 
-        });
-      });
+  //       });
+  //     });
 
-    });
-  }
+  //   });
+  // }
 
   pushBudgetlist(data){
     this.Budgetlist.push(data);
@@ -95,10 +102,10 @@ export class BudgetComponent implements OnInit {
 
   closeModel(){
     this.AddBudget = false;
+    this.categoryDailog = false;
   }
 
   onOptionsSelected(event){
-    console.log(event)
     this.budgetservice.objBudgetItem.budgetCategoryId = event; //option value will be sent as event
   }
 
@@ -128,6 +135,25 @@ export class BudgetComponent implements OnInit {
       this.paidAmountTotal = res.reduce((sum, item) => sum + item.paidAmount, 0);
       this.pendingAmountTotal = res.reduce((sum, item) => sum + item.pendingAmount, 0);
       // console.log(this.expensesByCategory);
+    })
+  }
+  
+  getMyBudgetCategory(){
+    this.budgetservice.getMyBudgetCategory().subscribe(res=>{
+      this.budgetCategory = res;
+      console.log(this.budgetCategory);
+    })
+  }
+  
+  createUpdateBudgetCategory(){
+    this.budgetservice.createUpdateBudgetCategories().subscribe(res=>{
+      this.toaster.success(res.message,'Done !');
+      this.getMyBudgetCategory();
+      this.categoryDailog = false;
+      this.budgetservice.objbudgetCategory = new budgetCategoryVM();
+      
+    },error=>{
+      this.toaster.error(error,'Error !');
     })
   }
 }

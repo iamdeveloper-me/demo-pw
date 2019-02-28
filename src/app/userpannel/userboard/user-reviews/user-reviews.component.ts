@@ -1,24 +1,58 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
+import { apiService } from 'app/shared/service/api.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-user-reviews',
   templateUrl: './user-reviews.component.html',
   styleUrls: ['./user-reviews.component.scss']
 })
 export class UserReviewsComponent implements OnInit {
-  reviewArray:string[];
-  constructor(private http: Http) { }
+  
+  SortBy = [
+    { id:1,name:"Newest First" },
+    { id:2,name:"Oldest First" }
+  ];
+
+  ReviewSearchVMObj = new CoupleReviewSearchVM();
+  reviewsArray:any[];
+  filtered_reviews:any=[];
+  constructor(private http: Http,private apiService : apiService,public toastr: ToastrService) { }
   ngOnInit() {  
+    this.myReviews();
                 $("li").removeClass("user");
-                var headers = new Headers();
-                var authToken = localStorage.getItem('userToken');
-                headers.append('Accept', 'application/json')
-                headers.append('Content-Type', 'application/json');
-                headers.append("Authorization",'Bearer '+authToken);
                 $("#login").hide();
-                this.http.get("http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/Reviews/myreviews",
-                {headers:headers}).subscribe(
-                  data =>{ this.reviewArray =data.json() as string[];
-                });
   }
+
+  myReviews(){
+    this.apiService.postData(this.apiService.serverPath+'Couple/MyReviews',{
+    }).subscribe(data => {
+      this.reviewsArray = data;
+      this.filtered_reviews = this.reviewsArray;
+      console.log(this.reviewsArray)
+    },
+      error => {
+      console.log(error)
+      this.toastr.error(error._body);
+      }
+    )
+  }
+  
+  changeData(){
+    // debugger
+    if(this.ReviewSearchVMObj.Enum){
+    this.filtered_reviews = this.reviewsArray.filter(r=>r.reviewStatus===this.ReviewSearchVMObj.Enum);
+    }
+    else{
+      this.filtered_reviews = this.reviewsArray;
+    }
+    console.log(this.filtered_reviews);
+  }
+
+}
+
+
+export class CoupleReviewSearchVM {
+  status:string;
+  Enum:number;
 }

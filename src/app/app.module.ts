@@ -474,11 +474,7 @@ export function getAuthServiceConfigs() {
         HoneymoonDestinatationComponent,
         DealListComponent,
         HoneymoonSearchResultComponent,
-
-
-
-
-
+        
   ],
     imports: [
         CarouselModule,

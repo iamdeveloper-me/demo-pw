@@ -12,7 +12,7 @@
                         <img src="https://s3.us-east-2.amazonaws.com/prefect-image/checklist-icon.png">
                     </div>
                     <div class="span4tik col-sm-8" style="position: relative;">
-                    <span class="tools-boxProgress-tooltip" style="left:25px;">{{completedInPercent| number:'.2-2'}} %</span>
+                    <!-- <span class="tools-boxProgress-tooltip" style="left:25px;">{{completedInPercent| number:'.2-2'}} %</span> -->
                      <ngb-progressbar showValue="true" type="success" [value]="completedInPercent| number:'.2-2'"></ngb-progressbar>
                      {{completedTaskTotal}} of {{myChecklist?myChecklist.length: 0}} tasks completed
                     </div>
@@ -261,22 +261,23 @@
 </ngb-accordion> -->
 
             <div class="tabsectionmobile">
-                <a class="todobtncheck" (click)='filterByStatus(1)'>
+                    <a class="todobtncheck" name='pending' id='pending' #pending (click)='filterByStatus(1)'>
                     <i class="material-icons">schedule</i>
                     <br/>To Do
                 </a>
-                <a class="donebtncheck" (click)='filterByStatus(2)'>
+<a class="donebtncheck" name='complete' id='complete' #complete (click)='filterByStatus(2)'>
                     <i class="material-icons">sentiment_satisfied</i>
                     <br/>Complete
                 </a>
-                  <a class="allbtncheck" (click)='filterByStatus(0)'>
+<a class="allbtncheck" name='all' id='all' #all (click)='filterByStatus(0)'>
                     <i class="material-icons">adjust</i>
                     <br/>All</a>
             </div>
             <div class="clearfix"></div>
                <div class="panel-body nopadd card martop0px">
                     <div class="CheckListdiv" style="display:block!important" *ngFor='let td of filteredToDos'>
-                    	<i class="material-icons tikchecklist" *ngIf='td.status==1' (click)='addNewTask(td)'>check</i>
+                        <!-- *ngIf='td.status==1' (click)='addNewTask(td)' -->
+                        <i class="material-icons tikchecklist" *ngIf='td.status==1' (click)='addNewTask(td)'>check</i>
                     	<span>
                     		<strong>{{td.name}}</strong>
                     		<br/>
@@ -284,7 +285,11 @@
                             <br/>
                             {{td.timing}} <span class="badge badge-success" *ngIf='td.status==1'>{{td.statusString}}</span>
                     	</span>
-                    	<button class="deletebtnhover"><i class="material-icons">delete</i></button>
+
+                    <button class="deletebtnhover"><i class="material-icons">edit</i></button>
+
+                    	<!-- <button (click)='removeTodoList(td.toDoId)' class="deletebtnhover"><i class="material-icons">delete</i></button> -->
+
                     </div>
                     <div id='content' class="modal fade" role="dialog" >
                         <div class="modal-dialog">

@@ -16,6 +16,8 @@ myGuestSearch_url = 'Guests/myguestssearch';
 myGuestCount_url = 'Guests/myguestscounts';
 createUpdateMenu_url = 'Menu/createupdatemenu'
 menuGuestCount_Url = 'Menu/menuguestscount';
+mymenu_url = 'Menu/mymenu';
+removeGuest_url = 'Guests/removeguests';
 
 /// Guest
 createUpdaateGuest_Url = 'Guests/createupdateguests';
@@ -25,6 +27,7 @@ objMenu: MenuVm;
 menuGuestCount: any;
 myGroups: any;
 objGuest:guestVm;
+myMenuList: any;
   constructor(public apiservice: apiService) {
     this.objGroup = new GroupVm();
     this.objMenu = new MenuVm();
@@ -51,12 +54,18 @@ objGuest:guestVm;
    createUpdateMenu(): Observable<any>{
     return this.apiservice.postData(this.apiservice.serverPath+ this.createUpdateMenu_url,this.objMenu);
    }
-   getMyMenu(): Observable<any>{
+   getMenuGuestCount(): Observable<any>{
     return this.apiservice.getData(this.apiservice.serverPath + this.menuGuestCount_Url);
+   }
+   getMyMenu(): Observable<any>{
+     return this.apiservice.getData(this.apiservice.serverPath+ this.mymenu_url);
    }
    createUpdateGuest(): Observable<any>{
      console.log(JSON.stringify(this.objGuest));
           return this.apiservice.postData(this.apiservice.serverPath + this.createUpdaateGuest_Url,this.objGuest);
+   }
+   removeGuest(id): Observable<any>{
+    return this.apiservice.deleteAction2(this.removeGuest_url+'?id='+id,'');
    }
   }
   export class GroupVm {

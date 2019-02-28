@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { apiService } from 'app/shared/service/api.service';
-import { Budgetservice, BudgetItemVM } from './budgetservice';
+import { Budgetservice, BudgetItemVM, budgetCategoryVM } from './budgetservice';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { ToastrService } from 'ngx-toastr';
+import { GuestserviceService } from '../guest/guestservice.service'
+
 @Component({
   selector: 'app-budget',
   templateUrl: './budget.component.html',
@@ -13,8 +15,10 @@ export class BudgetComponent implements OnInit {
   Budgetlist = []; 
   AddBudget = false;
   expensesByCategory: any;
-  constructor(private apiService: apiService,public budgetservice: Budgetservice, public toaster: ToastrService) {
+  categoryDailog = false;
+  constructor(private apiService: apiService,public budgetservice: Budgetservice, public toaster: ToastrService,private _guestservice : GuestserviceService) {
     this.getMyBudgetItems();
+    this.getMyBudgetCategory();
   }
   name: string; 
   estimatedCost:string;
@@ -27,7 +31,7 @@ export class BudgetComponent implements OnInit {
   finalCostTotal:number;
   paidAmountTotal:number;
   pendingAmountTotal:number;
-
+  budgetCategory:any;
   budgetCategoryList = [];
   
   
@@ -60,17 +64,11 @@ export class BudgetComponent implements OnInit {
       console.log(error)
       }
     )
-    
-    // this.apiService.postData(this.apiService.serverPath+'BudgetItem/mybudgetitems',{BudgetCategoryId:81}).subscribe(data => {
-    //   console.log(data);
-    //   this.Budgetlist = data;
-    // },error => {
-    //   console.log(error)
-    // })
   }
 
   closeModel(){
     this.AddBudget = false;
+    this.categoryDailog = false;
   }
 
   onOptionsSelected(event){
@@ -104,6 +102,23 @@ export class BudgetComponent implements OnInit {
       this.paidAmountTotal = res.reduce((sum, item) => sum + item.paidAmount, 0);
       this.pendingAmountTotal = res.reduce((sum, item) => sum + item.pendingAmount, 0);
       // console.log(this.expensesByCategory);
+    })
+  }
+  getMyBudgetCategory(){
+    this.budgetservice.getMyBudgetCategory().subscribe(res=>{
+      this.budgetCategory = res;
+      console.log(this.budgetCategory);
+    })
+  }
+  createUpdateBudgetCategory(){
+    this.budgetservice.createUpdateBudgetCategories().subscribe(res=>{
+      this.toaster.success(res.message,'Done !');
+      this.getMyBudgetCategory();
+      this.categoryDailog = false;
+      this.budgetservice.objbudgetCategory = new budgetCategoryVM();
+      
+    },error=>{
+      this.toaster.error(error,'Error !');
     })
   }
 }

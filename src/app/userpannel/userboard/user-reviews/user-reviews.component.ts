@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { apiService } from 'app/shared/service/api.service';
+import { taskService, toDoVm } from '../bookmark/taskService';
+
+
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-user-reviews',
   templateUrl: './user-reviews.component.html',
-  styleUrls: ['./user-reviews.component.scss']
+  styleUrls: ['./user-reviews.component.scss'],
+  providers: [taskService]
 })
 export class UserReviewsComponent implements OnInit {
   
@@ -17,7 +21,7 @@ export class UserReviewsComponent implements OnInit {
   ReviewSearchVMObj = new CoupleReviewSearchVM();
   reviewsArray:any[];
   filtered_reviews:any=[];
-  constructor(private http: Http,private apiService : apiService,public toastr: ToastrService) { }
+  constructor(private http: Http, private apiService: apiService, public toastr: ToastrService, public tskService: taskService) { }
   ngOnInit() {  
     this.myReviews();
                 $("li").removeClass("user");
@@ -38,8 +42,15 @@ export class UserReviewsComponent implements OnInit {
     )
   }
   
+  showNewTaskPopup(obj) {
+    debugger;
+    this.tskService.objTodoVm = obj;
+    
+  }
+
+
   changeData(){
-    // debugger
+    //  this.Newtast_dialog = true; debugger
     if(this.ReviewSearchVMObj.Enum){
     this.filtered_reviews = this.reviewsArray.filter(r=>r.reviewStatus===this.ReviewSearchVMObj.Enum);
     }

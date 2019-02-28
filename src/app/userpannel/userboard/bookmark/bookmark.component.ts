@@ -47,6 +47,7 @@ export class BookmarkComponent implements OnInit {
 @ViewChild('all') all: ElementRef;
 @ViewChild('complete') complete: ElementRef;
 @ViewChild('pending') pending: ElementRef;
+
   // Prevent panel toggle code
   public beforeChange($event: NgbPanelChangeEvent) {
     if ($event.panelId === '2') {
@@ -102,33 +103,33 @@ export class BookmarkComponent implements OnInit {
             console.log(this.myChecklist);
          });
      }
-    filterByStatus(statusId){
-        switch(statusId){
-            case 1 :
-                this.renderer.addClass(this.pending.nativeElement,'btn_danger');
-                this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
-                this.renderer.removeClass(this.all.nativeElement,'btn_danger');
-            break;
-            case 2:
-                this.renderer.addClass(this.complete.nativeElement,'btn_danger');
-                this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
-                this.renderer.removeClass(this.all.nativeElement,'btn_danger');
-            break;
-            case 0:
-                this.renderer.addClass(this.all.nativeElement,'btn_danger');
-                this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
-                this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
-            break;
-        }
-         if(statusId==0){
-             this.all.nativeElement.toggleClass('btn_danger');
-             this.filteredToDos = this.myChecklist;
-         }else{
-            this.filteredToDos = this.myChecklist.filter(c=>c.status==statusId);
-         }
-         console.log(this.filteredToDos);
-         this.status = !this.status;
-     }
+    // filterByStatus(statusId){
+    //     switch(statusId){
+    //         case 1 :
+    //             this.renderer.addClass(this.pending.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.all.nativeElement,'btn_danger');
+    //         break;
+    //         case 2:
+    //             this.renderer.addClass(this.complete.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.all.nativeElement,'btn_danger');
+    //         break;
+    //         case 0:
+    //             this.renderer.addClass(this.all.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
+    //             this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
+    //         break;
+    //     }
+    //      if(statusId==0){
+    //          this.all.nativeElement.toggleClass('btn_danger');
+    //          this.filteredToDos = this.myChecklist;
+    //      }else{
+    //         this.filteredToDos = this.myChecklist.filter(c=>c.status==statusId);
+    //      }
+    //      console.log(this.filteredToDos);
+    //      this.status = !this.status;
+    //  }
      removeTodoList(id){
         this.tskService.removeToDo(id).subscribe(res=>{
             console.log(res);

@@ -103,22 +103,21 @@ export class BookmarkComponent implements OnInit {
          });
      }
     filterByStatus(statusId){
-        debugger;
         switch(statusId){
             case 1 :
-            this.renderer.addClass(this.pending.nativeElement,'btn_danger');
-            this.renderer.addClass(this.complete.nativeElement,'btn_success');
-            this.renderer.addClass(this.all.nativeElement,'btn_success');
+                this.renderer.addClass(this.pending.nativeElement,'btn_danger');
+                this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
+                this.renderer.removeClass(this.all.nativeElement,'btn_danger');
             break;
             case 2:
-            this.renderer.addClass(this.complete.nativeElement,'btn_danger');
-            this.renderer.addClass(this.pending.nativeElement,'btn_success');
-            this.renderer.addClass(this.all.nativeElement,'btn_success');
+                this.renderer.addClass(this.complete.nativeElement,'btn_danger');
+                this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
+                this.renderer.removeClass(this.all.nativeElement,'btn_danger');
             break;
             case 0:
-            this.renderer.addClass(this.all.nativeElement,'btn_danger');
-            this.renderer.addClass(this.pending.nativeElement,'btn_success');
-            this.renderer.addClass(this.complete.nativeElement,'btn_success');
+                this.renderer.addClass(this.all.nativeElement,'btn_danger');
+                this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
+                this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
             break;
         }
          if(statusId==0){
@@ -216,6 +215,6 @@ $('.allbtncheck').click(function(e){
     $(".todocheckbox").show();
     $(".donecheckbox").show();
 });
-  }
+}
   
 }

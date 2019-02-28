@@ -23,7 +23,6 @@ ngOnInit(){
 
 }
 public createUpdateBudgetItem(): Observable<any> {
-    debugger
    return this.apiservice.postData(this.apiservice.serverPath+ this.budgetItemApi_url,this.objBudgetItem)
 }
 public createUpdateBudgetCategories(){

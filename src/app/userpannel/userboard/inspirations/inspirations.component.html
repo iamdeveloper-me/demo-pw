@@ -30,9 +30,8 @@
                              alt="Another alt text">
                              <div class="overlay">
                                 <h2>{{photo.nameOfBusiness}}</h2>
-                               <a class="thumbnail fancybox info hidden-xs"  rel="ligthbox"
-                               [href]="photo.imageURL"
-                                >View</a>
+<a data-fancybox="cl-group" class="thumbnail info hidden-xs fancybox" title="" [href]="photo.imageURL"
+  [attr.data-caption]="item.nameOfBusiness">View</a>
                                 <!-- [href]="photo.imageURL" -->
                                <div class="shareholder">
                                  <span class="shareicon">

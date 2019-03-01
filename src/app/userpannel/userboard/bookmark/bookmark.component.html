@@ -1,42 +1,40 @@
 <app-menu></app-menu>
 <app-tool></app-tool>
 <div class="container-fluid">
-	<div class="col-sm-12 mobmartop80px">
-
+    <div class="col-sm-12 mobmartop80px">
         <div class="card">
             <div class="px-3 py-3">
-            <div>
-                <h2 class="text-center">My Checklist</h2>
-                <div class="text-center">
-                    <div class="col-sm-2 hidden-xs">
-                        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/checklist-icon.png">
-                    </div>
-                    <div class="span4tik col-sm-8" style="position: relative;">
-                    <!-- <span class="tools-boxProgress-tooltip" style="left:25px;">{{completedInPercent| number:'.2-2'}} %</span> -->
-                     <ngb-progressbar showValue="true" type="success" [value]="completedInPercent| number:'.2-2'"></ngb-progressbar>
-                     {{completedTaskTotal}} of {{myChecklist?myChecklist.length: 0}} tasks completed
-                    </div>
-                    <div class="col-sm-2">
-                        <button class="btn addtaskbtn filterbtn">
-                            <i class="material-icons">
-                                filter_list
-                            </i>
-                        </button>
-                        <button class="btn addtaskbtn" data-toggle="modal" data-target="#content">
-                            <i class="material-icons disnone">add_circle_outline</i>
-                            New Task
-                        </button>
+                <div>
+                    <h2 class="text-center">My Checklist</h2>
+                    <div class="text-center">
+                        <div class="col-sm-2 hidden-xs">
+                            <img src="https://s3.us-east-2.amazonaws.com/prefect-image/checklist-icon.png">
+                        </div>
+                        <div class="span4tik col-sm-8" style="position: relative;">
+                            <!-- <span class="tools-boxProgress-tooltip" style="left:25px;">{{completedInPercent| number:'.2-2'}} %</span> -->
+                            <ngb-progressbar showValue="true" type="success" [value]="completedInPercent| number:'.2-2'"></ngb-progressbar>
+                            {{completedTaskTotal}} of {{myChecklist?myChecklist.length: 0}} tasks completed
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn addtaskbtn filterbtn">
+                                <i class="material-icons">
+                                    filter_list
+                                </i>
+                            </button>
+                                <button class="btn addtaskbtn" (click)="showNewTaskPopup(tskService.objTodoVm,'add') ">
+                                <i class="material-icons disnone">add_circle_outline</i>
+                                New Task
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-
-<div class="clearfix"></div>
-	</div>
+        <div class="clearfix"></div>
+    </div>
     <div>
         <div class="col-sm-3 col-md-3 filterbox filterboxtik">
-        	<!-- <div class="card hidden-xs" style="margin-top:0PX;">
+            <!-- <div class="card hidden-xs" style="margin-top:0PX;">
         		<div class="card-body" >
         			<div class="px-3 py-3">
         				<h2>BY STATUS</h2>
@@ -46,47 +44,43 @@
         			</div>
         		</div>
         	</div> -->
-           <div  class="card" style="margin-top:0PX;">
-				<div class="card-body" >
-					<div class="px-3 py-3 mobPad10px">
-           				<h2>BY DATE</h2>
-           					<ol class="timeline">
-								<li><a href="#">
-									From 10 to 12 months <span class="badge badge-pill badge-default">11</span>
-								</a>
-								</li>
-								<li><a href="#">From 07 to 09 months <span class="badge badge-pill badge-default">22</span></a></li>
-								<li><a href="#">From 04 to 06 months <span class="badge badge-pill badge-default">13</span></a></li>
-								<li><a href="#">From 02 to 03 months <span class="badge badge-pill badge-default">16</span></a></li>
-								<li><a href="#">Last months <span class="badge badge-pill badge-default">6</span></a></li>
-								<li><a href="#">Two Weeks <span class="badge badge-pill badge-default">8</span></a></li>
-								<li><a href="#">Last Week <span class="badge badge-pill badge-default">23</span></a></li>
-								<li><a href="#">After the Wedding <span class="badge badge-pill badge-default">27</span></a></li>
-							</ol>
-           			</div>
-       			</div>
-       		</div>
-           <div  class="card" style="margin-top:0PX;">
-				<div class="card-body" >
-					<div class="px-3 py-3 mobPad10px">
-           				<h2>BY CATEGORY</h2>
-			           	<ol class="timeline">
-							<li><a href="#">Events <span class="badge badge-pill badge-default">22</span></a></li>
-							<li><a href="#">Photography & Vedio <span class="badge badge-pill badge-default">22</span></a></li>
-							<li><a href="#">Planing <span class="badge badge-pill badge-default">22</span></a></li>
-							<li><a href="#">Health & Beauty <span class="badge badge-pill badge-default">22</span></a></li>
-							<li><a href="#">Others <span class="badge badge-pill badge-default">22</span></a></li>
-						</ol>
-					</div>
-				</div>
-			</div>
-       	</div>
-
-
-
-
+            <div class="card" style="margin-top:0PX;">
+                <div class="card-body">
+                    <div class="px-3 py-3 mobPad10px">
+                        <h2>BY DATE</h2>
+                        <ol class="timeline">
+                            <li><a href="#">
+                                    From 10 to 12 months <span class="badge badge-pill badge-default">11</span>
+                                </a>
+                            </li>
+                            <li><a href="#">From 07 to 09 months <span class="badge badge-pill badge-default">22</span></a></li>
+                            <li><a href="#">From 04 to 06 months <span class="badge badge-pill badge-default">13</span></a></li>
+                            <li><a href="#">From 02 to 03 months <span class="badge badge-pill badge-default">16</span></a></li>
+                            <li><a href="#">Last months <span class="badge badge-pill badge-default">6</span></a></li>
+                            <li><a href="#">Two Weeks <span class="badge badge-pill badge-default">8</span></a></li>
+                            <li><a href="#">Last Week <span class="badge badge-pill badge-default">23</span></a></li>
+                            <li><a href="#">After the Wedding <span class="badge badge-pill badge-default">27</span></a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin-top:0PX;">
+                <div class="card-body">
+                    <div class="px-3 py-3 mobPad10px">
+                        <h2>BY CATEGORY</h2>
+                        <ol class="timeline">
+                            <li><a href="#">Events <span class="badge badge-pill badge-default">22</span></a></li>
+                            <li><a href="#">Photography & Vedio <span class="badge badge-pill badge-default">22</span></a></li>
+                            <li><a href="#">Planing <span class="badge badge-pill badge-default">22</span></a></li>
+                            <li><a href="#">Health & Beauty <span class="badge badge-pill badge-default">22</span></a></li>
+                            <li><a href="#">Others <span class="badge badge-pill badge-default">22</span></a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-sm-9 col-md-9">
-<!-- <ngb-accordion [closeOthers]="true" activeIds="1" class="bookmarkdesign">
+            <!-- <ngb-accordion [closeOthers]="true" activeIds="1" class="bookmarkdesign">
         <ngb-panel id="1">
             <ng-template ngbPanelTitle>
                     <h3 class="panel-title pull-left mobfloatnone">FROM 10 TO 12 MONTHS </h3>
@@ -95,8 +89,6 @@
                     </div>     
             </ng-template>
             <ng-template ngbPanelContent>
-
-           
                     <div class="CheckListdiv">
                     	<i class="material-icons tikchecklist">check</i>
                     	<span>
@@ -259,111 +251,111 @@
             </ng-template>
         </ngb-panel>
 </ngb-accordion> -->
-
             <div class="tabsectionmobile">
-                    <a class="todobtncheck" name='pending' id='pending' #pending (click)='filterByStatus(1)'>
+                <a class="todobtncheck btn_danger" name='pending' id='pending' #pending (click)='filterByStatus(1)'>
                     <i class="material-icons">schedule</i>
-                    <br/>To Do
+                    <br />To Do
                 </a>
-<a class="donebtncheck" name='complete' id='complete' #complete (click)='filterByStatus(2)'>
+                <a class="donebtncheck" name='complete' id='complete' #complete (click)='filterByStatus(2)'>
                     <i class="material-icons">sentiment_satisfied</i>
-                    <br/>Complete
+                    <br />Complete
                 </a>
-<a class="allbtncheck" name='all' id='all' #all (click)='filterByStatus(0)'>
+                <a class="allbtncheck" name='all' id='all' #all (click)='filterByStatus(0)'>
                     <i class="material-icons">adjust</i>
-                    <br/>All</a>
+                    <br />All</a>
             </div>
             <div class="clearfix"></div>
-               <div class="panel-body nopadd card martop0px">
-                    <div class="CheckListdiv" style="display:block!important" *ngFor='let td of filteredToDos'>
-                        <!-- *ngIf='td.status==1' (click)='addNewTask(td)' -->
-                        <i class="material-icons tikchecklist" *ngIf='td.status==1' (click)='addNewTask(td)'>check</i>
-                    	<span>
-                    		<strong>{{td.name}}</strong>
-                    		<br/>
-                    		{{getTaskOptionName(td.toDoId)}}
-                            <br/>
-                            {{td.timing}} <span class="badge badge-success" *ngIf='td.status==1'>{{td.statusString}}</span>
-                    	</span>
-
-                    <button class="deletebtnhover"><i class="material-icons">edit</i></button>
-
-                    	<!-- <button (click)='removeTodoList(td.toDoId)' class="deletebtnhover"><i class="material-icons">delete</i></button> -->
-
-                    </div>
-                    <div id='content' class="modal fade" role="dialog" >
-                        <div class="modal-dialog">
-                            <div style="margin-top:15%" class="modal-content">
+            <div class="panel-body nopadd card martop0px">
+                <div class="CheckListdiv" style="display:block!important" *ngFor='let td of filteredToDos'>
+                    <i class="material-icons tikchecklist" *ngIf='td.status==1' (click)='addNewTask(td)'>check</i>
+                    <i class="material-icons tikchecklist tikchecklicurs" *ngIf='td.status==2'>check</i>
+                    <span>
+                        <strong>{{td.name}}</strong>
+                        <br />
+                        {{getTaskOptionName(td.toDoId)}}
+                        <br />
+                        {{td.timing}} <span class="badge badge-success" *ngIf='td.status==1'>{{td.statusString}}</span>
+                    </span>
+                    <button class="deletebtnhover" (click)="showNewTaskPopup(td,'edit')">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <!-- <button (click)='removeTodoList(td.toDoId)' class="deletebtnhover"><i class="material-icons">delete</i></button> -->
+                </div>
+                <div class="modal fade" [ngClass]="{'show' : Newtast_dialog}" role="dialog">
+                    <div class="modal-dialog">
+                        <div style="margin-top:15%" class="modal-content">
                             <div class="modal-header">
-                            	<br/>
+                                <br />
                                 <h4 class="modal-title">Add New Task</h4>
-                                <button type="button" class="close" aria-label="Close" data-dismiss="modal">
-                                <span aria-hidden="true">&times;</span>
+                                    <button type="button" class="close" (click)="close()" aria-label="Close" data-dismiss="modal">
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <form>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <div class="field">
-                                                        <input type="text" name="taskName" [(ngModel)]='tskService.objTodoVm.name' placeholder="Task Name" required="required" id="taskName">
-                                                        <label for="taskName">Task Name</label>
-                                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="field">
+                                                    <input type="text" name="taskName" [(ngModel)]='tskService.objTodoVm.name'
+                                                        placeholder="Task Name" required="required" id="taskName">
+                                                    <label for="taskName">Task Name</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                           <div class="field">
-                                                <select name="timing" [(ngModel)]='tskService.objTodoVm.timing' id="bydate" placeholder="By Date" >
-                                                    <option *ngFor='let t of tskService.timings' [value]='t.id'>{{t.timing}}</option>
-                                                </select>
-                                                <label for="bydate">By Date</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="field">
+                                                    <select name="timing" [(ngModel)]='tskService.objTodoVm.timing' id="bydate"
+                                                        placeholder="By Date">
+                                                        <option *ngFor='let t of tskService.timings' [value]='t.id'>{{t.timing}}</option>
+                                                    </select>
+                                                    <label for="bydate">By Date</label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="field">
-                                                <select name="category" [(ngModel)]='tskService.objTodoVm.categoryId' id="bycategory"  placeholder="By Category">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="field">
+                                                    <select name="category" [(ngModel)]='tskService.objTodoVm.categoryId'
+                                                        id="bycategory" placeholder="By Category">
                                                         <option *ngFor='let o of checklistOptions' [value]='o.id'>{{o.name}}</option>
-                                                </select>
-                                                 <label for="bycategory">By Category</label>
+                                                    </select>
+                                                    <label for="bycategory">By Category</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                        </div>
-                                        <div class="row">
+                                    <div class="row">
                                         <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="field">
-                                                <textarea   id="notes" name="notes" [(ngModel)]='tskService.objTodoVm.notes' type="text" placeholder="Notes" required="required"></textarea>
-                                                <label for="notes">Notes</label>
+                                            <div class="form-group">
+                                                <div class="field">
+                                                    <textarea id="notes" name="notes" [(ngModel)]='tskService.objTodoVm.notes'
+                                                        type="text" placeholder="Notes" required="required"></textarea>
+                                                    <label for="notes">Notes</label>
+                                                </div>
                                             </div>
                                         </div>
-                                        </div>
-                                        </div>
-                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
                                     <div class="row">
                                         <div class="col-md-12 mobCenter">
-                                        <div class="form-group">
-                                            <button type="button" (click)='addNewTask(tskService.objTodoVm)' data-dismiss='modal' class="btn pinkbtn">Add Task</button>
-                                    </div></div>
+                                            <div class="form-group">
+                                                <button type="button" (click)='addNewTask(tskService.objTodoVm)'
+                                                    data-dismiss='modal' class="btn pinkbtn">Add Task</button>
+                                            </div>
+                                        </div>
                                     </div>
-                   
                                 </form>
                             </div>
-                          </div>
-                        
                         </div>
-                     </div>
-
+                    </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>
-
 <app-foot></app-foot>
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>

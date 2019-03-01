@@ -4,14 +4,10 @@ import { Observable ,  Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuardService } from 'app/services/auth-guard.service';
 import { headersToString } from 'selenium-webdriver/http';
-import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { ToastrService } from 'ngx-toastr';
-
 @Injectable()
 export class apiService {
-  constructor(public actRoute: ActivatedRoute ,public router : Router,private auth : AuthGuardService,private http: HttpClient,
-    public toaster: ToastrService
-    ) { }
+  constructor(public actRoute: ActivatedRoute, public router: Router, public toastr: ToastrService,private auth : AuthGuardService,private http: HttpClient) { }
   serverPath = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/"
   getData(url) : Observable<any> {
     var authToken = sessionStorage.getItem('userToken');
@@ -105,8 +101,8 @@ export class apiService {
    }
    if(this.auth.userActive()){
     this.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-      console.log(data)
-      this.toaster.success(data.message);
+      console.log(data);
+      this.toastr.success(data.message);
     })
    }else{
     this.router.navigateByUrl('/home?returnURl='+this.router.url);   } 

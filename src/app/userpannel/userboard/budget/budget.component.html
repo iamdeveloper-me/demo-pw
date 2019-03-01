@@ -129,30 +129,48 @@
 <!-- (click)="images_dialog = true" -->
 
 <div class="modal fade" id="uploadphoto" [ngClass]="{'show' : AddBudget}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"> Change Business Cover </h4>
-        <button type="button" class="close" (click)="closeModel()" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-        <div class="modal-body">
-          <div>
-           <form (ngSubmit)="saveBudget()" #budget="ngForm">
-              <div class="form-group col-md-6">
-              Name: 
-              <input   type = "text" class="form-control" required [ngModelOptions]="{standalone: true}" [(ngModel)]='budgetservice.objBudgetItem.name'></div>
-              <div class="form-group col-md-6">
-                EstimatedCost: 
-                <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" [ngModelOptions]="{standalone: true}" id="estimatedCost" name="estimatedCost" [(ngModel)]="budgetservice.objBudgetItem.estimatedCost" required>
-              </div>
-              <div class="form-group col-md-6">
-                FinalCost: 
-                <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" (change)='getPendingAmount()' [ngModelOptions]="{standalone: true}" id="finalCost" name="finalCost"  [(ngModel)]="budgetservice.objBudgetItem.finalCost" required>
-              </div>
-              <div class="form-group col-md-6">
-                PaidAmount: <input type = "number" pattern="^\d*(\.\d{0,2})?$" [ngModelOptions]="{standalone: true}" (change)='getPendingAmount()' class="form-control" id="paidAmount" name="paidAmount" [(ngModel)]="budgetservice.objBudgetItem.paidAmount" required>
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Change Business Cover </h4>
+                <button type="button" class="close" (click)="closeModel()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                   <form (ngSubmit)="saveBudget()" #budget="ngForm">
+                      <!-- <input type = "hidden"   id="budgetItemId" name="budgetItemId"  [value]="0" [(ngModel)]="budgetItemId"  ><br> -->
+                      <div class="form-group col-md-6">
+                      Name: 
+                      <input   type = "text" class="form-control" required [ngModelOptions]="{standalone: true}" [(ngModel)]='budgetservice.objBudgetItem.name'></div>
+                    <div class="form-group col-md-6">
+                      EstimatedCost: 
+                      <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" [ngModelOptions]="{standalone: true}" id="estimatedCost" name="estimatedCost" [(ngModel)]="budgetservice.objBudgetItem.estimatedCost" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                    FinalCost: 
+                    <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" (change)='getPendingAmount()' [ngModelOptions]="{standalone: true}" id="finalCost" name="finalCost"  [(ngModel)]="budgetservice.objBudgetItem.finalCost" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                      PaidAmount: <input type = "number" pattern="^\d*(\.\d{0,2})?$" [ngModelOptions]="{standalone: true}" (change)='getPendingAmount()' class="form-control" id="paidAmount" name="paidAmount" [(ngModel)]="budgetservice.objBudgetItem.paidAmount" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                      PendingAmount: <input  type = "number" readonly [ngModelOptions]="{standalone: true}" pattern="^\d*(\.\d{0,2})?$" class="form-control" id="pendingAmount" name="pendingAmount"   [(ngModel)]="budgetservice.objBudgetItem.pendingAmount" required >
+                      </div>
+                      <div class="form-group col-md-6">
+                      BudgetCategoryId:
+                      <select id="budgetCategoryId" name="budgetCategoryId" [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="budgetservice.objBudgetItem.budgetCategoryId" (ngModelChange)='onOptionsSelected($event)'>
+                        <option class='option' *ngFor='let option of budgetCategoryList' [value]="option.budgetCategoryId">{{option.name}}</option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn newbtn save_btn">Save</button>&nbsp;
+                      <button type="reset" class="btn newbtn" (click)="closeModel()">Close</button>&nbsp;
+
+                   </form>
+
+
                 </div>
                 <div class="form-group col-md-6">
                 PendingAmount: <input  type = "number" readonly [ngModelOptions]="{standalone: true}" pattern="^\d*(\.\d{0,2})?$" class="form-control" id="pendingAmount" name="pendingAmount"   [(ngModel)]="budgetservice.objBudgetItem.pendingAmount" required >

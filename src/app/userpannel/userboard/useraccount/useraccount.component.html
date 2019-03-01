@@ -99,7 +99,7 @@
                             </div>
                         </form>
                         <div class="updatebt text-center">
-                            <button  data-toggle="modal" (click)="getData_edit()">Update Profile
+                            <button data-toggle="modal" (click)="getData_edit(personalInfoArray)">Update Profile
                             </button>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                               </div> 
                         </div>
 
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 user_icon">
                              <img src="https://s3.us-east-2.amazonaws.com/prefect-image/user_icon.png">
                         </div>
                         <div class="col-sm-9 name_info setnameinfo">
@@ -228,7 +228,7 @@
 
 
                           <div class="updatebt text-center">
-                            <button  data-toggle="modal" data-target="#wedddetail">Update Profile
+                                <button data-toggle="modal" data-target="#wedddetail" (click)="getWedding(weddingArray)">Update Profile
                             </button>
                         </div>
                     </div>
@@ -540,13 +540,14 @@
                 <div class="card">         
                     <div class="card-body">
                        <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group radioform_div">
                                 <div class="input-effect form-group md-form">
                                     My Partner As The
                                   <br/>
                                     <label>
                                         <input type="radio"> 
                                       <img src="../../assets/img/groom.jpg"/> Groom</label>
+                                     
                                      <label>
                                          <input type="radio"> 
                                       <img src="../../assets/img/bride.jpg"/> Bride</label>
@@ -555,7 +556,7 @@
                         </div>  
                         <div class="col-md-12">
                             <div class="form-group">
-                                <div class="field">
+                                <div class="field input_div">
                                     <input 
                                         class="effect-16 validate" 
                                         type="text" 
@@ -632,7 +633,7 @@
                                 <div class="form-group">
                                    <div class="field">
                                         <input 
-                                            type="Date" 
+                                            type="datetime-local"
                                             id="weddate" 
                                             placeholder="Wedding Date" 
                                             required

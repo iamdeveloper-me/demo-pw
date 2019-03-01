@@ -144,21 +144,21 @@
               Name: 
               <input   type = "text" class="form-control" required [ngModelOptions]="{standalone: true}" [(ngModel)]='budgetservice.objBudgetItem.name'></div>
               <div class="form-group col-md-6">
-                EstimatedCost: 
+                Estimated Cost: 
                 <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" [ngModelOptions]="{standalone: true}" id="estimatedCost" name="estimatedCost" [(ngModel)]="budgetservice.objBudgetItem.estimatedCost" required>
               </div>
               <div class="form-group col-md-6">
-                FinalCost: 
+                Final Cost: 
                 <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" (change)='getPendingAmount()' [ngModelOptions]="{standalone: true}" id="finalCost" name="finalCost"  [(ngModel)]="budgetservice.objBudgetItem.finalCost" required>
               </div>
               <div class="form-group col-md-6">
-                PaidAmount: <input type = "number" pattern="^\d*(\.\d{0,2})?$" [ngModelOptions]="{standalone: true}" (change)='getPendingAmount()' class="form-control" id="paidAmount" name="paidAmount" [(ngModel)]="budgetservice.objBudgetItem.paidAmount" required>
+                Paid Amount: <input type = "number" pattern="^\d*(\.\d{0,2})?$" [ngModelOptions]="{standalone: true}" (change)='getPendingAmount()' class="form-control" id="paidAmount" name="paidAmount" [(ngModel)]="budgetservice.objBudgetItem.paidAmount" required>
                 </div>
                 <div class="form-group col-md-6">
-                PendingAmount: <input  type = "number" readonly [ngModelOptions]="{standalone: true}" pattern="^\d*(\.\d{0,2})?$" class="form-control" id="pendingAmount" name="pendingAmount"   [(ngModel)]="budgetservice.objBudgetItem.pendingAmount" required >
+                Pending Amount: <input  type = "number" readonly [ngModelOptions]="{standalone: true}" pattern="^\d*(\.\d{0,2})?$" class="form-control" id="pendingAmount" name="pendingAmount"   [(ngModel)]="budgetservice.objBudgetItem.pendingAmount" required >
                 </div>
                 <div class="form-group col-md-6">
-                BudgetCategoryId:
+                Budget Category:
                 <select id="budgetCategoryId" name="budgetCategoryId" [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="budgetservice.objBudgetItem.budgetCategoryId" (ngModelChange)='onOptionsSelected($event)'>
                   <option class='option' *ngFor='let option of budgetCategoryList' [value]="option.budgetCategoryId">{{option.name}}</option>
                 </select>

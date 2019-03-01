@@ -48,6 +48,7 @@ export class BookmarkComponent implements OnInit {
  checklistOptions: any;
  categoriesWithCountTaskList:any;
 @ViewChild('all') all: ElementRef;
+@ViewChild('todoStatus') todoStatus:ElementRef;
 @ViewChild('complete') complete: ElementRef;
 @ViewChild('pending') pending: ElementRef;
 action:string
@@ -64,6 +65,9 @@ action:string
      closeResult: string;
 
     constructor(private modalService: NgbModal,public activeModal: NgbActiveModal, public tskService: taskService, public toastr: ToastrService, public locationService: Location, private renderer: Renderer2){
+        this.tskService.objMychecklistParam.timing ='';
+        this.tskService.objMychecklistParam.categoryId = null;
+        this.tskService.objMychecklistParam.filter = 0;
         this.mychecklist();
         this.categoriesTask();
     }
@@ -72,13 +76,12 @@ action:string
         return this.categoriesWithCountTaskList.filter(category=>category.categoryId==categoryId)[0]?this.categoriesWithCountTaskList.filter(category=>category.categoryId==categoryId)[0].categoryName: 'NA';
     }
      addNewTask(obj){
-         debugger
-        this.tskService.objTodoVm = obj; 
-        if(this.action=='edit'){
-             this.tskService.objTodoVm.status = 1
+         this.tskService.objTodoVm = obj;
+         if(this.todoStatus.nativeElement.checked){
+             this.tskService.objTodoVm.status=2
          }else{
-             if (obj.toDoId > 0) { this.tskService.objTodoVm.status = 2 }
-         }         
+             this.tskService.objTodoVm.status=1;
+         }
          this.tskService.CreateUpdateTask().subscribe(res=>{ console.log(res);
             this.Newtast_dialog =  false;
             if(obj.toDoId>0){
@@ -91,11 +94,26 @@ action:string
             }
         });
       }
-     
+     filterByCategory(categoryId){
+       debugger;
+        this.tskService.objMychecklistParam.filter=0;
+        this.tskService.objMychecklistParam.timing='0';
+        if(categoryId=='0'){
+            this.tskService.objMychecklistParam.categoryId = 0;
+        }else{
+        this.tskService.objMychecklistParam.categoryId = categoryId;}
+        this.mychecklist();
+     }
+     filterByTiming(time){
+       this.tskService.objMychecklistParam.filter=0;
+       this.tskService.objMychecklistParam.categoryId = 0;
+       if(time=='0'){
+        this.tskService.objMychecklistParam.timing='0';    
+       }else{
+       this.tskService.objMychecklistParam.timing=time.id;}
+       this.mychecklist();
+    }
      mychecklist(){
-         this.tskService.objMychecklistParam.timing ='';
-         this.tskService.objMychecklistParam.categoryId = null;
-         this.tskService.objMychecklistParam.filter = 0;
          this.tskService.myCheckList().subscribe(res=>{
             this.myChecklist = res;
             this.completedTaskTotal = this.myChecklist.filter(ch=>ch.status===2).length;
@@ -107,7 +125,6 @@ action:string
 
     categoriesTask(){
       this.tskService.categoriesWithCountTask().subscribe(data=>{
-
         this.categoriesWithCountTaskList = data;
       })
     }
@@ -152,12 +169,14 @@ action:string
         })
      }
     showNewTaskPopup(obj,action){
-        debugger;
         this.tskService.objTodoVm=obj;
         this.Newtast_dialog = true;
         this.action=action;
     }
-
+    close(){
+        this.tskService.objTodoVm =new  toDoVm();
+        this.Newtast_dialog = false;
+    }
     // Open default modal
     open(content) {
        this.modalService.open(content).result.then((result) => {
@@ -165,10 +184,6 @@ action:string
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         });
-    }
-
-    close(){
-        this.Newtast_dialog = false;
     }
     // This function is used in open
     private getDismissReason(reason: any): string {

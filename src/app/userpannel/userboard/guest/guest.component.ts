@@ -21,18 +21,17 @@ export class GuestComponent implements OnInit {
   searchGuestQuery: string;
   totalAdulst: number;
   constructor(public _guestservice: GuestserviceService,private apiService : apiService, public toaster: ToastrService) {
-    debugger;
-    this.myguestCount();
-    this.getMyGroups();
-    this.searchMyGuest();
-    this.getMyMenu()
-    this.getMenuGuestCount();
-    this.myInvitiesCount();
+    this.initOnLoad();
+    this.searchGuestQuery='';
     }
     
 
   ngOnInit(){ 
   $.getScript('http://code.jquery.com/jquery-1.11.1.min.js'); 
+
+
+  $.getScript('./assets/js/hideshow.js'); 
+
 
 $(".guestclick").click(function() {
   $('.guestbox').show();
@@ -96,24 +95,33 @@ $(window).scroll(function(){
 
 
 
-  var acc = document.getElementsByClassName("accordion");
-var i;
+//   var acc = document.getElementsByClassName("accordion");
+// var i;
 
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-        /* Toggle between adding and removing the "active" class,
-        to highlight the button that controls the panel */
-        this.classList.toggle("active");
+// for (i = 0; i < acc.length; i++) {
+//     acc[i].addEventListener("click", function() {
+//         /* Toggle between adding and removing the "active" class,
+//         to highlight the button that controls the panel */
+//         this.classList.toggle("active");
 
-        /* Toggle between hiding and showing the active panel */
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
-        } else {
-            panel.style.display = "block";
-        }
-    });
-}
+//         /* Toggle between hiding and showing the active panel */
+//         var panel = this.nextElementSibling;
+//         if (panel.style.display === "block") {
+//             panel.style.display = "none";
+//         } else {
+//             panel.style.display = "block";
+//         }
+//     });
+// }
+  }
+  initOnLoad(){
+    this.myguestCount();
+    this.getMyGroups();
+    this.searchMyGuest();
+    this.getMyMenu()
+    this.getMenuGuestCount();
+    this.myInvitiesCount();
+
   }
   createUpdateGroup(){
     console.log(this._guestservice.objGroup);
@@ -139,7 +147,7 @@ for (i = 0; i < acc.length; i++) {
     })
   }
   searchMyGuest(){
-    this._guestservice.searchMyGuest('').subscribe(res=>{
+    this._guestservice.searchMyGuest(this.searchGuestQuery).subscribe(res=>{
       this.guestList = res;
       console.log(this.guestList);
     })
@@ -166,16 +174,16 @@ for (i = 0; i < acc.length; i++) {
   )
 }
 
-  createupdateguests(guest){
-    this.apiService.postData(this.apiService.serverPath+'Guests/createupdateguests',guest.value).subscribe(
-      data => {
-        console.log(data)
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
+  // createupdateguests(guest){
+  //   this.apiService.postData(this.apiService.serverPath+'Guests/createupdateguests',guest.value).subscribe(
+  //     data => {
+  //       console.log(data)
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   )
+  // }
 
   myguestscounts(){
     this.apiService.getData(this.apiService.serverPath+'Guests/myguestscounts',).subscribe(
@@ -247,12 +255,13 @@ for (i = 0; i < acc.length; i++) {
 
   /// Guest Section
   createUpdateGuest(){
+    debugger;
     this._guestservice.objGuest.groupsId
     this._guestservice.objGuest.groups.name = this._guestservice.myGroups.filter(g=>g.groupsId==this._guestservice.objGuest.groupsId)[0].name;
     this._guestservice.createUpdateGuest().subscribe(res=>{
       if(this._guestservice.objGuest.guestsId ===res.guestsId){
         this.toaster.success(res.message, 'Updated !');
-        this.searchMyGuest();
+        this.initOnLoad();
         this.closeModel();
       }else{
         this.toaster.success(res.message, 'Done !');

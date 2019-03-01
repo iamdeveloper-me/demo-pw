@@ -8,15 +8,15 @@
               <div class="col-md-12 row serabar">
                 <div class="col-md-4">
                   <input  class="searchinput" name="" [(ngModel)]='searchGuestQuery' placeholder="Search Guest" type="text">
-                  <span class="icon"><i class="material-icons">search</i></span>
+                  <span style="cursor:pointer" (click)='searchMyGuest()' class="icon"><i class="material-icons">search</i></span>
                 </div>
                 <div class="col-md-8 text-right hidden-xs">
-                  <label>Sort By </label>
-                  <div *ngIf='_guestservice.menuGuestCount'>
+                  <label>Sort By </label>&nbsp;
+                  <span *ngIf='_guestservice.menuGuestCount'>
                    <select>
                       <option *ngFor='let m of _guestservice.menuGuestCount' [value]='m.menuId'>{{m.name}}</option>
                    </select>
-                  </div>
+                  </span>&nbsp;
                    <select>
                      <option>Invitation Status</option>
                      <option >Invited</option>
@@ -60,7 +60,7 @@
               </div>
           </div>
           <div class="col-sm-9 mobnopadd guestbox">
-            <div *ngFor='let g of guestList' class="col-sm-12 nopadd accordinholder">
+            <div *ngFor='let g of guestList' class="col-sm-12 nopadd accordinholder accordintik">
               <div class="accordion row">
                   <div class="col-8 col-sm-4 mobnopadd">
                     <div class="pull-left">
@@ -258,11 +258,9 @@
                           <label>Age Group</label>
                         <select class="browser-default custom-select mb-4" name="guestAgeGroup" id='guestAgeGroup' 
                         [(ngModel)]='_guestservice.objGuest.ageGroup'>
-
-                              <option value="c" disabled>Child Group</option>
-                              <option value="a" selected>Adult Group</option>
-
-                          </select> 
+                              <option value="c">Child Group</option>
+                              <option value="a">Adult Group</option>
+                         </select> 
                     </div>
                     </div>
               </div>

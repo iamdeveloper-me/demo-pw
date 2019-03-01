@@ -52,7 +52,7 @@ num_invitiesCount: number;
      return this.apiservice.getData(this.apiservice.serverPath+this.groupGuestCount_url);
    }
    searchMyGuest(searchquery){
-     return this.apiservice.postData(this.apiservice.serverPath+ this.myGuestSearch_url,{'searchquery': searchquery});
+     return this.apiservice.postData(this.apiservice.serverPath+ this.myGuestSearch_url,{'query': searchquery});
    }
    myguestCount(): Observable<any>{
      return this.apiservice.getData(this.apiservice.serverPath+ this.myGuestCount_url);

@@ -21,6 +21,7 @@ export class UserReviewsComponent implements OnInit {
   ReviewSearchVMObj = new CoupleReviewSearchVM();
   reviewsArray:any[];
   filtered_reviews:any=[];
+  ifFormInEditMode:false;
   constructor(private http: Http, private apiService: apiService, public toastr: ToastrService, public tskService: taskService) {}
   
   ngOnInit() {  
@@ -43,9 +44,12 @@ export class UserReviewsComponent implements OnInit {
     )
   }
   
-  showNewTaskPopup(obj) {
+  showNewTaskPopup(obj,action) {
     debugger;
     this.tskService.objTodoVm = obj;
+    if(action=='edit'){
+     this.tskService.objTodoVm.status=1; 
+    }
     this.Newtast_dialog = true;
     
   }
@@ -56,7 +60,7 @@ export class UserReviewsComponent implements OnInit {
   changeData(){
     //   debugger
     if(this.ReviewSearchVMObj.Enum){
-    this.filtered_reviews = this.reviewsArray.filter(r=>r.reviewStatus===this.ReviewSearchVMObj.Enum);
+    this.filtered_reviews = this.reviewsArray.filter(r=>r.reviewStatus==this.ReviewSearchVMObj.Enum);
     }
     else{
       this.filtered_reviews = this.reviewsArray;

@@ -414,6 +414,7 @@ if(SelectedFeaturedList && SelectedFeaturedList.length>0){
   this.objSearchlistvm.deals = this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]== undefined ? '' :this.dealsAndOfferArray.filter(dd=>dd.isSelect==true)[0]['key'] 
   
   this.objSearchlistvm.pageSize = this._ngbConfigService.pageSize;
+  this.objSearchlistvm.loggedInUserId = sessionStorage.getItem('userId');
     this._masterservice.getFilterResult(this.objSearchlistvm).subscribe(res =>{
     this.objSearchResultItems = res;
     this.numberOfPages=res.totalPages;
@@ -524,6 +525,10 @@ generatePageNumbers(){
   }
   }
 }
+bookmarkVendor(item){
+  item.isBookmarked=true;
+  this.api.bookMark(item,'searchfilter','bookmarked','searchresult');
+}
 }
 // export class SearchFilterVm{
 //   categoryId:number=0;
@@ -548,6 +553,7 @@ export class SearchListingVM{
   searchInFeaturedVendors:boolean=false;
   customsFields:Array<FieldSearchVM>;
   customField:FieldSearchVM;
+  loggedInUserId:string;
   constructor(){
     this.pageSize=24;
     this.page=0;

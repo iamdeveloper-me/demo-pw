@@ -21,7 +21,7 @@
                                     filter_list
                                 </i>
                             </button>
-                                <button class="btn addtaskbtn" (click)="showNewTaskPopup(tskService.objTodoVm) ">
+                                <button class="btn addtaskbtn" (click)="showNewTaskPopup(tskService.objTodoVm,'add') ">
                                 <i class="material-icons disnone">add_circle_outline</i>
                                 New Task
                             </button>
@@ -276,7 +276,7 @@
                         <br />
                         {{td.timing}} <span class="badge badge-success" *ngIf='td.status==1'>{{td.statusString}}</span>
                     </span>
-                    <button class="deletebtnhover" (click)="showNewTaskPopup(td)">
+                    <button class="deletebtnhover" (click)="showNewTaskPopup(td,'edit')">
                         <i class="material-icons">edit</i>
                     </button>
                     <!-- <button (click)='removeTodoList(td.toDoId)' class="deletebtnhover"><i class="material-icons">delete</i></button> -->

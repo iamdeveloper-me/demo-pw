@@ -12,9 +12,11 @@
                 </div>
                 <div class="col-md-8 text-right hidden-xs">
                   <label>Sort By </label>
+                  <div *ngIf='_guestservice.menuGuestCount'>
                    <select>
                       <option *ngFor='let m of _guestservice.menuGuestCount' [value]='m.menuId'>{{m.name}}</option>
                    </select>
+                  </div>
                    <select>
                      <option>Invitation Status</option>
                      <option >Invited</option>
@@ -188,12 +190,13 @@
                   <div class="roundbox">
                           <i class="material-icons">verified_user</i>
                           Invited
-                          210
+                          {{_guestservice.num_invitiesCount?_guestservice.num_invitiesCount.invited:0}}
                         </div>
 
                          <div class="roundbox">
                           <i class="material-icons">access_time</i>
-                          Pending 156
+                          Pending 
+                          {{_guestservice.num_invitiesCount?_guestservice.num_invitiesCount.pending:0}} 
                       </div>
                 </div>
                 <div class="clearfix"></div>
@@ -203,6 +206,7 @@
                 <h1 class="sidebarhead">Menu</h1>
                 <div>
                    <ol class="timeline">
+                     
                         <li *ngFor='let m of _guestservice.menuGuestCount'>
                           <a href="#">{{m.name}}<span class="badge badge-pill badge-default">{{m.guestsCount}}</span></a>
                         </li>

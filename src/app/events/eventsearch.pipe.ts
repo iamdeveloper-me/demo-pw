@@ -57,7 +57,7 @@ export class EventsearchentryPipe implements PipeTransform {
       if(args == undefined || args === 'All'){
         return value
       }else{
-        return value.filter((listing:any)=>listing.entry.toLowerCase().includes(args.toLowerCase()));
+        return value.filter((listing:any)=>listing.git branch.toLowerCase().includes(args.toLowerCase()));
       }
     }
     return value;

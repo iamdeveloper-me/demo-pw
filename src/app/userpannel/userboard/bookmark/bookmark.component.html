@@ -53,7 +53,7 @@
                             <li *ngFor='let time of tskService.timings' (click)='filterByTiming(time)'>
                                 {{time.timing}} <span class="badge badge-pill badge-default">{{time.id}}</span>
                             </li>
-                            <li value="0" (click)='filterByTiming(0)'>All</li>
+                            <!-- <li value="0" (click)='filterByTiming(0)'>All</li> -->
                         </ol>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                             <li *ngFor='let category of categoriesWithCountTaskList' (click)='filterByCategory(category.categoryId)'>
                                 {{category.categoryName}}<span class="badge badge-pill badge-default">{{category.listingCount}}</span> 
                             </li>
-                            <li value="0">All</li>
+                            <!-- <li value="0">All</li> -->
                         </ol>
                     </div>
                 </div>
@@ -253,11 +253,7 @@
                     <i class="material-icons">sentiment_satisfied</i>
                     <br />Complete
                 </a>
-<<<<<<< HEAD
-                <a class="allbtncheck btn_danger" name='all' id='all' #all (click)='filterByStatus(0)'>
-=======
                     <a class="allbtncheck btn_danger" name='all' id='all' #all (click)='filterByStatus(0)'>
->>>>>>> raj
                     <i class="material-icons">adjust</i>
                     <br />All</a>
             </div>
@@ -327,7 +323,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-11">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <div class="field">
                                                     <textarea id="notes" name="notes" [(ngModel)]='tskService.objTodoVm.notes'
@@ -336,8 +332,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <input type="checkbox" [(ngModel)]='tskService.objTodoVm.status' checked='{tskService.objTodoVm.status==2}' name='todoStatus' id='todoStatus' #todoStatus>
+                                        
+                                        <div class="form-group col-md-12">
+                                          
+                                                <label>
+                                                    <input type="checkbox" [(ngModel)]='tskService.objTodoVm.status' checked='{tskService.objTodoVm.status==2}' name='todoStatus' id='todoStatus' #todoStatus>
+                                                    Status
+                                                </label>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>

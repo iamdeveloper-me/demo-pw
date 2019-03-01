@@ -23,7 +23,7 @@ export class taskService implements OnInit{
             {id:5, timing:'Last Months'},
             {id:6, timing:'Two Weeks'},
             {id:7, timing:'Last Week'},
-            {id:8, timing:'After The Wedding'},
+            {id:8, timing:'After The Wedding'}
         ]
     }
 

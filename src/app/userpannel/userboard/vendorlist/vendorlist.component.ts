@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
+import { apiService } from 'app/shared/service/api.service';
 @Component({
   selector: 'app-vendorlist',
   templateUrl: './vendorlist.component.html',
@@ -8,8 +9,12 @@ import { Http,Headers } from '@angular/http';
 export class VendorlistComponent implements OnInit {
   private urlg: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Reviews/myreviews'
   countryArray:string[];
-  constructor(public http: Http) { }
-
+  mySuppliers:any = {};
+  savedArray:any = {};
+  listedArray:any = {};
+  bookedArray:any = {};
+  constructor(public http: Http,private apiService : apiService) { }
+  MySuppliersObj = new MySuppliersSearchVM();
   ngOnInit() {  $("li").removeClass("user");
                 $("#login").hide();
 
@@ -52,6 +57,72 @@ export class VendorlistComponent implements OnInit {
                   this.countryArray = data.json();
                 console.log(data);
                 });
+                this.all();
+                this.saved();
+                this.booked();
+                this.listed();
+
   }
 
+  all(){
+      this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchmysuppliers',{
+        "supplierStatus": 0
+    }).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  saved(){
+      this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchmysuppliers',{
+        "supplierStatus": 1
+    }).subscribe(
+      data => {
+        this.savedArray = data;
+        console.log(this.savedArray)
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  listed(){
+      this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchmysuppliers',{
+        "supplierStatus": 2
+    }).subscribe(
+      data => {
+        this.listedArray = data;
+        console.log(this.listedArray)
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  booked(){
+    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchmysuppliers',{
+        "supplierStatus": 3
+    }).subscribe(
+      data => {
+        this.bookedArray = data;
+        console.log(this.bookedArray);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+
 }
+
+
+export class MySuppliersSearchVM {
+  supplierStatus:number
+}
+
+//SupplierStatus All=0, Saved=1, ShortListed=2, Booked=3)

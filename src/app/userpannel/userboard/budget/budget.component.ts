@@ -22,6 +22,7 @@ export class BudgetComponent implements OnInit {
     this.getBudgetCategoryList();
 
     this.getMyBudgetCategory();
+    this.getMyBudgetItemsByCategory();
 
   }
   name: string; 
@@ -30,17 +31,13 @@ export class BudgetComponent implements OnInit {
   paidAmount:string;
   pendingAmount: string;
   budgetCategoryId:number;
-  
   estimatedCostTotal:number;
   finalCostTotal:number;
   paidAmountTotal:number;
   pendingAmountTotal:number;
   budgetCategory:any;
   budgetCategoryList = [];
-  // expensesByCategoryData = {};
-  
-  toggle = {};
-  
+
   ngOnInit() {
     $("li").removeClass("user");
     $("#login").hide();
@@ -51,7 +48,6 @@ export class BudgetComponent implements OnInit {
         /* Toggle between adding and removing the "active" class,
         to highlight the button that controls the panel */
         this.classList.toggle("active");
-
         /* Toggle between hiding and showing the active panel */
         var panel = this.nextElementSibling;
         if (panel.style.display === "block") {
@@ -66,23 +62,21 @@ export class BudgetComponent implements OnInit {
 
   getBudgetCategoryList(){
 
-    this.apiService.getData(this.apiService.serverPath+'BudgetCategory/expensesbycategory').subscribe(data => {
+    this.apiService.getData(this.apiService.serverPath+'BudgetCategory/expensesbycategorycount').subscribe(data => {
       this.budgetCategoryList = data;
-      // this.budgetCategoryList.forEach(category => {
-      //   console.log(category);
-      //   this.budgetservice.getMybudgetItems(category.budgetCategoryId).subscribe(data=>{
+    });
+  }
 
-      //     let  expenses_data = data;
-      //     let  estimatedCostTotal = data.reduce((sum, item) => sum + item.estimatedCost, 0);
-      //     let  finalCostTotal = data.reduce((sum, item) => sum + item.finalCost, 0);
-      //     let  paidAmountTotal = data.reduce((sum, item) => sum + item.paidAmount, 0);
-      //     let  pendingAmountTotal = data.reduce((sum, item) => sum + item.pendingAmount, 0);
+  budgetItemsCategoryList = [];
+  getMyBudgetItemsByCategory(){
 
-      //     this.Budgetlist.push({category : category, expenses_data : expenses_data, estimatedCostTotal : estimatedCostTotal, finalCostTotal : finalCostTotal, paidAmountTotal : paidAmountTotal, pendingAmountTotal : pendingAmountTotal});
-
-      //   });
-      // });
-
+    this.apiService.getData(this.apiService.serverPath+'BudgetItem/mybudgetitemsbycategory').subscribe(data => {
+      this.budgetItemsCategoryList = data;
+      this.budgetItemsCategoryList.forEach(budgetItem => {
+        budgetItem.finalCostTotal = budgetItem.budgetItems.reduce((sum, item) => sum + item.finalCost, 0);
+        budgetItem.paidAmountTotal = budgetItem.budgetItems.reduce((sum, item) => sum + item.paidAmount, 0);
+        budgetItem.pendingAmountTotal = budgetItem.budgetItems.reduce((sum, item) => sum + item.pendingAmount, 0);
+      });
     });
   }
 
@@ -158,6 +152,7 @@ export class BudgetComponent implements OnInit {
       this.budgetservice.objbudgetCategory = new budgetCategoryVM();
       
       this.getBudgetCategoryList();
+      this.getMyBudgetItemsByCategory();
     },error=>{
       this.toaster.error(error,'Error !');
     })

@@ -53,21 +53,21 @@
           </div>
         </div>
         <div class="container-fluid accordin">
-          <div class="col-md-12 nopadd">
-            <button class="accordion"><i class="material-icons colo_pink"> home</i> <strong class="positi_rel"> Event </strong>  
+          <div class="col-md-12 nopadd" *ngFor='let budget of budgetItemsCategoryList'>
+            <button class="accordion"><i class="material-icons colo_pink"> home</i> <strong class="positi_rel"> {{budget.name}} </strong>  
               <i class="material-icons downarrow">keyboard_arrow_down</i>
               <i class="material-icons uparrow">keyboard_arrow_up</i>
               <table width="100%" class="martop20px pink">
                     <tr>
-                      <td width="31%">Final Cost: {{finalCostTotal}}</td>
-                      <td width="25%" class="text-center">Paid: {{paidAmountTotal}}</td>
-                      <td width="25%" class="text-center">Pending: {{pendingAmountTotal}}</td>
+                      <td width="31%">Final Cost: {{budget.finalCostTotal}}</td>
+                      <td width="25%" class="text-center">Paid: {{budget.paidAmountTotal}}</td>
+                      <td width="25%" class="text-center">Pending: {{budget.pendingAmountTotal}}</td>
                       <td></td>
                     </tr>
               </table>
             </button>
             <div class="panel">
-                <div class="checkbox"  *ngFor='let expenses of expensesByCategory'>
+                <div class="checkbox"  *ngFor='let expenses of budget.budgetItems'>
                   <table width="100%">
                     <tr>
                       <td>

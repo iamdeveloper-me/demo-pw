@@ -50,17 +50,10 @@
                     <div class="px-3 py-3 mobPad10px">
                         <h2>BY DATE</h2>
                         <ol class="timeline">
-                            <li>
-                                <a href="#">From 10 to 12 months <span class="badge badge-pill badge-default">11</span>
+                            <li *ngFor='let time of tskService.timings'>
+                                <a href="#">{{time.timing}} <span class="badge badge-pill badge-default">{{time.id}}</span>
                                 </a>
                             </li>
-                            <li><a href="#">From 07 to 09 months <span class="badge badge-pill badge-default">22</span></a></li>
-                            <li><a href="#">From 04 to 06 months <span class="badge badge-pill badge-default">13</span></a></li>
-                            <li><a href="#">From 02 to 03 months <span class="badge badge-pill badge-default">16</span></a></li>
-                            <li><a href="#">Last months <span class="badge badge-pill badge-default">6</span></a></li>
-                            <li><a href="#">Two Weeks <span class="badge badge-pill badge-default">8</span></a></li>
-                            <li><a href="#">Last Week <span class="badge badge-pill badge-default">23</span></a></li>
-                            <li><a href="#">After the Wedding <span class="badge badge-pill badge-default">27</span></a></li>
                         </ol>
                     </div>
                 </div>
@@ -253,7 +246,7 @@
             <div class="tabsectionmobile">
                 <a class="todobtncheck btn_danger" name='pending' id='pending' #pending (click)='filterByStatus(1)'>
                     <i class="material-icons">schedule</i>
-                    <br />To Do
+                    <br/>To Do
                 </a>
                 <a class="donebtncheck" name='complete' id='complete' #complete (click)='filterByStatus(2)'>
                     <i class="material-icons">sentiment_satisfied</i>
@@ -320,7 +313,7 @@
                                                 <div class="field">
                                                     <select name="category" [(ngModel)]='tskService.objTodoVm.categoryId'
                                                         id="bycategory" placeholder="By Category">
-                                                        <option *ngFor='let o of checklistOptions' [value]='o.id'>{{o.name}}</option>
+                                                        <option *ngFor='let category of categoriesWithCountTaskList' [value]='category.categoryId'>{{category.categoryName}}</option>
                                                     </select>
                                                     <label for="bycategory">By Category</label>
                                                 </div>

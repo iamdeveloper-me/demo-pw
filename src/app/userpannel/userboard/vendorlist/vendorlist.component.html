@@ -11,18 +11,25 @@
 		</div>
 
 		<div class="col-sm-10  martop25px mobnopadd text-center">
-			<button class="btn btn-default filter-button allbtn" (click)='getallSuppliers(0)' data-filter="all">
-				<i class="material-icons">done_all </i> All
-				<span class="badge bg-success white">6</span>
+			<button class="btn btn-default filter-button allbtn" (click)='getallSuppliers(0)'>
+				<i class="material-icons">done_all </i> 
+				All
+				<span class="badge bg-success white">1</span>
 			</button>
-			<button class="btn btn-default filter-button savebtn" data-filter="all" (click)='getallSuppliers(1)' >
-				<i class="material-icons">done_all </i> Saved
-				<span class="badge bg-success white">6</span>
+			<button class="btn btn-default filter-button savebtn"  (click)='getallSuppliers(1)' >
+				<i class="material-icons">done_all </i> 
+				Saved
+				<span class="badge bg-success white">0</span>
 			</button>
-			<button class="btn btn-default filter-button shortlistbtn" (click)='getallSuppliers(2)' data-filter="listed"><i class="material-icons">favorite</i>
-				ShortListed <span class="badge bg-success white">2</span></button>
-			<button class="btn btn-default filter-button bookbtn" (click)='getallSuppliers(3)' data-filter="Booked"><i class="material-icons">check_circle_outline</i>
-				Booked <span class="badge bg-success white">4</span></button>
+			<button class="btn btn-default filter-button shortlistbtn" (click)='getallSuppliers(2)'>
+				<i class="material-icons">favorite</i>
+				ShortListed 
+				<span class="badge bg-success white">0</span></button>
+
+			<button class="btn btn-default filter-button bookbtn" (click)='getallSuppliers(3)' >
+				<i class="material-icons">check_circle_outline</i>
+				Booked 
+				<span class="badge bg-success white">0</span></button>
 		</div>
 	</div>
 	<div>
@@ -66,7 +73,7 @@
 									<img alt="Card image cap" class="card-img-top img-fluid" [src]="item?.storeFrontImage">
 									<div class="overlay"></div>
 									<h4 class="card-title">
-										<span>Pandit</span>
+										<span>{{item?.nameOfBusiness}}</span>
 										<span class="boldtext">{{item?.firstName}} {{item?.lastName}}</span>
 										<span>{{item?.district?.name}}</span>
 									</h4>
@@ -126,30 +133,30 @@
 						No ShortListed Data Found!!
 					</div>
 					<ng-template #listBlock>
-						<div class="card-body"  *ngFor="let item of allArray">
+						<div class="card-body"  *ngFor="let short of allArray">
 							<div class="card-img">
-									<img alt="Card image cap" class="card-img-top img-fluid" [src]="item?.storeFrontImage">
+									<img alt="Card image cap" class="card-img-top img-fluid" [src]="short?.storeFrontImage">
 									<div class="overlay"></div>
 									<h4 class="card-title">
-										<span>Pandit</span>
-										<span class="boldtext">{{item?.firstName}} {{item?.lastName}}</span>
-										<span>{{item?.district?.name}}</span>
+										<span>{{short?.nameOfBusiness}}</span>
+										<span class="boldtext">{{short?.firstName}} {{short?.lastName}}</span>
+										<span>{{short?.district?.name}}</span>
 									</h4>
 									<h4 class="card-title1">
 										<span>Price</span>
-										<p>$<span>{{item?.priceTag}}</span></p>
+										<p>$<span>{{short?.priceTag}}</span></p>
 		
 									</h4>
 								<div class="box shortlisticon">
 									<p>Shortlisted</p>
 								</div>
 								<a class="btn btn-floating halfway-fab">
-										<i class="material-icons closebtn" (click)="removeSupplier(item)">close</i>
+										<i class="material-icons closebtn" (click)="removeSupplier(short)">close</i>
 								</a>
 							</div>
 							<div class="change-btn">
 									<!-- <a href="#" class="btn11">CHANGE STATUS</a> -->
-									<select class="btn11" class="form-control" (change)="changeStatus(item)" [(ngModel)]="SupplierStatusObj.supplierStatus" name="supplierStatus" >
+									<select class="btn11" class="form-control" (change)="changeStatus(short)" [(ngModel)]="SupplierStatusObj.supplierStatus" name="supplierStatus" >
 											<option [value]="undefined"  disabled>CHANGE STATUS</option>
 											<option [value]="0">All</option>
 											<option [value]="1">Saved</option>
@@ -159,7 +166,7 @@
 								</div>
 								<div class="my-nots">
 										<!-- <p class="nots11">my personal nots about this supplier</p> -->
-										<input type="text" class="nots11" (change)="notes(item)" [(ngModel)]="NotesObj.notes" name="notes" placeholder="my personal nots about this supplier">
+										<input type="text" class="nots11" (change)="notes(short)" [(ngModel)]="NotesObj.notes" name="notes" placeholder="my personal nots about this supplier">
 								</div>
 							<div class="social-icon">
 								<ul>
@@ -172,7 +179,7 @@
 									<!-- <li>
 										<i class="fa fa-share-alt" aria-hidden="true"></i>
 									</li> -->
-									<button  class="borradius50per" [ngStyle]="{'background-color':item.isBookmarked == true ? 'red' : 'green' }" (click)="apiService.bookMark(item,'item','bookmarked','supplier')">
+									<button  class="borradius50per" [ngStyle]="{'background-color':short.isBookmarked == true ? 'red' : 'green' }" (click)="apiService.bookMark(short,'short','bookmarked','supplier')">
 											<i class="material-icons">
 											  bookmark_border
 											</i> 
@@ -191,30 +198,30 @@
 						No Booked Data Found!!
 					</div>
 					<ng-template #bookBlock>
-						<div class="card-body"  *ngFor="let item of allArray"> 
+						<div class="card-body"  *ngFor="let book of allArray"> 
 						<div class="card-img">
-								<img alt="Card image cap" class="card-img-top img-fluid" [src]="item?.storeFrontImage">
+								<img alt="Card image cap" class="card-img-top img-fluid" [src]="book?.storeFrontImage">
 								<div class="overlay"></div>
 								<h4 class="card-title">
-									<span>Pandit</span>
-									<span class="boldtext">{{item?.firstName}} {{item?.lastName}}</span>
-									<span>{{item?.district?.name}}</span>
+									<span>{{book?.nameOfBusiness}}</span>
+									<span class="boldtext">{{book?.firstName}} {{book?.lastName}}</span>
+									<span>{{book?.district?.name}}</span>
 								</h4>
 								<h4 class="card-title1">
 									<span>Price</span>
-									<p>$<span>{{item?.priceTag}}</span></p>
+									<p>$<span>{{book?.priceTag}}</span></p>
 	
 								</h4>
 							<div class="box bookicon">
 								<p>Booked</p>
 							</div>
 							<a class="btn btn-floating halfway-fab">
-									<i class="material-icons closebtn" (click)="removeSupplier(item)">close</i>
+									<i class="material-icons closebtn" (click)="removeSupplier(book)">close</i>
 							</a>
 						</div>
 						<div class="change-btn">
 								<!-- <a href="#" class="btn11">CHANGE STATUS</a> -->
-								<select class="btn11" class="form-control" (change)="changeStatus(item)" [(ngModel)]="SupplierStatusObj.supplierStatus" name="supplierStatus" >
+								<select class="btn11" class="form-control" (change)="changeStatus(book)" [(ngModel)]="SupplierStatusObj.supplierStatus" name="supplierStatus" >
 										<option [value]="undefined"  disabled>CHANGE STATUS</option>
 										<option [value]="0">All</option>
 										<option [value]="1">Saved</option>
@@ -224,7 +231,7 @@
 							</div>
 							<div class="my-nots">
 									<!-- <p class="nots11">my personal nots about this supplier</p> -->
-									<input type="text" class="nots11" (change)="notes(item)" [(ngModel)]="NotesObj.notes" name="notes" placeholder="my personal nots about this supplier">
+									<input type="text" class="nots11" (change)="notes(book)" [(ngModel)]="NotesObj.notes" name="notes" placeholder="my personal nots about this supplier">
 							</div>
 						<div class="social-icon">
 							<ul>
@@ -237,7 +244,7 @@
 								<!-- <li>
 									<i class="fa fa-share-alt" aria-hidden="true"></i>
 								</li> -->
-								<button  class="borradius50per" [ngStyle]="{'background-color':item.isBookmarked == true ? 'red' : 'green' }" (click)="apiService.bookMark(item,'item','bookmarked','supplier')">
+								<button  class="borradius50per" [ngStyle]="{'background-color':book.isBookmarked == true ? 'red' : 'green' }" (click)="apiService.bookMark(book,'book','bookmarked','supplier')">
 										<i class="material-icons">
 										  bookmark_border
 										</i> 
@@ -255,18 +262,18 @@
 						No Saved Data Found!!
 					</div>
 					<ng-template #saveBlock>
-						<div class="card-body"  *ngFor="let item of allArray">
+						<div class="card-body"  *ngFor="let save of allArray">
 							<div class="card-img">
-								<img alt="Card image cap" class="card-img-top img-fluid" [src]="item?.storeFrontImage">
+								<img alt="Card image cap" class="card-img-top img-fluid" [src]="save?.storeFrontImage">
 								<div class="overlay"></div>
 								<h4 class="card-title">
-									<span>Pandit</span>
-									<span class="boldtext">{{item?.firstName}} {{item?.lastName}}</span>
-									<span>{{item?.district?.name}}</span>
+									<span>{{save?.nameOfBusiness}}</span>
+									<span class="boldtext">{{save?.firstName}} {{save?.lastName}}</span>
+									<span>{{save?.district?.name}}</span>
 								</h4>
 								<h4 class="card-title1">
 									<span>Price</span>
-									<p>$<span>{{item?.priceTag}}</span></p>
+									<p>$<span>{{save?.priceTag}}</span></p>
 
 								</h4>
 								<div class="box saveicon">
@@ -274,12 +281,12 @@
 								</div>
 
 								<a class="btn btn-floating halfway-fab">
-										<i class="material-icons closebtn" (click)="removeSupplier(item)">close</i>
+										<i class="material-icons closebtn" (click)="removeSupplier(save)">close</i>
 								</a>
 							</div>
 							<div class="change-btn">
 									<!-- <a href="#" class="btn11">CHANGE STATUS</a> -->
-									<select class="btn11" class="form-control" (change)="changeStatus(item)" [(ngModel)]="SupplierStatusObj.supplierStatus" name="supplierStatus" >
+									<select class="btn11" class="form-control" (change)="changeStatus(save)" [(ngModel)]="SupplierStatusObj.supplierStatus" name="supplierStatus" >
 											<option [value]="undefined"  disabled>CHANGE STATUS</option>
 											<option [value]="0">All</option>
 											<option [value]="1">Saved</option>
@@ -289,7 +296,7 @@
 								</div>
 								<div class="my-nots">
 										<!-- <p class="nots11">my personal nots about this supplier</p> -->
-										<input type="text" class="nots11" (change)="notes(item)" [(ngModel)]="NotesObj.notes" name="notes" placeholder="my personal nots about this supplier">
+										<input type="text" class="nots11" (change)="notes(save)" [(ngModel)]="NotesObj.notes" name="notes" placeholder="my personal nots about this supplier">
 								</div>
 							<div class="social-icon">
 								<ul>
@@ -299,7 +306,7 @@
 									<li>
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
 									</li>
-									<button  class="borradius50per" [ngStyle]="{'background-color':item.isBookmarked == true ? 'red' : 'green' }" (click)="apiService.bookMark(item,'item','bookmarked','supplier')">
+									<button  class="borradius50per" [ngStyle]="{'background-color':save.isBookmarked == true ? 'red' : 'green' }" (click)="apiService.bookMark(save,'save','bookmarked','supplier')">
 											<i class="material-icons">
 											  bookmark_border
 											</i> 

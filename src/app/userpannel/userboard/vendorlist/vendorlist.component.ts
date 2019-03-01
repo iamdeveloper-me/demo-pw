@@ -7,23 +7,24 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./vendorlist.component.scss']
 })
 export class VendorlistComponent implements OnInit {
-  private urlg: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Reviews/myreviews'
-  countryArray:string[];
+  
   mySuppliers:any = {};
   allArray:any = {};
   savedArray:any = {};
   listedArray:any = {};
   bookedArray:any = {};
-  constructor(
+
+  constructor
+  (
     private apiService : apiService,
     private toastr : ToastrService
-    ) { }
+  ) { }
   SupplierStatusObj = new MySuppliersStatusVM();
   SupplierSearchObj = new MySuppliersSearchVM();
   NotesObj = new BookmarkSuppliersVM();
 
   ngOnInit() {  
-    
+    this.getallSuppliers(0);
     $("li").removeClass("user");
     $("#login").hide();
 
@@ -59,9 +60,7 @@ export class VendorlistComponent implements OnInit {
                           $(".savedbox").hide();
                           $(".shortlistbox").show();
                       });
-                });
-
-                this.getallSuppliers(0);
+                });  
   }
 
   getallSuppliers(enumTypeId){

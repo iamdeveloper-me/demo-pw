@@ -19,7 +19,7 @@
                         <div class="col-sm-2">
                             <button class="btn addtaskbtn filterbtn">
                                 <i class="material-icons">
-                                    filter_list
+                                    filter_list``
                                 </i>
                             </button>
                                 <button class="btn addtaskbtn" (click)="showNewTaskPopup(tskService.objTodoVm,'add') ">
@@ -264,7 +264,7 @@
                     <span>
                         <strong>{{td.name}}</strong>
                         <br />
-                        {{getTaskOptionName(td.toDoId)}}
+                        <!-- {{getTaskOptionName(td.toDoId)}} -->
                         <br />
                         {{td.timing}} <span class="badge badge-success" *ngIf='td.status==1'>{{td.statusString}}</span>
                     </span>

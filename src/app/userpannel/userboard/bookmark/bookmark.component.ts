@@ -68,6 +68,7 @@ action:string
         this.categoriesTask();
     }
     getTaskOptionName(categoryId){
+        debugger;
         return this.categoriesWithCountTaskList.filter(category=>category.categoryId==categoryId)[0]?this.categoriesWithCountTaskList.filter(category=>category.categoryId==categoryId)[0].categoryName: 'NA';
     }
      addNewTask(obj){
@@ -151,6 +152,7 @@ action:string
         })
      }
     showNewTaskPopup(obj,action){
+        debugger;
         this.tskService.objTodoVm=obj;
         this.Newtast_dialog = true;
         this.action=action;

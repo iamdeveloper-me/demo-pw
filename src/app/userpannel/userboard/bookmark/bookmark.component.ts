@@ -45,11 +45,13 @@ export class BookmarkComponent implements OnInit {
   completedTaskTotal:number;
   completedInPercent:number;
   Newtast_dialog : boolean = false ;
-  categoriesWithCountTaskList = [];
-  @ViewChild('all') all: ElementRef;
-  @ViewChild('complete') complete: ElementRef;
-  @ViewChild('pending') pending: ElementRef;
-
+ checklistOptions: any;
+ categoriesWithCountTaskList:any;
+@ViewChild('all') all: ElementRef;
+@ViewChild('todoStatus') todoStatus:ElementRef;
+@ViewChild('complete') complete: ElementRef;
+@ViewChild('pending') pending: ElementRef;
+action:string
   // Prevent panel toggle code
   public beforeChange($event: NgbPanelChangeEvent) {
     if ($event.panelId === '2') {
@@ -63,39 +65,55 @@ export class BookmarkComponent implements OnInit {
      closeResult: string;
 
     constructor(private modalService: NgbModal,public activeModal: NgbActiveModal, public tskService: taskService, public toastr: ToastrService, public locationService: Location, private renderer: Renderer2){
+        this.tskService.objMychecklistParam.timing ='';
+        this.tskService.objMychecklistParam.categoryId = null;
+        this.tskService.objMychecklistParam.filter = 0;
         this.mychecklist();
         this.categoriesTask();
-        
-        
     }
     getTaskOptionName(categoryId){
+        debugger;
         return this.categoriesWithCountTaskList.filter(category=>category.categoryId==categoryId)[0]?this.categoriesWithCountTaskList.filter(category=>category.categoryId==categoryId)[0].categoryName: 'NA';
     }
-
-    addNewTask(obj,action){
-        this.tskService.objTodoVm = obj; 
-        if(action=='editReview'){
-             this.tskService.objTodoVm.status = 1
+     addNewTask(obj){
+         this.tskService.objTodoVm = obj;
+         if(this.todoStatus.nativeElement.checked){
+             this.tskService.objTodoVm.status=2
          }else{
-             if (obj.toDoId > 0) { this.tskService.objTodoVm.status = 2 }
+             this.tskService.objTodoVm.status=1;
          }
-
          this.tskService.CreateUpdateTask().subscribe(res=>{ console.log(res);
             this.Newtast_dialog =  false;
             if(obj.toDoId>0){
                 this.toastr.success('Task Updated Successfully !', 'Done');
                 this.tskService.objTodoVm = new toDoVm();
+                this.mychecklist();       
             }else{
+                this.mychecklist();
             this.toastr.success('Task Added Successfully !', 'Done');
             }
-            this.mychecklist();
         });
       }
-     
+     filterByCategory(categoryId){
+       debugger;
+        this.tskService.objMychecklistParam.filter=0;
+        this.tskService.objMychecklistParam.timing='0';
+        if(categoryId=='0'){
+            this.tskService.objMychecklistParam.categoryId = 0;
+        }else{
+        this.tskService.objMychecklistParam.categoryId = categoryId;}
+        this.mychecklist();
+     }
+     filterByTiming(time){
+       this.tskService.objMychecklistParam.filter=0;
+       this.tskService.objMychecklistParam.categoryId = 0;
+       if(time=='0'){
+        this.tskService.objMychecklistParam.timing='0';    
+       }else{
+       this.tskService.objMychecklistParam.timing=time.id;}
+       this.mychecklist();
+    }
      mychecklist(){
-         this.tskService.objMychecklistParam.timing ='';
-         this.tskService.objMychecklistParam.categoryId = null;
-         this.tskService.objMychecklistParam.filter = 0;
          this.tskService.myCheckList().subscribe(res=>{
             this.myChecklist = res;
             this.completedTaskTotal = this.myChecklist.filter(ch=>ch.status===2).length;
@@ -107,13 +125,17 @@ export class BookmarkComponent implements OnInit {
 
     categoriesTask(){
       this.tskService.categoriesWithCountTask().subscribe(data=>{
-
         this.categoriesWithCountTaskList = data;
       })
     }
 
     filterByStatus(statusId){
         switch(statusId){
+            case 0:
+                this.renderer.addClass(this.all.nativeElement, 'btn_danger');
+                this.renderer.removeClass(this.pending.nativeElement, 'btn_danger');
+                this.renderer.removeClass(this.complete.nativeElement, 'btn_danger');
+                break;
             case 1 :
                 this.renderer.addClass(this.pending.nativeElement,'btn_danger');
                 this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
@@ -124,11 +146,7 @@ export class BookmarkComponent implements OnInit {
                 this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
                 this.renderer.removeClass(this.all.nativeElement,'btn_danger');
             break;
-            case 0:
-                this.renderer.addClass(this.all.nativeElement,'btn_danger');
-                this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
-                this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
-            break;
+            
         }
          if(statusId==0){
              this.all.nativeElement.toggleClass('btn_danger');
@@ -149,11 +167,15 @@ export class BookmarkComponent implements OnInit {
             this.toastr.error(error,'Error !');
         })
      }
-    showNewTaskPopup(obj){
+    showNewTaskPopup(obj,action){
         this.tskService.objTodoVm=obj;
         this.Newtast_dialog = true;
+        this.action=action;
     }
-
+    close(){
+        this.tskService.objTodoVm =new  toDoVm();
+        this.Newtast_dialog = false;
+    }
     // Open default modal
     open(content) {
        this.modalService.open(content).result.then((result) => {
@@ -161,10 +183,6 @@ export class BookmarkComponent implements OnInit {
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         });
-    }
-
-    close(){
-        this.Newtast_dialog = false;
     }
     // This function is used in open
     private getDismissReason(reason: any): string {

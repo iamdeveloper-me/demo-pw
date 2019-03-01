@@ -38,6 +38,7 @@ export class MasterserviceService {
    }
 
    fillBookmark(id, type, action_which_lacation){
+     debugger;
      if(this.auth.userActive()){
       const data = {
         "id": id,

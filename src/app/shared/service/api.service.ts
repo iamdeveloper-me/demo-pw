@@ -125,8 +125,8 @@ export class apiService {
     const data = {
       "id": id,
       "type": type,
-      "action": action_which_lacation,
-      "promoted": true
+   //   "action": action_which_lacation,
+    //  "promoted": true
     }
     return this.postData(this.serverPath + 'couple/markasbookmark',data);     
 

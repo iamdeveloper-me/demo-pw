@@ -71,6 +71,13 @@ export class UseraccountComponent implements OnInit {
       )
   }
 
+  getData_partner(personalInfoArray){
+    this.ProfileVMObj = personalInfoArray;
+    console.log(personalInfoArray);
+    this.UpdatePersonal_Info = true ;
+    // this.personalInfo();
+  }
+
   aboutUpdate(infoPartner){
     this.apiService.postData(this.apiService.serverPath+'Couple/UpdatePersonalInfo',infoPartner.value).subscribe(
       data => {

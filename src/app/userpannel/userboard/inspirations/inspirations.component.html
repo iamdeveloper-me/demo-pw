@@ -39,9 +39,11 @@
                 <i class="material-icons">share</i>
               </span>
 
-              <span class="shareicon">
-                <i class="material-icons">clear</i>
-              </span>
+              <button  class="borradius50per" [ngStyle]="{'background-color':photo.isBookmarked == true ? 'red' : 'green' }" (click)="apiService.bookMark(photo,'photo','bookmarked','inspiration_photo')">
+                  <i class="material-icons">
+                    bookmark_border
+                  </i> 
+              </button>
 
               <span class="shareicon fancybox hidden-sm hidden-lg hidden-md" rel="ligthbox">
                 <i class="material-icons">remove_red_eye</i>
@@ -52,44 +54,42 @@
         </div>
       </div>
       <div class="row eventbox eventlisting" style="display: none;">
-        <div class="col-sm-3" *ngFor="let item of eventsArray">
+        <div class="col-sm-3" *ngFor="let event of eventsArray">
           <a>
             <div class="card cardshadow">
-              <img class="card-img-top img-fluid" *ngIf="item.files" [src]="item.files.path">
-              <div class="ribbon ribbon-top-right" *ngIf="item?.entryFee == null; else entry">
+              <img class="card-img-top img-fluid" *ngIf="event.files" [src]="event.files.path">
+              <div class="ribbon ribbon-top-right" *ngIf="event?.entryFee == null; else entry">
                 <span>FREE</span>
               </div>
               <ng-template #entry>
-                <div class="ribbon ribbon-top-right"><span>{{item.entry}}</span></div>
+                <div class="ribbon ribbon-top-right"><span>{{event.entry}}</span></div>
               </ng-template>
               <div class="card-block text-center row">
                 <div class="eventbtnholder">
-                  <button class="purple-gradient borradius50per">
-                    <i class="material-icons">
-                      share
-                    </i>
-                  </button>
-                  <button class="purple-gradient borradius50per">
-                    <i class="material-icons">
-                      clear
-                    </i>
-                  </button>
-                </div>
-                <div class="eventdate col-2" *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '>
-                  <span>{{Date.startDate | date:'MMM'}}</span>
-                  <span class="date">{{Date.startDate | date:'dd'}}</span>
+                    <button class="borradius50per purple-gradient">
+                        <i class="material-icons">share</i>
+                      </button>
+                      <button [ngStyle]="{'background-color':event.isBookmarked == true ? 'red' : 'green' }" class="borradius50per" (click)="apiService.bookMark(event,'event','bookmarked','inspiration_event')">
+                        <i class="material-icons">
+                          bookmark_border
+                        </i> 
+                      </button>
+                </div> 
+                <div class="eventdate col-2" *ngFor='let Date of event.eventsDates | slice:0:1 ;let i=index '>
+                  <span>{{Date?.startDate | date:'MMM'}}</span>
+                  <span class="date">{{Date?.startDate | date:'dd'}}</span>
                 </div>
                 <div class="col-10">
                   <div class="eventtitle">
-                    {{item.eventTitle}}
+                    {{event?.eventTitle}}
                   </div>
-                  <div class="eventvenue" *ngFor='let Date of item.eventsDates | slice:0:1 ;let i=index '>
-                    {{Date.startDate | date:'E'}}, {{Date.startDate | date:'MMM'}} {{Date.startDate | date:'dd'}},
-                    {{Date.startTimeString}}
+                  <div class="eventvenue" *ngFor='let Date of event.eventsDates | slice:0:1 ;let i=index '>
+                    {{Date?.startDate | date:'E'}}, {{Date?.startDate | date:'MMM'}} {{Date?.startDate | date:'dd'}},
+                    {{Date?.startTimeString}}
                   </div>
                   <div class="eventvenue">
                     <i class="material-icons">location_on</i>
-                    {{item.venueName}}, {{item.location}}
+                    {{event?.venueName}}, {{event?.location}}
                   </div>
                 </div>
               </div>

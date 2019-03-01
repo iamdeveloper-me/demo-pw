@@ -20,7 +20,7 @@ export class apiService {
       })
     };
 
-    return this.http.get(url,httpOptions);
+    return this.http.get(url,httpOptions); 
   }
 
 
@@ -94,6 +94,18 @@ export class apiService {
         var id = data['vendorId'] 
          break; 
       }
+      case "inspiration_event": { 
+        var id = data['eventId'] 
+         break; 
+      }
+      case "inspiration_photo": { 
+        var id = data['inspirationsId'] 
+         break; 
+      }
+      case "supplier": { 
+        var id = data['vendorId'] 
+         break; 
+      }
       default: { 
          //statements; 
          break; 
@@ -142,8 +154,18 @@ export class apiService {
         var id = data['vendorId'] 
          break; 
       }
-       
-
+      case "inspiration_event": { 
+        var id = data['eventId'] 
+         break; 
+      }
+      case "inspiration_photo": { 
+        var id = data['inspirationsId'] 
+         break; 
+      }
+      case "supplier": { 
+        var id = data['vendorId'] 
+         break; 
+      }
       default: { 
          //statements; 
          break; 

@@ -244,7 +244,7 @@
         </ngb-panel>
 </ngb-accordion> -->
             <div class="tabsectionmobile">
-                <a class="todobtncheck btn_danger" name='pending' id='pending' #pending (click)='filterByStatus(1)'>
+                <a class="todobtncheck " name='pending' id='pending' #pending (click)='filterByStatus(1)'>
                     <i class="material-icons">schedule</i>
                     <br/>To Do
                 </a>
@@ -252,7 +252,7 @@
                     <i class="material-icons">sentiment_satisfied</i>
                     <br />Complete
                 </a>
-                <a class="allbtncheck" name='all' id='all' #all (click)='filterByStatus(0)'>
+                <a class="allbtncheck btn_danger" name='all' id='all' #all (click)='filterByStatus(0)'>
                     <i class="material-icons">adjust</i>
                     <br />All</a>
             </div>

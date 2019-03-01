@@ -19,5 +19,10 @@ $(document).ready(function(){
   });
   
 
+  $( ".accordintik" ).click(function() {
+    //alert("hi")
+    $( this ).toggleClass( "showtik" );
+   });
+
     
 });

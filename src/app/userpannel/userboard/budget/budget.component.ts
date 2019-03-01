@@ -31,32 +31,37 @@ export class BudgetComponent implements OnInit {
   paidAmount:string;
   pendingAmount: string;
   budgetCategoryId:number;
-  estimatedCostTotal:number;
-  finalCostTotal:number;
-  paidAmountTotal:number;
-  pendingAmountTotal:number;
+  estimatedCostTotal = 0;
+  finalCostTotal = 0;
+  paidAmountTotal = 0;
+  pendingAmountTotal = 0;
   budgetCategory:any;
   budgetCategoryList = [];
 
   ngOnInit() {
+
+    $.getScript('./assets/js/hideshow.js'); 
+
     $("li").removeClass("user");
     $("#login").hide();
-    var acc = document.getElementsByClassName("accordion");
-    var i;
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
-        /* Toggle between adding and removing the "active" class,
-        to highlight the button that controls the panel */
-        this.classList.toggle("active");
-        /* Toggle between hiding and showing the active panel */
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
-        } else {
-            panel.style.display = "block";
-        }
-      });
-    }
+
+
+    // var acc = document.getElementsByClassName("accordion");
+    // var i;
+    // for (i = 0; i < acc.length; i++) {
+    //   acc[i].addEventListener("click", function() {
+    //     /* Toggle between adding and removing the "active" class,
+    //     to highlight the button that controls the panel */
+    //     this.classList.toggle("active");
+    //     /* Toggle between hiding and showing the active panel */
+    //     var panel = this.nextElementSibling;
+    //     if (panel.style.display === "block") {
+    //         panel.style.display = "none";
+    //     } else {
+    //         panel.style.display = "block";
+    //     }
+    //   });
+    // }
   }
   //BudgetItem
 
@@ -67,15 +72,22 @@ export class BudgetComponent implements OnInit {
     });
   }
 
+
   budgetItemsCategoryList = [];
   getMyBudgetItemsByCategory(){
 
     this.apiService.getData(this.apiService.serverPath+'BudgetItem/mybudgetitemsbycategory').subscribe(data => {
       this.budgetItemsCategoryList = data;
       this.budgetItemsCategoryList.forEach(budgetItem => {
+        budgetItem.estimatedCostTotal = budgetItem.budgetItems.reduce((sum, item) => sum + item.estimatedCost, 0);
         budgetItem.finalCostTotal = budgetItem.budgetItems.reduce((sum, item) => sum + item.finalCost, 0);
         budgetItem.paidAmountTotal = budgetItem.budgetItems.reduce((sum, item) => sum + item.paidAmount, 0);
         budgetItem.pendingAmountTotal = budgetItem.budgetItems.reduce((sum, item) => sum + item.pendingAmount, 0);
+
+        this.estimatedCostTotal += budgetItem.estimatedCostTotal
+        this.finalCostTotal += budgetItem.paidAmountTotal
+        this.paidAmountTotal += budgetItem.pendingAmountTotal
+        this.pendingAmountTotal += budgetItem.pendingAmountTotal
       });
     });
   }
@@ -130,10 +142,10 @@ export class BudgetComponent implements OnInit {
   getMyBudgetItems(){
     this.budgetservice.getMybudgetItems(0).subscribe(res=>{
       this.expensesByCategory = res;
-      this.estimatedCostTotal = res.reduce((sum, item) => sum + item.estimatedCost, 0);
-      this.finalCostTotal = res.reduce((sum, item) => sum + item.finalCost, 0);
-      this.paidAmountTotal = res.reduce((sum, item) => sum + item.paidAmount, 0);
-      this.pendingAmountTotal = res.reduce((sum, item) => sum + item.pendingAmount, 0);
+      // this.estimatedCostTotal = res.reduce((sum, item) => sum + item.estimatedCost, 0);
+      // this.finalCostTotal = res.reduce((sum, item) => sum + item.finalCost, 0);
+      // this.paidAmountTotal = res.reduce((sum, item) => sum + item.paidAmount, 0);
+      // this.pendingAmountTotal = res.reduce((sum, item) => sum + item.pendingAmount, 0);
     })
   }
   

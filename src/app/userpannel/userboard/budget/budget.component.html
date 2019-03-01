@@ -53,8 +53,8 @@
           </div>
         </div>
         <div class="container-fluid accordin">
-          <div class="col-md-12 nopadd" *ngFor='let budget of budgetItemsCategoryList'>
-            <button class="accordion"><i class="material-icons colo_pink"> home</i> <strong class="positi_rel"> {{budget.name}} </strong>  
+          <div class="col-md-12 nopadd accordintik" *ngFor='let budget of budgetItemsCategoryList; let i = index'>
+            <div class="accordion"><i class="material-icons colo_pink"> home</i> <strong class="positi_rel"> {{budget.name}} </strong>  
               <i class="material-icons downarrow">keyboard_arrow_down</i>
               <i class="material-icons uparrow">keyboard_arrow_up</i>
               <table width="100%" class="martop20px pink">
@@ -65,7 +65,7 @@
                       <td></td>
                     </tr>
               </table>
-            </button>
+            </div>
             <div class="panel">
                 <div class="checkbox"  *ngFor='let expenses of budget.budgetItems'>
                   <table width="100%">

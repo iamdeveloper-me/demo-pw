@@ -115,7 +115,6 @@ export class BookmarkComponent implements OnInit {
     filterByStatus(statusId){
         switch(statusId){
             case 1 :
-            debugger
                 this.renderer.addClass(this.pending.nativeElement,'btn_danger');
                 this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
                 this.renderer.removeClass(this.all.nativeElement,'btn_danger');

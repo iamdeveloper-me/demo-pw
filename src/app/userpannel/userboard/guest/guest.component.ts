@@ -20,6 +20,8 @@ export class GuestComponent implements OnInit {
   totalChilds: number;
   searchGuestQuery: string;
   totalAdulst: number;
+  pendingInvetions:number;
+  invitedInvetitions:number;
   constructor(public _guestservice: GuestserviceService,private apiService : apiService, public toaster: ToastrService) {
     this.initOnLoad();
     this.searchGuestQuery='';
@@ -249,6 +251,8 @@ $(window).scroll(function(){
   myInvitiesCount(){
     this._guestservice.getMyInvitiesCount().subscribe(res=>{
       this._guestservice.num_invitiesCount = res;
+      this.invitedInvetitions = res.invited;
+      this.pendingInvetions = res.pending;
       console.log(this._guestservice.num_invitiesCount);
     })
   }

@@ -22,6 +22,7 @@ export class UserReviewsComponent implements OnInit {
   reviewsArray:any[];
   filtered_reviews:any=[];
   ifFormInEditMode:false;
+  updateReviewObj = new UpdateReviewVM();
   constructor(private http: Http, private apiService: apiService, public toastr: ToastrService, public tskService: taskService) {}
   
   ngOnInit() {  
@@ -58,14 +59,19 @@ export class UserReviewsComponent implements OnInit {
     )
   }
   
-  showNewTaskPopup(obj,action) {
-    debugger;
-    this.tskService.objTodoVm = obj;
-    if(action=='edit'){
-     this.tskService.objTodoVm.status=1; 
-    }
-    this.Newtast_dialog = true;
+  // showNewTaskPopup(obj,action) {
+  //   debugger;
+  //   this.tskService.objTodoVm = obj;
+  //   if(action=='edit'){
+  //    this.tskService.objTodoVm.status=1; 
+  //   }
+  //   this.Newtast_dialog = true;
     
+  // }
+  showNewTaskPopup(review) {
+    this.updateReviewObj = review;
+    console.log(review);
+    this.Newtast_dialog = true;  
   }
   close() {
     this.Newtast_dialog = false;

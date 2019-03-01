@@ -190,13 +190,15 @@
                   <div class="roundbox">
                           <i class="material-icons">verified_user</i>
                           Invited
-                          {{_guestservice.num_invitiesCount?_guestservice.num_invitiesCount.invited:0}}
+                          {{invitedInvetitions}}
+                          <!-- {{_guestservice.num_invitiesCount?_guestservice.num_invitiesCount.invited:0}} -->
                         </div>
 
                          <div class="roundbox">
                           <i class="material-icons">access_time</i>
                           Pending 
-                          {{_guestservice.num_invitiesCount?_guestservice.num_invitiesCount.pending:0}} 
+                          {{pendingInvetions}}
+                          <!-- {{_guestservice.num_invitiesCount?_guestservice.num_invitiesCount.pending:0}}  -->
                       </div>
                 </div>
                 <div class="clearfix"></div>

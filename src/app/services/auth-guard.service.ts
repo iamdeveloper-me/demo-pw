@@ -5,6 +5,7 @@ import { CanActivate, CanActivateChild, Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate,CanActivateChild {
+  debugger;
   token = sessionStorage.getItem('userToken')
   constructor(private router:Router) { }
   canActivate(){

@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { NumberValueAccessor } from '@angular/forms/src/directives';
 import { GuestPipe } from './guest.pipe';
 
-
 @Component({
   selector: 'app-guest',
   templateUrl: './guest.component.html',
@@ -22,16 +21,14 @@ export class GuestComponent implements OnInit {
   searchGuestQuery: string;
   totalAdulst: number;
   constructor(public _guestservice: GuestserviceService,private apiService : apiService, public toaster: ToastrService) {
+    debugger;
     this.myguestCount();
     this.getMyGroups();
     this.searchMyGuest();
     this.getMyMenu()
-    this._guestservice.getMyGuestList().subscribe(res=>{
-      this.guestList = res;  
-      console.log(this.guestList)
-    });
-
-   }
+    this.getMenuGuestCount();
+    this.myInvitiesCount();
+    }
     
 
   ngOnInit(){ 
@@ -134,7 +131,6 @@ for (i = 0; i < acc.length; i++) {
   }
   editGroup(g){
     this._guestservice.objGroup = g;
-    
   }
   getMyGroups(){
     this._guestservice.getMyGroups().subscribe(res=>{
@@ -145,11 +141,13 @@ for (i = 0; i < acc.length; i++) {
   searchMyGuest(){
     this._guestservice.searchMyGuest('').subscribe(res=>{
       this.guestList = res;
+      console.log(this.guestList);
     })
   }
   myguestCount(){
     this._guestservice.myguestCount().subscribe(res=>{
       this.guestList = res;
+      console.log(this.guestList);
       this.totalAdulst = res.adults;
       this.totalChilds = res.childs;
       this.totalGuests = res.total;
@@ -220,6 +218,7 @@ for (i = 0; i < acc.length; i++) {
   getMenuGuestCount(){
     this._guestservice.getMenuGuestCount().subscribe(res=>{
       this._guestservice.menuGuestCount = res;
+      console.log(this._guestservice.menuGuestCount);
     })
   }
   getMyMenu(){
@@ -237,6 +236,12 @@ for (i = 0; i < acc.length; i++) {
       this.searchMyGuest();
     },error=>{
       this.toaster.error(error,'Error !');
+    })
+  }
+  myInvitiesCount(){
+    this._guestservice.getMyInvitiesCount().subscribe(res=>{
+      this._guestservice.num_invitiesCount = res;
+      console.log(this._guestservice.num_invitiesCount);
     })
   }
 

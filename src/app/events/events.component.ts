@@ -106,17 +106,18 @@ export class EventsComponent implements OnInit {
      this.locations = data;
      },error => {  console.log(error) })
   }
-
+  bookmarkEvent(item){
+    item.isBookmarked=true;
+    this.apiService.bookMark(item,'event','bookmarked','eventPage');
+    this.event();
+  }
   goToNextPage(a){
-  //  sessionStorage.setItem('event',JSON.stringify(a));
-  //  alert("aaaaaaa");
     this.router.navigate(['home/event_list' , a.eventId,a.eventTitle.replace(/\s/g,'')]);
   }
   bookMark(data, type , action_which_lacation){
     const id = data['eventId'] 
     if(this.auth.userActive()){
       this.masterservice.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
-        console.log(data)
       })
     }else{
         this.router.navigateByUrl('/home',{ queryParams: { login: true}});

@@ -4,10 +4,14 @@ import { Observable ,  Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuardService } from 'app/services/auth-guard.service';
 import { headersToString } from 'selenium-webdriver/http';
+import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class apiService {
-  constructor(public actRoute: ActivatedRoute ,public router : Router,private auth : AuthGuardService,private http: HttpClient) { }
+  constructor(public actRoute: ActivatedRoute ,public router : Router,private auth : AuthGuardService,private http: HttpClient,
+    public toaster: ToastrService
+    ) { }
   serverPath = "http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com/api/"
   getData(url) : Observable<any> {
     var authToken = sessionStorage.getItem('userToken');
@@ -102,6 +106,7 @@ export class apiService {
    if(this.auth.userActive()){
     this.fillBookmark(id, type , action_which_lacation).subscribe(data=>{
       console.log(data)
+      this.toaster.success(data.message);
     })
    }else{
     this.router.navigateByUrl('/home?returnURl='+this.router.url);   } 
@@ -112,8 +117,8 @@ export class apiService {
     const data = {
       "id": id,
       "type": type,
-      "action": action_which_lacation,
-      "promoted": true
+   //   "action": action_which_lacation,
+    //  "promoted": true
     }
     return this.postData(this.serverPath + 'couple/markasbookmark',data);     
 

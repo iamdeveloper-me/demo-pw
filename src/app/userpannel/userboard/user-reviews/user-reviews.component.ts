@@ -39,9 +39,9 @@ export class UserReviewsComponent implements OnInit {
   }
   
   changeData(){
-    // debugger
+     debugger
     if(this.ReviewSearchVMObj.Enum){
-    this.filtered_reviews = this.reviewsArray.filter(r=>r.reviewStatus===this.ReviewSearchVMObj.Enum);
+    this.filtered_reviews = this.reviewsArray.filter(r=>r.reviewStatus==this.ReviewSearchVMObj.Enum);
     }
     else{
       this.filtered_reviews = this.reviewsArray;

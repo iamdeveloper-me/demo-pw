@@ -112,6 +112,11 @@ action:string
      }
     filterByStatus(statusId){
         switch(statusId){
+            case 0:
+                this.renderer.addClass(this.all.nativeElement, 'btn_danger');
+                this.renderer.removeClass(this.pending.nativeElement, 'btn_danger');
+                this.renderer.removeClass(this.complete.nativeElement, 'btn_danger');
+                break;
             case 1 :
                 this.renderer.addClass(this.pending.nativeElement,'btn_danger');
                 this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
@@ -122,11 +127,7 @@ action:string
                 this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
                 this.renderer.removeClass(this.all.nativeElement,'btn_danger');
             break;
-            case 0:
-                this.renderer.addClass(this.all.nativeElement,'btn_danger');
-                this.renderer.removeClass(this.pending.nativeElement,'btn_danger');
-                this.renderer.removeClass(this.complete.nativeElement,'btn_danger');
-            break;
+            
         }
          if(statusId==0){
              this.all.nativeElement.toggleClass('btn_danger');

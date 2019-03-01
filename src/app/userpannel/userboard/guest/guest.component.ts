@@ -20,6 +20,8 @@ export class GuestComponent implements OnInit {
   totalChilds: number;
   searchGuestQuery: string;
   totalAdulst: number;
+  pendingInvitions:number;
+  invitedInvitions:number;
   constructor(public _guestservice: GuestserviceService,private apiService : apiService, public toaster: ToastrService) {
     debugger;
     this.myguestCount();
@@ -241,6 +243,8 @@ for (i = 0; i < acc.length; i++) {
   myInvitiesCount(){
     this._guestservice.getMyInvitiesCount().subscribe(res=>{
       this._guestservice.num_invitiesCount = res;
+      this.pendingInvitions = res.pending;
+      this.invitedInvitions = res.invited;
       console.log(this._guestservice.num_invitiesCount);
     })
   }

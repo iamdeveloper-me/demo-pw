@@ -99,7 +99,7 @@
                             </div>
                         </form>
                         <div class="updatebt text-center">
-                            <button  data-toggle="modal" (click)="getData_edit()">Update Profile / 1
+                            <button data-toggle="modal" (click)="getData_edit(personalInfoArray)">Update Profile
                             </button>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                         </div>
 
                           <div class="updatebt text-center">
-                            <button  data-toggle="modal" data-target="#wedddetail">Update Profile / 3
+                                <button data-toggle="modal" data-target="#wedddetail" (click)="getWedding(weddingArray)">Update Profile
                             </button>
                         </div>
                     </div>
@@ -627,7 +627,7 @@
                                 <div class="form-group">
                                    <div class="field">
                                         <input 
-                                            type="Date" 
+                                            type="datetime-local"
                                             id="weddate" 
                                             placeholder="Wedding Date" 
                                             required

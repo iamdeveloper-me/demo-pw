@@ -45,9 +45,11 @@ export class UseraccountComponent implements OnInit {
     )
 }
 
-  getData_edit(){
+  getData_edit(personalInfoArray){
+    this.ProfileVMObj = personalInfoArray;
+    console.log(personalInfoArray);
     this.personal_info = true ;
-    this.personalInfo();
+    // this.personalInfo();
   }
   //Post Data Personal Info
   UpdatePersonalInfo(info){
@@ -86,6 +88,12 @@ export class UseraccountComponent implements OnInit {
     )
   }
 
+  getWedding(weddingArray) {
+    this.WeddingDetailsObj = weddingArray;
+    console.log(weddingArray);
+    // this.personalInfo();
+  }
+
   //Get Wedding Details
   weddingdetails(){
     this.apiService.getData(this.apiService.serverPath+'Couple/weddingdetails',).subscribe(
@@ -108,7 +116,8 @@ export class UseraccountComponent implements OnInit {
         this.updateWeddingArray = data;
         console.log(this.updateWeddingArray)
         this.toastr.success(data.message);
-        wedding.resetForm();
+        this.wedding_details_update = false;
+        // wedding.resetForm();
         this.weddingdetails();
     },
       error => {

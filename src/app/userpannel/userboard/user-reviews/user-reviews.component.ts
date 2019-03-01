@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import { apiService } from 'app/shared/service/api.service';
-import { taskService, toDoVm } from '../bookmark/taskService';
-
+import { ratingStars } from '../../../ngservices/ratingstars';
 
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-user-reviews',
   templateUrl: './user-reviews.component.html',
   styleUrls: ['./user-reviews.component.scss'],
-  providers: [taskService]
+  providers: []
 })
 export class UserReviewsComponent implements OnInit {
   
@@ -21,7 +20,15 @@ export class UserReviewsComponent implements OnInit {
   ReviewSearchVMObj = new CoupleReviewSearchVM();
   reviewsArray:any[];
   filtered_reviews:any=[];
-  constructor(private http: Http, private apiService: apiService, public toastr: ToastrService, public tskService: taskService) {}
+  ratingmodel: ratingStars;
+   updateReviewObj = new UpdateReviewVM();
+  constructor(
+        private http: Http, 
+        private apiService: apiService, 
+        public toastr: ToastrService, 
+        ) {
+    this.ratingmodel = new ratingStars();
+  }
   
   ngOnInit() {  
     this.myReviews();
@@ -34,20 +41,33 @@ export class UserReviewsComponent implements OnInit {
       this.Newtast_dialog = false;
       this.reviewsArray = data;
       this.filtered_reviews = this.reviewsArray;
-      console.log(this.reviewsArray)
+      console.log(this.reviewsArray);
     },
       error => {
       console.log(error)
-      this.toastr.error(error._body);
+      this.toastr.error(error.statusText);
+      }
+    )
+  }
+
+  updateReview(rev){
+    console.log(rev);
+    this.apiService.postData(this.apiService.serverPath+'Couple/UpdateReview',rev.value).subscribe(
+      data => {
+        console.log(data);
+        this.toastr.success(data.message);
+        this.Newtast_dialog = false;
+      },
+      error => {
+        this.toastr.error(error.statusText);
       }
     )
   }
   
-  showNewTaskPopup(obj) {
-    debugger;
-    this.tskService.objTodoVm = obj;
-    this.Newtast_dialog = true;
-    
+  showNewTaskPopup(review) {
+    this.updateReviewObj = review;
+    console.log(review);
+    this.Newtast_dialog = true;  
   }
   close() {
     this.Newtast_dialog = false;
@@ -70,4 +90,10 @@ export class UserReviewsComponent implements OnInit {
 export class CoupleReviewSearchVM {
   status:string;
   Enum:number;
+}
+
+export class UpdateReviewVM {
+  reviewId : number;
+  rating : number;
+  comments : string;
 }

@@ -154,7 +154,7 @@ $(document)
             .click();
         }
         break;
-
+ 
       case 39: // right
         if ((modalId.data('bs.modal') || {})._isShown && $('#show-next-image').is(":visible")) {
           $('#show-next-image')

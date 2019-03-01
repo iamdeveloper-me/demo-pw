@@ -105,9 +105,6 @@
                     </div>
 
 
-
-
-
                     <div class="myaco_box">
                         <div class="aco_info text-center">
                               <h5> <strong>ABOUT MY PARTNER</strong> </h5>  
@@ -141,7 +138,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-sm-12 updatebt text-center">
-                            <button  data-toggle="modal" data-target="#partner_detail">Update Profile
+                            <button  data-toggle="modal" data-target="#partner_detail" (click)="getData_partner(personalInfoArray)">Update Profile
                             </button>
                         </div>
                     </div>
@@ -155,8 +152,6 @@
                             <div class="clearfix"></div>
                             MY WEDDING DETAILS
                         </h1>
-
-
                         <div class="col-xs-12 mem_detailinner">
                             <div class="div70px">
                             <i class="material-icons">location_city</i>
@@ -225,8 +220,6 @@
                             </div>
                         </div>
 
-
-
                           <div class="updatebt text-center">
                                 <button data-toggle="modal" data-target="#wedddetail" (click)="getWedding(weddingArray)">Update Profile
                             </button>
@@ -274,7 +267,7 @@
         <div class="clearfix"></div>
         <app-foot></app-foot>
         <router-outlet></router-outlet>
-  
+<!--Change Password Start-->  
 <form #f="ngForm">
 <div class="modal fade" id="cPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" [ngClass]="{'show' : changePassword_form}">
         <div class="modal-dialog" role="document">
@@ -358,6 +351,8 @@
         </div>
 </div>    
 </form>
+<!--Change Password End-->
+
 <!--MY PERSONAL INFORMATION Start-->
 <form #info="ngForm">
 <div class="modal fade" id="photo_ved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" [ngClass]="{'show' : personal_info }">
@@ -721,6 +716,8 @@
 </form>
 <!--Wedding Details Update End-->
 
+
+
 <!--Set Color Theme-->
 <div class="modal fade" id="colortheme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -791,7 +788,6 @@
     </div>
 </div>  
 
-
 <div class="modal fade" id="seasontheme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -836,7 +832,6 @@
         </div>
     </div>
 </div>  
-
 
 <div class="modal fade" id="weddingtheme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -887,8 +882,6 @@
     </div>
 </div>  
 
-
-
 <div class="modal fade" id="dresstheme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -928,9 +921,6 @@
     </div>
 </div> 
     <!--mail popup -->
-
-
-
 
 <div class="modal fade" id="honeymoontheme" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">

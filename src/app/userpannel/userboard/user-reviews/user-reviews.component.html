@@ -5,12 +5,10 @@
   <div class="col-sm-12">
     <div class="man_info">
       <h2 class="martop20px"> Reviews
-        <!-- <form (ngSubmit)="SortReview()" #sort="ngForm"> -->
         <select class="sortselect" [(ngModel)]="ReviewSearchVMObj.Enum" name="Enum" (change)="changeData()">
           <option>Sort By: Most Helpful</option>
           <option *ngFor="let sort of SortBy ;let s = index" [value]="sort.id">{{sort.name}}</option>
         </select>
-        <!-- </form> -->
       </h2>
       <div *ngFor="let review of filtered_reviews">
         <div class="man_img">
@@ -21,7 +19,7 @@
             <h5>{{review.sendByEmail}}</h5>
           </span>
           <p class="date">{{review.dateAddedOnString}}</p>
-          <div class="rating_star">
+          <div class="rating_star"> 
             <rating [(ngModel)]="review.rating"></rating>
             <!-- <p>Rate: <b>{{review.rating}}</b></p> -->
             <!-- <span class="fa fa-star checked"></span>
@@ -42,7 +40,7 @@
             <span class="share_i"> <i class="material-icons"> share </i> <b> Share </b>  </span>  
           </p>
           </div>  -->
-          <i class="material-icons rivie_edit" (click)="showNewTaskPopup(tskService.objTodoVm) ">create</i>
+          <i class="material-icons rivie_edit" (click)="showNewTaskPopup(review)">create</i>
         </div>
         <br>
       </div>
@@ -108,40 +106,36 @@
           </button>
         </div>
       </div>  -->
-      <div class="modal fade" [ngClass]="{'show' : Newtast_dialog}" role="dialog">
+      <div class="modal fade" [ngClass]="{'show' : Newtast_dialog }" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title text-left" style="width:100%;">Review : Name of my business</h4>
+              <h4 class="modal-title text-left" style="width:100%;">Give A Review:</h4>
               <button class="btnradius50per" (click)="close()" type="button"> X </button>
             </div>
             <div class="modal-body">
               <div>
-                <form novalidate="" class="ng-untouched ng-pristine ng-invalid">
+                <form (ngSubmit)="updateReview(rev)" class="ng-untouched ng-pristine ng-invalid" #rev="ngForm">
                   <div class="vp_review_txt">
-                    <div class="vp_giveReviewBox"><span>Give A Review:</span><span class="rateYo jq-ry-container" id="rateYoRateAndComment"
+                    <div class="vp_giveReviewBox">
+                      <span class="rateYo jq-ry-container" id="rateYoRateAndComment"
                         style="width: 60px">
+                        <input type="hidden" id="reviewId" name="reviewId" [(ngModel)]="updateReviewObj.reviewId" class="form-control">
                         <div class="jq-ry-group-wrapper">
                           <div class="jq-ry-normal-group jq-ry-group">
-                            <rating name="rating"  ng-reflect-name="rating"  class="ng-untouched ng-pristine ng-valid"><span
-                                aria-valuemin="0" class="rating" role="slider" tabindex="0"
-                                aria-valuemax="5" aria-valuenow="">
-                                <span><i data-icon="★" class="star-icon half0" title="1">☆</i></span>
-                                <span><i data-icon="★" class="star-icon half-100" title="2">☆</i></span>
-                                <span><i data-icon="★" class="star-icon half-200" title="3">☆</i></span>
-                                <span><i data-icon="★" class="star-icon half-300" title="4">☆</i></span>
-                                <span><i data-icon="★" class="star-icon half-400" title="5">☆</i></span></span>
-                              </rating>
+                              <rating [(ngModel)]="updateReviewObj.rating" name="rating"></rating>
                           </div>
                         </div>
                       </span>
                       <div class="textInput">
-                         <input class="textInputInner ng-untouched ng-pristine ng-invalid" name="comments"
-                          placeholder="Write a Review"  type="text">
-                          <button class="textInputSubmit" type="submit" value="SUBMIT">SUBMIT</button>
-                          <input class="submitedRating" type="hidden" value="0">
-                        <div class="errorInValidation sendAReview"> Your review is empty. SUBMIT again to send
-                          this anyway </div>
+                         <input 
+                              class="textInputInner ng-untouched ng-pristine ng-invalid" 
+                              name="comments"
+                              placeholder="Write a Review"  
+                              type="text"
+                              [(ngModel)]="updateReviewObj.comments"
+                              />
+                          <button class="textInputSubmit" type="submit">SUBMIT</button>
                       </div>
                     </div>
                   </div>

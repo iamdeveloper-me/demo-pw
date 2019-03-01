@@ -1,22 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { Http,Headers } from '@angular/http';
 import { apiService } from 'app/shared/service/api.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-vendorlist',
   templateUrl: './vendorlist.component.html',
   styleUrls: ['./vendorlist.component.scss']
 })
 export class VendorlistComponent implements OnInit {
-  private urlg: string  = 'http://testapp-env.tyad3n63sa.ap-south-1.elasticbeanstalk.com//api/Reviews/myreviews'
-  countryArray:string[];
+  
   mySuppliers:any = {};
+  allArray:any = {};
   savedArray:any = {};
   listedArray:any = {};
   bookedArray:any = {};
-  constructor(public http: Http,private apiService : apiService) { }
-  MySuppliersObj = new MySuppliersSearchVM();
-  ngOnInit() {  $("li").removeClass("user");
-                $("#login").hide();
+
+  constructor
+  (
+    private apiService : apiService,
+    private toastr : ToastrService
+  ) { }
+  SupplierStatusObj = new MySuppliersStatusVM();
+  SupplierSearchObj = new MySuppliersSearchVM();
+  NotesObj = new BookmarkSuppliersVM();
+
+  ngOnInit() {  
+    this.getallSuppliers(0);
+    $("li").removeClass("user");
+    $("#login").hide();
 
                 $(document).ready(function(){
                       $('.filterbtn').click(function(e){
@@ -27,102 +37,111 @@ export class VendorlistComponent implements OnInit {
                         });
 
                       $('.allbtn').click(function(e){
-                          $(".bookedbox").show();
-                          $(".savedbox").show();
-                          $(".shortlistbox").show();
+                          $(".allbox").show();
+                          $(".bookedbox").hide();
+                          $(".savedbox").hide();
+                          $(".shortlistbox").hide();
                       });
                       $('.bookbtn').click(function(e){
                           $(".bookedbox").show();
+                          $(".allbox").hide();
                           $(".savedbox").hide();
                           $(".shortlistbox").hide();
                       });
                         $('.savebtn').click(function(e){
                           $(".bookedbox").hide();
                           $(".savedbox").show();
+                          $(".allbox").hide();
                           $(".shortlistbox").hide();
                       });
                         $('.shortlistbtn').click(function(e){
                           $(".bookedbox").hide();
+                          $(".allbox").hide();
                           $(".savedbox").hide();
                           $(".shortlistbox").show();
                       });
-                });
-                let headers = new Headers();
-                var authToken = localStorage.getItem('_u');
-                headers.append('Accept', 'application/json')
-                headers.append('Content-Type', 'application/json');
-                headers.append("Authorization",'Bearer '+authToken);
-                this.http.get(this.urlg,{headers:headers}).subscribe(
-                data =>{ 
-                  this.countryArray = data.json();
-                console.log(data);
-                });
-                this.all();
-                this.saved();
-                this.booked();
-                this.listed();
-
+                });  
   }
 
-  all(){
+  getallSuppliers(enumTypeId){
       this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchmysuppliers',{
-        "supplierStatus": 0
+        "supplierStatus": enumTypeId
     }).subscribe(
+      data => {
+        this.allArray = data;
+        console.log(this.allArray)
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  //Note API
+  notes(item){
+    console.log(item)
+    this.apiService.postData(this.apiService.serverPath+'Couple/notesforsupplier',this.NotesObj).subscribe
+    (
       data => {
         console.log(data);
+        this.toastr.success(data.message);
       },
       error => {
         console.log(error);
+        this.toastr.error(error.statusText);
       }
     )
   }
 
-  saved(){
-      this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchmysuppliers',{
-        "supplierStatus": 1
-    }).subscribe(
+  //Supplier Status API
+  changeStatus(item){
+    this.NotesObj = item;
+    console.log(item);
+    this.apiService.postData(this.apiService.serverPath+'Couple/changesupplierstatus',this.NotesObj).subscribe
+    (
       data => {
-        this.savedArray = data;
-        console.log(this.savedArray)
+        console.log(data);
+        this.toastr.success(data.message);
       },
       error => {
         console.log(error);
+        this.toastr.error(error.statusText);
       }
     )
   }
-  listed(){
-      this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchmysuppliers',{
-        "supplierStatus": 2
-    }).subscribe(
+  
+  //Remove Supplier
+  removeSupplier(item){
+    this.SupplierStatusObj = item;
+    console.log(item);
+    this.apiService.deleteAction(this.apiService.serverPath+'Couple/removesupplier',this.SupplierStatusObj).subscribe
+    (
       data => {
-        this.listedArray = data;
-        console.log(this.listedArray)
+        console.log(data);
+        this.toastr.success(data.message);
       },
       error => {
         console.log(error);
+        this.toastr.error(error.statusText);
       }
     )
   }
-  booked(){
-    this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchmysuppliers',{
-        "supplierStatus": 3
-    }).subscribe(
-      data => {
-        this.bookedArray = data;
-        console.log(this.bookedArray);
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-
 
 }
 
+//SupplierStatus All=0, Saved=1, ShortListed=2, Booked=3)
+export class MySuppliersStatusVM {
+  vendorId : number;
+  supplierStatus : number;
+}
 
+//Search Supplier Data API
 export class MySuppliersSearchVM {
   supplierStatus:number
 }
 
-//SupplierStatus All=0, Saved=1, ShortListed=2, Booked=3)
+//Note Supplier or Delete Supplier
+export class BookmarkSuppliersVM {
+  vendorId : number;
+  notes :	string;
+}

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Http,Headers } from '@angular/http';
 import { apiService } from 'app/shared/service/api.service';
 import { ratingStars } from '../../../ngservices/ratingstars';
-
 import { ToastrService } from 'ngx-toastr';
-import { taskService } from '../bookmark/taskService';
+
 @Component({
   selector: 'app-user-reviews',
   templateUrl: './user-reviews.component.html',
@@ -19,11 +17,16 @@ export class UserReviewsComponent implements OnInit {
   ];
   Newtast_dialog: boolean = false;
   ReviewSearchVMObj = new CoupleReviewSearchVM();
-  reviewsArray:any[];
+  reviewsArray:any = {};
   filtered_reviews:any=[];
   ifFormInEditMode:false;
   updateReviewObj = new UpdateReviewVM();
-  constructor(private http: Http, private apiService: apiService, public toastr: ToastrService, public tskService: taskService) {}
+  currentDate;
+  date;
+  constructor(
+    private apiService: apiService, 
+    public toastr: ToastrService, 
+    ) { }
   
   ngOnInit() {  
     this.myReviews();
@@ -58,16 +61,7 @@ export class UserReviewsComponent implements OnInit {
       }
     )
   }
-  
-  // showNewTaskPopup(obj,action) {
-  //   debugger;
-  //   this.tskService.objTodoVm = obj;
-  //   if(action=='edit'){
-  //    this.tskService.objTodoVm.status=1; 
-  //   }
-  //   this.Newtast_dialog = true;
-    
-  // }
+
   showNewTaskPopup(review) {
     this.updateReviewObj = review;
     console.log(review);
@@ -78,9 +72,8 @@ export class UserReviewsComponent implements OnInit {
   }
 
   changeData(){
-    //   debugger
     if(this.ReviewSearchVMObj.Enum){
-    this.filtered_reviews = this.reviewsArray.filter(r=>r.reviewStatus==this.ReviewSearchVMObj.Enum);
+      this.filtered_reviews = this.reviewsArray.filter(r=>r.reviewStatus==this.ReviewSearchVMObj.Enum);
     }
     else{
       this.filtered_reviews = this.reviewsArray;

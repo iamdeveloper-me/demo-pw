@@ -44,26 +44,28 @@ export class BannerComponent implements OnInit {
  categoryTitle:string = 'Select Category'
  locationTitle:string = 'Select Locations'
   ngOnInit() {
-    
-   $.getScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js');
+    debugger;
+   $.getScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js',function(){
+  $(document).on('click', ".mobvendorebtn", function(){
+      $("#tiktik").show();
+    }); 
+
+    $(document).on('click', ".category-body .regular", function(){
+      $(".category-body").hide();
+      $(".city-body").show();
+    });
+
+    $(document).on('click', ".icon-small", function(){
+      $("#tiktik").hide();
+      $(".category-body").show();
+      $(".city-body").hide();
+    });
+  }); 
    // $.getScript('./assets/js/homebannersearch.js');
     this.Categorie();
     this.location();
     this.banner();
-                $(document).on('click', ".mobvendorebtn", function(){
-                  $("#tiktik").show();
-                });
-
-                $(document).on('click', ".category-body .regular", function(){
-                  $(".category-body").hide();
-                  $(".city-body").show();
-                });
-
-                $(document).on('click', ".icon-small", function(){
-                  $("#tiktik").hide();
-                  $(".category-body").show();
-                  $(".city-body").hide();
-                });	 
+	 
   }
   Categorie(){ 
     this.masterservice.getAllCategories().subscribe(data => {

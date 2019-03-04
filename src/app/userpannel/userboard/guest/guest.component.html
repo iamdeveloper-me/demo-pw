@@ -10,17 +10,21 @@
                   <input  class="searchinput" name="" [(ngModel)]='searchGuestQuery' placeholder="Search Guest" type="text">
                   <span style="cursor:pointer" (click)='searchMyGuest()' class="icon"><i class="material-icons">search</i></span>
                 </div>
-                <div class="col-md-8 text-right hidden-xs">
-                  <label>Sort By </label>&nbsp;
+                <div class="col-md-2"></div>
+                <div class="col-md-3 hidden-xs">
+                  <label>Menu</label>&nbsp;
                   <span *ngIf='_guestservice.menuGuestCount'>
-                   <select>
+                   <select [(ngModel)]='sortby' (change)='searchMyGuest()'>
                       <option *ngFor='let m of _guestservice.menuGuestCount' [value]='m.menuId'>{{m.name}}</option>
                    </select>
-                  </span>&nbsp;
-                   <select>
-                     <option>Invitation Status</option>
-                     <option >Invited</option>
-                     <option >Pending</option>
+                  </span>
+                </div>
+                <div class="col-md-3 hidden-xs">
+                  <label>Invitation</label>&nbsp;
+                   <select [(ngModel)]='sortby' (change)='searchMyGuest()'>
+                     <option value="">All</option>
+                     <option value="Invited">Invited</option>
+                     <option value="Pending" >Pending</option>
                    </select>
                 </div>
               </div>
@@ -53,7 +57,7 @@
                   <div class="text-center">
                     <a href="">
                       <span class="bg_red">
-                        <i class="material-icons">insert_emoticon</i> Guest 
+                        <i class="material-icons">insert_emoticon</i>Add Guest 
                       </span>
                     </a>
                   </div>
@@ -80,9 +84,9 @@
                     Invitation
                   </div>
                   <div class="col-4 col-sm-3 text-right mobnopadd mobwidth90">
-                    <button class="btnplain" (click)='openDialogClose()'><i class="material-icons">person_add</i></button>
+                    <button class="btnplain" (click)='openDialogClose(g,"add")'><i class="material-icons">person_add</i></button>
                     <button class="btnplain"><i class="material-icons">settings</i></button>
-                    <div class="pull-right arrowiconmob">
+                    <div class="pull-right arrowiconmob"> 
                       <i class="material-icons downarrow">keyboard_arrow_down</i>
                       <i class="material-icons uparrow">keyboard_arrow_up</i>
                     </div>
@@ -101,7 +105,7 @@
                         <i *ngIf='m.invitationSent' class="material-icons">check_circle_outline</i>
                       </div>
                       <div class="col-3  text-right">
-                        <button (click)='openDialogClose(m)' class="btnplain hidden-xs">
+                        <button (click)='openDialogClose(m,"edit")' class="btnplain hidden-xs">
                           <i class="material-icons">edit</i>
                         </button>
                         <button (click)='removeGuest(m.guestsId)' class="btnplain hidden-xs">
@@ -156,12 +160,12 @@
                             Child {{totalChilds}}
                           </div>
                   </div>
-                  <div class="text-center" (click) = "twitterDailog = true ">
-                 
+                  <div class="text-center">
+                    
                     <!-- <span class="bg_red" > -->
                         
-                        <button type="button" class="btn btn-info btn-lg bg_red" data-toggle="modal" data-target="#myModalLabel">
-                        <i class="material-icons">insert_emoticon</i>Guest
+                        <button type="button" (click) = "openDialogClose(_guestservice.objGuest,'add')" class="btn btn-info btn-lg bg_red">
+                        <i class="material-icons">insert_emoticon</i>Add Guest
                     <!-- </span> -->
                     </button>
                 
@@ -169,16 +173,20 @@
                   <div class="clearfix"></div>
               </div>
 
-              <div class="card groupbox" (click) = "groupDailog = true ">
+              <div class="card groupbox">
                 <h1 class="sidebarhead">Groups</h1>
                 <div>
                    <ol class="timeline">
-                        <li *ngFor='let g of _guestservice.myGroups'>
-                          <a href="#">{{g.name}} <span class="badge badge-pill badge-default">{{g.guestsCount}}</span></a></li>
+                        <li *ngFor='let g of _guestservice.groupGuestCount'>
+                          <a (click)='editGroup(g)'>{{g.name}} 
+                            <span class="badge badge-pill badge-default">{{g.guestsCount}}</span>
+                          </a>
+                          <a (click)='removeGroup(g)'><i class="fa fa-trash"></i></a>
+                        </li>
                       </ol>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-info btn-lg bg_red" data-toggle="modal" data-target="#myModalGroup"><i class="material-icons">group</i>Group</button>
+                  <button type="button" class="btn btn-info btn-lg bg_red" data-toggle="modal" data-target="#myModalGroup"><i class="material-icons">group</i> Add Group</button>
   
                 </div>
                 <div class="clearfix"></div>
@@ -204,18 +212,19 @@
                 <div class="clearfix"></div>
               </div>
 
-              <div class="card menubox" (click) = "menuDailog = true ">
-                <h1 class="sidebarhead">Menu</h1>
+              <div class="card menubox">
+                <h1 class="sidebarhead"> Menu</h1>
                 <div>
                    <ol class="timeline">
                      
                         <li *ngFor='let m of _guestservice.menuGuestCount'>
-                          <a href="#">{{m.name}}<span class="badge badge-pill badge-default">{{m.guestsCount}}</span></a>
+                          <a (click)='editMenu(m)'>{{m.name}}<span class="badge badge-pill badge-default">{{m.guestsCount}}</span></a>
+                          <a (click)='deleteMenu(m)'><i class="fa fa-trash"></i></a>
                         </li>
                       </ol>
                 </div>
                 <div class="text-center">
-                <button type="button" class="btn btn-info btn-lg bg_red" data-toggle="modal" data-target="#myModalMenu"><i class="material-icons">restaurant_menu</i>Menu</button>
+                <button type="button" class="btn btn-info btn-lg bg_red" data-toggle="modal" (click)='editMenu(_guestservice.objMenu)'><i class="material-icons">restaurant_menu</i>Add Menu</button>
 
                 </div>
                 <div class="clearfix"></div>
@@ -232,7 +241,7 @@
       <div class="modal-content">
         <form (ngSubmit)='createUpdateGuest()'>
         <div class="modal-header text-center">
-            <h4 class="modal-title"><b>Add New Guest </b></h4>
+            <h4 class="modal-title"><b>{{lblGuest}} </b></h4>
             <button type="button" class="close" (click) = "closeModel()" >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -258,11 +267,13 @@
                       </div>
                       <div class="col-md-6 age_group">
                           <label>Age Group</label>
-                        <select class="browser-default custom-select mb-4" name="guestAgeGroup" id='guestAgeGroup' 
+                        <input type="radio" value="c" name="guestAgeGroup" [(ngModel)]='_guestservice.objGuest.ageGroup'>Child
+                        <input type="radio" value="a" name="guestAgeGroup" [(ngModel)]='_guestservice.objGuest.ageGroup'>Adult
+                        <!-- <select class="browser-default custom-select mb-4" name="guestAgeGroup" id='guestAgeGroup' 
                         [(ngModel)]='_guestservice.objGuest.ageGroup'>
                               <option value="c">Child Group</option>
                               <option value="a">Adult Group</option>
-                         </select> 
+                         </select>  -->
                     </div>
                     </div>
               </div>
@@ -278,7 +289,7 @@
                   <div class="col-md-1 blanck_box">
                   </div>
                   <div class="col-md-5 age_group check_box">
-                      <input type="checkbox" [(ngModel)]='_guestservice.objGuest.invitationSent' id='invitationSent' name="invitationSent">Invitation Send
+                      <input type="checkbox" [(ngModel)]='_guestservice.objGuest.invitationSent' id='invitationSent' name="invitationSent">Invited
                   </div>
                 </div>
           </div>
@@ -296,7 +307,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
-            <h4 class="modal-title"><b>Add New Group</b></h4>
+            <h4 class="modal-title"><b>{{lblGroup}}</b></h4>
             <button type="button" class="close" (click) = "closeModel()" >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -308,10 +319,10 @@
                 <form (ngSubmit)='createUpdateGroup()' #Group="ngForm">
                     <div class="row field">
                         <label>Group Name</label>
-                        <input type="text" id="groupName" name='groupName'  class="form-control mb-4" placeholder="Name">                    
+                        <input type="text" id="groupName" [(ngModel)]='_guestservice.objGroup.name' name='groupName'  class="form-control mb-4" placeholder="Name">                    
                     </div>
                     <div class="modal-footer marbot0px">
-                        <button type="submit"  class="btn newbtn">Save</button>
+                        <button type="submit"  class="btn newbtn">{{lbl_btnAddNewGroup}}</button>
             
                         <button type="button" class="btn newbtn newcancelbtn"  (click) = "closeModel()" >Cancel</button>
                       </div>
@@ -319,7 +330,7 @@
               </div>
             </div>
         </div>
-            <div class="col-sm-12 nopadd topmargin">
+            <!-- <div class="col-sm-12 nopadd topmargin">
               <div class="col-sm-12">
                     <div class="row field">
                         <div class="table-responsive">
@@ -342,7 +353,7 @@
                           </div>
                     </div>
               </div>
-            </div>
+            </div> -->
         
       </div>       
     </div>          
@@ -352,7 +363,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
-              <h4 class="modal-title"><b>Add New Menu</b></h4>
+              <h4 class="modal-title"><b>{{lblmenu}}</b></h4>
               <button type="button" class="close" (click) = "closeModel()" >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -373,7 +384,7 @@
 
           </div> 
           <div class="modal-footer marbot0px">
-  <button type="submit" class="btn newbtn" (click)="closeModel()">Save</button>
+            <button type="submit" class="btn newbtn">{{btnmenu}}</button>
             <button type="reset" class="btn newbtn newcancelbtn" (click)="closeModel()">Cancel</button>
           </div>
         </div>       

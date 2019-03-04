@@ -6,13 +6,13 @@
     <div class="man_info">
       <h2 class="martop20px"> Reviews
         <select class="sortselect" [(ngModel)]="ReviewSearchVMObj.Enum" name="Enum" (change)="changeData()">
-          <option>Sort By: Most Helpful</option>
+          <option disabled [value]="undefined">Sort By: Most Helpful</option>
           <option *ngFor="let sort of SortBy ;let s = index" [value]="sort.id">{{sort.name}}</option>
         </select>
       </h2>
       <div *ngFor="let review of filtered_reviews">
         <div class="man_img">
-          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="">
+          <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg">
           <span class="revie_name"> <strong>
               {{review.sendByFirstName}} {{review.sendByLastName}}
             </strong> <br>
@@ -21,14 +21,7 @@
           <p class="date">{{review.dateAddedOnString}}</p>
           <div class="rating_star"> 
             <rating [(ngModel)]="review.rating"></rating>
-            <!-- <p>Rate: <b>{{review.rating}}</b></p> -->
-            <!-- <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>  -->
             <span class="weeks_ago"> <strong> 2 weeks ago </strong> </span>
-
           </div>
           <p> {{review.comments}}
             <!-- Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time. -->
@@ -44,68 +37,7 @@
         </div>
         <br>
       </div>
-      <!-- <div class="man_img first_rew">
-        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="" class="pull-left"> 
-        <span class="pull-left">
-        <span class="revie_name" > 
-          <strong> Peeter Parker </strong> 
-        </span>
-        <span class="reviewdate">
-          Apr 28, 2018
-        </span>
-        <div class="clearfix"></div>
-        <span class="rating_star">
-           <span class="fa fa-star checked"></span>
-           <span class="fa fa-star checked"></span>
-           <span class="fa fa-star checked"></span>
-           <span class="fa fa-star"></span>
-           <span class="fa fa-star"></span> 
-           <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
-        </span>
-        </span>
-        <div class="clearfix"></div>
-        <p class="martop20px"> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-        <div class="responsediv">
-          <strong>Response from the owner</strong> 5 months ago
-          <div class="clearfix"></div>
-          Thank you, It was my pleasure to work with you  to get your website
-
-          <button class="editbtn">
-            <i class="material-icons">create</i> Edit
-          </button>
-        </div>
-      </div> 
-       <div class="man_img first_rew">
-        <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="" class="pull-left"> 
-        <span class="pull-left">
-        <span class="revie_name" > 
-          <strong> Peeter Parker </strong> 
-        </span>
-        <span class="reviewdate">
-          Apr 28, 2018
-        </span>
-        <div class="clearfix"></div>
-        <span class="rating_star">
-           <span class="fa fa-star checked"></span>
-           <span class="fa fa-star checked"></span>
-           <span class="fa fa-star checked"></span>
-           <span class="fa fa-star"></span>
-           <span class="fa fa-star"></span> 
-           <span class="weeks_ago"> <strong> 2 weeks ago   </strong>  </span>
-        </span>
-        </span>
-        <div class="clearfix"></div>
-        <p class="martop20px"> Excellent Service.Very Friendly Staff and on time. Would highly recommend Excellent Service.Very Friendly Staff and on time.</p>
-        <div class="responsediv">
-          <strong>Response from the owner</strong> 5 months ago
-          <div class="clearfix"></div>
-          Thank you, It was my pleasure to work with you  to get your website
-
-          <button class="editbtn">
-            <i class="material-icons">create</i> Edit
-          </button>
-        </div>
-      </div>  -->
+      
       <div class="modal fade" [ngClass]="{'show' : Newtast_dialog }" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -115,6 +47,7 @@
             </div>
             <div class="modal-body">
               <div>
+                <!--Update Review Form Start-->
                 <form (ngSubmit)="updateReview(rev)" class="ng-untouched ng-pristine ng-invalid" #rev="ngForm">
                   <div class="vp_review_txt">
                     <div class="vp_giveReviewBox">
@@ -140,6 +73,7 @@
                     </div>
                   </div>
                 </form>
+                 <!--Update Review Form End-->
               </div>
             </div>
           </div>

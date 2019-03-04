@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Http,Headers } from '@angular/http';
 import { apiService } from 'app/shared/service/api.service';
 import { ratingStars } from '../../../ngservices/ratingstars';
-
 import { ToastrService } from 'ngx-toastr';
-import { taskService } from '../bookmark/taskService';
+
 @Component({
   selector: 'app-user-reviews',
   templateUrl: './user-reviews.component.html',
@@ -23,7 +21,11 @@ export class UserReviewsComponent implements OnInit {
   filtered_reviews:any=[];
   ifFormInEditMode:false;
   updateReviewObj = new UpdateReviewVM();
-  constructor(private http: Http, private apiService: apiService, public toastr: ToastrService, public tskService: taskService) {}
+  constructor(
+    private apiService: apiService, 
+    public toastr: ToastrService, 
+    // public tskService: taskService
+    ) {}
   
   ngOnInit() {  
     this.myReviews();

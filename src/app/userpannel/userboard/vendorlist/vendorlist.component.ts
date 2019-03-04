@@ -118,6 +118,7 @@ export class VendorlistComponent implements OnInit {
     (
       data => {
         console.log(data);
+        this.allArray.splice(item, 1);
         this.toastr.success(data.message);
       },
       error => {

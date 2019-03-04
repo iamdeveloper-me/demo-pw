@@ -253,6 +253,7 @@ $(window).scroll(function(){
       this._guestservice.num_invitiesCount = res;
       this.invitedInvetitions = res.invited;
       this.pendingInvetions = res.pending;
+
       console.log(this._guestservice.num_invitiesCount);
     })
   }

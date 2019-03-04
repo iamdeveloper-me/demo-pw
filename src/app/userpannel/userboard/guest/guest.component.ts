@@ -244,28 +244,7 @@ $(window).scroll(function(){
     this._guestservice.objGuest = guest;
     this.twitterDailog=true;;
   }
-<<<<<<< HEAD
   
-=======
-  removeGuest(id){
-    this._guestservice.removeGuest(id).subscribe(res=>{
-      this.toaster.success(res.message,'Done !');
-      this.searchMyGuest();
-    },error=>{
-      this.toaster.error(error,'Error !');
-    })
-  }
-  myInvitiesCount(){
-    this._guestservice.getMyInvitiesCount().subscribe(res=>{
-      this._guestservice.num_invitiesCount = res;
-      this.invitedInvetitions = res.invited;
-      this.pendingInvetions = res.pending;
-
-      console.log(this._guestservice.num_invitiesCount);
-    })
-  }
-
->>>>>>> jk
   /// Guest Section
   createUpdateGuest(){
     debugger;

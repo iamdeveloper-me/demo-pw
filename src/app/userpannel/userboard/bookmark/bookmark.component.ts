@@ -45,6 +45,7 @@ export class BookmarkComponent implements OnInit {
   completedTaskTotal:number;
   completedInPercent:number;
   Newtast_dialog : boolean = false ;
+  Newtast_dialog1 : boolean = false ;
  checklistOptions: any;
  categoriesWithCountTaskList:any;
 @ViewChild('all') all: ElementRef;
@@ -77,13 +78,14 @@ action:string
     }
      addNewTask(obj){
          this.tskService.objTodoVm = obj;
-         if(this.todoStatus.nativeElement.checked){
-             this.tskService.objTodoVm.status=2
-         }else{
-             this.tskService.objTodoVm.status=1;
-         }
+        //  if(this.todoStatus.nativeElement.checked){
+        //      this.tskService.objTodoVm.status=2
+        //  }else{
+        //      this.tskService.objTodoVm.status=1;
+        //  }
          this.tskService.CreateUpdateTask().subscribe(res=>{ console.log(res);
             this.Newtast_dialog =  false;
+            this.Newtast_dialog1 =  false;
             if(obj.toDoId>0){
                 this.toastr.success('Task Updated Successfully !', 'Done');
                 this.tskService.objTodoVm = new toDoVm();
@@ -104,7 +106,18 @@ action:string
         this.tskService.objMychecklistParam.categoryId = categoryId;}
         this.mychecklist();
      }
+     
+    //  filterByCategoryAll(statusId){
+    //     if(statusId==0){
+    //          this.filteredToDos = this.myChecklist;
+    //      }else{
+    //         this.filteredToDos = this.myChecklist.filter(c=>c.status==statusId);
+    //      }
+    //     this.mychecklist();   
+    //  }
+
      filterByTiming(time){
+        //  debugger;
        this.tskService.objMychecklistParam.filter=0;
        this.tskService.objMychecklistParam.categoryId = 0;
        if(time=='0'){
@@ -126,6 +139,7 @@ action:string
     categoriesTask(){
       this.tskService.categoriesWithCountTask().subscribe(data=>{
         this.categoriesWithCountTaskList = data;
+        console.log(this.categoriesWithCountTaskList);
       })
     }
 
@@ -149,7 +163,7 @@ action:string
             
         }
          if(statusId==0){
-             this.all.nativeElement.toggleClass('btn_danger');
+            //  this.all.nativeElement.toggleClass('btn_danger');
              this.filteredToDos = this.myChecklist;
          }else{
             this.filteredToDos = this.myChecklist.filter(c=>c.status==statusId);
@@ -172,9 +186,15 @@ action:string
         this.Newtast_dialog = true;
         this.action=action;
     }
+    showEditPopup(obj,action){
+        this.tskService.objTodoVm=obj;
+        this.Newtast_dialog1 = true;
+        this.action=action;
+    }
     close(){
         this.tskService.objTodoVm =new  toDoVm();
         this.Newtast_dialog = false;
+        this.Newtast_dialog1 = false;
     }
     // Open default modal
     open(content) {

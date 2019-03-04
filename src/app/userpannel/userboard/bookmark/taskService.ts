@@ -16,6 +16,7 @@ export class taskService implements OnInit{
         this.objTodoVm = new toDoVm();
         this.objMychecklistParam = new myChecklistParams();
         this.timings = [
+            // {id:0, timing:'All'},
             {id:1, timing:'From 10 To 12 Months'},
             {id:2, timing:'From 07 To 09 Months'},
             {id:3, timing:'From 04 To 06 months'},

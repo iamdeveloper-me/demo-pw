@@ -63,7 +63,8 @@
                     <div class="px-3 py-3 mobPad10px">
                         <h2>BY CATEGORY</h2>
                         <ol class="timeline">
-                            <li *ngFor='let category of categoriesWithCountTaskList' (click)='filterByCategory(category.categoryId)'>
+                            <li  (click)='filterByStatus(0)'> All</li>
+                            <li *ngFor='let category of categoriesWithCountTaskList' (click)='filterByCategory(category.categoryId)'> 
                                 {{category.categoryName}}<span class="badge badge-pill badge-default">{{category.listingCount}}</span> 
                             </li>
                             <!-- <li value="0">All</li> -->
@@ -259,23 +260,38 @@
             </div>
             <div class="clearfix"></div>
             <div class="panel-body nopadd card martop0px">
+                
+                <div *ngIf="!filteredToDos?.length > 0">
+                    <h3 class="text-center"> No pending or completed task!</h3>
+                </div>
+                                    
                 <div class="CheckListdiv" style="display:block!important" *ngFor='let td of filteredToDos'>
-                    <i class="material-icons tikchecklist" *ngIf='td.status==1' (click)='addNewTask(td)'>check</i>
+                    <i class="material-icons tikchecklist" *ngIf='td.status==1'>
+                            <!-- (click)='addNewTask(td)' -->
+                        check</i>
                     <i class="material-icons tikchecklist tikchecklicurs" *ngIf='td.status==2'>check</i>
+                    <div><strong>{{td.name}}</strong> </div>
+                        <div *ngIf="td.timing==1">From 10 To 12 Months</div>
+                        <div *ngIf="td.timing==2">From 07 To 09 Months</div>
+                        <div *ngIf="td.timing==3">From 04 To 06 months</div>
+                        <div *ngIf="td.timing==4">From 02 To 03 Months</div>
+                        <div *ngIf="td.timing==5">Last Months</div>
+                        <div *ngIf="td.timing==6">Two Weeks</div>
+                        <div *ngIf="td.timing==7">Last Week</div>
+                        <div *ngIf="td.timing==8">After The Wedding</div>
                     <span>
-                        <strong>{{td.name}}</strong>
-                        <br />
                         <!-- {{getTaskOptionName(td.toDoId)}} -->
                         <br />
                          <span class="badge badge-success" *ngIf='td.status==1'>{{td.statusString}}</span>
                          <span class="badge badge-info" *ngIf='td.status==2'>{{td.statusString}}</span>
                     </span>
-                    <button class="deletebtnhover" (click)="showNewTaskPopup(td,'edit')">
+                    <button class="deletebtnhover" (click)="showEditPopup(td,'edit')">
                         <i class="material-icons">edit</i>
                     </button>
                     <!-- <button (click)='removeTodoList(td.toDoId)' class="deletebtnhover"><i class="material-icons">delete</i></button> -->
                 </div>
-                <div id='content' class="modal fade" [ngClass]="{'show' : Newtast_dialog}" role="dialog">
+                <!--Add Task Start-->
+                <div id='content' class="modal fade" [ngClass]="{'show' : Newtast_dialog }" role="dialog">
                     <div class="modal-dialog">
                         <div style="margin-top:15%" class="modal-content">
                             <div class="modal-header">
@@ -334,10 +350,16 @@
                                         </div>
                                         
                                         <div class="form-group col-md-12">
-                                          
                                                 <label>
-                                                    <input type="checkbox" [(ngModel)]='tskService.objTodoVm.status' checked='{tskService.objTodoVm.status==2}' name='todoStatus' id='todoStatus' #todoStatus>
-                                                    Status
+                                                    <input type="radio" [(ngModel)]='tskService.objTodoVm.status' name='status' [value]="1" id='todoStatus1'>
+                                                    Incomplete
+                                                </label>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                                <label>
+                                                    <input type="radio" [(ngModel)]='tskService.objTodoVm.status' name='status' [value]="2" id='todoStatus2'>
+                                                    Complete
                                                 </label>
                                         </div>
                                     </div>
@@ -357,7 +379,107 @@
 
                     </div>
                 </div>
+                <!--Add Task End-->
+                <!--Edit Task Start-->
+                <div id='content' class="modal fade" [ngClass]="{'show' : Newtast_dialog1 }" role="dialog">
+                        <div class="modal-dialog">
+                            <div style="margin-top:15%" class="modal-content">
+                                <div class="modal-header">
+                                    <br />
+                                    <h4 class="modal-title">Edit Task</h4>
+                                    <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="close()"> 
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="field">
+                                                        <input type="text" name="taskName" [(ngModel)]='tskService.objTodoVm.name'
+                                                            placeholder="Task Name" required="required" id="taskName">
+                                                        <label for="taskName">Task Name</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="field">
+                                                        <select name="timing" [(ngModel)]='tskService.objTodoVm.timing' id="bydate"
+                                                            placeholder="By Date">
+                                                            <option *ngFor='let t of tskService.timings' [value]='t.id'>{{t.timing}}</option>
+                                                        </select>
+                                                        <label for="bydate">By Date</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="field">
+                                                        <select name="category" [(ngModel)]='tskService.objTodoVm.categoryId'
+                                                            id="bycategory" placeholder="By Category">
+                                                            <option *ngFor='let category of categoriesWithCountTaskList' [value]='category.categoryId'>{{category.categoryName}}</option>
+                                                        </select>
+                                                        <label for="bycategory">By Category</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="field">
+                                                        <textarea id="notes" name="notes" [(ngModel)]='tskService.objTodoVm.notes'
+                                                            type="text" placeholder="Notes" required="required"></textarea>
+                                                        <label for="notes">Notes</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- <div class="form-group col-md-12">
+                                                    <label>
+                                                        <input type="checkbox" [(ngModel)]='tskService.objTodoVm.status' checked='{tskService.objTodoVm.status==2}' name='todoStatus' id='todoStatus' #todoStatus>
+                                                        Status
+                                                    </label>
+                                            </div> -->
+                                            <div class="form-group col-md-12">
+                                                    <label>
+                                                        <input type="radio" [(ngModel)]='tskService.objTodoVm.status' name='status' [value]="1" id='todoStatus1'>
+                                                        Incomplete
+                                                    </label>
+                                            </div>
 
+                                            <div class="form-group col-md-12">
+                                                    <label>
+                                                        <input type="radio" [(ngModel)]='tskService.objTodoVm.status' name='status' [value]="2" id='todoStatus2'>
+                                                        Complete
+                                                    </label>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="row">
+                                            <div class="col-md-12 mobCenter">
+                                                <div class="form-group">
+                                                    <button type="button" (click)='addNewTask(tskService.objTodoVm)'
+                                                        data-dismiss='modal' class="btn pinkbtn">
+                                                        Save
+                                                    </button>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <button type="button" class="btn pinkbtn" (click)="close()">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                    </form>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                <!--Edit Task End-->
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { apiService } from '../../../shared/service/api.service';
 import { PagerService } from 'app/_services';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inspirations',
@@ -9,7 +10,11 @@ import { PagerService } from 'app/_services';
 })
 export class InspirationsComponent implements OnInit {
 
-  constructor(private apiService : apiService,  private pagerService: PagerService,) { }
+  constructor(
+    private apiService : apiService,
+    private pagerService: PagerService,
+    private toastr: ToastrService
+    ) { }
   
   pager: any = {};
   pagedItems: any = {};
@@ -173,4 +178,19 @@ $(document)
     this.pager = this.pagerService.getPagerEvent(this.allItems.length, page);
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
+
+  deleteInspiration(id){
+    this.apiService.deleteAction(this.apiService.serverPath+'Couple/DeleteFromInspirations',id).subscribe(
+      data => {
+        console.log(data);
+        this.photosArray.splice(id,1);
+        this.toastr.success(data.message);
+      },
+      error => {
+        console.log(error);
+        this.toastr.error(error.statusText);
+      }
+    )
+  }
+
 }

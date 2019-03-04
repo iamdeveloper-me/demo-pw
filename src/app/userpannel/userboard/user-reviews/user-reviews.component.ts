@@ -89,15 +89,11 @@ export class UserReviewsComponent implements OnInit {
     }
     console.log(this.filtered_reviews);
   }
-
 }
-
-
 export class CoupleReviewSearchVM {
   status:string;
   Enum:number;
 }
-
 export class UpdateReviewVM {
   reviewId : number;
   rating : number;

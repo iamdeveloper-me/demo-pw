@@ -1,13 +1,12 @@
 <app-menu></app-menu>
 <app-tool></app-tool>
-
 <section class="Reviews_page container-fluid">
   <div class="col-sm-12">
     <div class="man_info">
       <h2 class="martop20px"> Reviews
         <select class="sortselect" [(ngModel)]="ReviewSearchVMObj.Enum" name="Enum" (change)="changeData()">
           <option disabled [value]="undefined">Sort By: Most Helpful</option>
-          <option *ngFor="let sort of SortBy ;let s = index" [value]="sort.id">{{sort.name}}</option>
+          <!-- <option *ngFor="let sort of SortBy ;let s = index" [value]="sort.id">{{sort.name}}</option> -->
         </select>
       </h2>
       <div *ngFor="let review of filtered_reviews">

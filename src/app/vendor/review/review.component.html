@@ -6,7 +6,7 @@
       </select> -->
       <!-- code by v -->
       <select class='select-option sortselect' required [(ngModel)]='optionSelected' (ngModelChange)='onOptionsSelected($event)'>
-        <option class='option' *ngFor='let option of options' [value]="option.value">{{option.key}}</option>
+        <option class='option' *ngFor='let option of options' [value]="option.value">{{option.key}} </option>
       </select>
       <div class="clearfix"></div>
       <div class="man_info">
@@ -15,8 +15,7 @@
           <!-- {{item.reviewId}} -->
           <div class="man_img">
             <img src="https://s3.us-east-2.amazonaws.com/prefect-image/cake.jpg" alt="">
-            <span class="revie_name"> <strong> {{category.sendByFirstName}} {{category.sendByLastName}}</strong>
-
+            <span class="revie_name"><strong> {{category.sendByFirstName}} {{category.sendByLastName}}</strong>
               <span class="weeks_ago"> {{category.dateAddedOnString}}</span>
               <span class="weeks_ago"> {{category.sendByEmail}}</span>
             </span>
@@ -26,12 +25,12 @@
 
             </span>
             <div>
-              <button class="graypin" *ngIf="category.isPinned == false" (click)="GetMarkAsPinned(category.reviewId)"><i class="fa fa-thumb-tack"
-                  aria-hidden="true"></i>
+              <button class="graypin" *ngIf="category.isPinned == false" (click)="GetMarkAsPinned(category.reviewId)">
+                <i class="fa fa-thumb-tack" aria-hidden="true"></i>
               </button>
 
-              <button class="pin_tack" *ngIf="category.isPinned == true " (click)="GetMarkAsPinned(category.reviewId)"><i class="fa fa-thumb-tack"
-                  aria-hidden="true"></i>
+              <button class="pin_tack" *ngIf="category.isPinned == true " (click)="GetMarkAsPinned(category.reviewId)">
+                <i class="fa fa-thumb-tack"aria-hidden="true"></i>
               </button>
             </div>
             <div class="clearfix"></div>

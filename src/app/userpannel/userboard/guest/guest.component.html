@@ -8,13 +8,15 @@
               <div class="col-md-12 row serabar">
                 <div class="col-md-4">
                   <input  class="searchinput" name="" [(ngModel)]='searchGuestQuery' placeholder="Search Guest" type="text">
-                  <span class="icon"><i class="material-icons">search</i></span>
+                  <span style="cursor:pointer" (click)='searchMyGuest()' class="icon"><i class="material-icons">search</i></span>
                 </div>
                 <div class="col-md-8 text-right hidden-xs">
-                  <label>Sort By </label>
+                  <label>Sort By </label>&nbsp;
+                  <span *ngIf='_guestservice.menuGuestCount'>
                    <select>
                       <option *ngFor='let m of _guestservice.menuGuestCount' [value]='m.menuId'>{{m.name}}</option>
                    </select>
+                  </span>&nbsp;
                    <select>
                      <option>Invitation Status</option>
                      <option >Invited</option>
@@ -58,7 +60,7 @@
               </div>
           </div>
           <div class="col-sm-9 mobnopadd guestbox">
-            <div *ngFor='let g of guestList' class="col-sm-12 nopadd accordinholder">
+            <div *ngFor='let g of guestList' class="col-sm-12 nopadd accordinholder accordintik">
               <div class="accordion row">
                   <div class="col-8 col-sm-4 mobnopadd">
                     <div class="pull-left">
@@ -188,12 +190,15 @@
                   <div class="roundbox">
                           <i class="material-icons">verified_user</i>
                           Invited
-                          210
+                          {{invitedInvetitions}}
+                          <!-- {{_guestservice.num_invitiesCount?_guestservice.num_invitiesCount.invited:0}} -->
                         </div>
 
                          <div class="roundbox">
                           <i class="material-icons">access_time</i>
-                          Pending 156
+                          Pending 
+                          {{pendingInvetions}}
+                          <!-- {{_guestservice.num_invitiesCount?_guestservice.num_invitiesCount.pending:0}}  -->
                       </div>
                 </div>
                 <div class="clearfix"></div>
@@ -203,6 +208,7 @@
                 <h1 class="sidebarhead">Menu</h1>
                 <div>
                    <ol class="timeline">
+                     
                         <li *ngFor='let m of _guestservice.menuGuestCount'>
                           <a href="#">{{m.name}}<span class="badge badge-pill badge-default">{{m.guestsCount}}</span></a>
                         </li>
@@ -254,11 +260,9 @@
                           <label>Age Group</label>
                         <select class="browser-default custom-select mb-4" name="guestAgeGroup" id='guestAgeGroup' 
                         [(ngModel)]='_guestservice.objGuest.ageGroup'>
-
-                              <option value="c" disabled>Child Group</option>
-                              <option value="a" selected>Adult Group</option>
-
-                          </select> 
+                              <option value="c">Child Group</option>
+                              <option value="a">Adult Group</option>
+                         </select> 
                     </div>
                     </div>
               </div>
@@ -304,7 +308,7 @@
                 <form (ngSubmit)='createUpdateGroup()' #Group="ngForm">
                     <div class="row field">
                         <label>Group Name</label>
-                        <input type="text" id="groupName" name='groupName' [(ngModel)]='_guestservice.objGroup.name' class="form-control mb-4" placeholder="Name">                    
+                        <input type="text" id="groupName" name='groupName'  class="form-control mb-4" placeholder="Name">                    
                     </div>
                     <div class="modal-footer marbot0px">
                         <button type="submit"  class="btn newbtn">Save</button>

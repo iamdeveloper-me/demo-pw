@@ -18,6 +18,15 @@ $(document).ready(function(){
     $("#new").show();
   });
   
+//   $( ".accordintik" ).click(function() {
+//     //alert("hi")
+//     $( this ).toggleClass( "showtik" );
+//    });
+
+  $( ".accordintik" ).click(function() {
+    //alert("hi")
+    $( this ).toggleClass( "showtik" );
+   });
 
     
 });

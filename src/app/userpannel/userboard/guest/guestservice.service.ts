@@ -18,6 +18,7 @@ createUpdateMenu_url = 'Menu/createupdatemenu'
 menuGuestCount_Url = 'Menu/menuguestscount';
 mymenu_url = 'Menu/mymenu';
 removeGuest_url = 'Guests/removeguests';
+myInvitiesCount_url ='Guests/myInvitesCount'
 
 /// Guest
 createUpdaateGuest_Url = 'Guests/createupdateguests';
@@ -28,6 +29,7 @@ menuGuestCount: any;
 myGroups: any;
 objGuest:guestVm;
 myMenuList: any;
+num_invitiesCount: number;
   constructor(public apiservice: apiService) {
     this.objGroup = new GroupVm();
     this.objMenu = new MenuVm();
@@ -36,17 +38,21 @@ myMenuList: any;
    ngOnInit(){
 
    }
+   getMyInvitiesCount(): Observable<any>{
+     return this.apiservice.getData(this.apiservice.serverPath+ this.myInvitiesCount_url);
+   }
    getMyGuestList(): Observable <any>  {
      return this.apiservice.getData(this.apiservice.serverPath+ this.url);
    };
    addUpdateGroup(): Observable<any>{
     return this.apiservice.postData(this.apiservice.serverPath+this.createUpdateGroup_url,this.objGroup);
    }
+   ///
    getMyGroups(): Observable<any>{
      return this.apiservice.getData(this.apiservice.serverPath+this.groupGuestCount_url);
    }
    searchMyGuest(searchquery){
-     return this.apiservice.postData(this.apiservice.serverPath+ this.myGuestSearch_url,{'searchquery': searchquery});
+     return this.apiservice.postData(this.apiservice.serverPath+ this.myGuestSearch_url,{'query': searchquery});
    }
    myguestCount(): Observable<any>{
      return this.apiservice.getData(this.apiservice.serverPath+ this.myGuestCount_url);

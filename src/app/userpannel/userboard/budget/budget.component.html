@@ -17,7 +17,7 @@
                 <td>
                   <div> 
                   <i class="material-icons">gps_not_fixed</i>
-                  <span>Final Cost</span>
+                  <span>Paid Cost</span>
                   <span class="blue">{{finalCostTotal}}</span>
                   </div>
                 </td>
@@ -53,41 +53,41 @@
           </div>
         </div>
         <div class="container-fluid accordin">
-          <div class="col-md-12 nopadd">
-            <button class="accordion"><i class="material-icons colo_pink"> home</i> <strong class="positi_rel"> Evens </strong>  
+          <div class="col-md-12 nopadd accordintik" *ngFor='let budget of budgetItemsCategoryList; let i = index'>
+            <div class="accordion"><i class="material-icons colo_pink"> home</i> <strong class="positi_rel"> {{budget.name}} </strong>  
               <i class="material-icons downarrow">keyboard_arrow_down</i>
               <i class="material-icons uparrow">keyboard_arrow_up</i>
               <table width="100%" class="martop20px pink">
                     <tr>
-                      <td width="31%">Final Cost: {{finalCostTotal}}</td>
-                      <td width="25%" class="text-center">Paid: {{paidAmountTotal}}</td>
-                      <td width="25%" class="text-center">Pending: {{pendingAmountTotal}}</td>
+                      <td width="31%">Final Cost: {{budget.finalCostTotal}}</td>
+                      <td width="25%" class="text-center">Paid: {{budget.paidAmountTotal}}</td>
+                      <td width="25%" class="text-center">Pending: {{budget.pendingAmountTotal}}</td>
                       <td></td>
                     </tr>
               </table>
-            </button>
+            </div>
             <div class="panel">
-                <div class="checkbox"  *ngFor='let Budget of expensesByCategory'>
+                <div class="checkbox"  *ngFor='let expenses of budget.budgetItems'>
                   <table width="100%">
                     <tr>
                       <td>
                         <p class="rental">
-                          <strong> {{Budget.name}} </strong><br/>
-                          <i>Estimated: RS {{Budget.estimatedCost}}</i> 
+                          <strong> {{expenses.name}} </strong><br/>
+                          <i>Estimated: RS {{expenses.estimatedCost}}</i> 
                         </p>
                         <p> 
-                          <strong>Final Cost: ${{Budget.finalCost}}  </strong> </p>
+                          <strong>Final Cost: ${{expenses.finalCost}}  </strong> </p>
                       </td>
                       <td class="text-center">
                         <i class="material-icons">check_circle_outline</i><br/>
-                        <strong>Paid: <span class="green">Rs {{Budget.paidAmount}}</span></strong>
+                        <strong>Paid: <span class="green">Rs {{expenses.paidAmount}}</span></strong>
                       </td>
                       <td class="text-center">
                         <i class="material-icons">query_builder</i><br/>
-                        <strong>Pending: <span class="orange">Rs {{Budget.pendingAmount}}</span></strong>
+                        <strong>Pending: <span class="orange">Rs {{expenses.pendingAmount}}</span></strong>
                       </td>
                       <td class="text-right">
-                        <button class="btn-warning btnround">
+                        <button class="btn-warning btnround" (click)="AddBudget = true; editBudget(expenses)">
                           <i class="material-icons">edit</i>
                         </button>
                         &nbsp;
@@ -106,13 +106,11 @@
           <div  class="card" style="margin-top:0PX;">
             <div class="card-body" >
               <div class="px-3 py-3 expensesIPad" >
-                      <h2>EXPENSES BY CATEGORY</h2>
-                      <ol class="timeline">
-                  <li><a href="#">Events <span class="badge badge-pill badge-default">Rs 15,000</span></a></li>
-                  <li><a href="#">Photography & Vedio <span class="badge badge-pill badge-default">Rs 24,000</span></a></li>
-                  <li><a href="#">Planing <span class="badge badge-pill badge-default">Rs 35,000</span></a></li>
-                  <li><a href="#">Health & Beauty <span class="badge badge-pill badge-default">Rs 15,000</span></a></li>
-                  <li><a href="#">Others <span class="badge badge-pill badge-default">Rs 25,000</span></a></li>
+                <h2>EXPENSES BY CATEGORY</h2>
+                <ol class="timeline">
+                  <li *ngFor='let category of budgetCategoryList'>
+                    <a href="#">{{category.name}} <span class="badge badge-pill badge-default">Rs {{category.total}}</span></a>
+                  </li>
                 </ol>
 
                 <div class="clearfix text-center" (click) = "categoryDailog = true ">
@@ -131,53 +129,50 @@
 <!-- (click)="images_dialog = true" -->
 
 <div class="modal fade" id="uploadphoto" [ngClass]="{'show' : AddBudget}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title"> Change Business Cover </h4>
-                <button type="button" class="close" (click)="closeModel()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div>
-                   <form (ngSubmit)="saveBudget()" #budget="ngForm">
-                      <!-- <input type = "hidden"   id="budgetItemId" name="budgetItemId"  [value]="0" [(ngModel)]="budgetItemId"  ><br> -->
-                      <div class="form-group col-md-6">
-                      Name: 
-                      <input   type = "text" class="form-control" required [ngModelOptions]="{standalone: true}" [(ngModel)]='budgetservice.objBudgetItem.name'></div>
-                    <div class="form-group col-md-6">
-                      EstimatedCost: 
-                      <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" [ngModelOptions]="{standalone: true}" id="estimatedCost" name="estimatedCost" [(ngModel)]="budgetservice.objBudgetItem.estimatedCost" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                    FinalCost: 
-                    <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" (change)='getPendingAmount()' [ngModelOptions]="{standalone: true}" id="finalCost" name="finalCost"  [(ngModel)]="budgetservice.objBudgetItem.finalCost" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                      PaidAmount: <input type = "number" pattern="^\d*(\.\d{0,2})?$" [ngModelOptions]="{standalone: true}" (change)='getPendingAmount()' class="form-control" id="paidAmount" name="paidAmount" [(ngModel)]="budgetservice.objBudgetItem.paidAmount" required>
-                      </div>
-                      <div class="form-group col-md-6">
-                      PendingAmount: <input  type = "number" readonly [ngModelOptions]="{standalone: true}" pattern="^\d*(\.\d{0,2})?$" class="form-control" id="pendingAmount" name="pendingAmount"   [(ngModel)]="budgetservice.objBudgetItem.pendingAmount" required >
-                      </div>
-                      <div class="form-group col-md-6">
-                      BudgetCategoryId:
-                      <select id="budgetCategoryId" name="budgetCategoryId" [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="budgetservice.objBudgetItem.budgetCategoryId" (ngModelChange)='onOptionsSelected($event)'>
-                        <option class='option' *ngFor='let option of budgetCategoryList' [value]="option.budgetCategoryId">{{option.name}}</option>
-                      </select>
-                    </div>
-                    <button type="submit" class="btn newbtn">Save</button>&nbsp;
-                      <button type="reset" class="btn newbtn" (click)="closeModel()">Close</button>&nbsp;
-
-                   </form>
-
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Change Business Cover </h4>
+        <button type="button" class="close" (click)="closeModel()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+          <div>
+           <form (ngSubmit)="saveBudget()" #budget="ngForm">
+              <div class="form-group col-md-6">
+              Name: 
+              <input   type = "text" class="form-control" required [ngModelOptions]="{standalone: true}" [(ngModel)]='budgetservice.objBudgetItem.name'></div>
+              <div class="form-group col-md-6">
+                Estimated Cost: 
+                <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" [ngModelOptions]="{standalone: true}" id="estimatedCost" name="estimatedCost" [(ngModel)]="budgetservice.objBudgetItem.estimatedCost" required>
+              </div>
+              <div class="form-group col-md-6">
+                Final Cost: 
+                <input  type = "number" pattern="^\d*(\.\d{0,2})?$" class="form-control" (change)='getPendingAmount()' [ngModelOptions]="{standalone: true}" id="finalCost" name="finalCost"  [(ngModel)]="budgetservice.objBudgetItem.finalCost" required>
+              </div>
+              <div class="form-group col-md-6">
+                Paid Amount: <input type = "number" pattern="^\d*(\.\d{0,2})?$" [ngModelOptions]="{standalone: true}" (change)='getPendingAmount()' class="form-control" id="paidAmount" name="paidAmount" [(ngModel)]="budgetservice.objBudgetItem.paidAmount" required>
                 </div>
-          
-            </div>
-
+                <div class="form-group col-md-6">
+                Pending Amount: <input  type = "number" readonly [ngModelOptions]="{standalone: true}" pattern="^\d*(\.\d{0,2})?$" class="form-control" id="pendingAmount" name="pendingAmount"   [(ngModel)]="budgetservice.objBudgetItem.pendingAmount" required >
+                </div>
+                <div class="form-group col-md-6">
+                Budget Category:
+                <select id="budgetCategoryId" name="budgetCategoryId" [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="budgetservice.objBudgetItem.budgetCategoryId" (ngModelChange)='onOptionsSelected($event)'>
+                  <option class='option' *ngFor='let option of budgetCategoryList' [value]="option.budgetCategoryId">{{option.name}}</option>
+                </select>
+              </div>
+              <button type="submit" class="btn newbtn">Save</button>&nbsp;
+              <button type="reset" class="btn newbtn" (click)="closeModel()">Close</button>&nbsp;
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
+
 
 <!--edit category-->
 <div class="modal fade" [ngClass] = "{'show' : categoryDailog }" id="categoryDailog" tabindex="-1" role="dialog" aria-labelledby="myModalCategory">
@@ -189,51 +184,46 @@
             <span aria-hidden="true">&times;</span>
           </button>
       </div>
-     
+
       <div class="modal-body formscroll">
-          <div class="col-sm-12 nopadd">
-            <div class="col-sm-12">
-              <form (ngSubmit)='createUpdateBudgetCategory()' #budgetCategory="ngForm">
-                  <div class="row field">
-                      <label>Category Name</label>
-                      <input type="text" name="budgetcategoryName" id="budgetcategoryName" [(ngModel)]='budgetservice.objbudgetCategory.name' class="form-control mb-4" placeholder="Name">                
+        <div class="col-sm-12 nopadd">
+          <div class="col-sm-12">
+            <form (ngSubmit)='createUpdateBudgetCategory()' #budgetCategory="ngForm">
+                <div class="row field">
+                    <label>Category Name</label>
+                    <input type="text" name="budgetcategoryName" id="budgetcategoryName" [(ngModel)]='budgetservice.objbudgetCategory.name' class="form-control mb-4" placeholder="Name">                
+                </div>
+                <div class="modal-footer marbot0px">
+                    <button type="submit"  class="btn newbtn">Save</button>
+                    <button type="reset" class="btn newbtn newcancelbtn"  (click) = "closeModel()">Cancel</button>
                   </div>
-                  <div class="modal-footer marbot0px">
-                      <button type="submit"  class="btn newbtn">Save</button>
-                      <button type="reset" class="btn newbtn newcancelbtn"  (click) = "closeModel()" >Cancel</button>
-                    </div>
-                  </form>
+                </form>
+          </div>
+        </div>
+        <div class="col-sm-12 nopadd topmargin">
+          <div class="col-sm-12">
+            <div class="row field">
+              <div class="table-responsive">
+                <table class="table" style="border:1px solid #ced4da;margin: 0 !important;">
+                  <thead>
+                    <tr>
+                      <th scope="col">S No.</th>
+                      <th scope="col">Category Name</th>
+                      <th scope="col">Edit/Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor='let category of budgetCategoryList  let i=index'>
+                      <th scope="row">{{i + 1}} </th>
+                      <td>{{category.name}}</td>
+                      <td><div (click)='editBudgetCategory(category)' class="btn btn-edit">Edit</div></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-          <div class="col-sm-12 nopadd topmargin">
-            <div class="col-sm-12">
-                  <div class="row field">
-                      <div class="table-responsive">
-                          <table class="table" style="border:1px solid #ced4da;margin: 0 !important;">
-                            <thead>
-                              <tr>
-                                <th scope="col">S No.</th>
-                                <th scope="col">Category Name</th>
-                                <th scope="col">Edit/Delete</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                  </div>
-            </div>
-          </div>
+        </div>
       </div> 
     </div>       
   </div>          

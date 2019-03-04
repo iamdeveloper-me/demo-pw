@@ -266,8 +266,8 @@
                 </div>
                                     
                 <div class="CheckListdiv" style="display:block!important" *ngFor='let td of filteredToDos'>
-                    <i class="material-icons tikchecklist" *ngIf='td.status==1'>
-                            <!-- (click)='addNewTask(td)' -->
+                    <i class="material-icons tikchecklist" *ngIf='td.status==1' (click)='addNewTask(td)'>
+                            <!--  -->
                         check</i>
                     <i class="material-icons tikchecklist tikchecklicurs" *ngIf='td.status==2'>check</i>
                     <div><strong>{{td.name}}</strong> </div>

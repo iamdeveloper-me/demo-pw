@@ -9,19 +9,25 @@ import { Observable, observable } from 'rxjs';
 })
 export class GuestserviceService implements OnInit {
 url = 'Guests/myGuests';
+/// Group
+removeGroup_url='Groups/removegroup';
 createUpdateGroup_url = 'Groups/createupdategroups';
 getMyGroup_url = 'Groups/mygroups';
 groupGuestCount_url = 'groups/groupguestscount'
-myGuestSearch_url = 'Guests/myguestssearch';
-myGuestCount_url = 'Guests/myguestscounts';
+
+/// Menu
 createUpdateMenu_url = 'Menu/createupdatemenu'
-menuGuestCount_Url = 'Menu/menuguestscount';
+deleteMenu_url='Menu/removemenu';
 mymenu_url = 'Menu/mymenu';
-removeGuest_url = 'Guests/removeguests';
+menuGuestCount_Url = 'Menu/menuguestscount';
 myInvitiesCount_url ='Guests/myInvitesCount'
 
 /// Guest
 createUpdaateGuest_Url = 'Guests/createupdateguests';
+removeGuest_url = 'Guests/removeguests';
+myGuestSearch_url = 'Guests/myguestssearch';
+myGuestCount_url = 'Guests/myguestscounts';
+
 
 objGroup:GroupVm;
 objMenu: MenuVm;
@@ -29,6 +35,7 @@ menuGuestCount: any;
 myGroups: any;
 objGuest:guestVm;
 myMenuList: any;
+groupGuestCount:any;
 num_invitiesCount: number;
   constructor(public apiservice: apiService) {
     this.objGroup = new GroupVm();
@@ -47,18 +54,27 @@ num_invitiesCount: number;
    addUpdateGroup(): Observable<any>{
     return this.apiservice.postData(this.apiservice.serverPath+this.createUpdateGroup_url,this.objGroup);
    }
-   ///
+   ///Group Section
    getMyGroups(): Observable<any>{
-     return this.apiservice.getData(this.apiservice.serverPath+this.groupGuestCount_url);
+     return this.apiservice.getData(this.apiservice.serverPath+this.getMyGroup_url);
    }
-   searchMyGuest(searchquery){
-     return this.apiservice.postData(this.apiservice.serverPath+ this.myGuestSearch_url,{'query': searchquery});
+   getGroupsCountByGroup(): Observable<any>{
+    return this.apiservice.getData(this.apiservice.serverPath+this.groupGuestCount_url);
+    }
+    removeGroup(id):Observable<any>{
+      return this.apiservice.deleteAction2(this.removeGroup_url+'?id='+id,'');
+    }
+   searchMyGuest(searchquery,sortBy){
+     return this.apiservice.postData(this.apiservice.serverPath+ this.myGuestSearch_url,{'query': searchquery,'sortBy':sortBy});
    }
    myguestCount(): Observable<any>{
      return this.apiservice.getData(this.apiservice.serverPath+ this.myGuestCount_url);
    }
    createUpdateMenu(): Observable<any>{
     return this.apiservice.postData(this.apiservice.serverPath+ this.createUpdateMenu_url,this.objMenu);
+   }
+   deleteMenu(menu):Observable<any>{
+    return this.apiservice.deleteAction2(this.deleteMenu_url+'?id='+menu.menuId,'');
    }
    getMenuGuestCount(): Observable<any>{
     return this.apiservice.getData(this.apiservice.serverPath + this.menuGuestCount_Url);

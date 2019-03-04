@@ -45,8 +45,8 @@ export class BannerComponent implements OnInit {
  locationTitle:string = 'Select Locations'
   ngOnInit() {
     debugger;
-   $.getScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js').done(res=>{
-    $(document).on('click', ".mobvendorebtn", function(){
+   $.getScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js',function(){
+  $(document).on('click', ".mobvendorebtn", function(){
       $("#tiktik").show();
     }); 
 
@@ -60,7 +60,7 @@ export class BannerComponent implements OnInit {
       $(".category-body").show();
       $(".city-body").hide();
     });
-   });
+  }); 
    // $.getScript('./assets/js/homebannersearch.js');
     this.Categorie();
     this.location();

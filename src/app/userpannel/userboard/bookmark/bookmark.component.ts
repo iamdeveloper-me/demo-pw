@@ -40,7 +40,7 @@ export class BookmarkComponent implements OnInit {
   status:any;
   acc: any;
   myChecklist: any;
-  filteredToDos: any;
+  filteredToDos: any = {};
   modalref:any;
   completedTaskTotal:number;
   completedInPercent:number;

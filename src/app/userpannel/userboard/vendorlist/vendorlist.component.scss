@@ -40,13 +40,6 @@
   }
 
 #login{display: none;}
-.mainhead{
-	padding: 20px 0px;
-	display: inline-block;
-	width: 23.5%;
-	float: left;
-}
-
 .timeline{
 	position: relative;
 }
@@ -159,7 +152,8 @@ font-weight: bold;
 }
 .filter-button{
 	margin-left: 5px;
-	margin-right: 5px;
+    margin-right: 5px;
+    border:1px solid  #8c8c8c;
 }
 .filter .card-footer{
 	padding: 10px;
@@ -189,7 +183,41 @@ color: #fff;
 .martop25px{
 	margin-top: 25px;
 }
-
+.btn-default:hover{
+    background-color: #fff !important;
+}
+.white_bg{
+    background-color: #fff;
+    margin-bottom: 25px;
+    padding: 0;
+}
+.mainhead{
+    padding: 15px 0px;
+}
+.my-nots{
+    position: relative;
+}
+.dis_none button{
+    background: none;
+    border: none;
+    box-shadow: none !important;
+}
+.my-nots .dis_none{
+    display:none;
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    cursor: pointer;
+}
+.my-nots:hover .dis_none{
+    display: inline-block;
+}
+.dis_none .green_icon{
+    color: green;
+}
+.dis_none .red_icon{
+    color: red;
+}
 @media(max-width:767px) {
 .filterbtn{
 	display:inherit;
@@ -307,7 +335,8 @@ a.btn11 {
     background:#4285f4;
     color: #fff;
     padding: 8px 15px;
-    margin: 15px auto;
+    margin-top: 20px;
+    margin-bottom: 0px;
     display: inline-block;
     box-shadow: 0 0 10px #9b9797;
 }
@@ -315,7 +344,8 @@ a.btn11 {
 	border:1px solid #222;
 	padding: 0 18px 20px 18px;
     font-size: 12px;
-	display:inline-block;
+    display:inline-block;
+    width: 100%;
 }
 .text p.kc11{
 	width: inherit;
@@ -348,6 +378,28 @@ a.btn11 {
     width: 40px;
     height: 40px;
     font-size: 20px;
+}
+.btnradius50per {
+    border-radius: 50% !important;
+    font-size: 15px !important;
+    padding: 0px !important;
+    width: 30px !important;
+    height: 30px !important;
+    line-height: 12px !important;
+    margin: 0px !important;
+    background: #ff0000 !important;
+    border: 0px !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+}
+.textInputSubmit {
+    width: 10%;
+    display: inline-block;
+    background: #e72e77;
+    height: 35px;
+    border: 0;
+    color: white;
+    margin-top: 15px;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {

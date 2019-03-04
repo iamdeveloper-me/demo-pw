@@ -13,6 +13,8 @@ export class VendorlistComponent implements OnInit {
   savedArray:any = {};
   listedArray:any = {};
   bookedArray:any = {};
+  updateReviewObj = new UpdateReviewVM();
+  Newtast_dialog: boolean = false;
 
   constructor
   (
@@ -62,9 +64,18 @@ export class VendorlistComponent implements OnInit {
                       });
                 });  
   }
-
+  showNewTaskPopup(review) {
+    this.updateReviewObj = review;
+    console.log(review);
+    this.Newtast_dialog = true;
+  }
+  close() {
+    this.Newtast_dialog = false;
+  }
   getallSuppliers(enumTypeId){
+   
       this.apiService.postData(this.apiService.serverPath+'PerfectWedding/searchmysuppliers',{
+        
         "supplierStatus": enumTypeId
     }).subscribe(
       data => {
@@ -145,4 +156,9 @@ export class MySuppliersSearchVM {
 export class BookmarkSuppliersVM {
   vendorId : number;
   notes :	string;
+}
+export class UpdateReviewVM {
+  reviewId: number;
+  rating: number;
+  comments: string;
 }

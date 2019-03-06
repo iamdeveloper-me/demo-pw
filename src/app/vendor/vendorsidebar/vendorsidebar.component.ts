@@ -50,8 +50,9 @@ public shouldShow = false;
             this.unread_msg = data.json().length;
         
 
-          },error => 
-          alert(error) // error path
+          },
+          // error => 
+          // alert(error) // error path
         ) 
   }
   readStatus(){
@@ -69,7 +70,7 @@ public shouldShow = false;
         data =>{
           this.counts = data.json().count
     },error=>{
-          console.log(error)
+          // console.log(error)
     });
   }
 

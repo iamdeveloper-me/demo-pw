@@ -2,12 +2,12 @@
 <div class="lm_bg">
      
 <ul *ngIf="!route; else next"class="sidebar-nav" id="testDiv">         
-  <a class="lm_top_head logo_icon" routerLink="../../home" >Perfect Wedding</a> 
+  <!-- <a class="lm_top_head logo_icon" routerLink="../../home" >Perfect Wedding</a>  -->
 <!--   <button (click)="shouldShow = !shouldShow"> Show/Hide </button>
 <label [ngClass]="{show: shouldShow, hide: !shouldShow}"> ... </label> -->
 
 
-    <li id="dashboard" class="sidebar-brand">
+    <!-- <li id="dashboard" class="sidebar-brand">
         <a    routerLink="../dashboard"  >
             <i class="material-icons">dashboard</i>
             Dashboard
@@ -43,7 +43,6 @@
             <a routerLink="../gallery" > 
                 <i class="material-icons">photo_album</i>
                     Portfolio &Albums</a>
-            <!-- routerLink="../gallery" -->
         </li>
         <li class="sidebar-brand" id="play_circle_outline">
                         
@@ -73,7 +72,6 @@
                 <a routerLink="../membership" >
                         <i class="material-icons">card_membership</i>
                     Membership  </a>
-                <!-- routerLink="../Membership" -->
 
         </li>     
         <li class="sidebar-brand" id="Calender">
@@ -97,7 +95,7 @@
 
                     Discount & Deals </a>
                 
-        </li>
+        </li> -->
 
         <li class="sidebar-brand" id="Statistics">
             <a routerLink="../statistics" >
@@ -107,7 +105,7 @@
 <ng-template #next>
         <ul class="sidebar-nav" id="testDiv">         
                 <a class="lm_top_head logo_icon" routerLink="../../home" >Perfect Wedding</a> 
-                  <li class="sidebar-brand" id="dashboard">
+                  <!-- <li class="sidebar-brand" id="dashboard">
                       <a routerLink="../../dashboard">
                           <i class="material-icons">dashboard</i>
                           Dashboard
@@ -143,7 +141,6 @@
                           <a routerLink="../../gallery" > 
                               <i class="material-icons">photo_album</i>
                                   Portfolio &Albums</a>
-                          <!-- routerLink="../../gallery" -->
                       </li>
                       <li class="sidebar-brand" id="play_circle_outline">
                                       
@@ -171,7 +168,6 @@
                               <a routerLink="../../membership" >
                                       <i class="material-icons">card_membership</i>
                                   Membership  </a>
-                              <!-- routerLink="../../Membership" -->
               
                       </li>     
                       <li class="sidebar-brand" id="Calender">
@@ -195,7 +191,7 @@
               
                                   Discount & Deals </a>
                               
-                      </li>
+                      </li> -->
               
                       <li class="sidebar-brand" id="Statistics">
                           <a routerLink="../../statistics" >

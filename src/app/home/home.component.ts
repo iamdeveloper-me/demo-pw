@@ -20,8 +20,8 @@ export class HomeComponent implements OnInit {
     sessionStorage.removeItem('deal,mydeal');
     sessionStorage.removeItem('Deal_Details');
     sessionStorage.removeItem('Honeymoon_detail');
-    this.title.setTitle('Perfect Weddings |Best Wedding Suppliers in Mauritius');    
-    this.meta.addTag({name:'description',content:'Perfect Weddings |Best Wedding Suppliers in Mauritius'});    
+    // this.title.setTitle('Perfect Weddings |Best Wedding Suppliers in Mauritius');    
+    // this.meta.addTag({name:'description',content:'Perfect Weddings |Best Wedding Suppliers in Mauritius'});    
 
   // sessionStorage.clear()
   if(window.location.pathname == '/home' )

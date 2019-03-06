@@ -3,7 +3,7 @@
         <app-vendorsidebar></app-vendorsidebar>
     </div>
     <div id="page-content-wrapper">    
-        <app-navemenu></app-navemenu>
+        <!-- <app-navemenu></app-navemenu> -->
 
         <!-- Line Chart Starts -->
         <div class="card">
@@ -14,11 +14,11 @@
                         <i class="material-icons font48px">bar_chart</i>
                         <br/>
                         Your Business Performance, It’s all in the numbers! </p>
-                    <p class="text-center">Are you a Perfect Wedding Premium or Ultimate Partner? Contact us for support and free training. </p>
+                    <!-- <p class="text-center">Are you a Perfect Wedding Premium or Ultimate Partner? Contact us for support and free training. </p> -->
                 </div>
             </div>
-            <div *ngIf = "free_user > 1">
-                   <div class="col-sm-12">
+            <div>
+                   <!-- <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title">Enquiries Vs Leads</h4>
@@ -32,11 +32,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="overlay" routerLink="../enquiry">
+                                    <div class="overlay" routerLink="/vendor/storefront">
                                             <div class="text">ANALYSE DATA</div>
                                         </div>
                                 </div>
-                    </div>
+                    </div> -->
                             
                     <div class="col-sm-12">
                         <div class="card">
@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="overlay" routerLink="../storefront">
+                            <div class="overlay" routerLink="/vendor/storefront">
                                     <div class="text">ANALYSE DATA</div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="overlay" routerLink="../actionfront">
+                        <div class="overlay" routerLink="/vendor/actionfront">
                             <div class="text">ANALYSE DATA</div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="overlay" routerLink="../reachbar">
+                                <div class="overlay" routerLink="/vendor/reachbar">
                                     <div class="text">ANALYSE DATA</div>
                                 </div>
                         </div>
@@ -118,17 +118,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="overlay" routerLink="../gallerybar">
+                            <div class="overlay" routerLink="/vendor/gallerybar">
                                     <div class="text">ANALYSE DATA</div>
                                 </div>
                         </div>
                     </div>
             </div>
-            <div *ngIf = "free_user == 1" class="text-center">
+            <!-- <div  class="text-center">
                 <img src = "../../../assets/img/nochart.png" alt="Profile picture" >
                 <p>You Are Free user </p>
                 <button routerLink="../membership" class="btn btn-warning whitetext">Change Plan</button>
-            </div>  
+            </div>   -->
         </div>           
     </div>
 </div>

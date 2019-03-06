@@ -15,7 +15,7 @@ export class StatisticsComponent implements OnInit {
     $.getScript('https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js');
     $.getScript('./assets/js/vendorsidebar.js');
 
-    this.free_user = localStorage.getItem('basic-plan');
+    // this.free_user = localStorage.getItem('basic-plan');
         
 
   }
